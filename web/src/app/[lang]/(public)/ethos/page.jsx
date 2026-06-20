@@ -1,5 +1,4 @@
-// d:\Projects\done\bookqubit etra\web\src\app\[lang]\(public)\ethos\page.jsx
-
+// src/app/[lang]/(public)/ethos/page.jsx
 "use client";
 
 import Link from "next/link";
@@ -31,10 +30,17 @@ import "./ethos.css";
 
 export default function EthosPage() {
   const { theme, themeName } = useTheme();
-  const isDarkMode =
-    themeName === "dark" ||
-    themeName === "midnight" ||
-    themeName === "cyberpunk";
+
+  // Check if current theme is dark mode
+  const isDarkMode = themeName === "dark" || themeName === "midnight" || themeName === "cyberpunk";
+
+  // Get theme-aware styles
+  const bgColor = isDarkMode ? "bg-gray-900" : "bg-gray-50";
+  const cardBg = isDarkMode ? "bg-gray-800" : "bg-white";
+  const primaryText = isDarkMode ? "text-white" : "text-gray-900";
+  const secondaryText = isDarkMode ? "text-gray-400" : "text-gray-600";
+  const borderColor = isDarkMode ? "border-gray-700" : "border-gray-200";
+  const hoverBg = isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-100";
 
   // Stats data
   const stats = [
@@ -130,8 +136,16 @@ export default function EthosPage() {
     { label: "Holders", value: "14,287", change: "+5.1%" },
   ];
 
+  // Quick actions
+  const quickActions = [
+    { icon: FaRocket, label: "Mint NFT", color: "#8b5cf6" },
+    { icon: FaWallet, label: "Deposit", color: "#3b82f6" },
+    { icon: FaGift, label: "Claim Rewards", color: "#f59e0b" },
+    { icon: FaTrophy, label: "Leaderboard", color: "#10b981" },
+  ];
+
   return (
-    <div className="ethos-dashboard">
+    <div className={`ethos-dashboard ${bgColor} ${primaryText}`}>
       {/* Welcome Banner */}
       <div
         className="ethos-banner"
@@ -189,9 +203,8 @@ export default function EthosPage() {
           return (
             <div
               key={index}
-              className="ethos-stat-card"
+              className={`ethos-stat-card ${cardBg} ${borderColor}`}
               style={{
-                backgroundColor: isDarkMode ? "#1e293b" : "#ffffff",
                 borderRadius: "12px",
                 padding: "20px",
                 border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
@@ -201,13 +214,8 @@ export default function EthosPage() {
                 <Icon size={24} />
               </div>
               <div className="ethos-stat-content">
-                <span className="ethos-stat-value">{stat.value}</span>
-                <span
-                  className="ethos-stat-label"
-                  style={{
-                    color: isDarkMode ? "#94a3b8" : "#64748b",
-                  }}
-                >
+                <span className={`ethos-stat-value ${primaryText}`}>{stat.value}</span>
+                <span className={`ethos-stat-label ${secondaryText}`}>
                   {stat.label}
                 </span>
               </div>
@@ -229,12 +237,7 @@ export default function EthosPage() {
               marginBottom: "16px",
             }}
           >
-            <h2
-              className="ethos-section-title"
-              style={{
-                color: isDarkMode ? "#f1f5f9" : "#0f172a",
-              }}
-            >
+            <h2 className={`ethos-section-title ${primaryText}`}>
               <FaGem size={20} style={{ marginRight: "8px" }} />
               Featured NFT Books
             </h2>
@@ -253,9 +256,8 @@ export default function EthosPage() {
             {featuredNFTs.map((nft) => (
               <div
                 key={nft.id}
-                className="ethos-nft-card"
+                className={`ethos-nft-card ${cardBg} ${borderColor}`}
                 style={{
-                  backgroundColor: isDarkMode ? "#1e293b" : "#ffffff",
                   borderRadius: "12px",
                   border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
                   padding: "16px",
@@ -271,6 +273,7 @@ export default function EthosPage() {
                     backgroundColor: isDarkMode ? "#0f172a" : "#f1f5f9",
                     borderRadius: "8px",
                     marginBottom: "12px",
+                    position: "relative",
                   }}
                 >
                   {nft.image}
@@ -292,25 +295,10 @@ export default function EthosPage() {
                     </span>
                   )}
                 </div>
-                <h3
-                  className="ethos-nft-title"
-                  style={{
-                    color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                    fontSize: "16px",
-                    fontWeight: "600",
-                    marginBottom: "4px",
-                  }}
-                >
+                <h3 className={`ethos-nft-title ${primaryText}`}>
                   {nft.title}
                 </h3>
-                <p
-                  className="ethos-nft-author"
-                  style={{
-                    color: isDarkMode ? "#94a3b8" : "#64748b",
-                    fontSize: "13px",
-                    marginBottom: "8px",
-                  }}
-                >
+                <p className={`ethos-nft-author ${secondaryText}`}>
                   by {nft.author}
                 </p>
                 <div
@@ -332,13 +320,7 @@ export default function EthosPage() {
                   >
                     {nft.price}
                   </span>
-                  <span
-                    className="ethos-nft-edition"
-                    style={{
-                      color: isDarkMode ? "#94a3b8" : "#64748b",
-                      fontSize: "12px",
-                    }}
-                  >
+                  <span className={`ethos-nft-edition ${secondaryText}`}>
                     {nft.edition}
                   </span>
                 </div>
@@ -351,9 +333,8 @@ export default function EthosPage() {
         <div className="ethos-column-right">
           {/* Token Stats */}
           <div
-            className="ethos-token-section"
+            className={`ethos-token-section ${cardBg} ${borderColor}`}
             style={{
-              backgroundColor: isDarkMode ? "#1e293b" : "#ffffff",
               borderRadius: "12px",
               padding: "20px",
               border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
@@ -369,13 +350,7 @@ export default function EthosPage() {
                 marginBottom: "16px",
               }}
             >
-              <h3
-                style={{
-                  color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                  fontSize: "16px",
-                  fontWeight: "600",
-                }}
-              >
+              <h3 className={primaryText}>
                 <FaCoins size={18} style={{ marginRight: "8px" }} />
                 $ETHOS Token
               </h3>
@@ -409,12 +384,7 @@ export default function EthosPage() {
                         : "none",
                   }}
                 >
-                  <span
-                    style={{
-                      color: isDarkMode ? "#94a3b8" : "#64748b",
-                      fontSize: "13px",
-                    }}
-                  >
+                  <span className={secondaryText}>
                     {stat.label}
                   </span>
                   <div
@@ -424,12 +394,7 @@ export default function EthosPage() {
                       gap: "8px",
                     }}
                   >
-                    <span
-                      style={{
-                        fontWeight: "600",
-                        color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                      }}
-                    >
+                    <span className={primaryText}>
                       {stat.value}
                     </span>
                     <span
@@ -488,9 +453,8 @@ export default function EthosPage() {
 
           {/* DAO Proposals */}
           <div
-            className="ethos-dao-section"
+            className={`ethos-dao-section ${cardBg} ${borderColor}`}
             style={{
-              backgroundColor: isDarkMode ? "#1e293b" : "#ffffff",
               borderRadius: "12px",
               padding: "20px",
               border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
@@ -505,13 +469,7 @@ export default function EthosPage() {
                 marginBottom: "16px",
               }}
             >
-              <h3
-                style={{
-                  color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                  fontSize: "16px",
-                  fontWeight: "600",
-                }}
-              >
+              <h3 className={primaryText}>
                 <FaGavel size={18} style={{ marginRight: "8px" }} />
                 Active Proposals
               </h3>
@@ -542,13 +500,7 @@ export default function EthosPage() {
                     marginBottom: "6px",
                   }}
                 >
-                  <span
-                    style={{
-                      fontWeight: "500",
-                      color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                      fontSize: "14px",
-                    }}
-                  >
+                  <span className={primaryText}>
                     {proposal.title}
                   </span>
                   <span
@@ -571,12 +523,7 @@ export default function EthosPage() {
                     alignItems: "center",
                   }}
                 >
-                  <span
-                    style={{
-                      color: isDarkMode ? "#94a3b8" : "#64748b",
-                      fontSize: "12px",
-                    }}
-                  >
+                  <span className={secondaryText}>
                     {proposal.votes} votes · {proposal.timeLeft} left
                   </span>
                   <div
@@ -633,19 +580,13 @@ export default function EthosPage() {
           gap: "16px",
         }}
       >
-        {[
-          { icon: FaRocket, label: "Mint NFT", color: "#8b5cf6" },
-          { icon: FaWallet, label: "Deposit", color: "#3b82f6" },
-          { icon: FaGift, label: "Claim Rewards", color: "#f59e0b" },
-          { icon: FaTrophy, label: "Leaderboard", color: "#10b981" },
-        ].map((action, index) => {
+        {quickActions.map((action, index) => {
           const Icon = action.icon;
           return (
             <button
               key={index}
-              className="ethos-action-btn"
+              className={`ethos-action-btn ${cardBg} ${borderColor}`}
               style={{
-                backgroundColor: isDarkMode ? "#1e293b" : "#ffffff",
                 border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
                 borderRadius: "12px",
                 padding: "20px",
@@ -656,6 +597,7 @@ export default function EthosPage() {
                 cursor: "pointer",
                 transition: "all 0.2s ease",
                 color: isDarkMode ? "#f1f5f9" : "#0f172a",
+                backgroundColor: isDarkMode ? "#1e293b" : "#ffffff",
               }}
             >
               <Icon size={24} color={action.color} />

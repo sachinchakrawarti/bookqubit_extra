@@ -1,3 +1,4 @@
+// src/layout_ethos/ethos_left_slidebar/ethos_left_slidebar.jsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,29 +6,31 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   FaHome,
-  FaCompass,
+  FaWallet,
   FaBook,
-  FaUsers,
-  FaEnvelope,
-  FaBell,
+  FaBoxOpen,
+  FaGavel,
+  FaCoins,
+  FaUser,
+  FaCog,
+  FaSignOutAlt,
+  FaBars,
+  FaTimes,
   FaChevronLeft,
   FaChevronRight,
-  FaBars,
-    FaUser,
 } from "react-icons/fa";
 import { useTheme } from "@/themes/useTheme";
 import { useFont } from "@/contexts/FontContext";
 import { useRTL } from "@/contexts/RTLContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import SidebarSearch from "./components/SidebarSearch";
-import "./SidebarLeft.css";
+import "./ethos_left_slidebar.css";
 
-export default function SidebarLeft({ isMobileOpen }) {
+export default function EthosLeftSlidebar({ isMobileOpen }) {
   const pathname = usePathname();
   const { theme, themeName } = useTheme();
   const { currentFont } = useFont();
   const { direction } = useRTL();
-  const { td } = useLanguage(); // Drift translations
+  const { te } = useLanguage(); // Ethos translations from LanguageContext
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Check if current theme is dark mode
@@ -47,13 +50,13 @@ export default function SidebarLeft({ isMobileOpen }) {
   }, []);
 
   const mainNavItems = [
-    { href: "/drift", label: td("home"), icon: <FaHome />, exact: true },
-    { href: "/drift/explore", label: td("explore"), icon: <FaCompass /> },
-    { href: "/drift/books", label: td("myBooks"), icon: <FaBook /> },
-    { href: "/drift/community", label: td("community"), icon: <FaUsers /> },
-    { href: "/drift/messages", label: td("messages"), icon: <FaEnvelope />, badge: 3 },
-    { href: "/drift/notifications", label: td("notifications"), icon: <FaBell />, badge: 5 },
-    { href: "/drift/drift-profile", label: td("drift_profile"), icon: <FaUser />, badge: 0 },
+    { href: "/ethos", label: te("dashboard"), icon: <FaHome />, exact: true },
+    { href: "/ethos/wallet", label: te("wallet"), icon: <FaWallet /> },
+    { href: "/ethos/nfts", label: te("nfts"), icon: <FaBook /> },
+    { href: "/ethos/marketplace", label: te("marketplace"), icon: <FaBoxOpen /> },
+    { href: "/ethos/dao", label: te("dao"), icon: <FaGavel /> },
+    { href: "/ethos/tokens", label: te("tokens"), icon: <FaCoins /> },
+    { href: "/ethos/ethos_profile", label: te("profile"), icon: <FaUser />, badge: 0 },
   ];
 
   const fontStyle = currentFont?.family ? {
@@ -76,7 +79,7 @@ export default function SidebarLeft({ isMobileOpen }) {
   const primaryText = theme.textColors?.primary || (isDarkMode ? "text-white" : "text-gray-900");
   const secondaryText = theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600");
   const hoverBg = theme.background?.hover || (isDarkMode ? "bg-gray-700/50" : "bg-gray-100");
-  const primaryButtonBg = theme.buttonColors?.primaryButton?.background || "bg-gradient-to-r from-sky-600 to-sky-500";
+  const primaryButtonBg = theme.buttonColors?.primaryButton?.background || "bg-gradient-to-r from-blue-600 to-purple-600";
 
   return (
     <>
@@ -84,7 +87,7 @@ export default function SidebarLeft({ isMobileOpen }) {
       <aside
         dir={direction}
         style={fontStyle}
-        className={`drift-sidebar-left
+        className={`ethos-left-slidebar
           ${sidebarBg}
           ${theme.border?.default || "border-r border-gray-200 dark:border-gray-700"}
           ${isCollapsed ? "collapsed" : ""}
@@ -95,7 +98,7 @@ export default function SidebarLeft({ isMobileOpen }) {
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className={`collapse-toggle-btn ${primaryButtonBg} text-white shadow-lg hover:scale-110 transition-transform`}
-          aria-label={isCollapsed ? td("expandTooltip") : td("collapseTooltip")}
+          aria-label={isCollapsed ? te("expand_sidebar") : te("collapse_sidebar")}
         >
           {isCollapsed ? <FaChevronRight size={18} /> : <FaChevronLeft size={18} />}
         </button>
@@ -105,28 +108,28 @@ export default function SidebarLeft({ isMobileOpen }) {
           <div className="sidebar-header">
             {!isCollapsed ? (
               <div className="logo-section">
-                <Link href="/drift" className="logo-link">
-                  <span className="logo-icon">📚</span>
+                <Link href="/ethos" className="logo-link">
+                  <span className="logo-icon">⚓</span>
                   <span className={`logo-text ${primaryText}`}>
-                    {td("appName")} <span className="logo-subtitle">{td("appSubtitle")}</span>
+                    {te("ethos")} <span className="logo-subtitle">{te("web3")}</span>
                   </span>
                 </Link>
               </div>
             ) : (
               <div className="logo-section-collapsed">
-                <Link href="/drift" className="logo-link-collapsed">
-                  <span className="logo-icon">📚</span>
+                <Link href="/ethos" className="logo-link-collapsed">
+                  <span className="logo-icon">⚓</span>
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Search Component */}
+          {/* Search Component - Optional */}
           <div className="sidebar-search-wrapper">
-            <SidebarSearch isCollapsed={isCollapsed} placeholder={td("searchPlaceholder")} />
+            {/* You can add a search component here if needed */}
           </div>
 
-          {/* Main Navigation - Only this menu */}
+          {/* Main Navigation */}
           <div className="sidebar-section">
             {mainNavItems.map((item) => (
               <Link
@@ -149,6 +152,25 @@ export default function SidebarLeft({ isMobileOpen }) {
               </Link>
             ))}
           </div>
+
+          {/* Bottom Actions */}
+          <div className="sidebar-footer">
+            <button
+              className={`sidebar-footer-btn ${secondaryText} hover:${hoverBg}`}
+              onClick={() => console.log("Settings clicked")}
+            >
+              <FaCog size={18} />
+              {!isCollapsed && <span>{te("settings")}</span>}
+            </button>
+            <button
+              className={`sidebar-footer-btn ${secondaryText} hover:${hoverBg}`}
+              style={{ color: "#ef4444" }}
+              onClick={() => console.log("Disconnect clicked")}
+            >
+              <FaSignOutAlt size={18} />
+              {!isCollapsed && <span>{te("disconnect")}</span>}
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -156,7 +178,7 @@ export default function SidebarLeft({ isMobileOpen }) {
       <aside
         dir={direction}
         style={fontStyle}
-        className={`drift-sidebar-left-mobile
+        className={`ethos-left-slidebar-mobile
           ${isDarkMode ? "bg-gray-800" : "bg-white"}
           ${isMobileOpen ? "open" : ""}
           ${direction === 'rtl' ? 'rtl' : ''}
@@ -164,10 +186,10 @@ export default function SidebarLeft({ isMobileOpen }) {
       >
         <div className={`mobile-sidebar-header ${isDarkMode ? "border-gray-700" : "border-gray-200"} border-b`}>
           <div className="logo">
-            <span className="logo-icon">📚</span>
+            <span className="logo-icon">⚓</span>
             <div className="logo-text-wrapper">
-              <span className={`${primaryText} font-bold text-lg`}>{td("appName")}</span>
-              <span className={`${secondaryText} text-xs`}>{td("appSubtitle")}</span>
+              <span className={`${primaryText} font-bold text-lg`}>{te("ethos")}</span>
+              <span className={`${secondaryText} text-xs`}>{te("web3")}</span>
             </div>
           </div>
           <button 
@@ -179,11 +201,7 @@ export default function SidebarLeft({ isMobileOpen }) {
         </div>
         <div className="mobile-sidebar-content">
           <div className="mobile-search">
-            <input
-              type="text"
-              placeholder={td("mobileSearchPlaceholder")}
-              className={`mobile-search-input ${isDarkMode ? "bg-gray-700 text-white" : "bg-gray-100 text-gray-900"}`}
-            />
+            {/* You can add search here if needed */}
           </div>
           {mainNavItems.map((item) => (
             <Link
@@ -200,6 +218,23 @@ export default function SidebarLeft({ isMobileOpen }) {
               )}
             </Link>
           ))}
+          <div className="mobile-sidebar-footer">
+            <button
+              className={`mobile-footer-btn ${secondaryText}`}
+              onClick={() => console.log("Settings clicked")}
+            >
+              <FaCog size={18} />
+              <span>{te("settings")}</span>
+            </button>
+            <button
+              className={`mobile-footer-btn ${secondaryText}`}
+              style={{ color: "#ef4444" }}
+              onClick={() => console.log("Disconnect clicked")}
+            >
+              <FaSignOutAlt size={18} />
+              <span>{te("disconnect")}</span>
+            </button>
+          </div>
         </div>
       </aside>
     </>

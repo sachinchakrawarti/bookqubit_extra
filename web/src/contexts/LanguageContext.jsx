@@ -1,9 +1,11 @@
+// src/contexts/LanguageContext.jsx
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { allTranslations, rtlLanguages } from "./all_translations";
 import { allDriftTranslations, driftRtlLanguages } from "./all_drift_translations";
+import { allEthosTranslations, ethosRtlLanguages } from "./all_ethos_translations";
 
 const LanguageContext = createContext();
 
@@ -46,11 +48,19 @@ const supportedLanguages = [
   "fa",
 ];
 
+// Merge all RTL languages
+const allRtlLanguages = [...new Set([
+  ...rtlLanguages,
+  ...driftRtlLanguages,
+  ...ethosRtlLanguages,
+])];
+
 export const LanguageProvider = ({ children, initialLanguage = null }) => {
   const [language, setLanguage] = useState("en");
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [translations, setTranslations] = useState(allTranslations.en);
   const [driftTranslations, setDriftTranslations] = useState(allDriftTranslations.en);
+  const [ethosTranslations, setEthosTranslations] = useState(allEthosTranslations.en);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -73,12 +83,14 @@ export const LanguageProvider = ({ children, initialLanguage = null }) => {
       setLanguage(urlLang);
       setTranslations(allTranslations[urlLang]);
       setDriftTranslations(allDriftTranslations[urlLang] || allDriftTranslations.en);
+      setEthosTranslations(allEthosTranslations[urlLang] || allEthosTranslations.en);
       localStorage.setItem("bookqubit_language", urlLang);
     } else if (initialLanguage && allTranslations[initialLanguage]) {
       // Use initialLanguage from props (from server component)
       setLanguage(initialLanguage);
       setTranslations(allTranslations[initialLanguage]);
       setDriftTranslations(allDriftTranslations[initialLanguage] || allDriftTranslations.en);
+      setEthosTranslations(allEthosTranslations[initialLanguage] || allEthosTranslations.en);
       localStorage.setItem("bookqubit_language", initialLanguage);
     } else {
       // Fallback to localStorage or browser language
@@ -87,12 +99,14 @@ export const LanguageProvider = ({ children, initialLanguage = null }) => {
         setLanguage(savedLanguage);
         setTranslations(allTranslations[savedLanguage]);
         setDriftTranslations(allDriftTranslations[savedLanguage] || allDriftTranslations.en);
+        setEthosTranslations(allEthosTranslations[savedLanguage] || allEthosTranslations.en);
       } else {
         const browserLang = navigator.language.split("-")[0];
         if (allTranslations[browserLang]) {
           setLanguage(browserLang);
           setTranslations(allTranslations[browserLang]);
           setDriftTranslations(allDriftTranslations[browserLang] || allDriftTranslations.en);
+          setEthosTranslations(allEthosTranslations[browserLang] || allEthosTranslations.en);
           localStorage.setItem("bookqubit_language", browserLang);
         }
       }
@@ -118,8 +132,8 @@ export const LanguageProvider = ({ children, initialLanguage = null }) => {
 
   // Apply RTL/LTR when language changes
   useEffect(() => {
-    // Check both main and drift RTL languages
-    const isRTL = rtlLanguages.includes(language) || driftRtlLanguages.includes(language);
+    // Check all RTL language lists
+    const isRTL = allRtlLanguages.includes(language);
     
     if (isRTL) {
       document.documentElement.dir = "rtl";
@@ -143,6 +157,7 @@ export const LanguageProvider = ({ children, initialLanguage = null }) => {
     setLanguage(lang);
     setTranslations(allTranslations[lang]);
     setDriftTranslations(allDriftTranslations[lang] || allDriftTranslations.en);
+    setEthosTranslations(allEthosTranslations[lang] || allEthosTranslations.en);
     localStorage.setItem("bookqubit_language", lang);
     setIsLanguageMenuOpen(false);
 
@@ -160,6 +175,7 @@ export const LanguageProvider = ({ children, initialLanguage = null }) => {
     router.push(newPath);
   };
 
+  // Main translation function
   const t = (key, params = {}) => {
     let text = translations[key] || allTranslations.en[key] || key;
 
@@ -177,6 +193,47 @@ export const LanguageProvider = ({ children, initialLanguage = null }) => {
   // Drift-specific translation function
   const td = (key, params = {}) => {
     let text = driftTranslations[key] || allDriftTranslations.en[key] || key;
+
+    // Replace parameters if provided
+    if (params && typeof params === "object") {
+      Object.keys(params).forEach((param) => {
+        text = text.replace(`{${param}}`, params[param]);
+        text = text.replace(`{{${param}}}`, params[param]);
+      });
+    }
+
+    return text;
+  };
+
+  // Ethos-specific translation function
+  const te = (key, params = {}) => {
+    let text = ethosTranslations[key] || allEthosTranslations.en[key] || key;
+
+    // Replace parameters if provided
+    if (params && typeof params === "object") {
+      Object.keys(params).forEach((param) => {
+        text = text.replace(`{${param}}`, params[param]);
+        text = text.replace(`{{${param}}}`, params[param]);
+      });
+    }
+
+    return text;
+  };
+
+  // Get translation from specific category
+  const getTranslation = (category, key, params = {}) => {
+    let text = key;
+    
+    switch(category) {
+      case 'drift':
+        text = driftTranslations[key] || allDriftTranslations.en[key] || key;
+        break;
+      case 'ethos':
+        text = ethosTranslations[key] || allEthosTranslations.en[key] || key;
+        break;
+      default:
+        text = translations[key] || allTranslations.en[key] || key;
+    }
 
     // Replace parameters if provided
     if (params && typeof params === "object") {
@@ -357,19 +414,41 @@ export const LanguageProvider = ({ children, initialLanguage = null }) => {
   ];
 
   const value = {
+    // Language state
     language,
     setLanguage: changeLanguage,
-    t,
-    td, // Drift-specific translation function
+    
+    // Translation functions
+    t,           // Main translation
+    td,          // Drift-specific translation
+    te,          // Ethos-specific translation
+    getTranslation, // Get translation by category
+    
+    // Translation data
     translations,
     driftTranslations,
+    ethosTranslations,
+    
+    // Language menu
     isLanguageMenuOpen,
     setIsLanguageMenuOpen,
     toggleLanguageMenu,
     languages,
-    isRTL: rtlLanguages.includes(language) || driftRtlLanguages.includes(language),
-    getLanguageFromURL, // Expose helper
-    supportedLanguages, // Expose list
+    
+    // RTL detection (merged from all sources)
+    isRTL: allRtlLanguages.includes(language),
+    
+    // Helpers
+    getLanguageFromURL,
+    supportedLanguages,
+    allRtlLanguages,
+    
+    // Get specific language data
+    getLanguageData: (code) => languages.find(l => l.code === code),
+    getCurrentLanguageData: () => languages.find(l => l.code === language),
+    
+    // Check if language is RTL
+    isLanguageRTL: (code) => allRtlLanguages.includes(code),
   };
 
   return (

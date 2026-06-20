@@ -42,6 +42,7 @@ const sidebarLeftDesktopTranslationsHindi = {
   // Badge labels
   messagesBadge: "संदेश",
   notificationsBadge: "सूचनाएं",
+  drift_profile: "प्रोफाइल",
 };
 
 export default sidebarLeftDesktopTranslationsHindi;

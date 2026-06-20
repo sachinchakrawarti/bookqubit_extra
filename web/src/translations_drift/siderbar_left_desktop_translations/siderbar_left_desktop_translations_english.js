@@ -42,6 +42,9 @@ const sidebarLeftDesktopTranslationsEnglish = {
   // Badge labels
   messagesBadge: "messages",
   notificationsBadge: "notifications",
+  drift_profile: "profile",
+  
+
 };
 
 export default sidebarLeftDesktopTranslationsEnglish;

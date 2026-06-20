@@ -42,6 +42,7 @@ const sidebarLeftDesktopTranslationsUrdu = {
   // Badge labels
   messagesBadge: "پیغامات",
   notificationsBadge: "اطلاعات",
+  drift_profile: "پروفائل",
 };
 
 export default sidebarLeftDesktopTranslationsUrdu;
