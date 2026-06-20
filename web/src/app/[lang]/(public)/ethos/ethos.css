@@ -1,0 +1,545 @@
+
+.ethos-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.ethos-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ethos-sidebar-header {
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--sidebar-border, #e2e8f0);
+}
+
+.ethos-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ethos-logo-icon {
+  font-size: 28px;
+}
+
+.ethos-logo-text {
+  color: #3b82f6;
+}
+
+.ethos-badge {
+  font-size: 10px;
+  font-weight: 600;
+  background: #3b82f6;
+  color: #ffffff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ethos-nav {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ethos-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.ethos-nav-item:hover {
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+.ethos-nav-item.active {
+  background-color: #3b82f6;
+  color: #ffffff !important;
+}
+
+.ethos-nav-indicator {
+  position: absolute;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.ethos-sidebar-footer {
+  padding: 16px 12px;
+  border-top: 1px solid var(--sidebar-border, #e2e8f0);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ethos-footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.ethos-footer-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.ethos-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.ethos-header {
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ethos-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ethos-wallet-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  cursor: pointer;
+}
+
+.ethos-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ethos-balance {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ethos-connect-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ethos-connect-btn:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.ethos-content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+/* ============================================
+   DASHBOARD
+   ============================================ */
+.ethos-dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Banner */
+.ethos-banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ethos-banner-text {
+  flex: 1;
+}
+
+.ethos-banner-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ethos-banner-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+.ethos-banner-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.ethos-btn-primary,
+.ethos-btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.ethos-btn-primary:hover,
+.ethos-btn-secondary:hover {
+  transform: scale(1.02);
+}
+
+/* Stats Grid */
+.ethos-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ethos-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+
+.ethos-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ethos-stat-icon {
+  flex-shrink: 0;
+}
+
+.ethos-stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ethos-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.ethos-stat-label {
+  font-size: 13px;
+}
+
+/* Two Column Layout */
+.ethos-two-column {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 24px;
+}
+
+/* NFT Grid */
+.ethos-nft-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.ethos-nft-card {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.ethos-nft-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.ethos-nft-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Token Section */
+.ethos-token-section {
+  transition: all 0.2s ease;
+}
+
+/* Quick Actions */
+.ethos-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.ethos-action-btn {
+  transition: all 0.2s ease;
+}
+
+.ethos-action-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1200px) {
+  .ethos-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ethos-two-column {
+    grid-template-columns: 1fr;
+  }
+  
+  .ethos-nft-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-sidebar {
+    display: none;
+  }
+  
+  .ethos-header {
+    padding: 12px 16px;
+    flex-wrap: wrap; /* ✅ FIXED: Added 'wrap' value */
+    gap: 8px;
+  }
+  
+  .ethos-header-left,
+  .ethos-header-right {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .ethos-balance {
+    font-size: 12px;
+  }
+  
+  .ethos-content {
+    padding: 16px;
+  }
+  
+  .ethos-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .ethos-nft-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ethos-banner-title {
+    font-size: 22px;
+  }
+  
+  .ethos-banner-subtitle {
+    font-size: 14px;
+  }
+  
+  .ethos-banner-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .ethos-banner-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .ethos-quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ethos-two-column {
+    grid-template-columns: 1fr;
+  }
+  
+  .ethos-stat-value {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .ethos-nft-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ethos-header {
+    padding: 10px 12px;
+  }
+  
+  .ethos-header-right {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .ethos-balance {
+    font-size: 11px;
+  }
+  
+  .ethos-connect-btn {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
+  
+  .ethos-content {
+    padding: 12px;
+  }
+  
+  .ethos-quick-actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .ethos-banner {
+    padding: 20px !important;
+  }
+  
+  .ethos-banner-title {
+    font-size: 18px;
+  }
+  
+  .ethos-banner-subtitle {
+    font-size: 13px;
+  }
+  
+  .ethos-stat-value {
+    font-size: 16px;
+  }
+  
+  .ethos-stat-label {
+    font-size: 11px;
+  }
+}
+
+/* ============================================
+   ANIMATIONS & UTILITIES
+   ============================================ */
+
+/* Pulse animation for badges */
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.ethos-badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ethos-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Scrollbar styling */
+.ethos-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ethos-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ethos-content::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 3px;
+}
+
+.ethos-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* Dark mode scrollbar */
+[data-theme="dark"] .ethos-content::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .ethos-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.4);
+}

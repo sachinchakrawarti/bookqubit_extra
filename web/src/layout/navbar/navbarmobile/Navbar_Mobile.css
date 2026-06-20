@@ -1,0 +1,254 @@
+/* ==========================================================================
+   Base Mobile Navigation Layout Profiles - Enhanced with theme variables
+   ========================================================================== */
+.navbar-mobile {
+  border-bottom: 1px solid var(--nav-border-color, rgba(156, 163, 175, 0.15));
+  box-shadow: var(--nav-shadow, 0 1px 3px 0 rgba(0, 0, 0, 0.05));
+  box-sizing: border-box !important;
+  width: 100vw !important;
+  max-width: 100% !important;
+  background-color: var(--nav-bg-color, transparent);
+  color: var(--nav-primary-color, inherit);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Restricts the center layout region */
+.navbar-mobile-center {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Skeleton & Loading Placeholders with theme colors
+   ========================================================================== */
+.navbar-loading-state .skeleton-loader,
+.navbar-loading-state .skeleton-logo,
+.navbar-loading-state .skeleton-icon {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: var(--nav-primary-color, currentColor) !important;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.35; }
+}
+
+/* ==========================================================================
+   Interactive Control Layout with theme transitions
+   ========================================================================== */
+.nav-control-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  color: var(--nav-icon-color, var(--nav-secondary-color, inherit));
+}
+
+.nav-control-btn:hover {
+  background-color: var(--nav-hover-bg, rgba(156, 163, 175, 0.08));
+  transform: scale(1.05); /* Like HeroSection hover effect */
+}
+
+.nav-control-btn:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   Login Button with theme integration
+   ========================================================================== */
+.login-btn-nav {
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-btn-nav:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.login-btn-nav:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   Notification Badge
+   ========================================================================== */
+.notification-badge {
+  pointer-events: none;
+  box-shadow: 0 0 0 2px var(--nav-border-color, #ffffff);
+}
+
+/* ==========================================================================
+   Screen Scale Compaction for Small Devices
+   ========================================================================== */
+@media (max-width: 360px) {
+  .navbar-mobile {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  .navbar-mobile-right {
+    gap: 4px !important;
+  }
+  .logo-text {
+    font-size: 14px !important;
+  }
+}
+
+/* ==========================================================================
+   Accessibility Focus Framework with theme colors
+   ========================================================================== */
+.nav-control-btn:focus-visible,
+.login-btn-nav:focus-visible {
+  outline: 2px solid var(--nav-avatar-bg, #0ea5e9);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Dark mode specific adjustments (if needed)
+   ========================================================================== */
+[data-theme="dark"] .navbar-mobile,
+[data-theme="midnight"] .navbar-mobile,
+[data-theme="cyberpunk"] .navbar-mobile {
+  /* Additional dark mode specific styles if needed */
+  backdrop-filter: blur(10px);
+}
+
+
+/* Add to existing Navbar_Mobile.css */
+
+/* ==========================================================================
+   Navbar Wrapper - For sticky double row behavior
+   ========================================================================== */
+.navbar-mobile-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* First Row - Main Navigation */
+.navbar-mobile {
+  position: relative;
+  top: 0;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.navbar-mobile.navbar-scrolled {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Second Row Container */
+.navbar-second-row {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.navbar-second-row.second-row-scrolled {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-second-row-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make sure the discovery drift bar fits properly */
+.navbar-second-row .discovery-drift-bar-mobile {
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Adjust spacing for different screen sizes */
+@media (max-width: 480px) {
+  .navbar-second-row {
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-second-row {
+    padding: 4px 6px;
+  }
+}
+
+/* Hide second row on scroll for more content space (optional) */
+@media (max-width: 480px) {
+  .navbar-mobile-wrapper.scroll-hide-second-row .navbar-second-row {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* Second row entrance animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.navbar-second-row {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Ensure proper stacking context */
+.navbar-mobile {
+  z-index: 51;
+}
+
+.navbar-second-row {
+  z-index: 50;
+}
+
+/* Dark mode specific adjustments for second row */
+[data-theme="dark"] .navbar-second-row,
+[data-theme="midnight"] .navbar-second-row,
+[data-theme="cyberpunk"] .navbar-second-row {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Forest theme specific adjustments */
+[data-theme="forest"] .navbar-second-row {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(16, 185, 129, 0.02));
+}
+
+/* RTL support for second row */
+[dir="rtl"] .navbar-second-row-container {
+  direction: rtl;
+}
+
+/* Performance optimization */
+.navbar-second-row {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

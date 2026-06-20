@@ -1,0 +1,93 @@
+/* Drift Desktop Layout - NO MARGINS */
+.drift-desktop-layout {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+/* Theme Variables */
+.drift-desktop-layout.light {
+  --layout-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --text-primary: #1a1a2e;
+  --text-secondary: #666666;
+}
+
+.drift-desktop-layout.dark {
+  --layout-bg: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+}
+
+.drift-desktop-layout.midnight {
+  --layout-bg: linear-gradient(135deg, #0a0f1a 0%, #0f192d 100%);
+  --text-primary: #e0e0ff;
+  --text-secondary: #8888aa;
+}
+
+.drift-desktop-layout.cyberpunk {
+  --layout-bg: linear-gradient(135deg, #0a0514 0%, #1a0a2e 100%);
+  --text-primary: #00ffff;
+  --text-secondary: #ff00ff;
+}
+
+.layout-container {
+  display: flex;
+  max-width: 100%; /* ← Changed from 1400px */
+  margin: 0; /* ← ZERO margin */
+  padding: 0; /* ← ZERO padding */
+  min-height: 100vh;
+  position: relative;
+  background: var(--layout-bg);
+  width: 100%; /* ← Full width */
+}
+
+/* Middle Content takes remaining space */
+.layout-container > :nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .layout-container {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .layout-container > :nth-child(2) {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}

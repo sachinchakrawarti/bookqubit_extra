@@ -1,0 +1,169 @@
+
+/* ===== MAIN CONTAINER ===== */
+.dashboard-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+/* ===== THEME BACKGROUNDS ===== */
+.dashboard-page.light {
+  background: #f9fafb;
+}
+
+.dashboard-page.dark {
+  background: #1a1a2e;
+}
+
+.dashboard-page.midnight {
+  background: #0f192d;
+}
+
+.dashboard-page.cyberpunk {
+  background: #0a0514;
+}
+
+/* ===== LAYOUT ===== */
+.dashboard-main-layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 80px);
+}
+
+/* ===== CONTENT ===== */
+.dashboard-content {
+  flex: 1;
+  overflow-x: auto;
+  padding: 24px;
+  transition: all 0.3s ease;
+  min-height: calc(100vh - 80px);
+}
+
+/* ===== SCROLLBAR ===== */
+.dashboard-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dashboard-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.dashboard-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.dashboard-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   DARK THEME SCROLLBAR
+   ============================================ */
+
+.dashboard-page.dark .dashboard-content::-webkit-scrollbar-track,
+.dashboard-page.midnight .dashboard-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dashboard-page.dark .dashboard-content::-webkit-scrollbar-thumb,
+.dashboard-page.midnight .dashboard-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-page.dark .dashboard-content::-webkit-scrollbar-thumb:hover,
+.dashboard-page.midnight .dashboard-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   CYBERPUNK THEME SCROLLBAR
+   ============================================ */
+
+.dashboard-page.cyberpunk .dashboard-content::-webkit-scrollbar-track {
+  background: rgba(255, 0, 255, 0.1);
+}
+
+.dashboard-page.cyberpunk .dashboard-content::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+}
+
+.dashboard-page.cyberpunk .dashboard-content::-webkit-scrollbar-thumb:hover {
+  background: #ff44ff;
+}
+
+/* ============================================
+   CYBERPUNK GLOW EFFECT
+   ============================================ */
+
+.dashboard-page.cyberpunk .dashboard-content {
+  position: relative;
+}
+
+.dashboard-page.cyberpunk .dashboard-content::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 255, 0.02) 0px,
+      rgba(0, 255, 255, 0.02) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  z-index: -1;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-content > * {
+  animation: fadeIn 0.3s ease;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .dashboard-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main-layout {
+    flex-direction: column;
+  }
+
+  .dashboard-content {
+    padding: 12px;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 8px;
+  }
+}
