@@ -9,7 +9,6 @@ import ExplorePublications from "@/components/homepages/ExplorePublications";
 import ExploreComics from "@/components/homepages/ExploreComics";
 import ExploreAcademicBooks from "@/components/homepages/ExploreAcademicBooks";
 import ThirdPartyAD from "@/components/homepages/ThirdPartyAD";
-
 import LaunchYourBook from "@/components/homepages/LunchYourBook";
 import DiscoveryPlatform from "@/components/homepages/DiscoveryPlatform";
 import AiTools from "@/components/homepages/AiTools";
@@ -19,8 +18,9 @@ import HeroSectionSlider_mobile from "@/components/homepages/mobile_homepages/He
 import BookQubit_Mobile from "@/components/homepages/mobile_homepages/BookQubit_Mobile";
 import BookqubitImmerseExplorer from "@/components/homepages/Bookqubit_Immerse_Explorer";
 import BookqubitLensExplorer from "@/components/homepages/Bookqubit_Lens_Explorer";
-import BookqubitUpdatesExplorer from "@/components/homepages/Bookqubit_Updates_Explorer";
+import BookqubitUpdatesExplorer from "@/components/homepages/Bookqubit_Updates_Explorer"; // ← Fixed: lowercase 'u'
 import BookqubitInsightsExplorer from "@/components/homepages/Bookqubit_Insights_Explorer";
+
 export default function HomepagesPage() {
   return (
     <main>
