@@ -1,4 +1,3 @@
-// In UserDropDown.jsx, update the import and conditional rendering
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -6,7 +5,7 @@ import { auth } from "@/config/firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/themes/useTheme";
-import MobileProfile from "@/components/auth/Mobile_Profile"; // Add this import
+import MobileProfile from "@/components/auth/Mobile_Profile";
 import {
   FaUserCircle,
   FaSignOutAlt,
@@ -19,6 +18,7 @@ import {
   FaTrophy,
   FaMedal,
   FaFire,
+  FaUserCog,
 } from "react-icons/fa";
 
 export default function UserDropDown({ user }) {
@@ -262,7 +262,7 @@ export default function UserDropDown({ user }) {
             z-50 rounded-xl overflow-hidden
           `}
         >
-          {/* Desktop dropdown content - same as before */}
+          {/* Desktop dropdown content */}
           <div
             className={`${userRank?.bgColor || (isDarkMode ? "bg-gray-800" : "bg-gradient-to-r from-sky-50 to-purple-50")} px-4 py-3 border-b ${userRank?.borderColor || (isDarkMode ? "border-gray-700" : "border-sky-100")}`}
           >
@@ -324,6 +324,19 @@ export default function UserDropDown({ user }) {
           <div className="py-1">
             {[
               {
+                label: "My Account",
+                path: "/account",
+                icon: (
+                  <FaUserCog
+                    className={
+                      theme.textColors?.highlight ||
+                      (isDarkMode ? "text-blue-400" : "text-sky-600")
+                    }
+                  />
+                ),
+                description: "Manage your account & settings",
+              },
+              {
                 label: "Profile",
                 path: "/profile",
                 icon: (
@@ -374,7 +387,7 @@ export default function UserDropDown({ user }) {
                     >
                       {item.label}
                     </span>
-                    {item.label === "Bookworm Ranking" && rankingNumber && (
+                    {item.label === "Bookworm Leaderboard" && rankingNumber && (
                       <div className="flex items-center gap-1">
                         <div
                           className={`px-2 py-0.5 rounded-full text-xs font-bold ${getRankingBadgeStyle(rankingNumber)}`}

@@ -1,0 +1,416 @@
+/* BookQubit Lens Explorer - Complete Styles */
+
+.bookqubit-lens-explorer {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 1rem;
+}
+
+/* Container */
+.lens-explorer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.lens-explorer-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.lens-explorer-header-icon {
+  font-size: 3rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.lens-explorer-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.lens-explorer-title .highlight {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lens-explorer-subtitle {
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lens-explorer-divider {
+  width: 5rem;
+  height: 0.25rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 9999px;
+  margin: 1rem auto 0;
+}
+
+/* Categories Grid - 5 columns */
+.lens-explorer-categories {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+/* Category Card */
+.lens-explorer-category-card {
+  position: relative;
+  text-decoration: none;
+  display: block;
+}
+
+.lens-explorer-category-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  width: 100%;
+}
+
+.lens-explorer-category-inner:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Glow Effect */
+.lens-explorer-category-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+.lens-explorer-category-card:hover .lens-explorer-category-glow {
+  opacity: 1;
+}
+
+/* Icon */
+.lens-explorer-category-icon {
+  position: relative;
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  line-height: 1;
+}
+
+.lens-explorer-category-card:hover .lens-explorer-category-icon {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* Title */
+.lens-explorer-category-title {
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+/* Description */
+.lens-explorer-category-desc {
+  position: relative;
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+  z-index: 1;
+  line-height: 1.3;
+}
+
+/* Count Badge */
+.lens-explorer-category-count {
+  position: relative;
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  z-index: 1;
+  border: 1px solid transparent;
+}
+
+/* Arrow on Hover */
+.lens-explorer-category-arrow {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: translateX(0.5rem);
+  z-index: 1;
+}
+
+.lens-explorer-category-card:hover .lens-explorer-category-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.lens-explorer-category-arrow svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* CTA Section */
+.lens-explorer-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.lens-explorer-cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.lens-explorer-cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px -8px rgba(59, 130, 246, 0.4);
+}
+
+.lens-explorer-cta-button-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  transition: all 0.3s ease;
+}
+
+.lens-explorer-cta-button:hover .lens-explorer-cta-button-bg {
+  background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+}
+
+.lens-explorer-cta-button-shine {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.lens-explorer-cta-button:hover .lens-explorer-cta-button-shine {
+  opacity: 1;
+}
+
+.lens-explorer-cta-button-shine-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: skewX(-12deg) translateX(100%);
+  transition: transform 1s ease;
+}
+
+.lens-explorer-cta-button:hover .lens-explorer-cta-button-shine-inner {
+  transform: skewX(-12deg) translateX(-200%);
+}
+
+.lens-explorer-cta-button-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1;
+}
+
+.lens-explorer-cta-button-arrow {
+  transition: transform 0.3s ease;
+}
+
+.lens-explorer-cta-button:hover .lens-explorer-cta-button-arrow {
+  transform: translateX(0.25rem);
+}
+
+.lens-explorer-cta-subtext {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Dark Mode Overrides */
+.dark .lens-explorer-category-inner {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .lens-explorer-category-inner:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+}
+
+.dark .lens-explorer-cta-button:hover {
+  box-shadow: 0 12px 30px -8px rgba(59, 130, 246, 0.3);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lens-explorer-category-card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.lens-explorer-category-card:nth-child(1) { animation-delay: 0.05s; }
+.lens-explorer-category-card:nth-child(2) { animation-delay: 0.1s; }
+.lens-explorer-category-card:nth-child(3) { animation-delay: 0.15s; }
+.lens-explorer-category-card:nth-child(4) { animation-delay: 0.2s; }
+.lens-explorer-category-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .lens-explorer-categories {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  .lens-explorer-category-inner {
+    height: 190px;
+    padding: 1.25rem 0.75rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .bookqubit-lens-explorer {
+    padding: 2rem 0.75rem;
+  }
+  
+  .lens-explorer-title {
+    font-size: 2rem;
+  }
+  
+  .lens-explorer-subtitle {
+    font-size: 1rem;
+  }
+  
+  .lens-explorer-categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .lens-explorer-category-inner {
+    height: 170px;
+    padding: 1rem 0.75rem;
+  }
+  
+  .lens-explorer-category-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .lens-explorer-category-title {
+    font-size: 0.75rem;
+  }
+  
+  .lens-explorer-category-desc {
+    font-size: 0.6rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .lens-explorer-category-count {
+    font-size: 0.55rem;
+    padding: 0.125rem 0.5rem;
+  }
+  
+  .lens-explorer-category-arrow {
+    display: none;
+  }
+  
+  .lens-explorer-cta-button {
+    padding: 0.75rem 1.75rem;
+    font-size: 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .lens-explorer-categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .lens-explorer-category-inner {
+    height: 150px;
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .lens-explorer-category-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .lens-explorer-category-title {
+    font-size: 0.65rem;
+  }
+  
+  .lens-explorer-category-desc {
+    display: none;
+  }
+  
+  .lens-explorer-title {
+    font-size: 1.5rem;
+  }
+  
+  .lens-explorer-header-icon {
+    font-size: 2rem;
+  }
+  
+  .lens-explorer-cta-button {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  .lens-explorer-cta-button-content {
+    gap: 0.4rem;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .lens-explorer-category-inner,
+  .lens-explorer-category-icon,
+  .lens-explorer-category-arrow,
+  .lens-explorer-cta-button,
+  .lens-explorer-cta-button-shine-inner {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .lens-explorer-category-card {
+    animation: none !important;
+  }
+}

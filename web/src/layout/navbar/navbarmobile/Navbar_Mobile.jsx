@@ -52,9 +52,9 @@ const Navbar_Mobile = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleLogin = () => router.push("/auth/login");
+  const handleLogin = () => router.push("/login");
   const handleNotificationClick = () => router.push("/notifications");
-  const handleProfileClick = () => router.push("/profile");
+  const handleProfileClick = () => router.push("/account");
 
   const getUserInitials = () => {
     if (!user) return "U";

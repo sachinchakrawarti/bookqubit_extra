@@ -1,0 +1,927 @@
+/* Book DNA Analyzer - Complete Styles */
+
+.book-dna-page {
+  min-height: 100vh;
+  background: var(--dna-bg, #f9fafb);
+  padding: 2rem;
+}
+
+.book-dna-page.dark {
+  --dna-bg: #111827;
+  --dna-card-bg: #1f2937;
+  --dna-text-primary: #f9fafb;
+  --dna-text-secondary: #9ca3af;
+  --dna-border: #374151;
+  --dna-shadow: rgba(0, 0, 0, 0.3);
+}
+
+.book-dna-page:not(.dark) {
+  --dna-bg: #f9fafb;
+  --dna-card-bg: #ffffff;
+  --dna-text-primary: #111827;
+  --dna-text-secondary: #6b7280;
+  --dna-border: #e5e7eb;
+  --dna-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.book-dna-analyzer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.dna-header-main {
+  text-align: center;
+  padding: 1rem 0 2rem;
+}
+
+.dna-header-main h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dna-text-primary);
+}
+
+.dna-header-main p {
+  font-size: 0.875rem;
+  color: var(--dna-text-secondary);
+}
+
+/* Controls */
+.dna-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--dna-card-bg);
+  border: 1px solid var(--dna-border);
+  border-radius: 0.75rem;
+}
+
+.dna-selectors {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dna-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dna-compare-btn,
+.dna-reset-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dna-compare-btn {
+  background: #3b82f6;
+  color: white;
+}
+
+.dna-compare-btn:hover {
+  background: #2563eb;
+}
+
+.dna-reset-btn {
+  background: var(--dna-border);
+  color: var(--dna-text-secondary);
+}
+
+.dna-reset-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Book Selector */
+.book-selector {
+  position: relative;
+  min-width: 200px;
+}
+
+.book-selector-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--dna-text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.book-selector-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--dna-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background: var(--dna-bg);
+  transition: border-color 0.2s;
+}
+
+.book-selector-input:hover {
+  border-color: #3b82f6;
+}
+
+.book-selector-selected {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-selector-selected span:first-child {
+  font-size: 0.875rem;
+  color: var(--dna-text-primary);
+}
+
+.book-selector-author {
+  font-size: 0.7rem;
+  color: var(--dna-text-secondary);
+}
+
+.book-selector-placeholder {
+  color: var(--dna-text-secondary);
+  font-size: 0.875rem;
+}
+
+.book-selector-clear {
+  background: none;
+  border: none;
+  color: var(--dna-text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.book-selector-clear:hover {
+  color: #ef4444;
+}
+
+.book-selector-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.25rem;
+  background: var(--dna-card-bg);
+  border: 1px solid var(--dna-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px var(--dna-shadow);
+  z-index: 100;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-selector-search {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--dna-border);
+}
+
+.book-selector-search svg {
+  color: var(--dna-text-secondary);
+  margin-right: 0.5rem;
+}
+
+.book-selector-search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--dna-text-primary);
+}
+
+.book-selector-list {
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.book-selector-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.book-selector-item:hover {
+  background: var(--dna-bg);
+}
+
+.book-selector-item.selected {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.book-selector-item img {
+  width: 32px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.book-selector-item-title {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--dna-text-primary);
+}
+
+.book-selector-item-author {
+  font-size: 0.7rem;
+  color: var(--dna-text-secondary);
+  display: block;
+}
+
+.book-selector-check {
+  color: #3b82f6;
+  margin-left: auto;
+}
+
+.book-selector-empty {
+  padding: 1rem;
+  text-align: center;
+  color: var(--dna-text-secondary);
+}
+
+/* Results */
+.dna-results {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.dna-visualizer-wrapper {
+  background: var(--dna-card-bg);
+  border: 1px solid var(--dna-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.dna-stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* DNA Visualizer */
+.dna-visualizer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dna-header {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--dna-border);
+}
+
+.dna-book-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dna-book-cover {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.dna-book-info h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--dna-text-primary);
+}
+
+.dna-book-info p {
+  font-size: 0.875rem;
+  color: var(--dna-text-secondary);
+  margin: 0.25rem 0;
+}
+
+.dna-score-badge {
+  display: inline-block;
+  padding: 0.125rem 0.75rem;
+  background: #3b82f6;
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.dna-summary {
+  flex: 1;
+}
+
+.dna-summary p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--dna-text-secondary);
+  margin: 0;
+}
+
+/* DNA Tabs */
+.dna-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dna-tab {
+  padding: 0.375rem 1rem;
+  border: 1px solid var(--dna-border);
+  border-radius: 2rem;
+  background: transparent;
+  font-size: 0.75rem;
+  color: var(--dna-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dna-tab:hover {
+  background: var(--dna-bg);
+}
+
+.dna-tab.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+/* DNA Overview */
+.dna-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.dna-helix-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dna-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.dna-stat-card {
+  padding: 1rem;
+  background: var(--dna-bg);
+  border-radius: 0.5rem;
+}
+
+.dna-stat-icon {
+  font-size: 1.5rem;
+}
+
+.dna-stat-info {
+  margin-top: 0.5rem;
+}
+
+.dna-stat-label {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--dna-text-secondary);
+}
+
+.dna-stat-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--dna-text-primary);
+}
+
+.dna-stat-bar {
+  margin-top: 0.5rem;
+  height: 4px;
+  background: var(--dna-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dna-stat-fill {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* DNA Category Detail */
+.dna-category-detail {
+  padding: 1rem 0;
+}
+
+.dna-category-detail h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dna-text-primary);
+  margin-bottom: 1rem;
+}
+
+.dna-category-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.dna-category-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dna-category-key {
+  font-size: 0.813rem;
+  color: var(--dna-text-primary);
+  min-width: 120px;
+}
+
+.dna-category-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--dna-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.dna-category-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.dna-category-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--dna-text-primary);
+  min-width: 40px;
+  text-align: right;
+}
+
+.dna-radar-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* DNA Stats Component */
+.dna-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dna-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--dna-bg);
+  border-radius: 0.5rem;
+}
+
+.dna-stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dna-stat-icon-wrapper svg {
+  font-size: 1.25rem;
+}
+
+.dna-stat-details {
+  flex: 1;
+}
+
+.dna-stat-label {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--dna-text-secondary);
+}
+
+.dna-stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dna-text-primary);
+}
+
+/* Comparison Modal */
+.comparison-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.comparison-modal {
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  background: var(--dna-card-bg);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 32px var(--dna-shadow);
+}
+
+.comparison-header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--dna-border);
+}
+
+.comparison-header-main h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--dna-text-primary);
+}
+
+.comparison-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--dna-text-secondary);
+}
+
+.comparison-close:hover {
+  color: #ef4444;
+}
+
+.comparison-books {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--dna-bg);
+}
+
+.comparison-book-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.comparison-book-info img {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.comparison-book-info strong {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--dna-text-primary);
+}
+
+.comparison-book-info span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--dna-text-secondary);
+}
+
+.comparison-vs {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.comparison-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--dna-border);
+}
+
+.comparison-tab {
+  padding: 0.375rem 1rem;
+  border: none;
+  border-radius: 2rem;
+  background: transparent;
+  font-size: 0.75rem;
+  color: var(--dna-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.comparison-tab.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.comparison-content {
+  padding: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.comparison-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.comparison-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--dna-text-secondary);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--dna-border);
+}
+
+.comparison-book1 {
+  min-width: 100px;
+}
+
+.comparison-diff {
+  flex: 1;
+  text-align: center;
+}
+
+.comparison-book2 {
+  min-width: 100px;
+  text-align: right;
+}
+
+.comparison-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.25rem 0;
+}
+
+.comparison-key {
+  font-size: 0.75rem;
+  color: var(--dna-text-primary);
+  min-width: 100px;
+}
+
+.comparison-bars {
+  flex: 1;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.comparison-bar-wrapper {
+  flex: 1;
+  height: 6px;
+  background: var(--dna-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.comparison-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.comparison-bar.bar1 {
+  background: #3b82f6;
+}
+
+.comparison-bar.bar2 {
+  background: #8b5cf6;
+}
+
+.comparison-diff-value {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--dna-text-secondary);
+  min-width: 40px;
+  text-align: right;
+}
+
+.comparison-average {
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--dna-border);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--dna-text-secondary);
+}
+
+.comparison-average strong {
+  color: var(--dna-text-primary);
+}
+
+.comparison-result {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--dna-border);
+  background: var(--dna-bg);
+}
+
+.comparison-result span {
+  font-size: 0.875rem;
+  color: var(--dna-text-secondary);
+}
+
+.comparison-result strong {
+  font-size: 1.25rem;
+  color: var(--dna-text-primary);
+}
+
+.comparison-match-level {
+  padding: 0.25rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+/* Welcome State */
+.dna-welcome {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--dna-card-bg);
+  border: 1px solid var(--dna-border);
+  border-radius: 0.75rem;
+}
+
+.dna-welcome-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.dna-welcome h3 {
+  font-size: 1.25rem;
+  color: var(--dna-text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.dna-welcome p {
+  color: var(--dna-text-secondary);
+}
+
+/* Loading & Error */
+.dna-loading,
+.dna-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.dna-loading .loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--dna-border);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.dna-error button {
+  padding: 0.5rem 1.5rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dna-results {
+    grid-template-columns: 1fr;
+  }
+
+  .dna-stats-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .dna-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .dna-stat-item {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .dna-overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-dna-page {
+    padding: 1rem;
+  }
+
+  .dna-controls {
+    flex-direction: column;
+  }
+
+  .dna-selectors {
+    width: 100%;
+  }
+
+  .book-selector {
+    width: 100%;
+  }
+
+  .dna-actions {
+    width: 100%;
+  }
+
+  .dna-actions button {
+    flex: 1;
+  }
+
+  .dna-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .dna-tabs {
+    justify-content: center;
+  }
+
+  .dna-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comparison-modal {
+    max-height: 95vh;
+    margin: 0.5rem;
+  }
+
+  .comparison-books {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .comparison-row {
+    flex-wrap: wrap;
+  }
+
+  .comparison-key {
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dna-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dna-header-main h1 {
+    font-size: 1.5rem;
+  }
+
+  .comparison-header-main h2 {
+    font-size: 1rem;
+  }
+
+  .comparison-book-info {
+    flex-direction: column;
+    text-align: center;
+  }
+}

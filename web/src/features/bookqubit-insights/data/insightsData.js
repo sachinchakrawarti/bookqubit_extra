@@ -1,0 +1,191 @@
+export const insightsData = {
+  trendDashboard: {
+    id: "trend-dashboard",
+    title: "Trend Dashboard",
+    icon: "📈",
+    description: "What's trending in books right now",
+    color: "#3b82f6",
+    metrics: [
+      { label: "Trending Books", value: "1,245", change: "+12%" },
+      { label: "Viral Books", value: "89", change: "+8%" },
+      { label: "Trending Authors", value: "234", change: "+15%" },
+      { label: "Genre Trends", value: "12", change: "+5%" },
+    ],
+    trends: [
+      { name: "Sci-Fi", growth: "+45%", popularity: 92 },
+      { name: "Fantasy", growth: "+38%", popularity: 88 },
+      { name: "Mystery", growth: "+22%", popularity: 75 },
+      { name: "Romance", growth: "+18%", popularity: 70 },
+    ],
+    slug: "trends",
+  },
+  bookData: {
+    id: "book-data",
+    title: "BookQubit Data",
+    icon: "📊",
+    description: "Data science & book analytics",
+    color: "#8b5cf6",
+    metrics: [
+      { label: "Total Books", value: "45,230", change: "+8%" },
+      { label: "Avg Rating", value: "4.6", change: "+0.3" },
+      { label: "Total Pages", value: "12.5M", change: "+10%" },
+      { label: "Languages", value: "24", change: "+2" },
+    ],
+    trends: [
+      { name: "Fiction", value: 45 },
+      { name: "Non-Fiction", value: 28 },
+      { name: "Sci-Fi", value: 15 },
+      { name: "Fantasy", value: 12 },
+    ],
+    slug: "data",
+  },
+  readingInsights: {
+    id: "reading-insights",
+    title: "Reading Insights",
+    icon: "📚",
+    description: "Reader behavior & patterns",
+    color: "#10b981",
+    metrics: [
+      { label: "Avg Reading Time", value: "45 min", change: "+5%" },
+      { label: "Completion Rate", value: "78%", change: "+4%" },
+      { label: "Daily Readers", value: "12.5K", change: "+6%" },
+      { label: "Reading Streaks", value: "3.2K", change: "+9%" },
+    ],
+    trends: [
+      { name: "Morning", value: 35 },
+      { name: "Afternoon", value: 25 },
+      { name: "Evening", value: 30 },
+      { name: "Night", value: 10 },
+    ],
+    slug: "reading",
+  },
+  performanceMetrics: {
+    id: "performance-metrics",
+    title: "Performance Metrics",
+    icon: "🎯",
+    description: "Platform performance analytics",
+    color: "#f59e0b",
+    metrics: [
+      { label: "Total Users", value: "125K", change: "+15%" },
+      { label: "Daily Active", value: "18.5K", change: "+8%" },
+      { label: "Monthly Active", value: "45K", change: "+12%" },
+      { label: "Retention Rate", value: "68%", change: "+3%" },
+    ],
+    trends: [
+      { name: "Retention", value: 68 },
+      { name: "Engagement", value: 72 },
+      { name: "Conversion", value: 45 },
+      { name: "Satisfaction", value: 85 },
+    ],
+    slug: "performance",
+  },
+  bookPerformance: {
+    id: "book-performance",
+    title: "Book Performance",
+    icon: "📖",
+    description: "Book-level analytics",
+    color: "#ef4444",
+    metrics: [
+      { label: "Top Rated", value: "4.9", change: "+0.2" },
+      { label: "Most Viewed", value: "2.3M", change: "+18%" },
+      { label: "Most Reviewed", value: "12.5K", change: "+10%" },
+      { label: "Most Shared", value: "8.7K", change: "+22%" },
+    ],
+    trends: [
+      { name: "Views", value: 85 },
+      { name: "Reviews", value: 72 },
+      { name: "Shares", value: 58 },
+      { name: "Wishlists", value: 65 },
+    ],
+    slug: "books",
+  },
+  communityInsights: {
+    id: "community-insights",
+    title: "Community Insights",
+    icon: "👥",
+    description: "Reader community analytics",
+    color: "#ec4899",
+    metrics: [
+      { label: "Active Users", value: "45K", change: "+12%" },
+      { label: "New Users", value: "8.5K", change: "+20%" },
+      { label: "Discussions", value: "2.3K", change: "+15%" },
+      { label: "Engagement", value: "72%", change: "+5%" },
+    ],
+    trends: [
+      { name: "Engagement", value: 72 },
+      { name: "Growth", value: 85 },
+      { name: "Retention", value: 68 },
+      { name: "Satisfaction", value: 78 },
+    ],
+    slug: "community",
+  },
+  bookCategories: {
+    id: "book-categories",
+    title: "Book Categories",
+    icon: "🏷️",
+    description: "Category & genre analytics",
+    color: "#14b8a6",
+    metrics: [
+      { label: "Total Genres", value: "45", change: "+3" },
+      { label: "Top Category", value: "Fiction", change: "+8%" },
+      { label: "Growing Genre", value: "Sci-Fi", change: "+15%" },
+      { label: "Niche Genres", value: "12", change: "+2" },
+    ],
+    trends: [
+      { name: "Fiction", value: 45 },
+      { name: "Sci-Fi", value: 28 },
+      { name: "Fantasy", value: 22 },
+      { name: "Mystery", value: 18 },
+      { name: "Romance", value: 15 },
+    ],
+    slug: "categories",
+  },
+  userBehavior: {
+    id: "user-behavior",
+    title: "User Behavior",
+    icon: "🎯",
+    description: "User journey analytics",
+    color: "#6366f1",
+    metrics: [
+      { label: "Avg Session", value: "12 min", change: "+3 min" },
+      { label: "Bounce Rate", value: "32%", change: "-5%" },
+      { label: "Pages/Session", value: "4.5", change: "+0.8" },
+      { label: "Return Rate", value: "68%", change: "+4%" },
+    ],
+    trends: [
+      { name: "Discovery", value: 35 },
+      { name: "Reading", value: 45 },
+      { name: "Engagement", value: 15 },
+      { name: "Purchase", value: 5 },
+    ],
+    slug: "users",
+  },
+  dataExport: {
+    id: "data-export",
+    title: "Data Export",
+    icon: "📊",
+    description: "Export & reports",
+    color: "#eab308",
+    metrics: [
+      { label: "Reports Generated", value: "1.2K", change: "+25%" },
+      { label: "Exports", value: "3.4K", change: "+18%" },
+      { label: "Scheduled Reports", value: "156", change: "+12%" },
+      { label: "API Calls", value: "45K", change: "+22%" },
+    ],
+    trends: [
+      { name: "CSV", value: 45 },
+      { name: "PDF", value: 30 },
+      { name: "Excel", value: 15 },
+      { name: "API", value: 10 },
+    ],
+    slug: "export",
+  },
+};
+
+export const getInsightsData = () => {
+  return insightsData;
+};
+
+export const getInsightById = (id) => {
+  return insightsData[id] || null;
+};

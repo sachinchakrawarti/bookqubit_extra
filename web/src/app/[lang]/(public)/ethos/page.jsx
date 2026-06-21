@@ -1,48 +1,35 @@
 // src/app/[lang]/(public)/ethos/page.jsx
+
 "use client";
 
-import Link from "next/link";
 import { useTheme } from "@/themes/useTheme";
+import Link from "next/link";
 import {
   FaEthereum,
   FaCoins,
   FaBook,
   FaUsers,
   FaGavel,
-  FaChartLine,
   FaRocket,
-  FaShieldAlt,
   FaWallet,
-  FaCrown,
-  FaStar,
-  FaFire,
-  FaArrowRight,
-  FaLock,
-  FaUnlock,
-  FaExchangeAlt,
-  FaVoteYea,
-  FaGift,
-  FaTrophy,
   FaGem,
+  FaTrophy,
+  FaGift,
+  FaArrowRight,
 } from "react-icons/fa";
-import { MdExplore, MdChat, MdAnchor } from "react-icons/md";
-import "./ethos.css";
 
 export default function EthosPage() {
-  const { theme, themeName } = useTheme();
+  const { themeName } = useTheme();
+  const isDarkMode =
+    themeName === "dark" ||
+    themeName === "midnight" ||
+    themeName === "cyberpunk";
 
-  // Check if current theme is dark mode
-  const isDarkMode = themeName === "dark" || themeName === "midnight" || themeName === "cyberpunk";
+  const bgColor = isDarkMode ? "#1e293b" : "#ffffff";
+  const borderColor = isDarkMode ? "#334155" : "#e2e8f0";
+  const textColor = isDarkMode ? "#f1f5f9" : "#0f172a";
+  const mutedColor = isDarkMode ? "#94a3b8" : "#64748b";
 
-  // Get theme-aware styles
-  const bgColor = isDarkMode ? "bg-gray-900" : "bg-gray-50";
-  const cardBg = isDarkMode ? "bg-gray-800" : "bg-white";
-  const primaryText = isDarkMode ? "text-white" : "text-gray-900";
-  const secondaryText = isDarkMode ? "text-gray-400" : "text-gray-600";
-  const borderColor = isDarkMode ? "border-gray-700" : "border-gray-200";
-  const hoverBg = isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-100";
-
-  // Stats data
   const stats = [
     { label: "Total Books", value: "12,847", icon: FaBook, color: "#3b82f6" },
     { label: "NFT Holders", value: "8,234", icon: FaUsers, color: "#8b5cf6" },
@@ -60,15 +47,40 @@ export default function EthosPage() {
     },
   ];
 
-  // Featured NFTs
+  const quickActions = [
+    {
+      icon: FaRocket,
+      label: "Mint NFT",
+      color: "#8b5cf6",
+      href: "/ethos/nfts",
+    },
+    {
+      icon: FaWallet,
+      label: "Deposit",
+      color: "#3b82f6",
+      href: "/ethos/wallet",
+    },
+    {
+      icon: FaGift,
+      label: "Claim Rewards",
+      color: "#f59e0b",
+      href: "/ethos/tokens",
+    },
+    {
+      icon: FaTrophy,
+      label: "Leaderboard",
+      color: "#10b981",
+      href: "/ethos/dao",
+    },
+  ];
+
   const featuredNFTs = [
     {
       id: 1,
       title: "The Quantum Reader",
       author: "Elena Voss",
       price: "0.45 ETH",
-      edition: "1/100",
-      image: "🔮",
+      emoji: "🔮",
       verified: true,
     },
     {
@@ -76,17 +88,15 @@ export default function EthosPage() {
       title: "Web3 Wisdom",
       author: "Marcus Chen",
       price: "0.28 ETH",
-      edition: "1/250",
-      image: "📖",
+      emoji: "📖",
       verified: true,
     },
     {
       id: 3,
-      title: "Digital Poetry Vol. 1",
+      title: "Digital Poetry",
       author: "Sofia Reyes",
       price: "0.12 ETH",
-      edition: "1/500",
-      image: "📝",
+      emoji: "📝",
       verified: false,
     },
     {
@@ -94,130 +104,174 @@ export default function EthosPage() {
       title: "The Blockchain Saga",
       author: "David Kim",
       price: "0.89 ETH",
-      edition: "1/50",
-      image: "⚡",
+      emoji: "⚡",
       verified: true,
     },
   ];
 
-  // DAO Proposals
   const proposals = [
     {
-      id: 1,
       title: "Add New Book Category: AI Fiction",
       votes: "12,847",
       progress: 78,
       status: "Active",
-      timeLeft: "3 days",
     },
     {
-      id: 2,
       title: "Reduce Transaction Fees",
       votes: "8,234",
       progress: 45,
       status: "Active",
-      timeLeft: "5 days",
     },
     {
-      id: 3,
       title: "Community Curators Program",
       votes: "5,621",
       progress: 92,
       status: "Passing",
-      timeLeft: "1 day",
     },
   ];
 
-  // Token Stats
   const tokenStats = [
     { label: "Price", value: "$0.87", change: "+12.4%" },
-    { label: "Market Cap", value: "$34.2M", change: "+8.7%" },
-    { label: "Staked", value: "67.3%", change: "+3.2%" },
-    { label: "Holders", value: "14,287", change: "+5.1%" },
-  ];
-
-  // Quick actions
-  const quickActions = [
-    { icon: FaRocket, label: "Mint NFT", color: "#8b5cf6" },
-    { icon: FaWallet, label: "Deposit", color: "#3b82f6" },
-    { icon: FaGift, label: "Claim Rewards", color: "#f59e0b" },
-    { icon: FaTrophy, label: "Leaderboard", color: "#10b981" },
+    { label: "Market Cap", value: "$34.2M", change: "" },
+    { label: "Staked", value: "67.3%", change: "" },
+    { label: "Holders", value: "14,287", change: "" },
   ];
 
   return (
-    <div className={`ethos-dashboard ${bgColor} ${primaryText}`}>
+    <div
+      style={{
+        maxWidth: "1400px",
+        margin: "0 auto",
+        padding: "0 16px",
+        width: "100%",
+      }}
+    >
       {/* Welcome Banner */}
       <div
-        className="ethos-banner"
         style={{
           background: isDarkMode
             ? "linear-gradient(135deg, #1e293b, #0f172a)"
-            : "linear-gradient(135deg, #2563eb, #1d4ed8)",
+            : "linear-gradient(135deg, #8b5cf6, #6d28d9)",
           borderRadius: "16px",
           padding: "32px",
-          marginBottom: "32px",
+          marginBottom: "24px",
           color: "#ffffff",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div className="ethos-banner-content">
-          <div className="ethos-banner-text">
-            <h1 className="ethos-banner-title">Welcome to Ethos ⚓</h1>
-            <p className="ethos-banner-subtitle">
-              Your decentralized reading universe. Own, trade, and govern the
-              books you love.
-            </p>
-            <div className="ethos-banner-actions">
-              <button
-                className="ethos-btn-primary"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.2)",
-                  color: "#ffffff",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                }}
-              >
-                <FaWallet size={16} />
-                Connect Wallet
-              </button>
-              <button
-                className="ethos-btn-secondary"
-                style={{
-                  backgroundColor: "#ffffff",
-                  color: "#1d4ed8",
-                }}
-              >
-                <MdExplore size={16} />
-                Explore Books
-              </button>
-            </div>
+        <div style={{ position: "relative", zIndex: 2 }}>
+          <h2
+            style={{ fontSize: "28px", fontWeight: "700", marginBottom: "8px" }}
+          >
+            ⚓ Welcome to Ethos
+          </h2>
+          <p
+            style={{
+              opacity: 0.9,
+              fontSize: "16px",
+              maxWidth: "500px",
+              marginBottom: "20px",
+            }}
+          >
+            Your decentralized reading universe. Own, trade, and govern the
+            books you love.
+          </p>
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            <Link
+              href="/ethos/wallet"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "10px 24px",
+                borderRadius: "12px",
+                backgroundColor: "rgba(255,255,255,0.2)",
+                color: "#ffffff",
+                textDecoration: "none",
+                fontWeight: "600",
+                fontSize: "14px",
+                border: "1px solid rgba(255,255,255,0.3)",
+              }}
+            >
+              <FaWallet size={16} />
+              Connect Wallet
+            </Link>
+            <Link
+              href="/ethos/marketplace"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "10px 24px",
+                borderRadius: "12px",
+                backgroundColor: "#ffffff",
+                color: "#6d28d9",
+                textDecoration: "none",
+                fontWeight: "600",
+                fontSize: "14px",
+              }}
+            >
+              <FaGem size={16} />
+              Explore NFTs
+            </Link>
           </div>
-          <div className="ethos-banner-icon">
-            <span style={{ fontSize: "64px" }}>⚓</span>
-          </div>
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: "-30%",
+            right: "-5%",
+            fontSize: "140px",
+            opacity: 0.1,
+            pointerEvents: "none",
+          }}
+        >
+          ⚓
         </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="ethos-stats-grid">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "16px",
+          marginBottom: "24px",
+        }}
+      >
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <div
               key={index}
-              className={`ethos-stat-card ${cardBg} ${borderColor}`}
               style={{
+                backgroundColor: bgColor,
                 borderRadius: "12px",
                 padding: "20px",
-                border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
+                border: `1px solid ${borderColor}`,
               }}
             >
-              <div className="ethos-stat-icon" style={{ color: stat.color }}>
-                <Icon size={24} />
-              </div>
-              <div className="ethos-stat-content">
-                <span className={`ethos-stat-value ${primaryText}`}>{stat.value}</span>
-                <span className={`ethos-stat-label ${secondaryText}`}>
-                  {stat.label}
-                </span>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "12px" }}
+              >
+                <div style={{ color: stat.color, fontSize: "24px" }}>
+                  <Icon size={24} />
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: "700",
+                      color: textColor,
+                    }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div style={{ fontSize: "13px", color: mutedColor }}>
+                    {stat.label}
+                  </div>
+                </div>
               </div>
             </div>
           );
@@ -225,11 +279,17 @@ export default function EthosPage() {
       </div>
 
       {/* Two Column Layout */}
-      <div className="ethos-two-column">
-        {/* Left Column - Featured NFTs */}
-        <div className="ethos-column-left">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr",
+          gap: "24px",
+          marginBottom: "24px",
+        }}
+      >
+        {/* Left: Featured NFTs */}
+        <div>
           <div
-            className="ethos-section-header"
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -237,35 +297,51 @@ export default function EthosPage() {
               marginBottom: "16px",
             }}
           >
-            <h2 className={`ethos-section-title ${primaryText}`}>
-              <FaGem size={20} style={{ marginRight: "8px" }} />
-              Featured NFT Books
-            </h2>
-            <Link
-              href="/ethos/nfts"
-              className="ethos-view-all"
+            <h3
               style={{
-                color: "#3b82f6",
+                fontSize: "18px",
+                fontWeight: "600",
+                color: textColor,
+                margin: 0,
               }}
             >
-              View All <FaArrowRight size={12} />
+              <FaGem style={{ display: "inline", marginRight: "8px" }} />
+              Featured NFT Books
+            </h3>
+            <Link
+              href="/ethos/nfts"
+              style={{
+                color: "#8b5cf6",
+                fontSize: "14px",
+                textDecoration: "none",
+              }}
+            >
+              View All{" "}
+              <FaArrowRight
+                style={{ display: "inline", marginLeft: "4px" }}
+                size={12}
+              />
             </Link>
           </div>
-
-          <div className="ethos-nft-grid">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "16px",
+            }}
+          >
             {featuredNFTs.map((nft) => (
               <div
                 key={nft.id}
-                className={`ethos-nft-card ${cardBg} ${borderColor}`}
                 style={{
+                  backgroundColor: bgColor,
                   borderRadius: "12px",
-                  border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
+                  border: `1px solid ${borderColor}`,
                   padding: "16px",
-                  transition: "all 0.3s ease",
+                  position: "relative",
                 }}
               >
                 <div
-                  className="ethos-nft-image"
                   style={{
                     fontSize: "48px",
                     textAlign: "center",
@@ -276,10 +352,9 @@ export default function EthosPage() {
                     position: "relative",
                   }}
                 >
-                  {nft.image}
+                  {nft.emoji}
                   {nft.verified && (
                     <span
-                      className="ethos-verified-badge"
                       style={{
                         position: "absolute",
                         top: "8px",
@@ -287,7 +362,7 @@ export default function EthosPage() {
                         backgroundColor: "#3b82f6",
                         color: "#ffffff",
                         fontSize: "10px",
-                        padding: "2px 8px",
+                        padding: "2px 10px",
                         borderRadius: "12px",
                       }}
                     >
@@ -295,33 +370,39 @@ export default function EthosPage() {
                     </span>
                   )}
                 </div>
-                <h3 className={`ethos-nft-title ${primaryText}`}>
+                <h4
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: textColor,
+                    marginBottom: "4px",
+                  }}
+                >
                   {nft.title}
-                </h3>
-                <p className={`ethos-nft-author ${secondaryText}`}>
+                </h4>
+                <p
+                  style={{
+                    fontSize: "13px",
+                    color: mutedColor,
+                    marginBottom: "8px",
+                  }}
+                >
                   by {nft.author}
                 </p>
                 <div
-                  className="ethos-nft-footer"
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    borderTop: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
+                    borderTop: `1px solid ${borderColor}`,
                     paddingTop: "12px",
                   }}
                 >
-                  <span
-                    className="ethos-nft-price"
-                    style={{
-                      color: "#f59e0b",
-                      fontWeight: "600",
-                    }}
-                  >
+                  <span style={{ color: "#f59e0b", fontWeight: "600" }}>
                     {nft.price}
                   </span>
-                  <span className={`ethos-nft-edition ${secondaryText}`}>
-                    {nft.edition}
+                  <span style={{ fontSize: "12px", color: mutedColor }}>
+                    NFT
                   </span>
                 </div>
               </div>
@@ -329,37 +410,91 @@ export default function EthosPage() {
           </div>
         </div>
 
-        {/* Right Column - DAO & Tokens */}
-        <div className="ethos-column-right">
+        {/* Right: Quick Actions & Token Stats */}
+        <div>
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: "600",
+              color: textColor,
+              marginBottom: "16px",
+            }}
+          >
+            <FaRocket style={{ display: "inline", marginRight: "8px" }} />
+            Quick Actions
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "12px",
+              marginBottom: "16px",
+            }}
+          >
+            {quickActions.map((action, index) => {
+              const Icon = action.icon;
+              return (
+                <Link
+                  key={index}
+                  href={action.href}
+                  style={{
+                    backgroundColor: bgColor,
+                    border: `1px solid ${borderColor}`,
+                    borderRadius: "12px",
+                    padding: "16px",
+                    textAlign: "center",
+                    textDecoration: "none",
+                    color: textColor,
+                  }}
+                >
+                  <Icon size={24} color={action.color} />
+                  <div
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: "500",
+                      marginTop: "4px",
+                    }}
+                  >
+                    {action.label}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
           {/* Token Stats */}
           <div
-            className={`ethos-token-section ${cardBg} ${borderColor}`}
             style={{
+              backgroundColor: bgColor,
               borderRadius: "12px",
               padding: "20px",
-              border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
-              marginBottom: "20px",
+              border: `1px solid ${borderColor}`,
             }}
           >
             <div
-              className="ethos-section-header"
               style={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginBottom: "16px",
+                marginBottom: "12px",
               }}
             >
-              <h3 className={primaryText}>
-                <FaCoins size={18} style={{ marginRight: "8px" }} />
+              <h4
+                style={{
+                  fontSize: "15px",
+                  fontWeight: "600",
+                  color: textColor,
+                  margin: 0,
+                }}
+              >
+                <FaCoins style={{ display: "inline", marginRight: "6px" }} />
                 $ETHOS Token
-              </h3>
+              </h4>
               <span
-                className="ethos-token-badge"
                 style={{
                   backgroundColor: "#10b981",
                   color: "#ffffff",
-                  fontSize: "12px",
+                  fontSize: "11px",
                   padding: "2px 12px",
                   borderRadius: "12px",
                 }}
@@ -367,247 +502,177 @@ export default function EthosPage() {
                 Live
               </span>
             </div>
-
-            <div className="ethos-token-grid">
-              {tokenStats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="ethos-token-stat"
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "8px 0",
-                    borderBottom:
-                      index < tokenStats.length - 1
-                        ? `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`
-                        : "none",
-                  }}
-                >
-                  <span className={secondaryText}>
-                    {stat.label}
-                  </span>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <span className={primaryText}>
-                      {stat.value}
-                    </span>
-                    <span
-                      style={{
-                        color: stat.change.startsWith("+")
-                          ? "#10b981"
-                          : "#ef4444",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {stat.change}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div
-              className="ethos-token-actions"
-              style={{ marginTop: "16px", display: "flex", gap: "8px" }}
-            >
-              <button
-                className="ethos-btn-small"
-                style={{
-                  backgroundColor: "#3b82f6",
-                  color: "#ffffff",
-                  padding: "6px 16px",
-                  borderRadius: "8px",
-                  fontSize: "13px",
-                  border: "none",
-                  cursor: "pointer",
-                  flex: 1,
-                }}
-              >
-                <FaExchangeAlt size={12} style={{ marginRight: "6px" }} />
-                Buy
-              </button>
-              <button
-                className="ethos-btn-small"
-                style={{
-                  backgroundColor: isDarkMode ? "#334155" : "#e2e8f0",
-                  color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                  padding: "6px 16px",
-                  borderRadius: "8px",
-                  fontSize: "13px",
-                  border: "none",
-                  cursor: "pointer",
-                  flex: 1,
-                }}
-              >
-                <FaLock size={12} style={{ marginRight: "6px" }} />
-                Stake
-              </button>
-            </div>
-          </div>
-
-          {/* DAO Proposals */}
-          <div
-            className={`ethos-dao-section ${cardBg} ${borderColor}`}
-            style={{
-              borderRadius: "12px",
-              padding: "20px",
-              border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
-            }}
-          >
-            <div
-              className="ethos-section-header"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "16px",
-              }}
-            >
-              <h3 className={primaryText}>
-                <FaGavel size={18} style={{ marginRight: "8px" }} />
-                Active Proposals
-              </h3>
-              <Link
-                href="/ethos/dao"
-                style={{
-                  color: "#3b82f6",
-                  fontSize: "13px",
-                }}
-              >
-                <FaArrowRight size={12} />
-              </Link>
-            </div>
-
-            {proposals.map((proposal) => (
+            {tokenStats.map((item, idx) => (
               <div
-                key={proposal.id}
-                className="ethos-proposal-card"
+                key={idx}
                 style={{
-                  padding: "12px 0",
-                  borderBottom: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "8px 0",
+                  borderBottom: idx < 3 ? `1px solid ${borderColor}` : "none",
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "6px",
-                  }}
-                >
-                  <span className={primaryText}>
-                    {proposal.title}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      padding: "2px 10px",
-                      borderRadius: "12px",
-                      backgroundColor:
-                        proposal.status === "Active" ? "#f59e0b" : "#10b981",
-                      color: "#ffffff",
-                    }}
-                  >
-                    {proposal.status}
-                  </span>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <span className={secondaryText}>
-                    {proposal.votes} votes · {proposal.timeLeft} left
-                  </span>
-                  <div
-                    style={{
-                      width: "100px",
-                      height: "6px",
-                      backgroundColor: isDarkMode ? "#334155" : "#e2e8f0",
-                      borderRadius: "3px",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: `${proposal.progress}%`,
-                        height: "100%",
-                        backgroundColor:
-                          proposal.progress > 70 ? "#10b981" : "#f59e0b",
-                        borderRadius: "3px",
-                      }}
-                    />
-                  </div>
-                </div>
+                <span style={{ color: mutedColor }}>{item.label}</span>
+                <span style={{ fontWeight: "600", color: textColor }}>
+                  {item.value}
+                  {item.change && (
+                    <span style={{ color: "#10b981", marginLeft: "4px" }}>
+                      {item.change}
+                    </span>
+                  )}
+                </span>
               </div>
             ))}
-
-            <button
-              className="ethos-vote-btn"
-              style={{
-                width: "100%",
-                marginTop: "12px",
-                padding: "8px",
-                borderRadius: "8px",
-                border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
-                backgroundColor: "transparent",
-                color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-              }}
-            >
-              <FaVoteYea size={14} style={{ marginRight: "6px" }} />
-              Cast Your Vote
-            </button>
           </div>
         </div>
       </div>
 
-      {/* Bottom Section - Quick Actions */}
+      {/* DAO Proposals */}
       <div
-        className="ethos-quick-actions"
         style={{
-          marginTop: "32px",
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "16px",
+          backgroundColor: bgColor,
+          borderRadius: "12px",
+          padding: "20px",
+          border: `1px solid ${borderColor}`,
         }}
       >
-        {quickActions.map((action, index) => {
-          const Icon = action.icon;
-          return (
-            <button
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "16px",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: "600",
+              color: textColor,
+              margin: 0,
+            }}
+          >
+            <FaGavel style={{ display: "inline", marginRight: "8px" }} />
+            Active DAO Proposals
+          </h3>
+          <Link
+            href="/ethos/dao"
+            style={{
+              color: "#8b5cf6",
+              fontSize: "14px",
+              textDecoration: "none",
+            }}
+          >
+            View All{" "}
+            <FaArrowRight
+              style={{ display: "inline", marginLeft: "4px" }}
+              size={12}
+            />
+          </Link>
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "16px",
+          }}
+        >
+          {proposals.map((proposal, index) => (
+            <div
               key={index}
-              className={`ethos-action-btn ${cardBg} ${borderColor}`}
               style={{
-                border: `1px solid ${isDarkMode ? "#334155" : "#e2e8f0"}`,
-                borderRadius: "12px",
-                padding: "20px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "8px",
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-                color: isDarkMode ? "#f1f5f9" : "#0f172a",
-                backgroundColor: isDarkMode ? "#1e293b" : "#ffffff",
+                padding: "16px",
+                borderRadius: "10px",
+                backgroundColor: isDarkMode ? "#0f172a" : "#f1f5f9",
               }}
             >
-              <Icon size={24} color={action.color} />
-              <span style={{ fontSize: "14px", fontWeight: "500" }}>
-                {action.label}
-              </span>
-            </button>
-          );
-        })}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "8px",
+                }}
+              >
+                <span
+                  style={{
+                    fontWeight: "500",
+                    fontSize: "14px",
+                    color: textColor,
+                  }}
+                >
+                  {proposal.title}
+                </span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    padding: "2px 10px",
+                    borderRadius: "12px",
+                    backgroundColor:
+                      proposal.status === "Active" ? "#f59e0b" : "#10b981",
+                    color: "#ffffff",
+                  }}
+                >
+                  {proposal.status}
+                </span>
+              </div>
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: mutedColor,
+                  marginBottom: "8px",
+                }}
+              >
+                {proposal.votes} votes
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "6px",
+                  backgroundColor: isDarkMode ? "#334155" : "#e2e8f0",
+                  borderRadius: "3px",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    width: `${proposal.progress}%`,
+                    height: "100%",
+                    backgroundColor:
+                      proposal.progress > 70 ? "#10b981" : "#f59e0b",
+                    borderRadius: "3px",
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 1024px) {
+          [style*="grid-template-columns: repeat(4, 1fr)"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          [style*="grid-template-columns: 2fr 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+          [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 768px) {
+          [style*="grid-template-columns: repeat(4, 1fr)"] {
+            grid-template-columns: 1fr !important;
+          }
+          [style*="grid-template-columns: repeat(2, 1fr)"] {
+            grid-template-columns: 1fr !important;
+          }
+          [style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

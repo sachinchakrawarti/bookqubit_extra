@@ -327,3 +327,96 @@
 .discovery-drift-bar-mobile {
   animation: fadeInUp 0.4s ease-out;
 }
+
+
+/* Add to existing discovery_drift_bar_mobile.css */
+
+/* ===== ETHOS WEB3 BADGE ===== */
+.ethos-web3-badge {
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #ffffff;
+  padding: 1px 6px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.95); }
+}
+
+/* ===== ETHOS INDICATOR ===== */
+.ethos-indicator {
+  background: linear-gradient(90deg, #8b5cf6, #a855f7) !important;
+}
+
+/* ===== ETHOS ACTIVE TAB ===== */
+.discovery-drift-tab-mobile.active.ethos-active {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* ===== FOREST THEME - ETHOS ===== */
+[data-theme="forest"] .discovery-drift-tab-mobile.ethos-active {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+}
+
+[data-theme="forest"] .discovery-drift-tab-mobile:not(.active):hover.ethos-active {
+  background: linear-gradient(135deg, #6d28d9, #7c3aed) !important;
+  color: white !important;
+}
+
+/* ===== NEON THEME - ETHOS ===== */
+[data-theme="neon"] .discovery-drift-tab-mobile.ethos-active,
+[data-theme="cyberpunk"] .discovery-drift-tab-mobile.ethos-active {
+  background: linear-gradient(135deg, #a855f7, #7c3aed) !important;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.3) !important;
+  animation: neonEthosPulse 2s infinite;
+}
+
+@keyframes neonEthosPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.7), 0 0 60px rgba(139, 92, 246, 0.5);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .discovery-drift-tab-mobile {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    max-width: 120px !important;
+  }
+  
+  .discovery-drift-tab-mobile .tab-icon-mobile {
+    font-size: 16px !important;
+  }
+  
+  .ethos-web3-badge {
+    font-size: 6px !important;
+    padding: 1px 4px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .discovery-drift-tab-mobile {
+    padding: 5px 8px !important;
+    font-size: 11px !important;
+    max-width: 100px !important;
+    gap: 4px !important;
+  }
+  
+  .discovery-drift-tab-mobile .tab-icon-mobile {
+    font-size: 14px !important;
+  }
+  
+  .ethos-web3-badge {
+    display: none !important;
+  }
+}
