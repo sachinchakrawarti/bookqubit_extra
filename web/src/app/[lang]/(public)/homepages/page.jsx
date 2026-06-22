@@ -21,6 +21,8 @@ import BookqubitLensExplorer from "@/components/homepages/Bookqubit_Lens_Explore
 import BookqubitUpdatesExplorer from "@/components/homepages/Bookqubit_Updates_Explorer"; // ← Fixed: lowercase 'u'
 import BookqubitInsightsExplorer from "@/components/homepages/Bookqubit_Insights_Explorer";
 
+import BookqubitDiscoveryExplorer from "@/components/homepages/bookqubit_discovery_explorer/Bookqubit_Discovery_Explorer";
+
 export default function HomepagesPage() {
   return (
     <main>
@@ -36,6 +38,7 @@ export default function HomepagesPage() {
       </div>
 
       {/* Visible on Both Mobile and PC */}
+      <BookqubitDiscoveryExplorer />
       <TrendDashboardSlider />
 
       {/* Hidden Components (Commented) */}
