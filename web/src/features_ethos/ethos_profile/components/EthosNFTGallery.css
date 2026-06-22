@@ -1,0 +1,994 @@
+/* components/EthosNFTGallery.css */
+
+/* NFT Gallery */
+.ethos-nft-gallery {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-nft-gallery:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+/* Header */
+.ethos-nft-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ethos-nft-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-nft-icon {
+  font-size: 1.5rem;
+  color: #ec4899;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.ethos-nft-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-nft-subtitle {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+/* Controls */
+.ethos-nft-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ethos-nft-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ethos-hover);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.ethos-nft-search-wrapper:focus-within {
+  border-color: var(--ethos-gradient-1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.ethos-nft-search-icon {
+  color: var(--ethos-text-secondary);
+  font-size: 0.875rem;
+}
+
+.ethos-nft-search-input {
+  border: none;
+  background: none;
+  color: var(--ethos-text-primary);
+  font-size: 0.813rem;
+  outline: none;
+  width: 180px;
+  transition: width 0.3s ease;
+}
+
+.ethos-nft-search-input:focus {
+  width: 250px;
+}
+
+.ethos-nft-search-input::placeholder {
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-nft-clear-search {
+  background: none;
+  border: none;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  padding: 0.125rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.ethos-nft-clear-search:hover {
+  color: var(--ethos-text-primary);
+}
+
+/* Filter Button */
+.ethos-nft-filter-btn {
+  position: relative;
+  padding: 0.375rem 0.75rem;
+  background: var(--ethos-hover);
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.ethos-nft-filter-btn:hover {
+  border-color: var(--ethos-border);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-nft-filter-btn.active {
+  border-color: var(--ethos-gradient-1);
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-nft-filter-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #3b82f6;
+  color: white;
+  font-size: 0.5rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* View Toggle */
+.ethos-nft-view-toggle {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--ethos-hover);
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.ethos-nft-view-btn {
+  padding: 0.375rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-nft-view-btn:hover {
+  color: var(--ethos-text-primary);
+  background: var(--ethos-border);
+}
+
+.ethos-nft-view-btn.active {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+}
+
+/* Filters Panel */
+.ethos-nft-filters {
+  padding: 1rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-nft-filter-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-nft-filter-label {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  font-weight: 500;
+}
+
+.ethos-nft-filter-options {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.ethos-nft-filter-option {
+  padding: 0.1875rem 0.625rem;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ethos-nft-filter-option:hover {
+  border-color: var(--ethos-gradient-1);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-nft-filter-option.active {
+  background: var(--ethos-gradient-1);
+  color: white;
+  border-color: var(--ethos-gradient-1);
+}
+
+.ethos-nft-sort-select {
+  padding: 0.25rem 0.75rem;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  color: var(--ethos-text-primary);
+  font-size: 0.7rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.ethos-nft-sort-select:focus {
+  border-color: var(--ethos-gradient-1);
+}
+
+.ethos-nft-filters-close {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.ethos-nft-filters-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+/* Stats Bar */
+.ethos-nft-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-nft-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.ethos-nft-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-nft-stat-icon {
+  font-size: 1.125rem;
+  color: var(--ethos-gradient-1);
+  margin-bottom: 0.25rem;
+}
+
+.ethos-nft-stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-nft-stat-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* NFT Grid */
+.ethos-nft-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.ethos-nft-grid.grid {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.ethos-nft-grid.list {
+  grid-template-columns: 1fr;
+}
+
+/* NFT Item */
+.ethos-nft-item {
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ethos-nft-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--ethos-gradient-1);
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+.ethos-nft-item.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ethos-nft-item.list .ethos-nft-image-wrapper {
+  width: 200px;
+  min-height: 200px;
+  flex-shrink: 0;
+}
+
+.ethos-nft-item.list .ethos-nft-info {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+/* Image Wrapper */
+.ethos-nft-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.ethos-nft-item.list .ethos-nft-image-wrapper {
+  aspect-ratio: 1;
+}
+
+.ethos-nft-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ethos-nft-item:hover .ethos-nft-image {
+  transform: scale(1.05);
+}
+
+.ethos-nft-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.65rem;
+  backdrop-filter: blur(4px);
+}
+
+/* Overlay */
+.ethos-nft-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.ethos-nft-image-wrapper:hover .ethos-nft-overlay {
+  opacity: 1;
+}
+
+.ethos-nft-like-btn,
+.ethos-nft-view-link,
+.ethos-nft-share-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ethos-text-primary);
+  transition: all 0.3s ease;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.ethos-nft-image-wrapper:hover .ethos-nft-like-btn,
+.ethos-nft-image-wrapper:hover .ethos-nft-view-link,
+.ethos-nft-image-wrapper:hover .ethos-nft-share-btn {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ethos-nft-like-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.ethos-nft-view-link:hover {
+  background: var(--ethos-gradient-1);
+  color: white;
+}
+
+.ethos-nft-share-btn:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.ethos-nft-like-btn .liked {
+  fill: #ef4444;
+  color: #ef4444;
+}
+
+/* NFT Info */
+.ethos-nft-info {
+  padding: 1rem;
+}
+
+.ethos-nft-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-nft-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.ethos-nft-collection-tag {
+  font-size: 0.6rem;
+  padding: 0.125rem 0.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-radius: 1rem;
+  white-space: nowrap;
+}
+
+.ethos-nft-price-section {
+  margin-top: 0.25rem;
+}
+
+.ethos-nft-price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-nft-price-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-nft-price-change {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ethos-nft-price-change.positive {
+  color: #10b981;
+}
+
+.ethos-nft-price-change.negative {
+  color: #ef4444;
+}
+
+.ethos-nft-price-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+/* List View Actions */
+.ethos-nft-list-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.ethos-nft-list-action {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-nft-list-action:hover {
+  border-color: var(--ethos-gradient-1);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-nft-list-action .liked {
+  fill: #ef4444;
+  color: #ef4444;
+}
+
+/* Empty State */
+.ethos-nft-empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-nft-empty-icon {
+  font-size: 4rem;
+  opacity: 0.3;
+  margin-bottom: 1rem;
+}
+
+.ethos-nft-empty h4 {
+  font-size: 1.125rem;
+  color: var(--ethos-text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.ethos-nft-empty p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Modal */
+.ethos-nft-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.ethos-nft-modal {
+  background: var(--ethos-card-bg);
+  border-radius: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-nft-modal-close {
+  position: sticky;
+  top: 1rem;
+  right: 1rem;
+  float: right;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  color: var(--ethos-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ethos-nft-modal-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.ethos-nft-modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.ethos-nft-modal-image {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.ethos-nft-modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ethos-nft-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ethos-nft-modal-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-nft-modal-collection {
+  font-size: 0.875rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-nft-modal-price {
+  padding: 1rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+}
+
+.ethos-nft-modal-price-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-nft-modal-price-label {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-nft-modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ethos-nft-modal-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.813rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-nft-modal-detail svg {
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-nft-modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.ethos-nft-modal-btn {
+  flex: 1;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-nft-modal-btn.primary {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+}
+
+.ethos-nft-modal-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.ethos-nft-modal-btn.secondary {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  border: 1px solid var(--ethos-border);
+}
+
+.ethos-nft-modal-btn.secondary:hover {
+  border-color: var(--ethos-gradient-1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-nft-grid.grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .ethos-nft-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-nft-gallery {
+    padding: 1rem;
+  }
+
+  .ethos-nft-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ethos-nft-controls {
+    flex-wrap: wrap;
+  }
+
+  .ethos-nft-search-wrapper {
+    flex: 1;
+  }
+
+  .ethos-nft-search-input {
+    width: 100%;
+  }
+
+  .ethos-nft-search-input:focus {
+    width: 100%;
+  }
+
+  .ethos-nft-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ethos-nft-filter-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-nft-filters-close {
+    margin-left: 0;
+  }
+
+  .ethos-nft-grid.grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-nft-item.list {
+    flex-direction: column;
+  }
+
+  .ethos-nft-item.list .ethos-nft-image-wrapper {
+    width: 100%;
+  }
+
+  .ethos-nft-modal-content {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-nft-modal-image {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-nft-gallery {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .ethos-nft-grid.grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ethos-nft-title {
+    font-size: 1rem;
+  }
+
+  .ethos-nft-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .ethos-nft-stat {
+    padding: 0.5rem;
+  }
+
+  .ethos-nft-stat-value {
+    font-size: 0.875rem;
+  }
+
+  .ethos-nft-modal {
+    margin: 0.5rem;
+  }
+
+  .ethos-nft-modal-content {
+    padding: 1rem;
+  }
+
+  .ethos-nft-modal-name {
+    font-size: 1.25rem;
+  }
+
+  .ethos-nft-modal-actions {
+    flex-direction: column;
+  }
+
+  .ethos-nft-controls {
+    gap: 0.5rem;
+  }
+
+  .ethos-nft-view-toggle {
+    padding: 0.125rem;
+  }
+
+  .ethos-nft-view-btn {
+    padding: 0.25rem;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-nft-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-nft-stat {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-nft-filter-option {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Print */
+@media print {
+  .ethos-nft-gallery {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .ethos-nft-controls,
+  .ethos-nft-filters,
+  .ethos-nft-overlay,
+  .ethos-nft-modal-overlay {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.ethos-nft-view-btn:focus-visible,
+.ethos-nft-filter-btn:focus-visible,
+.ethos-nft-filter-option:focus-visible,
+.ethos-nft-like-btn:focus-visible,
+.ethos-nft-view-link:focus-visible,
+.ethos-nft-share-btn:focus-visible,
+.ethos-nft-modal-close:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-nft-icon {
+    animation: none;
+  }
+
+  .ethos-nft-filters {
+    animation: none;
+  }
+
+  .ethos-nft-item {
+    animation: none;
+  }
+
+  .ethos-nft-modal {
+    animation: none;
+  }
+
+  .ethos-nft-modal-overlay {
+    animation: none;
+  }
+
+  .ethos-nft-image {
+    transition: none;
+  }
+
+  .ethos-nft-item:hover .ethos-nft-image {
+    transform: none;
+  }
+
+  .ethos-nft-like-btn,
+  .ethos-nft-view-link,
+  .ethos-nft-share-btn {
+    transition: none;
+  }
+}

@@ -1,0 +1,736 @@
+/* components/EthosBadges.css */
+
+/* Badges Card */
+.ethos-badges-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-badges-card:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+/* Header */
+.ethos-badges-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ethos-badges-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-badges-icon {
+  font-size: 1.25rem;
+  color: #8b5cf6;
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ethos-badges-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-badges-count {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  background: var(--ethos-hover);
+  padding: 0.125rem 0.5rem;
+  border-radius: 1rem;
+}
+
+/* Controls */
+.ethos-badges-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-badges-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ethos-hover);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.ethos-badges-search-wrapper:focus-within {
+  border-color: var(--ethos-gradient-1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.ethos-badges-search-icon {
+  color: var(--ethos-text-secondary);
+  font-size: 0.875rem;
+}
+
+.ethos-badges-search-input {
+  border: none;
+  background: none;
+  color: var(--ethos-text-primary);
+  font-size: 0.813rem;
+  outline: none;
+  width: 180px;
+  transition: width 0.3s ease;
+}
+
+.ethos-badges-search-input:focus {
+  width: 250px;
+}
+
+.ethos-badges-search-input::placeholder {
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-badges-clear-search {
+  background: none;
+  border: none;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  padding: 0.125rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.ethos-badges-clear-search:hover {
+  color: var(--ethos-text-primary);
+}
+
+/* View Toggle */
+.ethos-badges-view-toggle {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--ethos-hover);
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.ethos-badges-view-btn {
+  padding: 0.375rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-badges-view-btn:hover {
+  color: var(--ethos-text-primary);
+  background: var(--ethos-border);
+}
+
+.ethos-badges-view-btn.active {
+  background: var(--ethos-gradient-1);
+  color: white;
+}
+
+/* Stats Bar */
+.ethos-badges-stats-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+}
+
+.ethos-badges-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--ethos-card-bg);
+  border: 2px solid transparent;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-badges-stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-badges-stat-item.active {
+  border-color: var(--ethos-gradient-1);
+  background: var(--ethos-card-bg);
+}
+
+.ethos-badges-stat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ethos-badges-stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-badges-stat-count {
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  background: var(--ethos-hover);
+  padding: 0.0625rem 0.375rem;
+  border-radius: 1rem;
+}
+
+.ethos-badges-clear-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-badges-clear-filter:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+/* Sort */
+.ethos-badges-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ethos-badges-sort-label {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-badges-sort-select {
+  padding: 0.25rem 0.75rem;
+  background: var(--ethos-hover);
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  color: var(--ethos-text-primary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.ethos-badges-sort-select:focus {
+  border-color: var(--ethos-gradient-1);
+}
+
+/* Badges Grid */
+.ethos-badges-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ethos-badges-grid.grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.ethos-badges-grid.list {
+  grid-template-columns: 1fr;
+}
+
+/* Badge Item */
+.ethos-badge-item {
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-badge-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--ethos-shadow);
+  border-color: var(--ethos-gradient-1);
+}
+
+.ethos-badge-item.selected {
+  border-color: var(--ethos-gradient-1);
+  background: var(--ethos-card-bg);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.ethos-badge-item:active {
+  transform: scale(0.98);
+}
+
+/* Badge Icon */
+.ethos-badge-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  position: relative;
+  border: 3px solid;
+  transition: all 0.3s ease;
+}
+
+.ethos-badge-item:hover .ethos-badge-icon-wrapper {
+  transform: scale(1.05) rotate(-5deg);
+}
+
+.ethos-badge-icon {
+  font-size: 1.75rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-badge-rare {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  color: white;
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 0.5rem;
+  border: 2px solid var(--ethos-card-bg);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px 4px rgba(236, 72, 153, 0.2);
+  }
+}
+
+/* Badge Info */
+.ethos-badge-info {
+  text-align: center;
+}
+
+.ethos-badge-name-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  margin-bottom: 0.25rem;
+}
+
+.ethos-badge-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-badge-level-icon {
+  font-size: 0.75rem;
+}
+
+.ethos-badge-level-icon.platinum {
+  color: #ec4899;
+}
+
+.ethos-badge-level-icon.gold {
+  color: #f59e0b;
+}
+
+.ethos-badge-level-icon.silver {
+  color: #9ca3af;
+}
+
+.ethos-badge-level {
+  font-size: 0.65rem;
+  padding: 0.0625rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ethos-badge-level.platinum {
+  background: rgba(236, 72, 153, 0.2);
+  color: #ec4899;
+}
+
+.ethos-badge-level.gold {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.ethos-badge-level.silver {
+  background: rgba(156, 163, 175, 0.2);
+  color: #9ca3af;
+}
+
+.ethos-badge-description {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  margin: 0.375rem 0 0.25rem;
+}
+
+.ethos-badge-date {
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+/* Badge Progress */
+.ethos-badge-progress {
+  margin-top: 0.75rem;
+}
+
+.ethos-badge-progress-bar {
+  height: 4px;
+  background: var(--ethos-border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.ethos-badge-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.ethos-badge-progress-text {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+  text-align: right;
+}
+
+/* Badge Details */
+.ethos-badge-details {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ethos-border);
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-badge-details-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-badge-details-icon {
+  font-size: 0.875rem;
+}
+
+.ethos-badge-requirements {
+  margin-top: 0.5rem;
+}
+
+.ethos-badge-requirements-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.ethos-badge-requirements ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.ethos-badge-requirements li {
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  margin-bottom: 0.125rem;
+}
+
+/* Empty State */
+.ethos-badges-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-badges-empty svg {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.ethos-badges-empty h4 {
+  font-size: 1.125rem;
+  color: var(--ethos-text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.ethos-badges-empty p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Footer */
+.ethos-badges-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ethos-border);
+}
+
+.ethos-badges-footer-text {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-badges-footer-complete {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: #10b981;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-badges-grid.grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-badges-card {
+    padding: 1rem;
+  }
+
+  .ethos-badges-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ethos-badges-controls {
+    flex-wrap: wrap;
+  }
+
+  .ethos-badges-search-wrapper {
+    flex: 1;
+  }
+
+  .ethos-badges-search-input {
+    width: 100%;
+  }
+
+  .ethos-badges-search-input:focus {
+    width: 100%;
+  }
+
+  .ethos-badges-stats-bar {
+    gap: 0.5rem;
+  }
+
+  .ethos-badges-stat-item {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .ethos-badges-grid.grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .ethos-badge-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ethos-badge-icon {
+    font-size: 1.25rem;
+  }
+
+  .ethos-badge-name {
+    font-size: 0.813rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-badges-card {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .ethos-badges-title {
+    font-size: 1rem;
+  }
+
+  .ethos-badges-grid.grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .ethos-badge-item {
+    padding: 0.75rem;
+  }
+
+  .ethos-badge-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ethos-badge-icon {
+    font-size: 1rem;
+  }
+
+  .ethos-badge-name {
+    font-size: 0.75rem;
+  }
+
+  .ethos-badge-level {
+    font-size: 0.55rem;
+  }
+
+  .ethos-badge-description {
+    font-size: 0.65rem;
+  }
+
+  .ethos-badges-stats-bar {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .ethos-badges-stat-item {
+    padding: 0.1875rem 0.375rem;
+    font-size: 0.65rem;
+  }
+
+  .ethos-badges-stat-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .ethos-badges-stat-count {
+    font-size: 0.6rem;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-badge-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-badge-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ethos-profile-page.dark .ethos-badges-stat-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Print */
+@media print {
+  .ethos-badges-card {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .ethos-badges-controls,
+  .ethos-badges-stats-bar,
+  .ethos-badges-sort,
+  .ethos-badges-footer {
+    display: none;
+  }
+
+  .ethos-badge-item {
+    break-inside: avoid;
+    border: 1px solid #ddd;
+  }
+}
+
+/* Accessibility */
+.ethos-badges-view-btn:focus-visible,
+.ethos-badges-stat-item:focus-visible,
+.ethos-badge-item:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-badges-icon {
+    animation: none;
+  }
+  
+  .ethos-badge-rare {
+    animation: none;
+  }
+  
+  .ethos-badge-item {
+    animation: none;
+  }
+  
+  .ethos-badge-details {
+    animation: none;
+  }
+}

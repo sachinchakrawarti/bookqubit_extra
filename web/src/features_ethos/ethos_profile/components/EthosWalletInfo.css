@@ -1,0 +1,776 @@
+/* components/EthosWalletInfo.css */
+
+/* Wallet Card */
+.ethos-wallet-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-wallet-card:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+/* Header */
+.ethos-wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ethos-wallet-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-wallet-icon {
+  font-size: 1.5rem;
+  color: var(--ethos-gradient-1);
+  animation: float-wallet 3s ease-in-out infinite;
+}
+
+@keyframes float-wallet {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.ethos-wallet-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-wallet-subtitle {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+.ethos-wallet-actions-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-wallet-copy-btn,
+.ethos-wallet-refresh-btn,
+.ethos-wallet-visibility-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ethos-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-wallet-copy-btn:hover,
+.ethos-wallet-refresh-btn:hover,
+.ethos-wallet-visibility-btn:hover {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  transform: translateY(-2px);
+}
+
+.ethos-wallet-copy-btn.copied {
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.ethos-wallet-refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ethos-wallet-refresh-btn .spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ethos-wallet-status {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.ethos-wallet-status.connected {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.ethos-wallet-status.disconnected {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.ethos-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ethos-wallet-status.connected .ethos-status-dot {
+  background: #10b981;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.ethos-wallet-status.disconnected .ethos-status-dot {
+  background: #ef4444;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Balance */
+.ethos-wallet-balance {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, var(--ethos-hover), var(--ethos-card-bg));
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--ethos-border);
+  flex-wrap: wrap;
+}
+
+.ethos-balance-main {
+  flex: 1;
+}
+
+.ethos-balance-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-balance-label {
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+.ethos-balance-change {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+}
+
+.ethos-balance-change.positive {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.ethos-balance-change.negative {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.ethos-balance-usd {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--ethos-text-secondary);
+  padding: 0.25rem 0.75rem;
+  background: var(--ethos-card-bg);
+  border-radius: 2rem;
+  border: 1px solid var(--ethos-border);
+}
+
+/* Timeframe */
+.ethos-wallet-timeframe {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem;
+  background: var(--ethos-hover);
+  border-radius: 0.5rem;
+  width: fit-content;
+}
+
+.ethos-timeframe-btn {
+  padding: 0.25rem 0.75rem;
+  border: none;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-timeframe-btn:hover {
+  color: var(--ethos-text-primary);
+}
+
+.ethos-timeframe-btn.active {
+  background: var(--ethos-gradient-1);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Stats */
+.ethos-wallet-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-wallet-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-wallet-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-wallet-stat-icon-wrapper {
+  font-size: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ethos-card-bg);
+  flex-shrink: 0;
+}
+
+.ethos-wallet-stat-info {
+  flex: 1;
+}
+
+.ethos-wallet-stat-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-stat-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+.ethos-wallet-stat-change {
+  font-size: 0.6rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.ethos-wallet-stat-change.positive {
+  color: #10b981;
+}
+
+.ethos-wallet-stat-change.negative {
+  color: #ef4444;
+}
+
+/* Token Holdings */
+.ethos-wallet-tokens {
+  margin-bottom: 1.5rem;
+}
+
+.ethos-wallet-tokens-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-wallet-tokens-title {
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-tokens-count {
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+  padding: 0.0625rem 0.375rem;
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+}
+
+.ethos-wallet-tokens-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ethos-wallet-token {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-wallet-token:hover {
+  background: var(--ethos-border);
+}
+
+.ethos-wallet-token-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-wallet-token-name {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-token-amount {
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  font-family: monospace;
+}
+
+.ethos-wallet-token-value {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-wallet-token-value-text {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-token-change {
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.ethos-wallet-token-change.positive {
+  color: #10b981;
+}
+
+.ethos-wallet-token-change.negative {
+  color: #ef4444;
+}
+
+/* Transactions */
+.ethos-wallet-transactions {
+  margin-bottom: 1.5rem;
+}
+
+.ethos-wallet-transactions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-wallet-transactions-title {
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-transactions-view-all {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-wallet-transactions-view-all:hover {
+  border-color: var(--ethos-gradient-1);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ethos-wallet-transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-wallet-transaction:hover {
+  background: var(--ethos-border);
+}
+
+.ethos-wallet-tx-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-wallet-tx-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ethos-card-bg);
+}
+
+.ethos-wallet-tx-icon-wrapper.send {
+  color: #ef4444;
+}
+
+.ethos-wallet-tx-icon-wrapper.receive {
+  color: #10b981;
+}
+
+.ethos-wallet-tx-icon-wrapper.swap {
+  color: #f59e0b;
+}
+
+.ethos-wallet-tx-icon-wrapper.stake {
+  color: #8b5cf6;
+}
+
+.ethos-tx-icon {
+  font-size: 0.75rem;
+}
+
+.ethos-wallet-tx-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ethos-wallet-tx-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-tx-details {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-wallet-tx-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-wallet-tx-amount {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-tx-time {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-wallet-tx-status {
+  font-size: 0.7rem;
+}
+
+.ethos-wallet-tx-status.completed {
+  color: #10b981;
+}
+
+.ethos-wallet-tx-status.pending {
+  color: #f59e0b;
+}
+
+/* Actions */
+.ethos-wallet-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ethos-wallet-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-wallet-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-wallet-action-btn:active {
+  transform: scale(0.95);
+}
+
+.ethos-wallet-action-btn.primary {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+}
+
+.ethos-wallet-action-btn.secondary {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  border: 1px solid var(--ethos-border);
+}
+
+.ethos-wallet-action-btn.tertiary {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-wallet-action-btn.quaternary {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+/* Security */
+.ethos-wallet-security {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ethos-border);
+  flex-wrap: wrap;
+}
+
+.ethos-wallet-security-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-wallet-security-icon {
+  font-size: 0.75rem;
+  color: var(--ethos-gradient-1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-wallet-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ethos-wallet-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-wallet-card {
+    padding: 1rem;
+  }
+
+  .ethos-wallet-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-wallet-actions-header {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .ethos-wallet-balance {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-balance-value {
+    font-size: 1.5rem;
+  }
+
+  .ethos-wallet-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-wallet-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-wallet-security {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ethos-wallet-timeframe {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ethos-timeframe-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-wallet-card {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .ethos-wallet-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-wallet-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-balance-value {
+    font-size: 1.25rem;
+  }
+
+  .ethos-wallet-transaction {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .ethos-wallet-tx-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ethos-wallet-token {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .ethos-wallet-token-value {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-wallet-stat {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-wallet-token {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-wallet-transaction {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Print */
+@media print {
+  .ethos-wallet-card {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .ethos-wallet-actions,
+  .ethos-wallet-refresh-btn,
+  .ethos-wallet-visibility-btn,
+  .ethos-wallet-copy-btn {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.ethos-wallet-copy-btn:focus-visible,
+.ethos-wallet-refresh-btn:focus-visible,
+.ethos-wallet-visibility-btn:focus-visible,
+.ethos-wallet-action-btn:focus-visible,
+.ethos-timeframe-btn:focus-visible,
+.ethos-wallet-transactions-view-all:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-wallet-icon {
+    animation: none;
+  }
+
+  .ethos-wallet-status.connected .ethos-status-dot {
+    animation: none;
+  }
+
+  .ethos-wallet-refresh-btn .spinning {
+    animation: none;
+  }
+}

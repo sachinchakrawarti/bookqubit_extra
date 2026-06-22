@@ -1,0 +1,787 @@
+/* components/EthosIdentityCard.css */
+
+/* Identity Card */
+.ethos-identity-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ethos-identity-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    var(--ethos-gradient-1), 
+    var(--ethos-gradient-2),
+    var(--ethos-gradient-1)
+  );
+  background-size: 200% 100%;
+  animation: gradientMove 4s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+.ethos-identity-card:hover {
+  box-shadow: 0 8px 40px var(--ethos-shadow);
+  transform: translateY(-2px);
+}
+
+/* Card Header */
+.ethos-identity-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* Avatar Section */
+.ethos-identity-avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-identity-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--ethos-gradient-1);
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.ethos-identity-avatar:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+}
+
+.ethos-identity-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ethos-avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ethos-identity-avatar:hover .ethos-avatar-overlay {
+  opacity: 1;
+}
+
+.ethos-avatar-action {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  color: var(--ethos-text-primary);
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-avatar-action:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.ethos-verification-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  border: 3px solid var(--ethos-card-bg);
+  font-size: 0.75rem;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.ethos-identity-status {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ethos-status-dot.online {
+  background: #10b981;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.ethos-status-divider {
+  opacity: 0.3;
+}
+
+.ethos-status-text {
+  font-size: 0.7rem;
+}
+
+/* Info Section */
+.ethos-identity-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ethos-identity-name-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-identity-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-identity-ens {
+  font-size: 0.875rem;
+  color: var(--ethos-text-secondary);
+  font-weight: 500;
+  background: var(--ethos-hover);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.ethos-verified-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+}
+
+.ethos-share-btn {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ethos-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-share-btn:hover {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  transform: rotate(15deg);
+}
+
+/* Address */
+.ethos-identity-address {
+  margin-bottom: 0.75rem;
+}
+
+.ethos-address-label {
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.ethos-address-value {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.ethos-address-value:hover {
+  border-color: var(--ethos-border);
+}
+
+.ethos-address-text {
+  font-family: 'Courier New', monospace;
+  font-size: 0.813rem;
+  color: var(--ethos-text-primary);
+  flex: 1;
+}
+
+.ethos-copy-btn,
+.ethos-qr-btn,
+.ethos-explorer-link {
+  background: none;
+  border: none;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  padding: 0.125rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.ethos-copy-btn:hover,
+.ethos-qr-btn:hover,
+.ethos-explorer-link:hover {
+  color: var(--ethos-gradient-1);
+  transform: scale(1.1);
+}
+
+.ethos-copy-btn.copied {
+  color: #10b981;
+}
+
+/* QR Popup */
+.ethos-qr-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 100;
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-qr-content {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 20px 60px var(--ethos-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.ethos-qr-content img {
+  width: 150px;
+  height: 150px;
+  border-radius: 0.5rem;
+}
+
+.ethos-qr-address {
+  font-size: 0.65rem;
+  font-family: monospace;
+  color: var(--ethos-text-secondary);
+  word-break: break-all;
+  max-width: 150px;
+}
+
+.ethos-qr-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ethos-qr-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* Bio */
+.ethos-identity-bio {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ethos-text-secondary);
+  margin-bottom: 1rem;
+  max-width: 500px;
+}
+
+/* Meta */
+.ethos-identity-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.ethos-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.813rem;
+  color: var(--ethos-text-secondary);
+  background: var(--ethos-hover);
+  padding: 0.25rem 0.625rem;
+  border-radius: 2rem;
+}
+
+.ethos-meta-item svg {
+  font-size: 0.875rem;
+}
+
+.ethos-trust-score {
+  font-weight: 600;
+}
+
+/* Social Links */
+.ethos-social-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.ethos-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ethos-hover);
+  color: var(--ethos-text-secondary);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.ethos-social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-social-link.twitter:hover {
+  background: #1da1f2;
+  color: white;
+  border-color: #1da1f2;
+}
+
+.ethos-social-link.github:hover {
+  background: #333;
+  color: white;
+  border-color: #333;
+}
+
+.ethos-social-link.discord:hover {
+  background: #5865f2;
+  color: white;
+  border-color: #5865f2;
+}
+
+.ethos-social-link.email:hover {
+  background: #ea4335;
+  color: white;
+  border-color: #ea4335;
+}
+
+.ethos-social-link.more:hover {
+  background: var(--ethos-border);
+  color: var(--ethos-text-primary);
+}
+
+/* Actions */
+.ethos-identity-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ethos-edit-profile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 0.813rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-edit-profile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+.ethos-edit-profile-btn:active {
+  transform: scale(0.95);
+}
+
+.ethos-message-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  border: 1px solid var(--ethos-border);
+  border-radius: 2rem;
+  font-size: 0.813rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-message-btn:hover {
+  background: var(--ethos-border);
+  transform: translateY(-2px);
+}
+
+/* Stats Section */
+.ethos-identity-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.ethos-identity-stat {
+  text-align: center;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.ethos-identity-stat:hover {
+  border-color: var(--ethos-gradient-1);
+  transform: translateY(-2px);
+}
+
+.ethos-stat-icon {
+  display: block;
+  margin: 0 auto 0.25rem;
+  font-size: 1.125rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-stat-value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-stat-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Level Badge */
+.ethos-level-badge {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 2rem;
+  color: white;
+  text-align: center;
+  animation: glow 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+  }
+}
+
+.ethos-level-text {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ethos-level-label {
+  display: block;
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-identity-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ethos-identity-avatar-wrapper {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .ethos-identity-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .ethos-level-badge {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-identity-card {
+    padding: 1.5rem;
+  }
+
+  .ethos-identity-name {
+    font-size: 1.25rem;
+  }
+
+  .ethos-identity-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ethos-identity-avatar-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ethos-identity-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-identity-meta {
+    gap: 0.5rem;
+  }
+
+  .ethos-meta-item {
+    font-size: 0.7rem;
+    padding: 0.1875rem 0.5rem;
+  }
+
+  .ethos-level-badge {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-identity-card {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .ethos-identity-name {
+    font-size: 1rem;
+  }
+
+  .ethos-identity-ens {
+    font-size: 0.75rem;
+  }
+
+  .ethos-identity-bio {
+    font-size: 0.813rem;
+  }
+
+  .ethos-identity-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .ethos-identity-actions {
+    flex-direction: column;
+  }
+
+  .ethos-edit-profile-btn,
+  .ethos-message-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ethos-address-value {
+    flex-wrap: wrap;
+  }
+
+  .ethos-address-text {
+    font-size: 0.7rem;
+  }
+
+  .ethos-qr-content img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .ethos-level-badge {
+    padding: 0.25rem 0.75rem;
+  }
+
+  .ethos-level-text {
+    font-size: 0.75rem;
+  }
+
+  .ethos-share-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-identity-card {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ethos-profile-page.dark .ethos-identity-stat {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-meta-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-qr-content {
+  background: var(--ethos-card-bg);
+}
+
+/* Print */
+@media print {
+  .ethos-identity-card {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .ethos-identity-card::before {
+    display: none;
+  }
+
+  .ethos-identity-actions,
+  .ethos-share-btn,
+  .ethos-qr-btn,
+  .ethos-copy-btn,
+  .ethos-explorer-link,
+  .ethos-avatar-overlay {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.ethos-copy-btn:focus-visible,
+.ethos-qr-btn:focus-visible,
+.ethos-explorer-link:focus-visible,
+.ethos-edit-profile-btn:focus-visible,
+.ethos-message-btn:focus-visible,
+.ethos-share-btn:focus-visible,
+.ethos-social-link:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-identity-card::before {
+    animation: none;
+  }
+
+  .ethos-verification-badge {
+    animation: none;
+  }
+
+  .ethos-status-dot {
+    animation: none;
+  }
+
+  .ethos-level-badge {
+    animation: none;
+  }
+
+  .ethos-qr-popup {
+    animation: none;
+  }
+}

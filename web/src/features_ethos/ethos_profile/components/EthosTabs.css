@@ -1,0 +1,542 @@
+/* components/EthosTabs.css */
+
+/* Tabs Wrapper */
+.ethos-tabs-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+/* Desktop Tabs */
+.ethos-tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  position: relative;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+/* Individual Tab */
+.ethos-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  flex: 1;
+  justify-content: center;
+  min-width: 80px;
+}
+
+.ethos-tab:hover {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  transform: translateY(-1px);
+}
+
+.ethos-tab:active {
+  transform: scale(0.95);
+}
+
+.ethos-tab.active {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.ethos-tab.active:hover {
+  box-shadow: 0 6px 28px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Tab Icon */
+.ethos-tab-icon {
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-tab.active .ethos-tab-icon {
+  animation: icon-pop 0.3s ease;
+}
+
+@keyframes icon-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ethos-tab-label {
+  font-size: 0.813rem;
+  font-weight: 500;
+}
+
+/* Tab Badge */
+.ethos-tab-badge {
+  font-size: 0.6rem;
+  padding: 0.0625rem 0.375rem;
+  border-radius: 1rem;
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+.ethos-tab.active .ethos-tab-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.ethos-tab-badge.nfts {
+  background: rgba(236, 72, 153, 0.2);
+  color: #ec4899;
+}
+
+.ethos-tab.active .ethos-tab-badge.nfts {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Tab Indicator */
+.ethos-tab-indicator {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  animation: indicator-grow 0.3s ease;
+}
+
+@keyframes indicator-grow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 24px;
+    opacity: 1;
+  }
+}
+
+/* Mobile Tabs */
+.ethos-tabs-mobile {
+  display: none;
+  position: relative;
+}
+
+.ethos-tabs-scroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ethos-tabs-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ethos-tab-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: var(--ethos-hover);
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 60px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ethos-tab-mobile:hover {
+  background: var(--ethos-border);
+  color: var(--ethos-text-primary);
+  transform: translateY(-2px);
+}
+
+.ethos-tab-mobile.active {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+.ethos-tab-mobile-icon {
+  font-size: 1.25rem;
+}
+
+.ethos-tab-mobile-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ethos-tab-mobile-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.5rem;
+  padding: 0.0625rem 0.25rem;
+  background: #ef4444;
+  color: white;
+  border-radius: 1rem;
+  transform: translate(25%, -25%);
+}
+
+.ethos-tab-more {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: var(--ethos-hover);
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ethos-tab-more:hover {
+  background: var(--ethos-border);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-tab-more-icon {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Mobile Dropdown */
+.ethos-tab-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  min-width: 200px;
+  box-shadow: 0 20px 60px var(--ethos-shadow);
+  animation: dropdown-slide 0.2s ease;
+  z-index: 100;
+}
+
+@keyframes dropdown-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-tab-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ethos-tab-dropdown-item:hover {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-tab-dropdown-item.active {
+  background: var(--ethos-gradient-1);
+  color: white;
+}
+
+.ethos-tab-dropdown-icon {
+  font-size: 1rem;
+}
+
+.ethos-tab-dropdown-label {
+  font-size: 0.813rem;
+  flex: 1;
+  text-align: left;
+}
+
+.ethos-tab-dropdown-badge {
+  font-size: 0.6rem;
+  padding: 0.0625rem 0.375rem;
+  background: #ef4444;
+  color: white;
+  border-radius: 1rem;
+}
+
+/* Tab Info Bar */
+.ethos-tab-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-top: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  border: 1px solid var(--ethos-border);
+}
+
+.ethos-tab-info-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-tab-info-icon {
+  font-size: 1.125rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-tab-info-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-tab-info-description {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  margin-left: 0.5rem;
+}
+
+.ethos-tab-info-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ethos-tab-info-action {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-tab-info-action:hover {
+  background: var(--ethos-card-bg);
+  color: var(--ethos-text-primary);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-tabs {
+    gap: 0.125rem;
+    padding: 0.375rem;
+  }
+
+  .ethos-tab {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.813rem;
+    min-width: 60px;
+  }
+
+  .ethos-tab-label {
+    font-size: 0.75rem;
+  }
+
+  .ethos-tab-icon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-tabs {
+    display: none;
+  }
+
+  .ethos-tabs-mobile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--ethos-card-bg);
+    border: 1px solid var(--ethos-border);
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  .ethos-tab-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .ethos-tab-info-content {
+    flex-wrap: wrap;
+  }
+
+  .ethos-tab-info-description {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .ethos-tab-info-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-tabs-mobile {
+    padding: 0.375rem;
+    border-radius: 0.75rem;
+  }
+
+  .ethos-tab-mobile {
+    padding: 0.375rem 0.75rem;
+    min-width: 50px;
+  }
+
+  .ethos-tab-mobile-icon {
+    font-size: 1rem;
+  }
+
+  .ethos-tab-mobile-label {
+    font-size: 0.5rem;
+  }
+
+  .ethos-tab-more {
+    padding: 0.375rem 0.5rem;
+  }
+
+  .ethos-tab-more-icon {
+    font-size: 1rem;
+  }
+
+  .ethos-tab-dropdown {
+    min-width: 160px;
+    right: -20px;
+  }
+
+  .ethos-tab-info {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .ethos-tab-info-label {
+    font-size: 0.813rem;
+  }
+
+  .ethos-tab-info-description {
+    font-size: 0.65rem;
+  }
+
+  .ethos-tab-info-action {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-tabs {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ethos-profile-page.dark .ethos-tabs-mobile {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ethos-profile-page.dark .ethos-tab-info {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Print */
+@media print {
+  .ethos-tabs-wrapper {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.ethos-tab:focus-visible,
+.ethos-tab-mobile:focus-visible,
+.ethos-tab-more:focus-visible,
+.ethos-tab-dropdown-item:focus-visible,
+.ethos-tab-info-action:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-tab.active .ethos-tab-icon {
+    animation: none;
+  }
+
+  .ethos-tab-indicator {
+    animation: none;
+  }
+
+  .ethos-tab-dropdown {
+    animation: none;
+  }
+
+  .ethos-tab:hover {
+    transform: none;
+  }
+
+  .ethos-tab.active:hover {
+    transform: none;
+  }
+
+  .ethos-tab-mobile:hover {
+    transform: none;
+  }
+
+  .ethos-tab-info-action:hover {
+    transform: none;
+  }
+}
+
+/* High Contrast */
+@media (prefers-contrast: high) {
+  .ethos-tab.active {
+    border: 2px solid var(--ethos-gradient-1);
+  }
+
+  .ethos-tab-indicator {
+    display: none;
+  }
+}

@@ -1,0 +1,581 @@
+/* components/EthosSocialProof.css */
+
+/* Social Proof Card */
+.ethos-social-proof {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-social-proof:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+/* Header */
+.ethos-social-proof-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ethos-social-proof-title-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.ethos-social-proof-icon {
+  font-size: 1.5rem;
+  color: #06b6d4;
+  margin-top: 0.125rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.ethos-social-proof-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-social-proof-subtitle {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+.ethos-social-proof-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ethos-social-proof-share,
+.ethos-social-proof-expand {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--ethos-border);
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-social-proof-share:hover,
+.ethos-social-proof-expand:hover {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  transform: translateY(-2px);
+}
+
+/* Content */
+.ethos-social-proof-content {
+  transition: all 0.3s ease;
+}
+
+.ethos-social-proof-content.expanded {
+  max-height: none;
+}
+
+/* Stats Grid */
+.ethos-social-proof-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-social-proof-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-social-proof-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-social-stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ethos-card-bg);
+  color: var(--ethos-gradient-1);
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.ethos-social-stat-info {
+  flex: 1;
+}
+
+.ethos-social-stat-value {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-social-stat-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.ethos-social-stat-change {
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.ethos-social-stat-change.positive {
+  color: #10b981;
+}
+
+.ethos-social-stat-change.negative {
+  color: #ef4444;
+}
+
+/* Trust Score Section */
+.ethos-trust-score-section {
+  padding: 1rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-trust-score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ethos-trust-score-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-trust-score-icon {
+  font-size: 1rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-trust-score-value {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.ethos-trust-score-label {
+  font-size: 0.65rem;
+  font-weight: 400;
+  padding: 0.0625rem 0.375rem;
+  background: var(--ethos-card-bg);
+  border-radius: 1rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-trust-score-bar {
+  height: 6px;
+  background: var(--ethos-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-trust-score-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1.5s ease;
+}
+
+.ethos-trust-score-details {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ethos-trust-score-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+}
+
+/* Verifications */
+.ethos-social-proof-verification {
+  margin-bottom: 1.5rem;
+}
+
+.ethos-verification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.ethos-verification-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-verification-count {
+  font-size: 0.65rem;
+  padding: 0.0625rem 0.375rem;
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-verification-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.ethos-verification-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-verification-item:hover {
+  background: var(--ethos-border);
+}
+
+.ethos-verification-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ethos-verification-info {
+  flex: 1;
+}
+
+.ethos-verification-name {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-verification-date {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-verification-status {
+  font-size: 0.55rem;
+  padding: 0.0625rem 0.375rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ethos-verification-show-more {
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.ethos-verification-show-more:hover {
+  border-color: var(--ethos-gradient-1);
+  color: var(--ethos-text-primary);
+}
+
+/* Social Metrics */
+.ethos-social-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-social-metric {
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+}
+
+.ethos-social-metric-header {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.25rem;
+}
+
+.ethos-social-metric-icon {
+  font-size: 0.875rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-social-metric-header span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-social-metric-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.ethos-social-metric-bar {
+  height: 4px;
+  background: var(--ethos-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ethos-social-metric-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--ethos-gradient-1);
+  transition: width 1.5s ease;
+}
+
+.ethos-social-metric-fill.positive {
+  background: #10b981;
+}
+
+/* Footer */
+.ethos-social-proof-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ethos-border);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ethos-social-proof-footer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-footer-icon {
+  font-size: 0.75rem;
+}
+
+.ethos-social-proof-verify-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--ethos-gradient-1);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-social-proof-verify-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-social-proof-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ethos-social-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-social-proof {
+    padding: 1rem;
+  }
+
+  .ethos-social-proof-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-verification-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-social-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-trust-score-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-social-proof-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-social-proof-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-social-proof-actions {
+    align-self: flex-end;
+    margin-top: -2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-social-proof {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .ethos-social-proof-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-social-proof-title {
+    font-size: 1rem;
+  }
+
+  .ethos-social-stat-value {
+    font-size: 1rem;
+  }
+
+  .ethos-social-proof-actions {
+    margin-top: -2rem;
+  }
+
+  .ethos-trust-score-details {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .ethos-social-proof-verify-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ethos-social-proof-footer-item {
+    width: 100%;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-social-proof-stat {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-verification-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-social-metric {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-trust-score-section {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Print */
+@media print {
+  .ethos-social-proof {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .ethos-social-proof-share,
+  .ethos-social-proof-expand,
+  .ethos-social-proof-verify-btn,
+  .ethos-verification-show-more {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.ethos-social-proof-share:focus-visible,
+.ethos-social-proof-expand:focus-visible,
+.ethos-social-proof-verify-btn:focus-visible,
+.ethos-verification-show-more:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-social-proof-icon {
+    animation: none;
+  }
+
+  .ethos-trust-score-fill {
+    transition: none;
+  }
+
+  .ethos-social-metric-fill {
+    transition: none;
+  }
+}

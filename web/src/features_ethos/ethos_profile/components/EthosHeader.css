@@ -1,0 +1,786 @@
+/* components/EthosHeader.css */
+
+/* Header Container */
+.ethos-header {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ethos-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--ethos-gradient-1), 
+    var(--ethos-gradient-2),
+    var(--ethos-gradient-1)
+  );
+  background-size: 200% 100%;
+  animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+.ethos-header:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+/* Header Content */
+.ethos-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Left Section */
+.ethos-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.ethos-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-brand-icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  border-radius: 0.75rem;
+}
+
+.ethos-brand-icon-svg {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.ethos-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.ethos-gradient-text {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ethos-subtitle {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  margin: 0.125rem 0 0;
+  opacity: 0.8;
+}
+
+/* Right Section */
+.ethos-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Status Indicators */
+.ethos-header-statuses {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Network Badge */
+.ethos-network-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 2rem;
+  border: 1px solid var(--ethos-border);
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.ethos-network-badge:hover {
+  border-color: var(--ethos-gradient-1);
+}
+
+.ethos-network-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+.ethos-network-icon {
+  font-size: 0.875rem;
+  color: #10b981;
+}
+
+.ethos-network-name {
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-network-block {
+  font-size: 0.65rem;
+  opacity: 0.7;
+  font-family: monospace;
+}
+
+/* Trust Score Badge */
+.ethos-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 2rem;
+  border: 1px solid var(--ethos-border);
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.ethos-status-badge:hover {
+  border-color: var(--ethos-gradient-1);
+}
+
+.ethos-status-icon {
+  font-size: 0.875rem;
+}
+
+.ethos-status-label {
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-status-value {
+  font-weight: 700;
+}
+
+.ethos-status-subtle {
+  font-size: 0.65rem;
+  opacity: 0.7;
+  color: var(--ethos-text-secondary);
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .ethos-status-subtle {
+    display: inline;
+  }
+}
+
+/* Time Badge */
+.ethos-time-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 2rem;
+  border: 1px solid var(--ethos-border);
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  font-family: monospace;
+}
+
+.ethos-time-icon {
+  font-size: 0.75rem;
+}
+
+.ethos-time-value {
+  color: var(--ethos-text-primary);
+  font-weight: 500;
+}
+
+.ethos-time-zone {
+  font-size: 0.6rem;
+  opacity: 0.6;
+}
+
+/* Header Actions */
+.ethos-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Action Buttons */
+.ethos-action-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: var(--ethos-hover);
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethos-action-btn:hover {
+  background: var(--ethos-border);
+  color: var(--ethos-text-primary);
+  transform: translateY(-2px);
+}
+
+.ethos-action-btn:active {
+  transform: scale(0.9);
+}
+
+.ethos-action-icon {
+  font-size: 1rem;
+}
+
+.ethos-action-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ethos-card-bg);
+}
+
+/* Wallet Button */
+.ethos-wallet-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--ethos-border);
+  border-radius: 2rem;
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-wallet-btn:hover {
+  border-color: var(--ethos-gradient-1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-wallet-btn.connected {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.ethos-wallet-btn.disconnected {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.ethos-wallet-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ethos-wallet-btn.connected .ethos-wallet-status-dot {
+  background: #10b981;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.ethos-wallet-btn.disconnected .ethos-wallet-status-dot {
+  background: #ef4444;
+}
+
+.ethos-wallet-address {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+  opacity: 0.8;
+}
+
+/* User Dropdown */
+.ethos-user-dropdown {
+  position: relative;
+}
+
+.ethos-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+  background: var(--ethos-hover);
+  border: 1px solid var(--ethos-border);
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-user-btn:hover {
+  border-color: var(--ethos-gradient-1);
+  transform: translateY(-2px);
+}
+
+.ethos-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 0.875rem;
+}
+
+.ethos-user-verified {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  font-size: 0.6rem;
+  background: var(--ethos-card-bg);
+  border-radius: 50%;
+  color: #3b82f6;
+}
+
+/* Dropdown Menu */
+.ethos-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 280px;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0 20px 60px var(--ethos-shadow);
+  animation: slideDown 0.2s ease forwards;
+  z-index: 1000;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+.ethos-dropdown-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.ethos-dropdown-user {
+  flex: 1;
+}
+
+.ethos-dropdown-name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-dropdown-address {
+  display: block;
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-dropdown-divider {
+  height: 1px;
+  background: var(--ethos-border);
+  margin: 0.375rem 0;
+}
+
+.ethos-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--ethos-text-primary);
+  font-size: 0.813rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ethos-dropdown-item:hover {
+  background: var(--ethos-hover);
+}
+
+.ethos-dropdown-item svg {
+  font-size: 1rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-dropdown-logout {
+  color: #ef4444;
+}
+
+.ethos-dropdown-logout:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.ethos-dropdown-logout svg {
+  color: #ef4444;
+}
+
+/* Mobile Status Bar */
+.ethos-header-mobile-status {
+  display: none;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ethos-border);
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ethos-mobile-status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-mobile-wallet-btn {
+  padding: 0.25rem 0.75rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-mobile-wallet-btn.connected {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.ethos-mobile-wallet-btn.disconnected {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ethos-header-right {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .ethos-header-statuses {
+    flex: 1;
+  }
+
+  .ethos-network-block {
+    display: none;
+  }
+
+  .ethos-status-subtle {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-header {
+    padding: 1rem;
+  }
+
+  .ethos-title {
+    font-size: 1.25rem;
+  }
+
+  .ethos-header-statuses {
+    gap: 0.5rem;
+  }
+
+  .ethos-network-badge,
+  .ethos-status-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .ethos-network-name {
+    display: none;
+  }
+
+  .ethos-status-label {
+    display: none;
+  }
+
+  .ethos-time-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .ethos-time-zone {
+    display: none;
+  }
+
+  .ethos-wallet-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .ethos-wallet-address {
+    display: none;
+  }
+
+  .ethos-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ethos-action-icon {
+    font-size: 0.875rem;
+  }
+
+  .ethos-action-badge {
+    width: 16px;
+    height: 16px;
+    font-size: 0.5rem;
+  }
+
+  .ethos-user-btn {
+    padding: 0.1875rem 0.375rem 0.1875rem 0.1875rem;
+  }
+
+  .ethos-user-avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+
+  .ethos-header-mobile-status {
+    display: flex;
+  }
+
+  .ethos-dropdown-menu {
+    width: 240px;
+    right: -50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-header {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .ethos-title {
+    font-size: 1rem;
+  }
+
+  .ethos-subtitle {
+    font-size: 0.6rem;
+  }
+
+  .ethos-header-statuses {
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .ethos-network-badge,
+  .ethos-status-badge,
+  .ethos-time-badge {
+    padding: 0.1875rem 0.375rem;
+    font-size: 0.6rem;
+  }
+
+  .ethos-wallet-btn {
+    padding: 0.1875rem 0.375rem;
+    font-size: 0.6rem;
+  }
+
+  .ethos-wallet-status-text {
+    display: none;
+  }
+
+  .ethos-action-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ethos-action-icon {
+    font-size: 0.75rem;
+  }
+
+  .ethos-action-badge {
+    width: 14px;
+    height: 14px;
+    font-size: 0.45rem;
+    top: -3px;
+    right: -3px;
+  }
+
+  .ethos-user-btn {
+    padding: 0.125rem 0.25rem 0.125rem 0.125rem;
+  }
+
+  .ethos-user-avatar {
+    width: 20px;
+    height: 20px;
+    font-size: 0.625rem;
+  }
+
+  .ethos-dropdown-menu {
+    width: 200px;
+    right: -80%;
+  }
+
+  .ethos-mobile-status-item {
+    font-size: 0.6rem;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-header {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ethos-profile-page.dark .ethos-network-badge,
+.ethos-profile-page.dark .ethos-status-badge,
+.ethos-profile-page.dark .ethos-time-badge {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-wallet-btn {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-dropdown-menu {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Print */
+@media print {
+  .ethos-header {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .ethos-header::before {
+    display: none;
+  }
+
+  .ethos-header-actions,
+  .ethos-header-mobile-status,
+  .ethos-user-dropdown {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.ethos-action-btn:focus-visible,
+.ethos-wallet-btn:focus-visible,
+.ethos-user-btn:focus-visible,
+.ethos-dropdown-item:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-header::before {
+    animation: none;
+  }
+
+  .ethos-network-indicator {
+    animation: none;
+  }
+
+  .ethos-dropdown-menu {
+    animation: none;
+  }
+}
+
+/* High Contrast */
+@media (prefers-contrast: high) {
+  .ethos-header {
+    border-width: 2px;
+  }
+
+  .ethos-header::before {
+    display: none;
+  }
+}

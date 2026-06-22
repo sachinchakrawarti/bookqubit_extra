@@ -1,0 +1,773 @@
+/* components/EthosReputation.css */
+
+/* Reputation Card */
+.ethos-reputation-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-reputation-card:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+/* Header */
+.ethos-reputation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ethos-reputation-title-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.ethos-reputation-icon {
+  font-size: 1.5rem;
+  color: #f59e0b;
+  margin-top: 0.125rem;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ethos-reputation-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-reputation-subtitle {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+.ethos-reputation-level {
+  flex-shrink: 0;
+}
+
+.ethos-reputation-level-badge {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  border-radius: 2rem;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* Reputation Score */
+.ethos-reputation-score {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-score-circle {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.ethos-score-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ethos-score-path {
+  transition: stroke-dasharray 1s ease;
+}
+
+.ethos-score-text {
+  font-size: 16px;
+  font-weight: 700;
+  fill: var(--ethos-text-primary);
+  text-anchor: middle;
+  transform: rotate(90deg);
+}
+
+.ethos-score-info {
+  flex: 1;
+}
+
+.ethos-score-info h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0 0 0.25rem;
+}
+
+.ethos-score-info p {
+  font-size: 0.875rem;
+  color: var(--ethos-text-secondary);
+  margin: 0 0 0.75rem;
+}
+
+.ethos-score-bar {
+  height: 6px;
+  background: var(--ethos-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1.5s ease;
+}
+
+.ethos-score-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ethos-score-details span {
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-score-info-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.5rem;
+  background: transparent;
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-score-info-btn:hover {
+  border-color: var(--ethos-gradient-1);
+  color: var(--ethos-text-primary);
+}
+
+/* Trust Section */
+.ethos-trust-section {
+  padding: 1rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-trust-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-trust-icon {
+  font-size: 1rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-trust-label {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-trust-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.ethos-trust-status {
+  font-size: 0.7rem;
+  padding: 0.0625rem 0.5rem;
+  background: var(--ethos-card-bg);
+  border-radius: 1rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-trust-bar {
+  height: 4px;
+  background: var(--ethos-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ethos-trust-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.5s ease;
+}
+
+/* Section Toggle */
+.ethos-section-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--ethos-text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-section-toggle:hover {
+  background: var(--ethos-hover);
+}
+
+.ethos-section-icon {
+  font-size: 1rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-section-count {
+  margin-left: auto;
+  font-size: 0.65rem;
+  padding: 0.0625rem 0.375rem;
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-section-toggle svg:last-child {
+  margin-left: 0.25rem;
+}
+
+/* Metrics */
+.ethos-reputation-metrics-section {
+  margin-bottom: 1rem;
+}
+
+.ethos-reputation-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  padding: 0.5rem 0 0;
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ethos-reputation-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-reputation-metric:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-metric-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ethos-card-bg);
+}
+
+.ethos-metric-icon {
+  font-size: 1rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-metric-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-metric-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+}
+
+.ethos-metric-change {
+  font-size: 0.6rem;
+  font-weight: 600;
+  display: block;
+}
+
+.ethos-metric-change.positive {
+  color: #10b981;
+}
+
+.ethos-metric-change.negative {
+  color: #ef4444;
+}
+
+/* Credentials */
+.ethos-credentials-section {
+  margin-bottom: 1rem;
+}
+
+.ethos-credentials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0;
+  animation: slideDown 0.3s ease forwards;
+}
+
+.ethos-credential-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.ethos-credential-item:hover {
+  background: var(--ethos-border);
+}
+
+.ethos-credential-icon {
+  color: #10b981;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ethos-credential-info {
+  flex: 1;
+}
+
+.ethos-credential-name {
+  display: block;
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-credential-date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-credential-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-credential-status {
+  font-size: 0.6rem;
+  padding: 0.0625rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.ethos-credential-status.verified {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.ethos-credential-copy,
+.ethos-credential-link {
+  background: none;
+  border: none;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  padding: 0.125rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.ethos-credential-copy:hover,
+.ethos-credential-link:hover {
+  color: var(--ethos-gradient-1);
+}
+
+/* DAOs */
+.ethos-daos-section {
+  margin-bottom: 1rem;
+}
+
+.ethos-daos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0;
+  animation: slideDown 0.3s ease forwards;
+}
+
+.ethos-dao-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 0.875rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ethos-dao-item:hover {
+  background: var(--ethos-border);
+}
+
+.ethos-dao-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-dao-name {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-dao-role {
+  font-size: 0.6rem;
+  padding: 0.0625rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.ethos-dao-role.delegate {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.ethos-dao-role.member {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.ethos-dao-role.voter {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.ethos-dao-role.proposer {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+}
+
+.ethos-dao-power-section {
+  text-align: right;
+}
+
+.ethos-dao-power {
+  display: block;
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-dao-power-label {
+  font-size: 0.55rem;
+  color: var(--ethos-text-secondary);
+  text-transform: uppercase;
+}
+
+.ethos-dao-action {
+  padding: 0.1875rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--ethos-border);
+  border-radius: 0.5rem;
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-dao-action:hover {
+  border-color: var(--ethos-gradient-1);
+  color: var(--ethos-text-primary);
+}
+
+/* Footer */
+.ethos-reputation-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--ethos-border);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ethos-reputation-footer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.7rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-footer-icon {
+  font-size: 0.75rem;
+}
+
+.ethos-reputation-refresh {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--ethos-gradient-1);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ethos-reputation-refresh:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ethos-reputation-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ethos-reputation-card {
+    padding: 1rem;
+  }
+
+  .ethos-reputation-score {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ethos-score-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .ethos-reputation-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-trust-header {
+    flex-wrap: wrap;
+  }
+
+  .ethos-trust-value {
+    margin-left: 0;
+  }
+
+  .ethos-dao-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-dao-power-section {
+    text-align: left;
+    width: 100%;
+  }
+
+  .ethos-reputation-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-reputation-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .ethos-reputation-card {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .ethos-reputation-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-reputation-title {
+    font-size: 1rem;
+  }
+
+  .ethos-score-circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ethos-score-text {
+    font-size: 12px;
+  }
+
+  .ethos-score-info h4 {
+    font-size: 1rem;
+  }
+
+  .ethos-credential-item {
+    flex-wrap: wrap;
+  }
+
+  .ethos-credential-actions {
+    margin-left: auto;
+  }
+
+  .ethos-reputation-level-badge {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .ethos-trust-value {
+    font-size: 1rem;
+  }
+
+  .ethos-dao-info {
+    flex-wrap: wrap;
+  }
+}
+
+/* Dark Mode */
+.ethos-profile-page.dark .ethos-reputation-metric {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-credential-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-dao-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ethos-profile-page.dark .ethos-reputation-score {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Print */
+@media print {
+  .ethos-reputation-card {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .ethos-reputation-refresh,
+  .ethos-score-info-btn,
+  .ethos-credential-copy,
+  .ethos-credential-link,
+  .ethos-dao-action {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.ethos-section-toggle:focus-visible,
+.ethos-reputation-refresh:focus-visible,
+.ethos-score-info-btn:focus-visible,
+.ethos-credential-copy:focus-visible,
+.ethos-credential-link:focus-visible,
+.ethos-dao-action:focus-visible {
+  outline: 2px solid var(--ethos-gradient-1);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ethos-reputation-icon {
+    animation: none;
+  }
+
+  .ethos-reputation-level-badge {
+    animation: none;
+  }
+
+  .ethos-score-path {
+    transition: none;
+  }
+
+  .ethos-score-bar-fill {
+    transition: none;
+  }
+
+  .ethos-trust-bar-fill {
+    transition: none;
+  }
+
+  .ethos-reputation-metrics {
+    animation: none;
+  }
+
+  .ethos-credentials-list {
+    animation: none;
+  }
+
+  .ethos-daos-list {
+    animation: none;
+  }
+}
