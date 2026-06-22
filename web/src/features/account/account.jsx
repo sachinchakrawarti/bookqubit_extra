@@ -1,34 +1,38 @@
+// account.jsx
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useRTL } from "@/contexts/RTLContext";
 import { useFont } from "@/contexts/FontContext";
 import {
   FiUser,
-  FiMail,
-  FiCalendar,
+  FiEdit2,
+  FiSettings,
+  FiLogOut,
+  FiMessageSquare,
   FiBookOpen,
   FiStar,
   FiUsers,
   FiHeart,
   FiTrendingUp,
   FiAward,
-  FiClock,
-  FiEdit2,
-  FiSettings,
-  FiLogOut,
-  FiChevronRight,
-  FiBookmark,
-  FiMessageSquare,
-  FiThumbsUp,
   FiBarChart2,
   FiTarget,
   FiZap,
-} from "react-icons/fi"; // Removed FiTrophy
-import "./account.css";
+  FiBookmark,
+} from "react-icons/fi";
+
+// Import Components
+import AccountHeader from "./components/AccountHeader";
+import AccountTabs from "./components/AccountTabs";
+import ProfileCard from "./components/ProfileCard";
+import ProfileSettings from "./components/ProfileSettings";
+import DashboardContent from "./components/DashboardContent";
+import BookwormContent from "./components/BookwormContent";
+
+import "./components/account.css";
 
 export default function Account() {
   const { theme, themeName } = useTheme();
@@ -36,6 +40,7 @@ export default function Account() {
   const { direction } = useRTL();
   const { currentFont } = useFont();
   const [mounted, setMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState("profile");
 
   const isDarkMode =
     themeName === "dark" ||
@@ -207,6 +212,25 @@ export default function Account() {
 
   if (!mounted) return null;
 
+  // Render content based on active tab
+  const renderContent = () => {
+    switch (activeTab) {
+      case "profile":
+        return (
+          <>
+            <ProfileCard user={user} />
+            <ProfileSettings menuItems={profileMenuItems} />
+          </>
+        );
+      case "dashboard":
+        return <DashboardContent user={user} menuItems={dashboardItems} />;
+      case "bookworm":
+        return <BookwormContent user={user} menuItems={bookwormItems} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div
       dir={direction}
@@ -214,217 +238,9 @@ export default function Account() {
       className={`account-page ${isDarkMode ? "dark" : ""}`}
     >
       <div className="account-container">
-        {/* Header */}
-        <div className="account-header">
-          <h1 className="account-title">👤 Account</h1>
-          <p className="account-subtitle">
-            Manage your profile, dashboard & bookworm journey
-          </p>
-        </div>
-
-        {/* Profile Card */}
-        <div className="account-profile-card">
-          <div className="account-profile-avatar">
-            <img src={user.avatar} alt={user.name} />
-          </div>
-          <div className="account-profile-info">
-            <h2 className="account-profile-name">{user.name}</h2>
-            <p className="account-profile-email">{user.email}</p>
-            <p className="account-profile-bio">{user.bio}</p>
-            <div className="account-profile-meta">
-              <span className="account-profile-location">
-                <FiUser /> {user.location}
-              </span>
-              <span className="account-profile-join">
-                <FiCalendar /> Joined {user.joinDate}
-              </span>
-            </div>
-            <div className="account-profile-genres">
-              {user.favoriteGenres.map((genre, idx) => (
-                <span key={idx} className="account-profile-genre-tag">
-                  {genre}
-                </span>
-              ))}
-            </div>
-            <button className="account-profile-edit-btn">
-              <FiEdit2 /> Edit Profile
-            </button>
-          </div>
-          <div className="account-profile-stats">
-            <div className="account-stat-item">
-              <span className="account-stat-value">{user.stats.booksRead}</span>
-              <span className="account-stat-label">Books Read</span>
-            </div>
-            <div className="account-stat-item">
-              <span className="account-stat-value">{user.stats.reviews}</span>
-              <span className="account-stat-label">Reviews</span>
-            </div>
-            <div className="account-stat-item">
-              <span className="account-stat-value">{user.stats.followers}</span>
-              <span className="account-stat-label">Followers</span>
-            </div>
-            <div className="account-stat-item">
-              <span className="account-stat-value">#{user.stats.ranking}</span>
-              <span className="account-stat-label">Rank</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Dashboard Card */}
-        <div className="account-card">
-          <div className="account-card-header">
-            <div className="account-card-title-section">
-              <FiBarChart2
-                className="account-card-icon"
-                style={{ color: "#3b82f6" }}
-              />
-              <h3 className="account-card-title">Dashboard</h3>
-            </div>
-            <Link href="/dashboard" className="account-card-view-all">
-              View All <FiChevronRight />
-            </Link>
-          </div>
-          <div className="account-card-content">
-            <div className="account-card-stats">
-              <div className="account-card-stat">
-                <FiBookOpen />
-                <div>
-                  <span>{user.stats.booksRead}</span>
-                  <span>Books Read</span>
-                </div>
-              </div>
-              <div className="account-card-stat">
-                <FiStar />
-                <div>
-                  <span>{user.stats.reviews}</span>
-                  <span>Reviews</span>
-                </div>
-              </div>
-              <div className="account-card-stat">
-                <FiHeart />
-                <div>
-                  <span>{user.stats.following}</span>
-                  <span>Following</span>
-                </div>
-              </div>
-            </div>
-            <div className="account-card-menu">
-              {dashboardItems.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.link}
-                  className="account-card-menu-item"
-                >
-                  <span className="account-card-menu-icon">{item.icon}</span>
-                  <span className="account-card-menu-label">{item.label}</span>
-                  {item.count && (
-                    <span className="account-card-menu-count">
-                      {item.count}
-                    </span>
-                  )}
-                  <FiChevronRight className="account-card-menu-arrow" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bookworm Card */}
-        <div className="account-card">
-          <div className="account-card-header">
-            <div className="account-card-title-section">
-              <FiAward
-                className="account-card-icon"
-                style={{ color: "#f59e0b" }}
-              />
-              <h3 className="account-card-title">Bookworm</h3>
-            </div>
-            <Link href="/bookworm" className="account-card-view-all">
-              View All <FiChevronRight />
-            </Link>
-          </div>
-          <div className="account-card-content">
-            <div className="account-bookworm-stats">
-              <div className="account-bookworm-stat">
-                <FiAward />
-                <div>
-                  <span>#{user.stats.ranking}</span>
-                  <span>Global Rank</span>
-                </div>
-              </div>
-              <div className="account-bookworm-stat">
-                <FiAward />
-                <div>
-                  <span>{user.stats.badges}</span>
-                  <span>Badges Earned</span>
-                </div>
-              </div>
-              <div className="account-bookworm-stat">
-                <FiZap />
-                <div>
-                  <span>{user.stats.readingStreak}</span>
-                  <span>Day Streak</span>
-                </div>
-              </div>
-            </div>
-            <div className="account-card-menu">
-              {bookwormItems.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.link}
-                  className="account-card-menu-item"
-                >
-                  <span className="account-card-menu-icon">{item.icon}</span>
-                  <span className="account-card-menu-label">{item.label}</span>
-                  {item.count && (
-                    <span className="account-card-menu-count">
-                      {item.count}
-                    </span>
-                  )}
-                  {item.value && (
-                    <span className="account-card-menu-value">
-                      {item.value}
-                    </span>
-                  )}
-                  <FiChevronRight className="account-card-menu-arrow" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Profile Menu Card */}
-        <div className="account-card">
-          <div className="account-card-header">
-            <div className="account-card-title-section">
-              <FiUser
-                className="account-card-icon"
-                style={{ color: "#8b5cf6" }}
-              />
-              <h3 className="account-card-title">Profile Settings</h3>
-            </div>
-          </div>
-          <div className="account-card-content">
-            <div className="account-card-menu">
-              {profileMenuItems.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.link}
-                  className={`account-card-menu-item ${item.isLogout ? "logout" : ""}`}
-                >
-                  <span className="account-card-menu-icon">{item.icon}</span>
-                  <span className="account-card-menu-label">{item.label}</span>
-                  {item.badge && (
-                    <span className="account-card-menu-badge">
-                      {item.badge}
-                    </span>
-                  )}
-                  <FiChevronRight className="account-card-menu-arrow" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+        <AccountHeader />
+        <AccountTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        <div className="account-tab-content">{renderContent()}</div>
       </div>
     </div>
   );

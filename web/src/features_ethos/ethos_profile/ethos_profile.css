@@ -1,1227 +1,925 @@
-/* src/features_ethos/ethos_profile/ethos_profile.css */
-
-/* ===== PAGE CONTAINER ===== */
+/* ethos_profile.css */
 .ethos-profile-page {
+  min-height: 100vh;
+  background: var(--ethos-bg, #f9fafb);
+  padding: 1.5rem;
+}
+
+.ethos-profile-page.dark {
+  --ethos-bg: #0a0a0a;
+  --ethos-card-bg: #1a1a1a;
+  --ethos-text-primary: #f9fafb;
+  --ethos-text-secondary: #9ca3af;
+  --ethos-border: #2a2a2a;
+  --ethos-shadow: rgba(0, 0, 0, 0.5);
+  --ethos-hover: #2a2a2a;
+  --ethos-gradient-1: #3b82f6;
+  --ethos-gradient-2: #8b5cf6;
+}
+
+.ethos-profile-page:not(.dark) {
+  --ethos-bg: #f9fafb;
+  --ethos-card-bg: #ffffff;
+  --ethos-text-primary: #111827;
+  --ethos-text-secondary: #6b7280;
+  --ethos-border: #e5e7eb;
+  --ethos-shadow: rgba(0, 0, 0, 0.1);
+  --ethos-hover: #f3f4f6;
+  --ethos-gradient-1: #3b82f6;
+  --ethos-gradient-2: #8b5cf6;
+}
+
+.ethos-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px 40px;
-  min-height: 100vh;
 }
 
-/* ===== COVER ===== */
-.ethos-profile-cover {
-  height: 200px;
-  border-radius: 20px;
-  position: relative;
-  margin-bottom: -60px;
-  overflow: hidden;
+/* Header */
+.ethos-header {
+  margin-bottom: 2rem;
 }
 
-.ethos-profile-cover-edit {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  padding: 8px 16px;
-  border-radius: 10px;
-  border: none;
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.ethos-header-content {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 6px;
-}
-
-.ethos-profile-cover-edit:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-/* ===== PROFILE HEADER ===== */
-.ethos-profile-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  padding: 0 24px 24px;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.ethos-profile-avatar-wrapper {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.ethos-profile-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 4px solid #ffffff;
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 56px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.dark .ethos-profile-avatar {
-  border-color: #1e293b;
-}
-
-.ethos-profile-avatar-edit {
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  background: #8b5cf6;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dark .ethos-profile-avatar-edit {
-  border-color: #1e293b;
-}
-
-.ethos-profile-avatar-edit:hover {
-  transform: scale(1.1);
-}
-
-.ethos-profile-info {
-  flex: 1;
-  padding-top: 8px;
-}
-
-.ethos-profile-name-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.ethos-profile-name {
-  font-size: 28px;
+.ethos-title {
+  font-size: 2rem;
   font-weight: 700;
-  color: #0f172a;
   margin: 0;
 }
 
-.dark .ethos-profile-name {
-  color: #f1f5f9;
+.ethos-gradient-text {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.ethos-profile-username {
-  font-size: 16px;
-  color: #64748b;
+.ethos-subtitle {
+  font-size: 0.875rem;
+  color: var(--ethos-text-secondary);
+  margin: 0.25rem 0 0;
 }
 
-.dark .ethos-profile-username {
-  color: #94a3b8;
+.ethos-header-right {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
 
-.ethos-profile-level {
+.ethos-status-badge,
+.ethos-network-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-status-icon,
+.ethos-network-icon {
+  color: #10b981;
+}
+
+/* Tabs */
+.ethos-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  position: relative;
+}
+
+.ethos-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: transparent;
+  color: var(--ethos-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  flex: 1;
+  justify-content: center;
+}
+
+.ethos-tab:hover {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-tab.active {
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+.ethos-tab-indicator {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--ethos-gradient-1);
+  border-radius: 2px;
+}
+
+.ethos-tab-content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Identity Card */
+.ethos-identity-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.ethos-identity-card:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
+}
+
+.ethos-identity-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: start;
+}
+
+.ethos-identity-avatar-wrapper {
+  position: relative;
+}
+
+.ethos-identity-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--ethos-gradient-1);
+  position: relative;
+}
+
+.ethos-identity-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ethos-verification-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  border: 3px solid var(--ethos-card-bg);
+}
+
+.ethos-identity-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.ethos-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ethos-status-dot.online {
+  background: #10b981;
+}
+
+.ethos-status-text {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-identity-info {
+  flex: 1;
+}
+
+.ethos-identity-name-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-identity-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-identity-ens {
+  font-size: 0.875rem;
+  color: var(--ethos-text-secondary);
+  font-weight: 500;
+}
+
+.ethos-verified-label {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 2px 12px;
-  border-radius: 12px;
-  background: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
-  font-size: 13px;
-  font-weight: 600;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 1rem;
 }
 
-.ethos-profile-bio {
-  font-size: 15px;
-  color: #475569;
-  margin: 8px 0;
-  line-height: 1.5;
+.ethos-identity-address {
+  margin-bottom: 0.75rem;
 }
 
-.dark .ethos-profile-bio {
-  color: #94a3b8;
+.ethos-address-label {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
-.ethos-profile-meta {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-}
-
-.ethos-profile-meta-item {
+.ethos-address-value {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 14px;
-  color: #64748b;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+  color: var(--ethos-text-primary);
+  background: var(--ethos-hover);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
 }
 
-.dark .ethos-profile-meta-item {
-  color: #94a3b8;
+.ethos-copy-btn,
+.ethos-explorer-link {
+  background: none;
+  border: none;
+  color: var(--ethos-text-secondary);
+  cursor: pointer;
+  padding: 0.125rem;
+  transition: color 0.2s;
 }
 
-.ethos-profile-meta-item a {
-  color: #8b5cf6;
-  text-decoration: none;
+.ethos-copy-btn:hover,
+.ethos-explorer-link:hover {
+  color: var(--ethos-gradient-1);
 }
 
-.ethos-profile-meta-item a:hover {
-  text-decoration: underline;
+.ethos-identity-bio {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ethos-text-secondary);
+  margin-bottom: 1rem;
 }
 
-.ethos-profile-social {
+.ethos-identity-meta {
   display: flex;
-  gap: 12px;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 
-.ethos-profile-social a {
+.ethos-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.813rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-social-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ethos-social-link {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #f1f5f9;
-  color: #475569;
-  transition: all 0.2s ease;
+  background: var(--ethos-hover);
+  color: var(--ethos-text-secondary);
+  transition: all 0.2s;
+  text-decoration: none;
 }
 
-.dark .ethos-profile-social a {
-  background: #1e293b;
-  color: #94a3b8;
-}
-
-.ethos-profile-social a:hover {
-  background: #8b5cf6;
-  color: #ffffff;
+.ethos-social-link:hover {
+  background: var(--ethos-gradient-1);
+  color: white;
   transform: translateY(-2px);
 }
 
-.ethos-profile-actions {
-  display: flex;
-  gap: 8px;
-  padding-top: 8px;
-  flex-wrap: wrap;
-}
-
-.ethos-profile-btn {
-  padding: 8px 20px;
-  border-radius: 10px;
+.ethos-edit-profile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  color: white;
   border: none;
-  font-weight: 600;
-  font-size: 14px;
+  border-radius: 2rem;
+  font-size: 0.813rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  transition: all 0.3s;
 }
 
-.ethos-profile-btn.edit {
-  background: #8b5cf6;
-  color: #ffffff;
-}
-
-.ethos-profile-btn.edit:hover {
-  background: #7c3aed;
+.ethos-edit-profile-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
 }
 
-.ethos-profile-btn.message {
-  background: #f1f5f9;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-btn.message {
-  background: #1e293b;
-  color: #f1f5f9;
-}
-
-.ethos-profile-btn.message:hover {
-  background: #e2e8f0;
-}
-
-.dark .ethos-profile-btn.message:hover {
-  background: #334155;
-}
-
-.ethos-profile-btn.save {
-  background: #10b981;
-  color: #ffffff;
-}
-
-.ethos-profile-btn.save:hover {
-  background: #059669;
-}
-
-.ethos-profile-btn.cancel {
-  background: #ef4444;
-  color: #ffffff;
-}
-
-.ethos-profile-btn.cancel:hover {
-  background: #dc2626;
-}
-
-/* ===== STATS ===== */
-.ethos-profile-stats {
+.ethos-identity-stats {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-  padding: 0 24px;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
-.ethos-profile-stat-item {
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.2s ease;
+.ethos-identity-stat {
+  text-align: center;
+  padding: 1rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
 }
 
-.dark .ethos-profile-stat-item {
-  background: #1e293b;
-  border-color: #334155;
-}
-
-.ethos-profile-stat-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.ethos-profile-stat-icon {
-  font-size: 20px;
-  opacity: 0.7;
-}
-
-.ethos-profile-stat-label {
+.ethos-stat-value {
   display: block;
-  font-size: 11px;
-  color: #94a3b8;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-stat-label {
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.dark .ethos-profile-stat-label {
-  color: #64748b;
+/* Wallet Card */
+.ethos-wallet-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
 }
 
-.ethos-profile-stat-value {
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
+.ethos-wallet-card:hover {
+  box-shadow: 0 8px 32px var(--ethos-shadow);
 }
 
-.dark .ethos-profile-stat-value {
-  color: #f1f5f9;
+.ethos-wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-/* ===== WALLET ===== */
-.ethos-profile-wallet {
-  padding: 0 24px;
-  margin-bottom: 24px;
-}
-
-.ethos-profile-wallet-content {
+.ethos-wallet-title-section {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 16px;
-  border-radius: 12px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  gap: 0.75rem;
 }
 
-.dark .ethos-profile-wallet-content {
-  background: #0f172a;
-  border-color: #334155;
+.ethos-wallet-icon {
+  font-size: 1.25rem;
+  color: var(--ethos-gradient-1);
 }
 
-.ethos-profile-wallet-icon {
-  color: #8b5cf6;
-}
-
-.ethos-profile-wallet-address {
-  font-family: monospace;
-  font-size: 14px;
-  color: #0f172a;
-  flex: 1;
-}
-
-.dark .ethos-profile-wallet-address {
-  color: #f1f5f9;
-}
-
-.ethos-profile-wallet-copy,
-.ethos-profile-wallet-link {
-  background: transparent;
-  border: none;
-  color: #94a3b8;
-  cursor: pointer;
-  padding: 4px;
-  transition: color 0.2s ease;
-}
-
-.ethos-profile-wallet-copy:hover,
-.ethos-profile-wallet-link:hover {
-  color: #8b5cf6;
-}
-
-/* ===== TABS ===== */
-.ethos-profile-tabs {
-  display: flex;
-  gap: 4px;
-  padding: 0 24px;
-  border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 24px;
-}
-
-.dark .ethos-profile-tabs {
-  border-color: #334155;
-}
-
-.ethos-profile-tab-btn {
-  padding: 10px 20px;
-  border-radius: 10px 10px 0 0;
-  border: none;
-  background: transparent;
-  color: #64748b;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.dark .ethos-profile-tab-btn {
-  color: #94a3b8;
-}
-
-.ethos-profile-tab-btn:hover {
-  background: #f1f5f9;
-}
-
-.dark .ethos-profile-tab-btn:hover {
-  background: #1e293b;
-}
-
-.ethos-profile-tab-btn.active {
-  background: #8b5cf6;
-  color: #ffffff;
+.ethos-wallet-title {
+  font-size: 1.125rem;
   font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
 }
 
-/* ===== CONTENT ===== */
-.ethos-profile-content {
-  padding: 0 24px;
-}
-
-/* ===== OVERVIEW ===== */
-.ethos-profile-overview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.ethos-profile-section {
-  background: #ffffff;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  padding: 20px;
-}
-
-.dark .ethos-profile-section {
-  background: #1e293b;
-  border-color: #334155;
-}
-
-.ethos-profile-section-title {
+.ethos-wallet-status {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #0f172a;
-  margin: 0 0 16px 0;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
 }
 
-.dark .ethos-profile-section-title {
-  color: #f1f5f9;
+.ethos-wallet-status.connected {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
 }
 
-/* Books List */
-.ethos-profile-books-list {
+.ethos-wallet-status.disconnected {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.ethos-wallet-balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-balance-main {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
-.ethos-profile-book-item {
+.ethos-balance-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-balance-label {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-balance-change {
   display: flex;
-  gap: 12px;
-  padding: 8px;
-  border-radius: 10px;
-  background: #f8fafc;
-  transition: all 0.2s ease;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
-.dark .ethos-profile-book-item {
-  background: #0f172a;
+.ethos-balance-change.positive {
+  color: #10b981;
 }
 
-.ethos-profile-book-item:hover {
-  background: #f1f5f9;
+.ethos-balance-change.negative {
+  color: #ef4444;
 }
 
-.dark .ethos-profile-book-item:hover {
-  background: #1e293b;
+.ethos-wallet-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.ethos-profile-book-icon {
-  font-size: 32px;
+.ethos-wallet-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+}
+
+.ethos-wallet-stat-icon {
+  font-size: 1.25rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-wallet-stat-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-stat-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-wallet-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.ethos-wallet-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.813rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ethos-wallet-action-btn.primary {
+  background: var(--ethos-gradient-1);
+  color: white;
+}
+
+.ethos-wallet-action-btn.secondary {
+  background: var(--ethos-hover);
+  color: var(--ethos-text-primary);
+}
+
+.ethos-wallet-action-btn.tertiary {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-wallet-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+/* Reputation Card */
+.ethos-reputation-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-reputation-header {
+  margin-bottom: 1.5rem;
+}
+
+.ethos-reputation-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-reputation-icon {
+  font-size: 1.25rem;
+  color: #f59e0b;
+}
+
+.ethos-reputation-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-reputation-score {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: var(--ethos-hover);
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-score-circle {
+  width: 100px;
+  height: 100px;
   flex-shrink: 0;
 }
 
-.ethos-profile-book-info {
-  flex: 1;
-}
-
-.ethos-profile-book-title {
-  font-weight: 600;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-book-title {
-  color: #f1f5f9;
-}
-
-.ethos-profile-book-author {
-  font-size: 13px;
-  color: #64748b;
-}
-
-.dark .ethos-profile-book-author {
-  color: #94a3b8;
-}
-
-.ethos-profile-book-progress-wrapper {
+.ethos-score-svg {
   width: 100%;
-  height: 4px;
-  background: #e2e8f0;
-  border-radius: 2px;
-  overflow: hidden;
-  margin-top: 4px;
-}
-
-.dark .ethos-profile-book-progress-wrapper {
-  background: #334155;
-}
-
-.ethos-profile-book-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #8b5cf6, #6d28d9);
-  border-radius: 2px;
-  transition: width 0.6s ease;
+  transform: rotate(-90deg);
 }
 
-.ethos-profile-book-progress-text {
-  font-size: 12px;
-  color: #94a3b8;
-  margin-top: 2px;
+.ethos-score-text {
+  font-size: 16px;
+  font-weight: 700;
+  fill: var(--ethos-text-primary);
+  text-anchor: middle;
+  transform: rotate(90deg);
 }
 
-.dark .ethos-profile-book-progress-text {
-  color: #64748b;
+.ethos-score-info h4 {
+  margin: 0 0 0.25rem;
+  font-size: 1.125rem;
+  color: var(--ethos-text-primary);
 }
 
-/* Activity List */
-.ethos-profile-activity-list {
+.ethos-score-info p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-reputation-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-reputation-metric {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
 }
 
-.ethos-profile-activity-item {
+.ethos-metric-icon {
+  font-size: 1.25rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-metric-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-metric-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+}
+
+/* Badges */
+.ethos-badges-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-badges-header {
+  margin-bottom: 1.5rem;
+}
+
+.ethos-badges-title-section {
   display: flex;
-  gap: 12px;
-  padding: 8px;
-  border-radius: 10px;
-  background: #f8fafc;
-  transition: all 0.2s ease;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.dark .ethos-profile-activity-item {
-  background: #0f172a;
+.ethos-badges-icon {
+  font-size: 1.25rem;
+  color: #8b5cf6;
 }
 
-.ethos-profile-activity-item:hover {
-  background: #f1f5f9;
+.ethos-badges-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
 }
 
-.dark .ethos-profile-activity-item:hover {
-  background: #1e293b;
+.ethos-badges-count {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  background: var(--ethos-hover);
+  padding: 0.125rem 0.5rem;
+  border-radius: 1rem;
 }
 
-.ethos-profile-activity-icon {
-  font-size: 28px;
-  flex-shrink: 0;
+.ethos-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
-.ethos-profile-activity-info {
+.ethos-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.3s;
+}
+
+.ethos-badge-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ethos-shadow);
+}
+
+.ethos-badge-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.ethos-badge-info {
   flex: 1;
 }
 
-.ethos-profile-activity-text {
-  font-size: 14px;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-activity-text {
-  color: #f1f5f9;
-}
-
-.ethos-profile-activity-action {
-  font-weight: 600;
-}
-
-.ethos-profile-activity-title {
-  margin-left: 4px;
-}
-
-.ethos-profile-activity-meta {
-  display: flex;
-  gap: 12px;
-  font-size: 13px;
-  color: #64748b;
-}
-
-.dark .ethos-profile-activity-meta {
-  color: #94a3b8;
-}
-
-.ethos-profile-activity-reward {
-  color: #10b981;
-  font-weight: 500;
-}
-
-/* Stats Grid */
-.ethos-profile-stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.ethos-profile-stats-item {
-  padding: 12px;
-  border-radius: 10px;
-  background: #f8fafc;
-}
-
-.dark .ethos-profile-stats-item {
-  background: #0f172a;
-}
-
-.ethos-profile-stats-label {
+.ethos-badge-name {
   display: block;
-  font-size: 12px;
-  color: #94a3b8;
-}
-
-.dark .ethos-profile-stats-label {
-  color: #64748b;
-}
-
-.ethos-profile-stats-value {
-  display: block;
-  font-size: 18px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-stats-value {
-  color: #f1f5f9;
-}
-
-/* Achievements Preview */
-.ethos-profile-achievements-preview {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
-
-.ethos-profile-achievement-preview-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: #f8fafc;
-  font-size: 13px;
-}
-
-.dark .ethos-profile-achievement-preview-item {
-  background: #0f172a;
-}
-
-.ethos-profile-achievement-preview-item.unlocked {
-  color: #0f172a;
-}
-
-.dark .ethos-profile-achievement-preview-item.unlocked {
-  color: #f1f5f9;
-}
-
-.ethos-profile-achievement-preview-item.locked {
-  color: #94a3b8;
-  opacity: 0.5;
-}
-
-.ethos-profile-achievement-preview-icon {
-  font-size: 20px;
-}
-
-.ethos-profile-achievement-preview-name {
+  font-size: 0.813rem;
   font-weight: 500;
+  color: var(--ethos-text-primary);
 }
 
-.ethos-profile-section-view-all {
-  margin-top: 12px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  background: #f1f5f9;
-  color: #64748b;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.ethos-badge-level {
+  font-size: 0.65rem;
+  padding: 0.0625rem 0.375rem;
+  border-radius: 1rem;
 }
 
-.dark .ethos-profile-section-view-all {
-  background: #334155;
-  color: #94a3b8;
+.ethos-badge-level.gold {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
 }
 
-.ethos-profile-section-view-all:hover {
-  background: #e2e8f0;
+.ethos-badge-level.silver {
+  background: rgba(156, 163, 175, 0.2);
+  color: #9ca3af;
 }
 
-.dark .ethos-profile-section-view-all:hover {
-  background: #475569;
+.ethos-badge-level.platinum {
+  background: rgba(236, 72, 153, 0.2);
+  color: #ec4899;
 }
 
-/* ===== BOOKS TAB ===== */
-.ethos-profile-books-header {
+/* NFT Gallery */
+.ethos-nft-gallery {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-nft-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 1rem;
 }
 
-.ethos-profile-books-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-books-title {
-  color: #f1f5f9;
-}
-
-.ethos-profile-books-filters {
+.ethos-nft-title-section {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.ethos-profile-books-filter-btn {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid #e2e8f0;
-  background: transparent;
-  color: #64748b;
-  font-size: 13px;
-  font-weight: 500;
+.ethos-nft-icon {
+  font-size: 1.25rem;
+  color: #ec4899;
+}
+
+.ethos-nft-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-nft-count {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-nft-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethos-nft-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ethos-hover);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.ethos-nft-search input {
+  border: none;
+  background: none;
+  color: var(--ethos-text-primary);
+  font-size: 0.813rem;
+  outline: none;
+}
+
+.ethos-nft-view-btn {
+  padding: 0.375rem;
+  background: var(--ethos-hover);
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--ethos-text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 }
 
-.dark .ethos-profile-books-filter-btn {
-  border-color: #334155;
-  color: #94a3b8;
+.ethos-nft-view-btn.active {
+  background: var(--ethos-gradient-1);
+  color: white;
 }
 
-.ethos-profile-books-filter-btn.active {
-  background: #8b5cf6;
-  border-color: #8b5cf6;
-  color: #ffffff;
-}
-
-.ethos-profile-books-filter-btn:hover:not(.active) {
-  background: #f1f5f9;
-}
-
-.dark .ethos-profile-books-filter-btn:hover:not(.active) {
-  background: #334155;
-}
-
-.ethos-profile-books-grid {
+.ethos-nft-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  gap: 1.5rem;
 }
 
-.ethos-profile-book-card {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+.ethos-nft-grid.grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.ethos-nft-grid.list {
+  grid-template-columns: 1fr;
+}
+
+.ethos-nft-item {
+  background: var(--ethos-hover);
+  border-radius: 1rem;
   overflow: hidden;
-  transition: all 0.2s ease;
+  transition: all 0.3s;
 }
 
-.dark .ethos-profile-book-card {
-  background: #1e293b;
-  border-color: #334155;
-}
-
-.ethos-profile-book-card:hover {
+.ethos-nft-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px var(--ethos-shadow);
 }
 
-.ethos-profile-book-card-image {
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48px;
-  background: #f1f5f9;
-}
-
-.dark .ethos-profile-book-card-image {
-  background: #0f172a;
-}
-
-.ethos-profile-book-card-info {
-  padding: 12px 16px;
-}
-
-.ethos-profile-book-card-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #0f172a;
-  margin: 0 0 2px 0;
-}
-
-.dark .ethos-profile-book-card-title {
-  color: #f1f5f9;
-}
-
-.ethos-profile-book-card-author {
-  font-size: 13px;
-  color: #64748b;
-  margin: 0 0 8px 0;
-}
-
-.dark .ethos-profile-book-card-author {
-  color: #94a3b8;
-}
-
-.ethos-profile-book-card-progress {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.ethos-profile-book-card-progress-bar-wrapper {
-  flex: 1;
-  height: 4px;
-  background: #e2e8f0;
-  border-radius: 2px;
+.ethos-nft-image-wrapper {
+  position: relative;
   overflow: hidden;
+  aspect-ratio: 1;
 }
 
-.dark .ethos-profile-book-card-progress-bar-wrapper {
-  background: #334155;
-}
-
-.ethos-profile-book-card-progress-bar {
+.ethos-nft-image {
+  width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #8b5cf6, #6d28d9);
-  border-radius: 2px;
-  transition: width 0.6s ease;
+  object-fit: cover;
 }
 
-.ethos-profile-book-card-progress-text {
-  font-size: 12px;
-  font-weight: 600;
-  color: #8b5cf6;
-}
-
-/* ===== NFTS TAB ===== */
-.ethos-profile-nfts-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.ethos-profile-nfts-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-nfts-title {
-  color: #f1f5f9;
-}
-
-.ethos-profile-nfts-count {
-  font-size: 14px;
-  color: #64748b;
-}
-
-.dark .ethos-profile-nfts-count {
-  color: #94a3b8;
-}
-
-.ethos-profile-nfts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.ethos-profile-nft-card {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
-  transition: all 0.2s ease;
-}
-
-.dark .ethos-profile-nft-card {
-  background: #1e293b;
-  border-color: #334155;
-}
-
-.ethos-profile-nft-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.ethos-profile-nft-card-image {
-  height: 160px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
-  background: #f1f5f9;
-}
-
-.dark .ethos-profile-nft-card-image {
-  background: #0f172a;
-}
-
-.ethos-profile-nft-card-info {
-  padding: 12px 16px;
-}
-
-.ethos-profile-nft-card-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #0f172a;
-  margin: 0 0 2px 0;
-}
-
-.dark .ethos-profile-nft-card-name {
-  color: #f1f5f9;
-}
-
-.ethos-profile-nft-card-edition {
-  font-size: 13px;
-  color: #64748b;
-  margin: 0 0 8px 0;
-}
-
-.dark .ethos-profile-nft-card-edition {
-  color: #94a3b8;
-}
-
-.ethos-profile-nft-card-value {
-  font-size: 14px;
-  font-weight: 600;
-  color: #8b5cf6;
-}
-
-/* ===== ACHIEVEMENTS TAB ===== */
-.ethos-profile-achievements-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.ethos-profile-achievements-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f172a;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.dark .ethos-profile-achievements-title {
-  color: #f1f5f9;
-}
-
-.ethos-profile-achievements-count {
-  font-size: 14px;
-  color: #64748b;
-}
-
-.dark .ethos-profile-achievements-count {
-  color: #94a3b8;
-}
-
-.ethos-profile-achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.ethos-profile-achievement-card {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  padding: 20px;
-  text-align: center;
-  transition: all 0.2s ease;
-}
-
-.dark .ethos-profile-achievement-card {
-  background: #1e293b;
-  border-color: #334155;
-}
-
-.ethos-profile-achievement-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.ethos-profile-achievement-card.unlocked {
-  border-color: #10b981;
-}
-
-.ethos-profile-achievement-card.locked {
-  opacity: 0.5;
-}
-
-.ethos-profile-achievement-card-icon {
-  font-size: 48px;
-  margin-bottom: 8px;
-}
-
-.ethos-profile-achievement-card-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #0f172a;
-  margin: 0 0 4px 0;
-}
-
-.dark .ethos-profile-achievement-card-name {
-  color: #f1f5f9;
-}
-
-.ethos-profile-achievement-card-desc {
-  font-size: 13px;
-  color: #64748b;
-  margin: 0 0 12px 0;
-}
-
-.dark .ethos-profile-achievement-card-desc {
-  color: #94a3b8;
-}
-
-.ethos-profile-achievement-card-status {
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.ethos-profile-achievement-card-unlocked {
-  color: #10b981;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.ethos-profile-achievement-card-locked {
-  color: #94a3b8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-/* ===== ACTIVITY TAB ===== */
-.ethos-profile-activity-header {
-  margin-bottom: 20px;
-}
-
-.ethos-profile-activity-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-activity-title {
-  color: #f1f5f9;
-}
-
-.ethos-profile-activity-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.ethos-profile-activity-timeline-item {
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-  border-radius: 12px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  transition: all 0.2s ease;
-}
-
-.dark .ethos-profile-activity-timeline-item {
-  background: #1e293b;
-  border-color: #334155;
-}
-
-.ethos-profile-activity-timeline-item:hover {
-  background: #f8fafc;
-}
-
-.dark .ethos-profile-activity-timeline-item:hover {
-  background: #0f172a;
-}
-
-.ethos-profile-activity-timeline-icon {
-  font-size: 32px;
-  flex-shrink: 0;
-}
-
-.ethos-profile-activity-timeline-content {
-  flex: 1;
-}
-
-.ethos-profile-activity-timeline-text {
-  font-size: 15px;
-  color: #0f172a;
-}
-
-.dark .ethos-profile-activity-timeline-text {
-  color: #f1f5f9;
-}
-
-.ethos-profile-activity-timeline-action {
-  font-weight: 600;
-}
-
-.ethos-profile-activity-timeline-title {
-  margin-left: 4px;
-}
-
-.ethos-profile-activity-timeline-meta {
-  display: flex;
-  gap: 16px;
-  font-size: 13px;
-  color: #64748b;
-  margin-top: 4px;
-}
-
-.dark .ethos-profile-activity-timeline-meta {
-  color: #94a3b8;
-}
-
-.ethos-profile-activity-timeline-time,
-.ethos-profile-activity-timeline-reward {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.ethos-profile-activity-timeline-reward {
-  color: #10b981;
-  font-weight: 500;
-}
-
-/* ===== MODAL ===== */
-.ethos-profile-modal-overlay {
-  position: fixed;
+.ethos-nft-overlay {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-  animation: fadeIn 0.3s ease;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.ethos-nft-image-wrapper:hover .ethos-nft-overlay {
+  opacity: 1;
 }
 
-.ethos-profile-modal {
-  background: #ffffff;
-  border-radius: 24px;
-  max-width: 500px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  animation: slideUp 0.3s ease;
-}
-
-.dark .ethos-profile-modal {
-  background: #1e293b;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.ethos-profile-modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(0, 0, 0, 0.1);
+.ethos-nft-like-btn,
+.ethos-nft-view-link {
+  background: white;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -1230,323 +928,585 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #0f172a;
-  transition: all 0.2s ease;
-  z-index: 10;
+  color: var(--ethos-text-primary);
+  transition: all 0.2s;
 }
 
-.dark .ethos-profile-modal-close {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
+.ethos-nft-like-btn:hover,
+.ethos-nft-view-link:hover {
+  transform: scale(1.1);
 }
 
-.ethos-profile-modal-close:hover {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
+.ethos-nft-info {
+  padding: 1rem;
 }
 
-.ethos-profile-modal-content {
-  padding: 32px;
+.ethos-nft-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0 0 0.25rem;
 }
 
-.ethos-profile-modal-title {
-  font-size: 22px;
+.ethos-nft-collection {
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+  margin: 0 0 0.5rem;
+}
+
+.ethos-nft-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ethos-nft-price-value {
+  font-size: 1rem;
   font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 4px 0;
+  color: var(--ethos-text-primary);
 }
 
-.dark .ethos-profile-modal-title {
-  color: #f1f5f9;
+.ethos-nft-price-label {
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
 }
 
-.ethos-profile-modal-subtitle {
-  font-size: 14px;
-  color: #64748b;
-  margin: 0 0 20px 0;
+/* Social Proof */
+.ethos-social-proof {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.dark .ethos-profile-modal-subtitle {
-  color: #94a3b8;
+.ethos-social-proof-header {
+  margin-bottom: 1.5rem;
 }
 
-.ethos-profile-modal-form {
+.ethos-social-proof-title-section {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.ethos-profile-modal-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.ethos-social-proof-icon {
+  font-size: 1.25rem;
+  color: #06b6d4;
 }
 
-.ethos-profile-modal-form-label {
-  font-size: 13px;
+.ethos-social-proof-title {
+  font-size: 1.125rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--ethos-text-primary);
+  margin: 0;
 }
 
-.dark .ethos-profile-modal-form-label {
-  color: #f1f5f9;
+.ethos-social-proof-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.ethos-profile-modal-form-input,
-.ethos-profile-modal-form-textarea {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  background-color: #ffffff;
-  color: #0f172a;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s ease;
-  font-family: inherit;
-}
-
-.dark .ethos-profile-modal-form-input,
-.dark .ethos-profile-modal-form-textarea {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
-}
-
-.ethos-profile-modal-form-input:focus,
-.ethos-profile-modal-form-textarea:focus {
-  border-color: #8b5cf6;
-}
-
-.ethos-profile-modal-form-textarea {
-  resize: vertical;
-}
-
-.ethos-profile-modal-form-actions {
+.ethos-social-proof-stat {
   display: flex;
-  gap: 12px;
-  margin-top: 8px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
 }
 
-.ethos-profile-modal-form-btn {
-  flex: 1;
-  padding: 12px;
-  border-radius: 12px;
+.ethos-social-stat-icon {
+  font-size: 1.25rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-social-stat-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-social-stat-label {
+  font-size: 0.6rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-social-proof-verification {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-verification-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.5rem;
+  font-size: 0.813rem;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-verification-icon {
+  color: #10b981;
+}
+
+.ethos-trust-score {
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.ethos-trust-score-bar {
+  height: 6px;
+  background: var(--ethos-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.ethos-trust-score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ethos-gradient-1), var(--ethos-gradient-2));
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+.ethos-trust-score-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.813rem;
+}
+
+.ethos-trust-score-label {
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-trust-score-value {
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+}
+
+/* Activity */
+.ethos-activity-card {
+  background: var(--ethos-card-bg);
+  border: 1px solid var(--ethos-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ethos-activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ethos-activity-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ethos-activity-icon-main {
+  font-size: 1.25rem;
+  color: var(--ethos-gradient-1);
+}
+
+.ethos-activity-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0;
+}
+
+.ethos-activity-filters {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.ethos-activity-filter {
+  padding: 0.25rem 0.75rem;
+  background: var(--ethos-hover);
   border: none;
-  font-weight: 600;
-  font-size: 14px;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
+}
+
+.ethos-activity-filter.active {
+  background: var(--ethos-gradient-1);
+  color: white;
+}
+
+.ethos-activity-filter:hover:not(.active) {
+  background: var(--ethos-border);
+}
+
+.ethos-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ethos-activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--ethos-hover);
+  border-radius: 0.75rem;
+  transition: all 0.2s;
+}
+
+.ethos-activity-item:hover {
+  transform: translateX(4px);
+}
+
+.ethos-activity-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  background: var(--ethos-card-bg);
 }
 
-.ethos-profile-modal-form-btn.cancel {
-  background: #f1f5f9;
-  color: #64748b;
+.ethos-activity-icon {
+  font-size: 1rem;
 }
 
-.dark .ethos-profile-modal-form-btn.cancel {
-  background: #334155;
-  color: #94a3b8;
+.ethos-activity-icon.vote {
+  color: #3b82f6;
 }
 
-.ethos-profile-modal-form-btn.cancel:hover {
-  background: #e2e8f0;
+.ethos-activity-icon.mint {
+  color: #ec4899;
 }
 
-.dark .ethos-profile-modal-form-btn.cancel:hover {
-  background: #475569;
+.ethos-activity-icon.delegate {
+  color: #8b5cf6;
 }
 
-.ethos-profile-modal-form-btn.submit {
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-  color: #ffffff;
+.ethos-activity-icon.swap {
+  color: #f59e0b;
 }
 
-.ethos-profile-modal-form-btn.submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+.ethos-activity-icon.bridge {
+  color: #06b6d4;
 }
 
-/* ===== RESPONSIVE ===== */
+.ethos-activity-details {
+  flex: 1;
+}
+
+.ethos-activity-info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.ethos-activity-type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ethos-gradient-1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ethos-activity-description {
+  font-size: 0.875rem;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-activity-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-activity-time,
+.ethos-activity-hash {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Credentials and DAOs */
+.ethos-credentials,
+.ethos-daos {
+  margin-top: 1.5rem;
+}
+
+.ethos-credentials-title,
+.ethos-daos-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethos-text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.ethos-credentials-list,
+.ethos-daos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ethos-credential-item,
+.ethos-dao-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--ethos-hover);
+  border-radius: 0.5rem;
+}
+
+.ethos-credential-item {
+  gap: 0.75rem;
+}
+
+.ethos-credential-icon {
+  color: #10b981;
+}
+
+.ethos-credential-info {
+  flex: 1;
+}
+
+.ethos-credential-name {
+  font-size: 0.813rem;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-credential-date {
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+  margin-left: 0.5rem;
+}
+
+.ethos-credential-status {
+  font-size: 0.65rem;
+  padding: 0.0625rem 0.375rem;
+  border-radius: 1rem;
+}
+
+.ethos-credential-status.verified {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.ethos-dao-info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.ethos-dao-name {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--ethos-text-primary);
+}
+
+.ethos-dao-role {
+  font-size: 0.65rem;
+  color: var(--ethos-text-secondary);
+}
+
+.ethos-dao-power {
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: var(--ethos-gradient-1);
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-  .ethos-profile-stats {
-    grid-template-columns: repeat(3, 1fr);
+  .ethos-identity-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .ethos-profile-overview-grid {
-    grid-template-columns: 1fr;
+  .ethos-identity-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .ethos-nft-grid.grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .ethos-profile-header {
+  .ethos-header-content {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  .ethos-header-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .ethos-identity-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-reputation-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-wallet-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-social-proof-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-social-proof-verification {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-nft-grid.grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ethos-tabs {
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  .ethos-tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .ethos-tab-label {
+    display: none;
+  }
+
+  .ethos-tab-icon {
+    font-size: 1.25rem;
+  }
+
+  .ethos-reputation-score {
+    flex-direction: column;
     text-align: center;
-    padding: 0 16px 16px;
-  }
-
-  .ethos-profile-name-row {
-    justify-content: center;
-  }
-
-  .ethos-profile-meta {
-    justify-content: center;
-  }
-
-  .ethos-profile-social {
-    justify-content: center;
-  }
-
-  .ethos-profile-actions {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .ethos-profile-stats {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 16px;
-  }
-
-  .ethos-profile-tabs {
-    padding: 0 16px;
-    overflow-x: auto;
-    gap: 0;
-  }
-
-  .ethos-profile-tab-btn {
-    padding: 8px 14px;
-    font-size: 13px;
-    white-space: nowrap;
-  }
-
-  .ethos-profile-content {
-    padding: 0 16px;
-  }
-
-  .ethos-profile-wallet {
-    padding: 0 16px;
-  }
-
-  .ethos-profile-wallet-content {
-    flex-wrap: wrap;
-  }
-
-  .ethos-profile-wallet-address {
-    width: 100%;
-    font-size: 12px;
-  }
-
-  .ethos-profile-stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ethos-profile-achievements-preview {
-    grid-template-columns: 1fr;
-  }
-
-  .ethos-profile-books-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  .ethos-profile-nfts-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  .ethos-profile-achievements-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  .ethos-profile-books-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .ethos-profile-books-filters {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .ethos-profile-modal {
-    max-width: 100%;
-    margin: 10px;
-  }
-
-  .ethos-profile-modal-content {
-    padding: 20px;
-  }
-
-  .ethos-profile-modal-form-actions {
-    flex-direction: column;
   }
 }
 
 @media (max-width: 480px) {
-  .ethos-profile-cover {
-    height: 120px;
-    border-radius: 12px;
+  .ethos-profile-page {
+    padding: 1rem;
   }
 
-  .ethos-profile-avatar {
+  .ethos-identity-card,
+  .ethos-wallet-card,
+  .ethos-reputation-card,
+  .ethos-nft-gallery,
+  .ethos-social-proof,
+  .ethos-activity-card,
+  .ethos-badges-card {
+    padding: 1rem;
+  }
+
+  .ethos-identity-avatar {
     width: 80px;
     height: 80px;
-    font-size: 36px;
   }
 
-  .ethos-profile-avatar-edit {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+  .ethos-identity-name {
+    font-size: 1.125rem;
   }
 
-  .ethos-profile-name {
-    font-size: 22px;
-  }
-
-  .ethos-profile-stats {
+  .ethos-identity-stats {
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
   }
 
-  .ethos-profile-stat-item {
-    padding: 8px 12px;
-  }
-
-  .ethos-profile-stat-value {
-    font-size: 14px;
-  }
-
-  .ethos-profile-books-grid {
+  .ethos-reputation-metrics {
     grid-template-columns: 1fr;
   }
 
-  .ethos-profile-nfts-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ethos-profile-achievements-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ethos-profile-activity-timeline-item {
+  .ethos-wallet-balance {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
-  .ethos-profile-activity-timeline-meta {
-    justify-content: center;
+  .ethos-balance-value {
+    font-size: 1.5rem;
   }
 
-  .ethos-profile-books-filters {
-    flex-wrap: wrap;
+  .ethos-wallet-actions {
+    flex-direction: column;
   }
 
-  .ethos-profile-books-filter-btn {
-    flex: 1;
-    text-align: center;
+  .ethos-nft-grid.grid {
+    grid-template-columns: 1fr;
   }
+
+  .ethos-social-proof-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-social-proof-verification {
+    grid-template-columns: 1fr;
+  }
+
+  .ethos-activity-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-activity-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .ethos-identity-header {
+    gap: 1rem;
+  }
+
+  .ethos-activity-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ethos-activity-filters {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* Scrollbar */
+.ethos-tabs::-webkit-scrollbar,
+.ethos-activity-filters::-webkit-scrollbar {
+  height: 3px;
+}
+
+.ethos-tabs::-webkit-scrollbar-track,
+.ethos-activity-filters::-webkit-scrollbar-track {
+  background: var(--ethos-hover);
+  border-radius: 2px;
+}
+
+.ethos-tabs::-webkit-scrollbar-thumb,
+.ethos-activity-filters::-webkit-scrollbar-thumb {
+  background: var(--ethos-gradient-1);
+  border-radius: 2px;
 }

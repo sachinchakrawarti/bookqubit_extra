@@ -54,7 +54,7 @@ export default function EthosLeftSlidebar({ isMobileOpen, onClose }) {
     { href: "/ethos/marketplace", label: "Marketplace", icon: <FaBoxOpen /> },
     { href: "/ethos/dao", label: "DAO", icon: <FaGavel /> },
     { href: "/ethos/tokens", label: "Tokens", icon: <FaCoins /> },
-    { href: "/ethos/profile", label: "Profile", icon: <FaUser /> },
+    { href: "/ethos/ethos_profile", label: "Profile (Web 3.0)", icon: <FaUser /> },
   ];
 
   const isActive = (href, exact = false) => {
