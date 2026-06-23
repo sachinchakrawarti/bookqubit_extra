@@ -9,7 +9,12 @@ import { explorepageTranslations } from "@/datalang/explorepagetranslations";
 import { footerTranslations } from "@/datalang/footer";
 import authorsTranslations from "@/datalang/authors_translations";
 import { publicationsTranslations } from "@/datalang/publications_translations";
+
 import { trendDashboardTranslations } from "@/translations/trend_dashboard_translations";
+import { discoveryTranslations } from "@/translations/bookqubit_discovery_explorer_translations";
+import { immerseTranslations } from "@/translations/bookqubit_immerse_translations";
+import { updatesTranslations } from "@/translations/bookqubit_updates_translations";
+import { lensTranslations } from "@/translations/bookqubit_lens_translations"; // ✅ Import lens translations
 
 // Merge all translations for all 20 languages
 export const allTranslations = {
@@ -25,7 +30,11 @@ export const allTranslations = {
     ...footerTranslations.en,
     ...authorsTranslations.en,
     ...publicationsTranslations.en,
-    ...trendDashboardTranslations.en
+    ...trendDashboardTranslations.en,
+    ...discoveryTranslations.en,
+    ...immerseTranslations.en,
+    ...updatesTranslations.en,
+    ...lensTranslations.en // ✅ Add lens translations
   },
   hi: { 
     ...navbarTranslations.hi, 
@@ -39,7 +48,11 @@ export const allTranslations = {
     ...footerTranslations.hi,
     ...authorsTranslations.hi,
     ...publicationsTranslations.hi,
-    ...trendDashboardTranslations.hi
+    ...trendDashboardTranslations.hi,
+    ...discoveryTranslations.hi,
+    ...immerseTranslations.hi,
+    ...updatesTranslations.hi,
+    ...lensTranslations.hi // ✅ Add lens translations
   },
   ur: { 
     ...navbarTranslations.ur, 
@@ -53,7 +66,11 @@ export const allTranslations = {
     ...footerTranslations.ur,
     ...authorsTranslations.ur,
     ...publicationsTranslations.ur,
-    ...trendDashboardTranslations.ur
+    ...trendDashboardTranslations.ur,
+    ...discoveryTranslations.ur,
+    ...immerseTranslations.ur,
+    ...updatesTranslations.ur,
+    ...lensTranslations.ur // ✅ Add lens translations
   },
   ar: { 
     ...navbarTranslations.ar, 
@@ -67,7 +84,11 @@ export const allTranslations = {
     ...footerTranslations.ar,
     ...authorsTranslations.ar,
     ...publicationsTranslations.ar,
-    ...trendDashboardTranslations.ar
+    ...trendDashboardTranslations.ar,
+    ...discoveryTranslations.ar,
+    ...immerseTranslations.ar,
+    ...updatesTranslations.ar,
+    ...lensTranslations.ar // Add for Arabic
   },
   bn: { 
     ...navbarTranslations.bn, 
@@ -81,7 +102,11 @@ export const allTranslations = {
     ...footerTranslations.bn,
     ...authorsTranslations.bn,
     ...publicationsTranslations.bn,
-    ...trendDashboardTranslations.bn
+    ...trendDashboardTranslations.bn,
+    ...discoveryTranslations.bn,
+    ...immerseTranslations.bn,
+    ...updatesTranslations.bn,
+    ...lensTranslations.bn // Add for Bangla
   },
   mr: { 
     ...navbarTranslations.mr, 
@@ -95,7 +120,11 @@ export const allTranslations = {
     ...footerTranslations.mr,
     ...authorsTranslations.mr,
     ...publicationsTranslations.mr,
-    ...trendDashboardTranslations.mr
+    ...trendDashboardTranslations.mr,
+    ...discoveryTranslations.mr,
+    ...immerseTranslations.mr,
+    ...updatesTranslations.mr,
+    ...lensTranslations.mr // Add for Marathi
   },
   ta: { 
     ...navbarTranslations.ta, 
@@ -109,7 +138,11 @@ export const allTranslations = {
     ...footerTranslations.ta,
     ...authorsTranslations.ta,
     ...publicationsTranslations.ta,
-    ...trendDashboardTranslations.ta
+    ...trendDashboardTranslations.ta,
+    ...discoveryTranslations.ta,
+    ...immerseTranslations.ta,
+    ...updatesTranslations.ta,
+    ...lensTranslations.ta // Add for Tamil
   },
   kn: { 
     ...navbarTranslations.kn, 
@@ -123,7 +156,11 @@ export const allTranslations = {
     ...footerTranslations.kn,
     ...authorsTranslations.kn,
     ...publicationsTranslations.kn,
-    ...trendDashboardTranslations.kn
+    ...trendDashboardTranslations.kn,
+    ...discoveryTranslations.kn,
+    ...immerseTranslations.kn,
+    ...updatesTranslations.kn,
+    ...lensTranslations.kn // Add for Kannada
   },
   te: { 
     ...navbarTranslations.te, 
@@ -137,7 +174,11 @@ export const allTranslations = {
     ...footerTranslations.te,
     ...authorsTranslations.te,
     ...publicationsTranslations.te,
-    ...trendDashboardTranslations.te
+    ...trendDashboardTranslations.te,
+    ...discoveryTranslations.te,
+    ...immerseTranslations.te,
+    ...updatesTranslations.te,
+    ...lensTranslations.te // Add for Telugu
   },
   ml: { 
     ...navbarTranslations.ml, 
@@ -151,7 +192,11 @@ export const allTranslations = {
     ...footerTranslations.ml,
     ...authorsTranslations.ml,
     ...publicationsTranslations.ml,
-    ...trendDashboardTranslations.ml
+    ...trendDashboardTranslations.ml,
+    ...discoveryTranslations.ml,
+    ...immerseTranslations.ml,
+    ...updatesTranslations.ml,
+    ...lensTranslations.ml // Add for Malayalam
   },
   ps: { 
     ...navbarTranslations.ps, 
@@ -165,7 +210,11 @@ export const allTranslations = {
     ...footerTranslations.ps,
     ...authorsTranslations.ps,
     ...publicationsTranslations.ps,
-    ...trendDashboardTranslations.ps
+    ...trendDashboardTranslations.ps,
+    ...discoveryTranslations.ps,
+    ...immerseTranslations.ps,
+    ...updatesTranslations.ps,
+    ...lensTranslations.ps // Add for Pashto
   },
   es: { 
     ...navbarTranslations.es, 
@@ -179,7 +228,11 @@ export const allTranslations = {
     ...footerTranslations.es,
     ...authorsTranslations.es,
     ...publicationsTranslations.es,
-    ...trendDashboardTranslations.es
+    ...trendDashboardTranslations.es,
+    ...discoveryTranslations.es,
+    ...immerseTranslations.es,
+    ...updatesTranslations.es,
+    ...lensTranslations.es // Add for Spanish
   },
   zh: { 
     ...navbarTranslations.zh, 
@@ -193,7 +246,11 @@ export const allTranslations = {
     ...footerTranslations.zh,
     ...authorsTranslations.zh,
     ...publicationsTranslations.zh,
-    ...trendDashboardTranslations.zh
+    ...trendDashboardTranslations.zh,
+    ...discoveryTranslations.zh,
+    ...immerseTranslations.zh,
+    ...updatesTranslations.zh,
+    ...lensTranslations.zh // Add for Chinese
   },
   fr: { 
     ...navbarTranslations.fr, 
@@ -207,7 +264,11 @@ export const allTranslations = {
     ...footerTranslations.fr,
     ...authorsTranslations.fr,
     ...publicationsTranslations.fr,
-    ...trendDashboardTranslations.fr
+    ...trendDashboardTranslations.fr,
+    ...discoveryTranslations.fr,
+    ...immerseTranslations.fr,
+    ...updatesTranslations.fr,
+    ...lensTranslations.fr // Add for French
   },
   de: { 
     ...navbarTranslations.de, 
@@ -221,7 +282,11 @@ export const allTranslations = {
     ...footerTranslations.de,
     ...authorsTranslations.de,
     ...publicationsTranslations.de,
-    ...trendDashboardTranslations.de
+    ...trendDashboardTranslations.de,
+    ...discoveryTranslations.de,
+    ...immerseTranslations.de,
+    ...updatesTranslations.de,
+    ...lensTranslations.de // Add for German
   },
   it: { 
     ...navbarTranslations.it, 
@@ -235,7 +300,11 @@ export const allTranslations = {
     ...footerTranslations.it,
     ...authorsTranslations.it,
     ...publicationsTranslations.it,
-    ...trendDashboardTranslations.it
+    ...trendDashboardTranslations.it,
+    ...discoveryTranslations.it,
+    ...immerseTranslations.it,
+    ...updatesTranslations.it,
+    ...lensTranslations.it // Add for Italian
   },
   ja: { 
     ...navbarTranslations.ja, 
@@ -249,7 +318,11 @@ export const allTranslations = {
     ...footerTranslations.ja,
     ...authorsTranslations.ja,
     ...publicationsTranslations.ja,
-    ...trendDashboardTranslations.ja
+    ...trendDashboardTranslations.ja,
+    ...discoveryTranslations.ja,
+    ...immerseTranslations.ja,
+    ...updatesTranslations.ja,
+    ...lensTranslations.ja // Add for Japanese
   },
   ko: { 
     ...navbarTranslations.ko, 
@@ -263,7 +336,11 @@ export const allTranslations = {
     ...footerTranslations.ko,
     ...authorsTranslations.ko,
     ...publicationsTranslations.ko,
-    ...trendDashboardTranslations.ko
+    ...trendDashboardTranslations.ko,
+    ...discoveryTranslations.ko,
+    ...immerseTranslations.ko,
+    ...updatesTranslations.ko,
+    ...lensTranslations.ko // Add for Korean
   },
   fa: { 
     ...navbarTranslations.fa, 
@@ -277,7 +354,11 @@ export const allTranslations = {
     ...footerTranslations.fa,
     ...authorsTranslations.fa,
     ...publicationsTranslations.fa,
-    ...trendDashboardTranslations.fa
+    ...trendDashboardTranslations.fa,
+    ...discoveryTranslations.fa,
+    ...immerseTranslations.fa,
+    ...updatesTranslations.fa,
+    ...lensTranslations.fa // Add for Persian
   },
   ru: { 
     ...navbarTranslations.ru, 
@@ -291,7 +372,11 @@ export const allTranslations = {
     ...footerTranslations.ru,
     ...authorsTranslations.ru,
     ...publicationsTranslations.ru,
-    ...trendDashboardTranslations.ru
+    ...trendDashboardTranslations.ru,
+    ...discoveryTranslations.ru,
+    ...immerseTranslations.ru,
+    ...updatesTranslations.ru,
+    ...lensTranslations.ru // Add for Russian
   }
 };
 

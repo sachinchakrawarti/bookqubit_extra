@@ -1,9 +1,10 @@
-/* BookQubit Discovery Explorer - Complete Styles */
+/* BookQubit Discovery Explorer - Enhanced with React Icons */
 
 .bookqubit-discovery-section {
   position: relative;
   overflow: hidden;
   padding: 4rem 1rem;
+  transition: background-color 0.3s ease;
 }
 
 /* Container */
@@ -12,22 +13,42 @@
   margin: 0 auto;
 }
 
-/* Header */
+/* Header with React Icons */
 .discovery-header {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.discovery-header-icon {
-  font-size: 3rem;
-  display: inline-block;
+.discovery-header-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
   margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.discovery-header-icon-wrapper:hover {
+  transform: scale(1.1) rotate(12deg);
+}
+
+.discovery-header-icon {
+  color: #3b82f6;
+  transition: all 0.3s ease;
+}
+
+.discovery-header-icon-wrapper:hover .discovery-header-icon {
+  color: #8b5cf6;
 }
 
 .discovery-header-title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
 }
 
 .discovery-header-title .highlight {
@@ -41,6 +62,7 @@
   font-size: 1.125rem;
   max-width: 600px;
   margin: 0 auto;
+  transition: color 0.3s ease;
 }
 
 .discovery-header-divider {
@@ -51,7 +73,7 @@
   margin: 1rem auto 0;
 }
 
-/* Categories Grid - 3 columns */
+/* Categories Grid */
 .discovery-categories-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -64,6 +86,8 @@
   position: relative;
   text-decoration: none;
   display: block;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
 }
 
 .discovery-category-card-inner {
@@ -101,14 +125,15 @@
   opacity: 1;
 }
 
-/* Icon */
+/* Icon - React Icons */
 .discovery-category-icon {
   position: relative;
-  font-size: 2.5rem;
   margin-bottom: 0.75rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .discovery-category-card:hover .discovery-category-icon {
@@ -146,7 +171,7 @@
   border: 1px solid transparent;
 }
 
-/* Arrow */
+/* Arrow - React Icons */
 .discovery-category-arrow {
   position: absolute;
   bottom: 0.75rem;
@@ -155,6 +180,9 @@
   transition: all 0.3s ease;
   transform: translateX(0.5rem);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .discovery-category-card:hover .discovery-category-arrow {
@@ -162,12 +190,7 @@
   transform: translateX(0);
 }
 
-.discovery-category-arrow svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-/* CTA */
+/* CTA Section */
 .discovery-cta {
   text-align: center;
   margin-top: 2rem;
@@ -239,6 +262,14 @@
   z-index: 1;
 }
 
+.discovery-cta-icon {
+  transition: transform 0.3s ease;
+}
+
+.discovery-cta-button:hover .discovery-cta-icon {
+  transform: rotate(12deg);
+}
+
 .discovery-cta-button-arrow {
   transition: transform 0.3s ease;
 }
@@ -250,6 +281,26 @@
 .discovery-cta-subtext {
   margin-top: 1rem;
   font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+/* RTL Support */
+[dir="rtl"] .discovery-category-arrow {
+  right: auto;
+  left: 0.75rem;
+  transform: translateX(-0.5rem);
+}
+
+[dir="rtl"] .discovery-category-card:hover .discovery-category-arrow {
+  transform: translateX(0);
+}
+
+[dir="rtl"] .discovery-cta-button-arrow {
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .discovery-cta-button:hover .discovery-cta-button-arrow {
+  transform: translateX(-0.25rem) rotate(180deg);
 }
 
 /* Dark Mode */
@@ -265,6 +316,10 @@
   box-shadow: 0 12px 30px -8px rgba(59, 130, 246, 0.3);
 }
 
+.dark .discovery-header-icon-wrapper {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -276,14 +331,6 @@
     transform: translateY(0);
   }
 }
-
-.discovery-category-card {
-  animation: fadeInUp 0.5s ease forwards;
-}
-
-.discovery-category-card:nth-child(1) { animation-delay: 0.05s; }
-.discovery-category-card:nth-child(2) { animation-delay: 0.1s; }
-.discovery-category-card:nth-child(3) { animation-delay: 0.15s; }
 
 /* ===== RESPONSIVE ===== */
 
@@ -297,6 +344,11 @@
   .discovery-category-card-inner {
     height: 190px;
     padding: 1.25rem 0.75rem;
+  }
+  
+  .discovery-header-icon-wrapper {
+    width: 70px;
+    height: 70px;
   }
 }
 
@@ -314,6 +366,11 @@
     font-size: 1rem;
   }
   
+  .discovery-header-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
   .discovery-categories-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
@@ -325,7 +382,6 @@
   }
   
   .discovery-category-icon {
-    font-size: 2rem;
     margin-bottom: 0.5rem;
   }
   
@@ -366,7 +422,6 @@
   }
   
   .discovery-category-icon {
-    font-size: 1.75rem;
     margin-bottom: 0.25rem;
   }
   
@@ -382,8 +437,9 @@
     font-size: 1.5rem;
   }
   
-  .discovery-header-icon {
-    font-size: 2rem;
+  .discovery-header-icon-wrapper {
+    width: 50px;
+    height: 50px;
   }
   
   .discovery-cta-button {
@@ -402,7 +458,10 @@
   .discovery-category-icon,
   .discovery-category-arrow,
   .discovery-cta-button,
-  .discovery-cta-button-shine-inner {
+  .discovery-cta-button-shine-inner,
+  .discovery-header-icon-wrapper,
+  .discovery-cta-icon,
+  .discovery-cta-button-arrow {
     transition: none !important;
     animation: none !important;
     transform: none !important;
@@ -410,5 +469,6 @@
   
   .discovery-category-card {
     animation: none !important;
+    opacity: 1;
   }
 }

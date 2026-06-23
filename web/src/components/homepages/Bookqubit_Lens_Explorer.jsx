@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -13,107 +13,135 @@ import {
   FiUser,
   FiArrowRight,
 } from "react-icons/fi";
+import { getLensTranslation } from "@/translations/bookqubit_lens_translations";
 import "./Bookqubit_Lens_Explorer.css";
 
 const BookqubitLensExplorer = () => {
   const { theme, themeName } = useTheme();
-  const { t, language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const { currentFont } = useFont();
   const [mounted, setMounted] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(1280);
+
+  // Get translations for current language
+  const translations = useMemo(() => {
+    const result = getLensTranslation(language);
+    console.log(`📚 Lens translations loaded for: ${language}`, result);
+    return result;
+  }, [language]);
 
   const isDarkMode =
     themeName === "dark" ||
     themeName === "midnight" ||
     themeName === "cyberpunk";
 
-  const categories = [
+  // Categories data with translations
+  const categories = useMemo(() => [
     {
       id: "news",
-      title: "News",
+      title: translations?.categories?.news || "News",
       icon: <FiTrendingUp />,
-      description: "Latest book news & updates",
+      description: translations?.categories?.newsDesc || "Latest book news & updates",
       color: "#3b82f6",
       count: "124+",
       slug: "news",
     },
     {
       id: "blogs",
-      title: "Blogs",
+      title: translations?.categories?.blogs || "Blogs",
       icon: <FiBookOpen />,
-      description: "In-depth book articles",
+      description: translations?.categories?.blogsDesc || "In-depth book articles",
       color: "#8b5cf6",
       count: "86+",
       slug: "blogs",
     },
     {
       id: "reviews",
-      title: "Reviews",
+      title: translations?.categories?.reviews || "Reviews",
       icon: <FiStar />,
-      description: "Honest book reviews",
+      description: translations?.categories?.reviewsDesc || "Honest book reviews",
       color: "#f59e0b",
       count: "67+",
       slug: "reviews",
     },
     {
       id: "quotes",
-      title: "Quotes",
+      title: translations?.categories?.quotes || "Quotes",
       icon: <FiMessageSquare />,
-      description: "Inspiring book quotes",
+      description: translations?.categories?.quotesDesc || "Inspiring book quotes",
       color: "#10b981",
       count: "45+",
       slug: "quotes",
     },
     {
       id: "opinions",
-      title: "Opinions",
+      title: translations?.categories?.opinions || "Opinions",
       icon: <FiUser />,
-      description: "Reader perspectives",
+      description: translations?.categories?.opinionsDesc || "Reader perspectives",
       color: "#ec4899",
       count: "34+",
       slug: "opinions",
     },
-  ];
+  ], [translations]);
 
   useEffect(() => {
     setMounted(true);
+    
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
-  if (!mounted) {
+  // Debug: Log when language changes
+  useEffect(() => {
+    console.log(`🔄 Lens component - Language changed to: ${language}`);
+  }, [language]);
+
+  if (!mounted || !theme) {
     return null;
   }
 
+  const isMobile = windowWidth <= 768;
+
   return (
     <section
-      className={`bookqubit-lens-explorer ${theme.background?.section || "bg-gray-50 dark:bg-gray-900"}`}
+      className={`bookqubit-lens-explorer ${theme.background?.section || (isDarkMode ? 'bg-gray-900' : 'bg-gray-50')}`}
       style={{ fontFamily: currentFont?.family }}
+      dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="lens-explorer-container">
         {/* Header */}
         <div className="lens-explorer-header">
           <div className="lens-explorer-header-icon">🔍</div>
           <h2
-            className={`lens-explorer-title ${theme.textColors?.primary || "text-gray-900 dark:text-white"}`}
+            className={`lens-explorer-title ${theme.textColors?.primary || 'text-gray-900 dark:text-white'}`}
           >
-            BookQubit <span className="highlight">Lens</span>
+            BookQubit <span className={`highlight ${theme.textColors?.highlight || 'text-blue-600'}`}>
+              {translations?.title || "Lens"}
+            </span>
           </h2>
           <p
-            className={`lens-explorer-subtitle ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"}`}
+            className={`lens-explorer-subtitle ${theme.textColors?.secondary || 'text-gray-600 dark:text-gray-400'}`}
           >
-            Discover news, blogs, reviews, quotes & opinions about books
+            {translations?.subtitle || "Discover news, blogs, reviews, quotes & opinions about books"}
           </p>
-          <div className="lens-explorer-divider"></div>
+          <div className={`lens-explorer-divider ${theme.background?.highlight || 'bg-blue-600'}`}></div>
         </div>
 
         {/* Categories Grid */}
         <div className="lens-explorer-categories">
-          {categories.map((cat) => (
+          {categories.map((cat, index) => (
             <Link
               key={cat.id}
-              href={`/bookqubit-lens/${cat.slug}`}
+              href={`/${language}/bookqubit-lens/${cat.slug}`}
               className="lens-explorer-category-card"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div
-                className="lens-explorer-category-inner"
+                className={`lens-explorer-category-inner ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.border?.default || 'border-gray-200 dark:border-gray-700'} ${theme.shadow?.container || 'shadow-lg'}`}
                 style={{
                   backgroundColor: isDarkMode
                     ? `${cat.color}15`
@@ -139,7 +167,7 @@ const BookqubitLensExplorer = () => {
 
                 {/* Title */}
                 <h3
-                  className={`lens-explorer-category-title ${theme.textColors?.primary || "text-gray-900 dark:text-white"}`}
+                  className={`lens-explorer-category-title ${theme.textColors?.primary || 'text-gray-900 dark:text-white'}`}
                   style={{ color: cat.color }}
                 >
                   {cat.title}
@@ -147,7 +175,7 @@ const BookqubitLensExplorer = () => {
 
                 {/* Description */}
                 <p
-                  className={`lens-explorer-category-desc ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"}`}
+                  className={`lens-explorer-category-desc ${theme.textColors?.secondary || 'text-gray-600 dark:text-gray-400'}`}
                 >
                   {cat.description}
                 </p>
@@ -161,15 +189,15 @@ const BookqubitLensExplorer = () => {
                     borderColor: `${cat.color}30`,
                   }}
                 >
-                  {cat.count} items
+                  {cat.count} {translations?.items || "items"}
                 </span>
 
                 {/* Arrow */}
                 <div
-                  className="lens-explorer-category-arrow"
+                  className={`lens-explorer-category-arrow ${isRTL ? 'rotate-180' : ''}`}
                   style={{ color: cat.color }}
                 >
-                  <FiArrowRight />
+                  <FiArrowRight size={isMobile ? 16 : 20} />
                 </div>
               </div>
             </Link>
@@ -178,22 +206,22 @@ const BookqubitLensExplorer = () => {
 
         {/* CTA Section */}
         <div className="lens-explorer-cta">
-          <Link href="/bookqubit-lens" className="lens-explorer-cta-button">
-            <span className="lens-explorer-cta-button-bg"></span>
+          <Link href={`/${language}/bookqubit-lens`} className="lens-explorer-cta-button">
+            <span className={`lens-explorer-cta-button-bg ${theme.buttonColors?.primaryButton?.background || 'bg-gradient-to-r from-blue-600 to-purple-500'}`}></span>
             <span className="lens-explorer-cta-button-shine">
               <span className="lens-explorer-cta-button-shine-inner"></span>
             </span>
-            <span className="lens-explorer-cta-button-content">
+            <span className={`lens-explorer-cta-button-content ${theme.buttonColors?.primaryButton?.textColor || 'text-white'}`}>
               <span>🔍</span>
-              <span>Explore All Content</span>
-              <FiArrowRight className="lens-explorer-cta-button-arrow" />
+              <span>{translations?.exploreAll || "Explore All Content"}</span>
+              <FiArrowRight className={`lens-explorer-cta-button-arrow ${isRTL ? 'rotate-180' : ''}`} />
             </span>
           </Link>
 
           <p
-            className={`lens-explorer-cta-subtext ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}`}
+            className={`lens-explorer-cta-subtext ${theme.textColors?.secondary || 'text-gray-500 dark:text-gray-400'}`}
           >
-            Discover news, blogs, reviews, quotes & opinions
+            {translations?.ctaText || "Discover news, blogs, reviews, quotes & opinions"}
           </p>
         </div>
       </div>
