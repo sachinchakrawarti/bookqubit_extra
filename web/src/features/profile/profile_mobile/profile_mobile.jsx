@@ -1,348 +1,687 @@
 "use client";
 
-import "./profile_mobile.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { useTheme } from "@/themes/useTheme";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useFont } from "@/contexts/FontContext";
-import { useRTL } from "@/contexts/RTLContext";
 import {
   FiUser,
   FiBookOpen,
+  FiHeart,
   FiStar,
-  FiUsers,
+  FiClock,
+  FiTrendingUp,
   FiSettings,
   FiLogOut,
-  FiHeart,
-  FiCalendar,
-  FiMail,
   FiEdit2,
-  FiChevronRight,
-  FiHome,
-  FiTrendingUp,
+  FiMail,
+  FiCalendar,
+  FiMapPin,
+  FiBriefcase,
   FiAward,
   FiBookmark,
+  FiEye,
   FiMessageSquare,
-  FiBell,
-  FiHelpCircle,
-  FiShare2,
-  FiGrid,
-  FiLock,
-  FiMapPin,
-  FiActivity,
+  FiUsers,
   FiBarChart2,
-  FiTarget,
-  FiZap,
-  FiTrophy,
-  FiCheckCircle,   
-  FiThumbsUp,      
+  FiChevronRight,
+  FiChevronLeft,
+  FiMenu,
+  FiX,
+  FiHome,
+  FiActivity,
+  FiBook,
+  FiMoreHorizontal,
 } from "react-icons/fi";
-// Check if Trophy exists, if not use a different icon
-const TrophyIcon = FiTrophy || FiAward;
+import { FaUserCircle, FaBookReader, FaGraduationCap } from "react-icons/fa";
+import "./profile_mobile.css";
 
-export default function ProfileMobile() {
+const ProfileMobile = () => {
   const { theme, themeName } = useTheme();
+  const { language, isRTL } = useLanguage();
   const { currentFont } = useFont();
-  const { direction } = useRTL();
-  const [activeTab, setActiveTab] = useState("profile"); // profile, dashboard, bookworm
   const [mounted, setMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState("overview");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isDarkMode =
     themeName === "dark" ||
     themeName === "midnight" ||
     themeName === "cyberpunk";
 
-  const user = {
+  // Mock user data (would come from API)
+  const userData = {
     name: "John Doe",
+    username: "@johndoe",
     email: "john.doe@example.com",
-    avatar: "https://ui-avatars.com/api/?name=John+Doe&background=3b82f6&color=fff&size=120",
-    joinDate: "January 2024",
-    bio: "Passionate reader and book lover. Always looking for the next great story to dive into.",
+    avatar: "https://ui-avatars.com/api/?name=John+Doe&size=128&background=3b82f6&color=fff",
     location: "New York, USA",
+    joined: "January 2024",
+    bio: "Book lover, avid reader, and tech enthusiast. Exploring the world through words.",
+    occupation: "Software Engineer",
+    readingGoal: 50,
+    booksRead: 32,
+    totalBooks: 32,
+    favoriteGenres: ["Fiction", "Science", "Technology", "History"],
     stats: {
-      booksRead: 127,
-      reviews: 48,
-      followers: 342,
-      following: 156,
-      readingStreak: 15,
-      totalPages: 45230,
-      badges: 12,
-      ranking: 42,
+      booksRead: 32,
+      pagesRead: 12450,
+      readingTime: "456 hrs",
+      reviews: 18,
+      followers: 156,
+      following: 89,
     },
-    favoriteGenres: ["Fiction", "Science Fiction", "Fantasy", "Mystery"],
+    recentActivity: [
+      { type: "read", book: "The Alchemist", date: "2 hours ago" },
+      { type: "review", book: "Atomic Habits", date: "5 hours ago" },
+      { type: "added", book: "Dune", date: "1 day ago" },
+      { type: "reading", book: "The Psychology of Money", date: "2 days ago" },
+    ],
+    readingList: [
+      { title: "The Alchemist", author: "Paulo Coelho", progress: 100 },
+      { title: "Atomic Habits", author: "James Clear", progress: 80 },
+      { title: "Dune", author: "Frank Herbert", progress: 45 },
+      { title: "The Psychology of Money", author: "Morgan Housel", progress: 30 },
+    ],
   };
 
-  // Profile Menu Items
-  const profileMenuItems = [
-    { id: "edit_profile", label: "Edit Profile", icon: <FiEdit2 />, link: "/profile/edit" },
-    { id: "settings", label: "Settings", icon: <FiSettings />, link: "/profile/settings" },
-    { id: "notifications", label: "Notifications", icon: <FiBell />, link: "/profile/notifications", badge: 3 },
-    { id: "privacy", label: "Privacy", icon: <FiLock />, link: "/profile/privacy" },
-    { id: "help", label: "Help & Support", icon: <FiHelpCircle />, link: "/profile/help" },
-    { id: "logout", label: "Logout", icon: <FiLogOut />, link: "/logout", isLogout: true },
-  ];
+  // Translations
+  const translations = useMemo(() => ({
+    en: {
+      title: "Profile",
+      overview: "Overview",
+      readingList: "Reading List",
+      activity: "Activity",
+      stats: "Stats",
+      settings: "Settings",
+      editProfile: "Edit Profile",
+      logout: "Logout",
+      memberSince: "Member since",
+      location: "Location",
+      occupation: "Occupation",
+      bio: "Bio",
+      booksRead: "Books Read",
+      pagesRead: "Pages Read",
+      readingTime: "Reading Time",
+      reviews: "Reviews",
+      followers: "Followers",
+      following: "Following",
+      readingGoal: "Reading Goal",
+      recentActivity: "Recent Activity",
+      favoriteGenres: "Favorite Genres",
+      currentlyReading: "Currently Reading",
+      completed: "Completed",
+      inProgress: "In Progress",
+      wantToRead: "Want to Read",
+      viewAll: "View All",
+      achievements: "Achievements",
+      noActivity: "No recent activity",
+      startReading: "Start Reading",
+      exploreBooks: "Explore Books",
+      profile: "Profile",
+      home: "Home",
+      books: "Books",
+      more: "More",
+    },
+    hi: {
+      title: "प्रोफ़ाइल",
+      overview: "अवलोकन",
+      readingList: "रीडिंग लिस्ट",
+      activity: "गतिविधि",
+      stats: "आंकड़े",
+      settings: "सेटिंग्स",
+      editProfile: "प्रोफ़ाइल संपादित करें",
+      logout: "लॉगआउट",
+      memberSince: "सदस्य",
+      location: "स्थान",
+      occupation: "पेशा",
+      bio: "जीवनी",
+      booksRead: "पढ़ी गई किताबें",
+      pagesRead: "पढ़े गए पृष्ठ",
+      readingTime: "पढ़ने का समय",
+      reviews: "समीक्षाएं",
+      followers: "फॉलोअर्स",
+      following: "फॉलोइंग",
+      readingGoal: "रीडिंग लक्ष्य",
+      recentActivity: "हाल की गतिविधि",
+      favoriteGenres: "पसंदीदा शैलियाँ",
+      currentlyReading: "अभी पढ़ रहे हैं",
+      completed: "पूर्ण",
+      inProgress: "प्रगति में",
+      wantToRead: "पढ़ना चाहते हैं",
+      viewAll: "सभी देखें",
+      achievements: "उपलब्धियां",
+      noActivity: "कोई हाल की गतिविधि नहीं",
+      startReading: "पढ़ना शुरू करें",
+      exploreBooks: "किताबें खोजें",
+      profile: "प्रोफ़ाइल",
+      home: "होम",
+      books: "किताबें",
+      more: "और",
+    },
+    ur: {
+      title: "پروفائل",
+      overview: "جائزہ",
+      readingList: "ریڈنگ لسٹ",
+      activity: "سرگرمی",
+      stats: "اعداد و شمار",
+      settings: "ترتیبات",
+      editProfile: "پروفائل میں ترمیم کریں",
+      logout: "لاگ آؤٹ",
+      memberSince: "رکن از",
+      location: "مقام",
+      occupation: "پیشہ",
+      bio: "سوانح",
+      booksRead: "پڑھی گئی کتابیں",
+      pagesRead: "پڑھے گئے صفحات",
+      readingTime: "پڑھنے کا وقت",
+      reviews: "جائزے",
+      followers: "پیروکار",
+      following: "پیروی",
+      readingGoal: "پڑھنے کا ہدف",
+      recentActivity: "حالیہ سرگرمی",
+      favoriteGenres: "پسندیدہ اصناف",
+      currentlyReading: "ابھی پڑھ رہے ہیں",
+      completed: "مکمل",
+      inProgress: "جاری",
+      wantToRead: "پڑھنا چاہتے ہیں",
+      viewAll: "سب دیکھیں",
+      achievements: "کامیابیاں",
+      noActivity: "کوئی حالیہ سرگرمی نہیں",
+      startReading: "پڑھنا شروع کریں",
+      exploreBooks: "کتابیں دریافت کریں",
+      profile: "پروفائل",
+      home: "ہوم",
+      books: "کتابیں",
+      more: "مزید",
+    }
+  }), []);
 
-  // Dashboard Menu Items (including new "Our Tab")
-// Dashboard Menu Items - all now point to /user-dashboard/... routes
-// Dashboard Menu Items (including all needed tabs)
-const dashboardMenuItems = [
-  { id: "overview", label: "Overview", icon: <FiHome />, link: "/user-dashboard" },
-  { id: "currently_reading", label: "Currently Reading", icon: <FiBookOpen />, link: "/user-dashboard/currently-reading" },
-  { id: "marked_read", label: "Marked Read", icon: <FiCheckCircle />, link: "/user-dashboard/marked-read" },
-  { id: "want_to_read", label: "Want to Read", icon: <FiHeart />, link: "/user-dashboard/want-to-read" },
-  { id: "reading_stats", label: "Reading Stats", icon: <FiTrendingUp />, link: "/user-dashboard/reading-stats" },
-  { id: "reviews", label: "My Reviews", icon: <FiStar />, link: "/user-dashboard/reviews" },
-  { id: "comments", label: "Comments", icon: <FiMessageSquare />, link: "/user-dashboard/comments" },
-  { id: "likes", label: "Likes", icon: <FiThumbsUp />, link: "/user-dashboard/likes" },
+  const t = translations[language] || translations.en;
 
-];
-
-  // Bookworm Ranking Menu Items
-  const bookwormMenuItems = [
-    { id: "my_rank", label: "My Rank", icon: <FiAward />, link: "/bookworm/rank", value: `#${user.stats.ranking}` },
-    { id: "leaderboard", label: "Leaderboard", icon: <FiBarChart2 />, link: "/bookworm/leaderboard" },
-    { id: "achievements", label: "Achievements", icon: <FiAward />, link: "/bookworm/achievements", count: user.stats.badges },
-    { id: "reading_challenge", label: "Reading Challenge", icon: <FiTarget />, link: "/bookworm/challenge" },
-    { id: "reading_streak", label: "Reading Streak", icon: <FiZap />, link: "/bookworm/streak", value: `${user.stats.readingStreak} days` },
-    { id: "badges", label: "Badges", icon: <FiAward />, link: "/bookworm/badges", count: user.stats.badges },
-    { id: "bookworm_points", label: "Bookworm Points", icon: <FiActivity />, link: "/bookworm/points", value: "2,450" },
-    { id: "share_progress", label: "Share Progress", icon: <FiShare2 />, link: "/bookworm/share" },
+  // Bottom navigation items
+  const bottomNavItems = [
+    { id: "home", label: t.home, icon: <FiHome size={22} />, href: `/${language}` },
+    { id: "books", label: t.books, icon: <FiBook size={22} />, href: `/${language}/books` },
+    { id: "profile", label: t.profile, icon: <FiUser size={22} />, href: `/${language}/profile` },
+    { id: "more", label: t.more, icon: <FiMoreHorizontal size={22} />, href: `/${language}/more` },
   ];
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  // Tab content renderer
+  const renderContent = () => {
+    switch (activeTab) {
+      case "overview":
+        return (
+          <div className="profile-mobile-content">
+            {/* User Header Card */}
+            <div className={`profile-mobile-user-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+              <div className="profile-mobile-user-header">
+                <img 
+                  src={userData.avatar} 
+                  alt={userData.name}
+                  className="profile-mobile-avatar"
+                />
+                <div className="profile-mobile-user-info">
+                  <h2 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                    {userData.name}
+                  </h2>
+                  <p className={`${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {userData.username}
+                  </p>
+                  <p className={`profile-mobile-bio ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {userData.bio}
+                  </p>
+                </div>
+              </div>
 
-  const fontStyle = currentFont?.family ? { fontFamily: currentFont.family } : {};
+              <div className="profile-mobile-user-details">
+                <div className="profile-mobile-detail">
+                  <FiMapPin size={14} className="profile-mobile-detail-icon" />
+                  <span className={`${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {userData.location}
+                  </span>
+                </div>
+                <div className="profile-mobile-detail">
+                  <FiBriefcase size={14} className="profile-mobile-detail-icon" />
+                  <span className={`${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {userData.occupation}
+                  </span>
+                </div>
+                <div className="profile-mobile-detail">
+                  <FiCalendar size={14} className="profile-mobile-detail-icon" />
+                  <span className={`${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {t.memberSince} {userData.joined}
+                  </span>
+                </div>
+              </div>
+
+              <div className="profile-mobile-actions">
+                <button className={`profile-mobile-edit-btn ${theme.buttonColors?.primaryButton?.background || 'bg-blue-600'}`}>
+                  <FiEdit2 size={16} />
+                  <span>{t.editProfile}</span>
+                </button>
+                <button className={`profile-mobile-logout-btn ${theme.textColors?.secondary || 'text-red-500'}`}>
+                  <FiLogOut size={16} />
+                </button>
+              </div>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="profile-mobile-stats-grid">
+              <div className={`profile-mobile-stat-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+                <div className="profile-mobile-stat-icon" style={{ color: '#3b82f6' }}>
+                  <FiBookOpen size={20} />
+                </div>
+                <div className="profile-mobile-stat-info">
+                  <span className={`profile-mobile-stat-value ${theme.textColors?.primary || 'text-gray-900'}`}>
+                    {userData.stats.booksRead}
+                  </span>
+                  <span className={`profile-mobile-stat-label ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {t.booksRead}
+                  </span>
+                </div>
+              </div>
+              <div className={`profile-mobile-stat-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+                <div className="profile-mobile-stat-icon" style={{ color: '#10b981' }}>
+                  <FaBookReader size={20} />
+                </div>
+                <div className="profile-mobile-stat-info">
+                  <span className={`profile-mobile-stat-value ${theme.textColors?.primary || 'text-gray-900'}`}>
+                    {userData.stats.pagesRead}
+                  </span>
+                  <span className={`profile-mobile-stat-label ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {t.pagesRead}
+                  </span>
+                </div>
+              </div>
+              <div className={`profile-mobile-stat-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+                <div className="profile-mobile-stat-icon" style={{ color: '#8b5cf6' }}>
+                  <FiClock size={20} />
+                </div>
+                <div className="profile-mobile-stat-info">
+                  <span className={`profile-mobile-stat-value ${theme.textColors?.primary || 'text-gray-900'}`}>
+                    {userData.stats.readingTime}
+                  </span>
+                  <span className={`profile-mobile-stat-label ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {t.readingTime}
+                  </span>
+                </div>
+              </div>
+              <div className={`profile-mobile-stat-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+                <div className="profile-mobile-stat-icon" style={{ color: '#f59e0b' }}>
+                  <FiStar size={20} />
+                </div>
+                <div className="profile-mobile-stat-info">
+                  <span className={`profile-mobile-stat-value ${theme.textColors?.primary || 'text-gray-900'}`}>
+                    {userData.stats.reviews}
+                  </span>
+                  <span className={`profile-mobile-stat-label ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                    {t.reviews}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Follow Stats */}
+            <div className={`profile-mobile-follow ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+              <div className="profile-mobile-follow-item">
+                <span className={`profile-mobile-follow-count ${theme.textColors?.primary || 'text-gray-900'}`}>
+                  {userData.stats.followers}
+                </span>
+                <span className={`profile-mobile-follow-label ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                  {t.followers}
+                </span>
+              </div>
+              <div className="profile-mobile-follow-divider"></div>
+              <div className="profile-mobile-follow-item">
+                <span className={`profile-mobile-follow-count ${theme.textColors?.primary || 'text-gray-900'}`}>
+                  {userData.stats.following}
+                </span>
+                <span className={`profile-mobile-follow-label ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                  {t.following}
+                </span>
+              </div>
+            </div>
+
+            {/* Reading Goal */}
+            <div className={`profile-mobile-goal-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+              <div className="profile-mobile-goal-header">
+                <h3 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                  {t.readingGoal}
+                </h3>
+                <span className={`${theme.textColors?.secondary || 'text-gray-500'}`}>
+                  {userData.booksRead} / {userData.readingGoal} {t.booksRead}
+                </span>
+              </div>
+              <div className="profile-mobile-goal-bar">
+                <div 
+                  className="profile-mobile-goal-progress" 
+                  style={{ 
+                    width: `${(userData.booksRead / userData.readingGoal) * 100}%`,
+                    background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)'
+                  }}
+                />
+              </div>
+              <p className={`profile-mobile-goal-percentage ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                {Math.round((userData.booksRead / userData.readingGoal) * 100)}% {t.completed}
+              </p>
+            </div>
+
+            {/* Favorite Genres */}
+            <div className={`profile-mobile-genres-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+              <h3 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                {t.favoriteGenres}
+              </h3>
+              <div className="profile-mobile-genres-list">
+                {userData.favoriteGenres.map((genre, index) => (
+                  <span 
+                    key={index}
+                    className={`profile-mobile-genre-tag ${theme.background?.bookCoverSide || (isDarkMode ? 'bg-gray-700' : 'bg-gray-100')} ${theme.textColors?.secondary || 'text-gray-700'}`}
+                  >
+                    {genre}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Recent Activity */}
+            <div className={`profile-mobile-activity-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+              <div className="profile-mobile-activity-header">
+                <h3 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                  {t.recentActivity}
+                </h3>
+                <Link 
+                  href={`/${language}/profile/activity`}
+                  className={`${theme.textColors?.highlight || 'text-blue-600'} flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}
+                >
+                  {t.viewAll}
+                  {isRTL ? <FiChevronLeft size={16} /> : <FiChevronRight size={16} />}
+                </Link>
+              </div>
+              <div className="profile-mobile-activity-list">
+                {userData.recentActivity.slice(0, 3).map((activity, index) => (
+                  <div key={index} className={`profile-mobile-activity-item ${theme.border?.default || 'border-gray-200'}`}>
+                    <div className="profile-mobile-activity-icon">
+                      {activity.type === 'read' && <FiBookOpen style={{ color: '#3b82f6' }} size={16} />}
+                      {activity.type === 'review' && <FiStar style={{ color: '#f59e0b' }} size={16} />}
+                      {activity.type === 'added' && <FiBookmark style={{ color: '#10b981' }} size={16} />}
+                      {activity.type === 'reading' && <FiEye style={{ color: '#8b5cf6' }} size={16} />}
+                    </div>
+                    <div className="profile-mobile-activity-content">
+                      <p className={`${theme.textColors?.primary || 'text-gray-900'} text-sm`}>
+                        {activity.type === 'read' && `Read "${activity.book}"`}
+                        {activity.type === 'review' && `Reviewed "${activity.book}"`}
+                        {activity.type === 'added' && `Added "${activity.book}"`}
+                        {activity.type === 'reading' && `Reading "${activity.book}"`}
+                      </p>
+                      <span className={`${theme.textColors?.secondary || 'text-gray-500'} text-xs`}>
+                        {activity.date}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+                {userData.recentActivity.length === 0 && (
+                  <p className={`${theme.textColors?.secondary || 'text-gray-500'} text-center py-4 text-sm`}>
+                    {t.noActivity}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Reading List Preview */}
+            <div className={`profile-mobile-reading-preview ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+              <div className="profile-mobile-reading-header">
+                <h3 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                  {t.readingList}
+                </h3>
+                <Link 
+                  href={`/${language}/profile/reading`}
+                  className={`${theme.textColors?.highlight || 'text-blue-600'} flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}
+                >
+                  {t.viewAll}
+                  {isRTL ? <FiChevronLeft size={16} /> : <FiChevronRight size={16} />}
+                </Link>
+              </div>
+              <div className="profile-mobile-reading-items">
+                {userData.readingList.slice(0, 2).map((book, index) => (
+                  <div key={index} className={`profile-mobile-reading-item ${theme.border?.default || 'border-gray-200'}`}>
+                    <div className="profile-mobile-reading-info">
+                      <h4 className={`${theme.textColors?.primary || 'text-gray-900'} text-sm`}>
+                        {book.title}
+                      </h4>
+                      <span className={`${theme.textColors?.secondary || 'text-gray-500'} text-xs`}>
+                        {book.author}
+                      </span>
+                    </div>
+                    <div className="profile-mobile-reading-progress">
+                      <div className="profile-mobile-reading-progress-bar">
+                        <div 
+                          className="profile-mobile-reading-progress-fill"
+                          style={{ 
+                            width: `${book.progress}%`,
+                            background: book.progress === 100 
+                              ? 'linear-gradient(135deg, #10b981, #34d399)' 
+                              : 'linear-gradient(135deg, #3b82f6, #60a5fa)'
+                          }}
+                        />
+                      </div>
+                      <span className={`${theme.textColors?.secondary || 'text-gray-500'} text-xs`}>
+                        {book.progress}%
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case "reading":
+        return (
+          <div className="profile-mobile-reading-full">
+            <div className={`profile-mobile-reading-header-full ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+              <h3 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                {t.readingList}
+              </h3>
+            </div>
+            <div className="profile-mobile-reading-grid">
+              {userData.readingList.map((book, index) => (
+                <div key={index} className={`profile-mobile-reading-card ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+                  <h4 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                    {book.title}
+                  </h4>
+                  <span className={`${theme.textColors?.secondary || 'text-gray-500'} text-sm`}>
+                    {book.author}
+                  </span>
+                  <div className="profile-mobile-reading-progress-full">
+                    <div className="profile-mobile-reading-progress-bar-full">
+                      <div 
+                        className="profile-mobile-reading-progress-fill-full"
+                        style={{ 
+                          width: `${book.progress}%`,
+                          background: book.progress === 100 
+                            ? 'linear-gradient(135deg, #10b981, #34d399)' 
+                            : 'linear-gradient(135deg, #3b82f6, #60a5fa)'
+                        }}
+                      />
+                    </div>
+                    <span className={`${theme.textColors?.secondary || 'text-gray-500'} text-sm`}>
+                      {book.progress}%
+                    </span>
+                  </div>
+                  <div className="profile-mobile-reading-status">
+                    {book.progress === 100 ? (
+                      <span className="profile-mobile-status-completed">✓ {t.completed}</span>
+                    ) : (
+                      <span className="profile-mobile-status-reading">{t.inProgress}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case "activity":
+        return (
+          <div className={`profile-mobile-activity-full ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+            <h3 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+              {t.activity}
+            </h3>
+            <div className="profile-mobile-activity-timeline">
+              {userData.recentActivity.map((activity, index) => (
+                <div key={index} className={`profile-mobile-timeline-item ${theme.border?.default || 'border-gray-200'}`}>
+                  <div className="profile-mobile-timeline-dot" style={{ 
+                    background: activity.type === 'read' ? '#3b82f6' :
+                              activity.type === 'review' ? '#f59e0b' :
+                              activity.type === 'added' ? '#10b981' : '#8b5cf6'
+                  }} />
+                  <div className="profile-mobile-timeline-content">
+                    <p className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+                      {activity.type === 'read' && `📖 Read "${activity.book}"`}
+                      {activity.type === 'review' && `⭐ Reviewed "${activity.book}"`}
+                      {activity.type === 'added' && `📚 Added "${activity.book}"`}
+                      {activity.type === 'reading' && `👀 Started reading "${activity.book}"`}
+                    </p>
+                    <span className={`${theme.textColors?.secondary || 'text-gray-500'} text-sm`}>
+                      {activity.date}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              {userData.recentActivity.length === 0 && (
+                <p className={`${theme.textColors?.secondary || 'text-gray-500'} text-center py-8`}>
+                  {t.noActivity}
+                </p>
+              )}
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  if (!mounted || !theme) {
+    return null;
+  }
 
   return (
-    <div
-      dir={direction}
-      style={fontStyle}
-      className={`profile-mobile ${themeName} ${isDarkMode ? "dark" : ""}`}
+    <div 
+      className={`profile-mobile-container ${theme.background?.section || (isDarkMode ? 'bg-gray-900' : 'bg-gray-50')}`}
+      style={{ fontFamily: currentFont?.family }}
+      dir={isRTL ? "rtl" : "ltr"}
     >
-      {/* Header */}
-      <header className="mobile-profile-header">
-        <div className="header-content">
-          <img src={user.avatar} alt={user.name} className="profile-avatar" />
-          <div className="profile-info">
-            <h1 className="profile-name">{user.name}</h1>
-            <p className="profile-email">{user.email}</p>
-          </div>
+      {/* Top Header */}
+      <header className={`profile-mobile-header ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+        <div className="profile-mobile-header-left">
+          <button 
+            className="profile-mobile-menu-btn"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+          <h1 className={`${theme.textColors?.primary || 'text-gray-900'}`}>
+            {t.title}
+          </h1>
+        </div>
+        <div className="profile-mobile-header-right">
+          <button className="profile-mobile-settings-btn">
+            <FiSettings size={22} />
+          </button>
         </div>
       </header>
 
-      {/* Stats Cards */}
-      <div className="stats-cards">
-        <div className="stat-card-mini">
-          <FiBookOpen />
-          <div>
-            <strong>{user.stats.booksRead}</strong>
-            <span>Books</span>
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="profile-mobile-menu-overlay" onClick={() => setIsMenuOpen(false)}>
+          <div className={`profile-mobile-menu ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`} onClick={(e) => e.stopPropagation()}>
+            <div className="profile-mobile-menu-user">
+              <img src={userData.avatar} alt={userData.name} className="profile-mobile-menu-avatar" />
+              <div>
+                <h4 className={`${theme.textColors?.primary || 'text-gray-900'}`}>{userData.name}</h4>
+                <p className={`${theme.textColors?.secondary || 'text-gray-500'}`}>{userData.username}</p>
+              </div>
+            </div>
+            <nav className="profile-mobile-menu-nav">
+              <button className={`profile-mobile-menu-item ${activeTab === 'overview' ? 'profile-mobile-menu-item-active' : ''}`} onClick={() => { setActiveTab('overview'); setIsMenuOpen(false); }}>
+                <FiUser size={20} />
+                <span>{t.overview}</span>
+              </button>
+              <button className={`profile-mobile-menu-item ${activeTab === 'reading' ? 'profile-mobile-menu-item-active' : ''}`} onClick={() => { setActiveTab('reading'); setIsMenuOpen(false); }}>
+                <FiBookOpen size={20} />
+                <span>{t.readingList}</span>
+              </button>
+              <button className={`profile-mobile-menu-item ${activeTab === 'activity' ? 'profile-mobile-menu-item-active' : ''}`} onClick={() => { setActiveTab('activity'); setIsMenuOpen(false); }}>
+                <FiActivity size={20} />
+                <span>{t.activity}</span>
+              </button>
+              <button className={`profile-mobile-menu-item`} onClick={() => { setIsMenuOpen(false); }}>
+                <FiSettings size={20} />
+                <span>{t.settings}</span>
+              </button>
+              <button className={`profile-mobile-menu-item profile-mobile-menu-logout`}>
+                <FiLogOut size={20} />
+                <span>{t.logout}</span>
+              </button>
+            </nav>
           </div>
         </div>
-        <div className="stat-card-mini">
-          <FiStar />
-          <div>
-            <strong>{user.stats.reviews}</strong>
-            <span>Reviews</span>
-          </div>
-        </div>
-        <div className="stat-card-mini">
-          <FiUsers />
-          <div>
-            <strong>{user.stats.followers}</strong>
-            <span>Followers</span>
-          </div>
-        </div>
-        <div className="stat-card-mini">
-          <FiTrendingUp />
-          <div>
-            <strong>#{user.stats.ranking}</strong>
-            <span>Rank</span>
-          </div>
-        </div>
+      )}
+
+      {/* Tab Navigation */}
+      <div className={`profile-mobile-tabs ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.shadow?.container || 'shadow-lg'}`}>
+        <button 
+          className={`profile-mobile-tab ${activeTab === 'overview' ? 'profile-mobile-tab-active' : ''}`}
+          onClick={() => setActiveTab('overview')}
+        >
+          <FiUser size={18} />
+          <span>{t.overview}</span>
+        </button>
+        <button 
+          className={`profile-mobile-tab ${activeTab === 'reading' ? 'profile-mobile-tab-active' : ''}`}
+          onClick={() => setActiveTab('reading')}
+        >
+          <FiBookOpen size={18} />
+          <span>{t.readingList}</span>
+        </button>
+        <button 
+          className={`profile-mobile-tab ${activeTab === 'activity' ? 'profile-mobile-tab-active' : ''}`}
+          onClick={() => setActiveTab('activity')}
+        >
+          <FiActivity size={18} />
+          <span>{t.activity}</span>
+        </button>
       </div>
 
-      {/* Tab Bar */}
-      <div className="tab-bar">
-        <button
-          className={`tab-btn ${activeTab === "profile" ? "active" : ""}`}
-          onClick={() => setActiveTab("profile")}
-        >
-          <FiUser />
-          <span>Profile</span>
-        </button>
-        <button
-          className={`tab-btn ${activeTab === "dashboard" ? "active" : ""}`}
-          onClick={() => setActiveTab("dashboard")}
-        >
-          <FiGrid />
-          <span>Dashboard</span>
-        </button>
-        <button
-          className={`tab-btn ${activeTab === "bookworm" ? "active" : ""}`}
-          onClick={() => setActiveTab("bookworm")}
-        >
-          <FiAward />
-          <span>Bookworm Rank</span>
-        </button>
+      {/* Content */}
+      <div className="profile-mobile-content-wrapper">
+        {renderContent()}
       </div>
 
-      {/* Tab Content */}
-      <div className="tab-content">
-        {/* Profile Tab */}
-        {activeTab === "profile" && (
-          <div className="profile-tab">
-            {/* Info Card */}
-            <div className="info-card">
-              <div className="info-card-header">
-                <h3>About Me</h3>
-                <button className="edit-btn">
-                  <FiEdit2 /> Edit
-                </button>
-              </div>
-              <p className="bio-text">{user.bio}</p>
-              <div className="user-meta">
-                <div className="meta-item">
-                  <FiCalendar />
-                  <span>Joined {user.joinDate}</span>
-                </div>
-                <div className="meta-item">
-                  <FiMapPin />
-                  <span>{user.location}</span>
-                </div>
-                <div className="meta-item">
-                  <FiHeart />
-                  <span>{user.stats.readingStreak} day streak</span>
-                </div>
-              </div>
-              <div className="genres-section">
-                <div className="genres-list">
-                  {user.favoriteGenres.map((genre, index) => (
-                    <span key={index} className="genre-tag">{genre}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Profile Menu Items */}
-            <div className="menu-list">
-              {profileMenuItems.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.link}
-                  className={`menu-item ${item.isLogout ? "logout" : ""}`}
-                >
-                  <span className="menu-icon">{item.icon}</span>
-                  <span className="menu-label">{item.label}</span>
-                  {item.badge && <span className="menu-badge">{item.badge}</span>}
-                  <FiChevronRight className="menu-arrow" />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Dashboard Tab */}
-        {activeTab === "dashboard" && (
-          <div className="dashboard-tab">
-            {/* Dashboard Summary */}
-            <div className="dashboard-summary">
-              <div className="summary-item">
-                <FiBookOpen />
-                <div>
-                  <span>Total Books</span>
-                  <strong>{user.stats.booksRead}</strong>
-                </div>
-              </div>
-              <div className="summary-item">
-                <FiStar />
-                <div>
-                  <span>Reviews</span>
-                  <strong>{user.stats.reviews}</strong>
-                </div>
-              </div>
-              <div className="summary-item">
-                <FiHeart />
-                <div>
-                  <span>Following</span>
-                  <strong>{user.stats.following}</strong>
-                </div>
-              </div>
-            </div>
-
-            {/* Dashboard Menu Items (with external link support) */}
-            <div className="menu-list">
-              {dashboardMenuItems.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.link}
-                  className="menu-item"
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noopener noreferrer" : undefined}
-                >
-                  <span className="menu-icon">{item.icon}</span>
-                  <span className="menu-label">{item.label}</span>
-                  {item.count && <span className="menu-count">{item.count}</span>}
-                  <FiChevronRight className="menu-arrow" />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Bookworm Ranking Tab */}
-        {activeTab === "bookworm" && (
-          <div className="bookworm-tab">
-            {/* Ranking Card */}
-            <div className="ranking-card">
-              <div className="ranking-header">
-                <FiAward className="ranking-icon" />
-                <h3>Your Bookworm Ranking</h3>
-              </div>
-              <div className="ranking-value">#{user.stats.ranking}</div>
-              <div className="ranking-progress">
-                <div className="progress-label">
-                  <span>Top 10%</span>
-                  <span>Next Rank: #{user.stats.ranking - 10}</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: "75%" }}></div>
-                </div>
-              </div>
-              <div className="ranking-stats">
-                <div className="rank-stat">
-                  <span>Points</span>
-                  <strong>2,450</strong>
-                </div>
-                <div className="rank-stat">
-                  <span>Badges</span>
-                  <strong>{user.stats.badges}</strong>
-                </div>
-                <div className="rank-stat">
-                  <span>Streak</span>
-                  <strong>{user.stats.readingStreak}</strong>
-                </div>
-              </div>
-            </div>
-
-            {/* Bookworm Menu Items */}
-            <div className="menu-list">
-              {bookwormMenuItems.map((item) => (
-                <a key={item.id} href={item.link} className="menu-item">
-                  <span className="menu-icon">{item.icon}</span>
-                  <span className="menu-label">{item.label}</span>
-                  {item.count && <span className="menu-count">{item.count}</span>}
-                  {item.value && <span className="menu-value">{item.value}</span>}
-                  <FiChevronRight className="menu-arrow" />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+      {/* Bottom Navigation */}
+      <nav className={`profile-mobile-bottom-nav ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')} ${theme.border?.default || 'border-gray-200 dark:border-gray-700'}`}>
+        {bottomNavItems.map((item) => (
+          <Link 
+            key={item.id}
+            href={item.href}
+            className={`profile-mobile-bottom-nav-item ${item.id === 'profile' ? 'profile-mobile-bottom-nav-item-active' : ''}`}
+          >
+            <span className="profile-mobile-bottom-nav-icon">{item.icon}</span>
+            <span className={`profile-mobile-bottom-nav-label ${theme.textColors?.secondary || 'text-gray-500'}`}>
+              {item.label}
+            </span>
+          </Link>
+        ))}
+      </nav>
     </div>
   );
-}
+};
+
+export default ProfileMobile;
