@@ -1,0 +1,331 @@
+/* Library Actions - Styles */
+
+.library-actions {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--cl-border, #e5e7eb);
+  border-bottom: 1px solid var(--cl-border, #e5e7eb);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.library-actions.dark {
+  --cl-border: #374151;
+}
+
+.la-left {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.la-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Action Buttons */
+.la-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--cl-border, #e5e7eb);
+  border-radius: 2rem;
+  background: var(--cl-card-bg, #ffffff);
+  color: var(--cl-text-secondary, #6b7280);
+  font-size: 0.813rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.la-action-btn:hover {
+  background: var(--cl-hover, #f3f4f6);
+  transform: translateY(-1px);
+}
+
+.la-action-btn:active {
+  transform: scale(0.97);
+}
+
+.la-action-btn svg {
+  font-size: 1rem;
+}
+
+.la-count {
+  font-size: 0.688rem;
+  font-weight: 600;
+  padding: 0.0625rem 0.375rem;
+  background: var(--cl-bg, #f9fafb);
+  border-radius: 1rem;
+  margin-left: 0.125rem;
+  color: var(--cl-text-secondary, #6b7280);
+}
+
+/* Follow Button */
+.la-follow-btn {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  border-color: transparent;
+}
+
+.la-follow-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.la-follow-btn.following {
+  background: transparent;
+  color: var(--cl-text-primary, #111827);
+  border-color: var(--cl-border, #e5e7eb);
+}
+
+.la-follow-btn.following:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.la-follow-btn .la-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.la-follow-btn.following .la-count {
+  background: var(--cl-bg, #f9fafb);
+  color: var(--cl-text-secondary, #6b7280);
+}
+
+/* Active States */
+.la-action-btn.liked {
+  color: #ef4444;
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.la-action-btn.liked:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.la-action-btn.saved {
+  color: #3b82f6;
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.la-action-btn.saved:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.la-action-btn.shared {
+  color: #10b981;
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+/* More Button */
+.la-more-btn {
+  padding: 0.5rem 0.75rem;
+  border-radius: 50%;
+}
+
+/* Share Dropdown */
+.la-share-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--cl-card-bg, #ffffff);
+  border: 1px solid var(--cl-border, #e5e7eb);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
+  z-index: 50;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+.la-share-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--cl-border, #e5e7eb);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--cl-text-primary, #111827);
+}
+
+.la-share-header button {
+  background: none;
+  border: none;
+  font-size: 1.125rem;
+  cursor: pointer;
+  color: var(--cl-text-secondary, #6b7280);
+}
+
+.la-share-options {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem;
+}
+
+.la-share-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--cl-text-primary, #111827);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  text-align: left;
+}
+
+.la-share-option:hover {
+  background: var(--cl-hover, #f3f4f6);
+}
+
+.la-share-option svg {
+  font-size: 1.125rem;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark Mode */
+.dark .la-action-btn {
+  background: var(--cl-card-bg, #1f2937);
+  border-color: var(--cl-border, #374151);
+  color: var(--cl-text-secondary, #9ca3af);
+}
+
+.dark .la-action-btn:hover {
+  background: var(--cl-hover, #374151);
+}
+
+.dark .la-count {
+  background: var(--cl-bg, #111827);
+  color: var(--cl-text-secondary, #9ca3af);
+}
+
+.dark .la-follow-btn.following {
+  color: var(--cl-text-primary, #f9fafb);
+}
+
+.dark .la-follow-btn.following .la-count {
+  background: var(--cl-bg, #111827);
+  color: var(--cl-text-secondary, #9ca3af);
+}
+
+.dark .la-share-dropdown {
+  background: var(--cl-card-bg, #1f2937);
+  border-color: var(--cl-border, #374151);
+}
+
+.dark .la-share-header {
+  border-color: var(--cl-border, #374151);
+  color: var(--cl-text-primary, #f9fafb);
+}
+
+.dark .la-share-option {
+  color: var(--cl-text-primary, #f9fafb);
+}
+
+.dark .la-share-option:hover {
+  background: var(--cl-hover, #374151);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .library-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+  }
+
+  .la-left {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .la-right {
+    justify-content: center;
+  }
+
+  .la-action-btn {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.625rem;
+  }
+
+  .la-action-btn svg {
+    font-size: 0.875rem;
+  }
+
+  .la-share-dropdown {
+    right: 50%;
+    transform: translateX(50%);
+    min-width: 200px;
+  }
+
+  .la-follow-btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .la-action-btn {
+    font-size: 0.688rem;
+    padding: 0.3125rem 0.5rem;
+  }
+
+  .la-action-btn span:not(.la-count) {
+    display: none;
+  }
+
+  .la-action-btn .la-count {
+    margin-left: 0;
+  }
+
+  .la-follow-btn span:not(.la-count) {
+    display: inline;
+  }
+
+  .la-share-dropdown {
+    min-width: 180px;
+  }
+
+  .la-share-option {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .la-action-btn,
+  .la-share-dropdown {
+    animation: none !important;
+    transition: none !important;
+  }
+}

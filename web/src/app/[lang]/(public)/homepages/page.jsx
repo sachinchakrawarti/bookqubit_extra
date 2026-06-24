@@ -18,10 +18,11 @@ import HeroSectionSlider_mobile from "@/components/homepages/mobile_homepages/He
 import BookQubit_Mobile from "@/components/homepages/mobile_homepages/BookQubit_Mobile";
 import BookqubitImmerseExplorer from "@/components/homepages/Bookqubit_Immerse_Explorer";
 import BookqubitLensExplorer from "@/components/homepages/Bookqubit_Lens_Explorer";
-import BookqubitUpdatesExplorer from "@/components/homepages/Bookqubit_Updates_Explorer"; // ← Fixed: lowercase 'u'
+// ✅ KEEP ONLY ONE - Remove the duplicate line below
+import BookqubitUpdatesExplorer from "@/components/homepages/Bookqubit_Updates_Explorer";
 import BookqubitInsightsExplorer from "@/components/homepages/Bookqubit_Insights_Explorer";
-
 import BookqubitDiscoveryExplorer from "@/components/homepages/bookqubit_discovery_explorer/Bookqubit_Discovery_Explorer";
+import BookqubitReadersExplorer from "@/components/homepages/bookqubit_readers_explorer/Bookqubit_Readers_Explorer";
 
 export default function HomepagesPage() {
   return (
@@ -40,6 +41,7 @@ export default function HomepagesPage() {
       {/* Visible on Both Mobile and PC */}
       <BookqubitDiscoveryExplorer />
       <TrendDashboardSlider />
+      <BookqubitReadersExplorer />
 
       {/* Hidden Components (Commented) */}
       {/* <TagsHome /> */}
