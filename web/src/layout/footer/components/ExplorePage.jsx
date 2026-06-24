@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
+import "./ExplorePage.css";
 
 const ExplorePage = () => {
   const { theme, themeName } = useTheme();
@@ -42,9 +43,6 @@ const ExplorePage = () => {
           href: "/books/newreleases",
           icon: <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>,
         },
-      
-
-
       ],
       gradient: "from-sky-50 to-blue-50",
       darkGradient: "from-sky-900/30 to-blue-900/30",
@@ -76,25 +74,25 @@ const ExplorePage = () => {
       gradient: "from-rose-50 to-orange-50",
       darkGradient: "from-rose-900/30 to-orange-900/30",
     },
-     {
-  title: t("explorepage.search") || "Search",
-  subtitle: t("explorepage.search_subtitle") || "Find stories, tags, and categories",
-  icon: <span className="text-rose-500">🔍</span>, // Changed from 📰 to magnifying glass
-  links: [
     {
-      name: t("explorepage.explore_library.genres") || "Genres",
-      href: "/category",
-      icon: <span className="text-purple-400 text-sm">🏷️</span>,
+      title: t("explorepage.search") || "Search",
+      subtitle: t("explorepage.search_subtitle") || "Find stories, tags, and categories",
+      icon: <span className="text-rose-500">🔍</span>,
+      links: [
+        {
+          name: t("explorepage.explore_library.genres") || "Genres",
+          href: "/category",
+          icon: <span className="text-purple-400 text-sm">🏷️</span>,
+        },
+        {
+          name: t("explorepage.explore_.tags.search") || "Tags Search",
+          href: "/tag",
+          icon: <span className="text-indigo-400 text-sm">📚</span>,
+        },
+      ],
+      gradient: "from-rose-50 to-orange-50",
+      darkGradient: "from-rose-900/30 to-orange-900/30",
     },
-    {
-      name: t("explorepage.explore_.tags.search") || "Tags Search",
-      href: "/tag",
-      icon: <span className="text-indigo-400 text-sm">📚</span>,
-    },
-  ],
-  gradient: "from-rose-50 to-orange-50",
-  darkGradient: "from-rose-900/30 to-orange-900/30",
-},
     {
       title: t("explorepage.help_support.title") || "Help & Support",
       subtitle: t("explorepage.help_support.subtitle") || "Get assistance",
@@ -136,17 +134,17 @@ const ExplorePage = () => {
           icon: <span className="text-amber-400 text-sm">👑</span>,
         },
         {
-          name: t("explorepage.authors.social_media") || "Drift (By BookQubit)",
-          href: "/drift",
+          name: t("explorepage.author.dashboard") || "Author Dashboard (By BookQubit)",
+          href: "/author-dashboard",
           icon: <span className="text-green-400 text-sm">📤</span>,
         },
       ],
       gradient: "from-amber-50 to-orange-50",
       darkGradient: "from-amber-900/30 to-orange-900/30",
     },
+    // NEW: BookQubit Ecosystem Card
+   
 
-
-  
   ];
 
   // Helper function for gradients

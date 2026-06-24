@@ -1,0 +1,1346 @@
+/* ============================================
+   BOOKQUBIT MARKETPLACE - COMPLETE STYLES
+   ============================================ */
+
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary: #8b5cf6;
+  --accent: #ec4899;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition-base: 0.3s ease;
+}
+
+/* --------------------------------------------
+   CART SIDEBAR
+   -------------------------------------------- */
+.marketplace-cart-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 380px;
+  background: #fff;
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease;
+}
+
+.dark .marketplace-cart-sidebar {
+  background: #1e293b;
+}
+
+.marketplace-cart-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.marketplace-cart-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.marketplace-cart-header span {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.marketplace-cart-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all var(--transition-base);
+}
+
+.marketplace-cart-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+.marketplace-cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+
+.marketplace-cart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.05);
+}
+
+.marketplace-cart-item-icon {
+  font-size: 1.5rem;
+}
+
+.marketplace-cart-item-info {
+  flex: 1;
+}
+
+.marketplace-cart-item-info h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.marketplace-cart-item-info p {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.marketplace-cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.marketplace-cart-item-qty button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.marketplace-cart-item-qty button:hover {
+  border-color: var(--primary);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.marketplace-cart-item-qty span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.marketplace-cart-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.marketplace-cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.marketplace-cart-checkout {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.marketplace-cart-checkout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* --------------------------------------------
+   HERO
+   -------------------------------------------- */
+.marketplace-hero {
+  padding: 3rem 2rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.marketplace-hero-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.marketplace-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.marketplace-hero-badge {
+  display: inline-block;
+  padding: 0.4rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.marketplace-hero-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.marketplace-hero-highlight {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.marketplace-hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.7;
+  max-width: 500px;
+}
+
+.marketplace-hero-search {
+  display: flex;
+  gap: 0.5rem;
+  position: relative;
+  max-width: 500px;
+}
+
+.marketplace-hero-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.4;
+}
+
+.marketplace-hero-search-input {
+  flex: 1;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid rgba(128, 128, 128, 0.15);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all var(--transition-base);
+}
+
+.marketplace-hero-search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.marketplace-hero-search-btn {
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.marketplace-hero-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.marketplace-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.marketplace-hero-stat {
+  text-align: center;
+}
+
+.marketplace-hero-stat-value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.marketplace-hero-stat-label {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* --------------------------------------------
+   CATEGORIES
+   -------------------------------------------- */
+.marketplace-categories {
+  padding: 1rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.marketplace-categories-scroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scrollbar-width: none;
+}
+
+.marketplace-categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.marketplace-category-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: 2px solid rgba(128, 128, 128, 0.15);
+  background: transparent;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-base);
+  color: inherit;
+}
+
+.marketplace-category-btn:hover {
+  border-color: var(--primary);
+}
+
+.marketplace-category-btn.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: transparent;
+}
+
+.marketplace-category-count {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  background: rgba(128, 128, 128, 0.1);
+  padding: 0.1rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.marketplace-category-btn.active .marketplace-category-count {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+}
+
+/* --------------------------------------------
+   CONTROLS
+   -------------------------------------------- */
+.marketplace-controls {
+  padding: 1rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.marketplace-controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.marketplace-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.marketplace-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid rgba(128, 128, 128, 0.15);
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.marketplace-filter-toggle:hover {
+  border-color: var(--primary);
+}
+
+.marketplace-view-toggle {
+  display: flex;
+  gap: 0.25rem;
+  border: 2px solid rgba(128, 128, 128, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem;
+}
+
+.marketplace-view-btn {
+  padding: 0.25rem 0.5rem;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: inherit;
+}
+
+.marketplace-view-btn.active {
+  background: var(--gradient-primary);
+  color: #fff;
+}
+
+.marketplace-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.marketplace-results-count {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.marketplace-sort-select {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid rgba(128, 128, 128, 0.15);
+  font-size: 0.85rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* --------------------------------------------
+   FILTERS PANEL
+   -------------------------------------------- */
+.marketplace-filters-panel {
+  padding: 1.5rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(128, 128, 128, 0.06);
+  animation: fadeInDown 0.3s ease;
+}
+
+.marketplace-filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.marketplace-filters-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.marketplace-filters-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all var(--transition-base);
+}
+
+.marketplace-filters-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+.marketplace-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.marketplace-filter-group h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.marketplace-filter-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+  cursor: pointer;
+}
+
+.marketplace-filter-label input[type="radio"] {
+  accent-color: var(--primary);
+}
+
+.marketplace-price-range {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.marketplace-price-range input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+.marketplace-price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.marketplace-quick-filter {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm);
+  background: rgba(239, 68, 68, 0.05);
+  color: #ef4444;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.marketplace-quick-filter:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* --------------------------------------------
+   BOOKS GRID
+   -------------------------------------------- */
+.marketplace-books {
+  padding: 1rem 2rem 3rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.marketplace-books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.marketplace-books-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+.marketplace-book-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(128, 128, 128, 0.06);
+  transition: all var(--transition-base);
+}
+
+.marketplace-book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.marketplace-book-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.marketplace-book-image {
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.marketplace-book-emoji {
+  font-size: 4rem;
+}
+
+.marketplace-book-discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.marketplace-book-wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.dark .marketplace-book-wishlist {
+  background: #1e293b;
+}
+
+.marketplace-book-wishlist:hover {
+  border-color: #ef4444;
+}
+
+.marketplace-book-wishlist .filled {
+  color: #ef4444;
+  fill: #ef4444;
+}
+
+.marketplace-book-info {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.marketplace-book-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.marketplace-book-author {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.marketplace-book-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.marketplace-book-rating .filled {
+  color: var(--warning);
+  fill: var(--warning);
+}
+
+.marketplace-book-reviews {
+  opacity: 0.5;
+}
+
+.marketplace-book-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  flex-wrap: wrap;
+}
+
+.marketplace-book-condition {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.marketplace-book-location {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.marketplace-book-price {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.25rem 0;
+}
+
+.marketplace-book-current-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.marketplace-book-original-price {
+  font-size: 0.85rem;
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.marketplace-book-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.marketplace-book-cart-btn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.marketplace-book-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.marketplace-book-detail-btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba(128, 128, 128, 0.15);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: inherit;
+}
+
+.marketplace-book-detail-btn:hover {
+  border-color: var(--primary);
+}
+
+/* List View */
+.list-view .marketplace-book-card-inner {
+  flex-direction: row;
+  align-items: center;
+}
+
+.list-view .marketplace-book-image {
+  padding: 1.5rem;
+  min-width: 120px;
+}
+
+.list-view .marketplace-book-emoji {
+  font-size: 3rem;
+}
+
+.list-view .marketplace-book-info {
+  flex: 1;
+}
+
+/* No Results */
+.marketplace-no-results {
+  text-align: center;
+  padding: 3rem;
+}
+
+.marketplace-no-results p {
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.marketplace-no-results button {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 9999px;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --------------------------------------------
+   MODAL
+   -------------------------------------------- */
+.marketplace-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.marketplace-modal {
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  position: relative;
+  animation: scaleIn 0.3s ease;
+}
+
+.marketplace-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all var(--transition-base);
+}
+
+.marketplace-modal-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+.marketplace-modal-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.marketplace-modal-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(59, 130, 246, 0.03);
+  border-radius: var(--radius-md);
+}
+
+.marketplace-modal-emoji {
+  font-size: 6rem;
+}
+
+.marketplace-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.marketplace-modal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.marketplace-modal-author {
+  font-size: 1.05rem;
+  opacity: 0.6;
+}
+
+.marketplace-modal-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.marketplace-modal-rating .filled {
+  color: var(--warning);
+  fill: var(--warning);
+}
+
+.marketplace-modal-reviews {
+  opacity: 0.5;
+}
+
+.marketplace-modal-price {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.marketplace-modal-current {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.marketplace-modal-original {
+  font-size: 1rem;
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.marketplace-modal-desc {
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+.marketplace-modal-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(128, 128, 128, 0.05);
+}
+
+.marketplace-modal-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.marketplace-modal-detail-label {
+  opacity: 0.5;
+}
+
+.marketplace-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.marketplace-modal-tag {
+  padding: 0.2rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.marketplace-modal-seller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(128, 128, 128, 0.05);
+}
+
+.marketplace-modal-seller-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.marketplace-modal-seller-info strong {
+  font-size: 0.9rem;
+}
+
+.marketplace-modal-seller-info p {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+.marketplace-modal-seller-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+
+.marketplace-modal-seller-rating .filled {
+  color: var(--warning);
+  fill: var(--warning);
+}
+
+.marketplace-modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.marketplace-modal-add-cart,
+.marketplace-modal-buy-now {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.marketplace-modal-add-cart {
+  background: var(--gradient-primary);
+  color: #fff;
+}
+
+.marketplace-modal-add-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.marketplace-modal-buy-now {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.marketplace-modal-buy-now:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* --------------------------------------------
+   CTA
+   -------------------------------------------- */
+.marketplace-cta {
+  padding: 1rem 2rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.marketplace-cta-container {
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.marketplace-cta-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+               radial-gradient(circle at 80% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+.marketplace-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.marketplace-cta-title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.marketplace-cta-desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.marketplace-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.marketplace-cta-btn-primary,
+.marketplace-cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.marketplace-cta-btn-primary {
+  background: #fff;
+  color: var(--primary);
+}
+
+.marketplace-cta-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.marketplace-cta-btn-secondary {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.marketplace-cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------
+   ANIMATIONS
+   -------------------------------------------- */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --------------------------------------------
+   DARK THEME
+   -------------------------------------------- */
+.dark .marketplace-book-card {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dark .marketplace-filters-panel {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dark .marketplace-filter-toggle,
+.dark .marketplace-view-toggle {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+}
+
+.dark .marketplace-sort-select {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e5e7eb;
+}
+
+.dark .marketplace-book-detail-btn {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+}
+
+.dark .marketplace-book-detail-btn:hover {
+  border-color: var(--primary);
+}
+
+.dark .marketplace-modal {
+  background: #1e293b;
+}
+
+/* --------------------------------------------
+   RESPONSIVE
+   -------------------------------------------- */
+@media (max-width: 1024px) {
+  .marketplace-hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .marketplace-hero-content {
+    align-items: center;
+  }
+
+  .marketplace-hero-badge {
+    margin: 0 auto;
+  }
+
+  .marketplace-hero-desc {
+    max-width: 100%;
+  }
+
+  .marketplace-hero-search {
+    max-width: 100%;
+  }
+
+  .marketplace-books-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .marketplace-modal-content {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace-modal-image {
+    padding: 1rem;
+  }
+
+  .marketplace-modal-emoji {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .marketplace-hero {
+    padding: 2rem 1rem;
+  }
+
+  .marketplace-categories {
+    padding: 0.5rem 1rem;
+  }
+
+  .marketplace-controls {
+    padding: 0.5rem 1rem;
+  }
+
+  .marketplace-controls-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .marketplace-controls-left {
+    justify-content: space-between;
+  }
+
+  .marketplace-controls-right {
+    justify-content: space-between;
+  }
+
+  .marketplace-books {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .marketplace-books-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace-filters-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .marketplace-filters-panel {
+    padding: 1rem;
+  }
+
+  .marketplace-cart-sidebar {
+    width: 100%;
+  }
+
+  .marketplace-hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+
+  .marketplace-cta {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .marketplace-cta-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .marketplace-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .marketplace-cta-btn-primary,
+  .marketplace-cta-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .marketplace-modal {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .marketplace-modal-actions {
+    flex-direction: column;
+  }
+
+  .marketplace-modal-details {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace-book-actions {
+    flex-direction: column;
+  }
+
+  .list-view .marketplace-book-card-inner {
+    flex-direction: column;
+  }
+
+  .list-view .marketplace-book-image {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .marketplace-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .marketplace-hero-stats {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .marketplace-hero-search {
+    flex-direction: column;
+  }
+
+  .marketplace-hero-search-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .marketplace-category-btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .marketplace-book-title {
+    font-size: 0.95rem;
+  }
+
+  .marketplace-book-current-price {
+    font-size: 1.1rem;
+  }
+}

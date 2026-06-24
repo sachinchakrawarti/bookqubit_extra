@@ -1,0 +1,381 @@
+/* ============================================
+   BOOKQUBIT ECOSYSTEM - IMPROVED STYLES
+   ============================================ */
+
+.bookqubit-ecosystem {
+  padding: 2.5rem 1.5rem;
+  background: transparent;
+}
+
+.bookqubit-ecosystem-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.bookqubit-ecosystem-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.bookqubit-ecosystem-badge {
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+}
+
+.bookqubit-ecosystem-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: -0.5px;
+}
+
+.bookqubit-ecosystem-title span {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bookqubit-ecosystem-subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Grid */
+.bookqubit-ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.bookqubit-ecosystem-card {
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bookqubit-ecosystem-card:hover {
+  transform: translateY(-4px);
+}
+
+.bookqubit-ecosystem-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 2px solid;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.bookqubit-ecosystem-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.bookqubit-ecosystem-card:hover .bookqubit-ecosystem-card-inner::before {
+  transform: scaleX(1);
+}
+
+.bookqubit-ecosystem-card-inner:hover {
+  border-color: currentColor !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.bookqubit-ecosystem-card-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.bookqubit-ecosystem-card:hover .bookqubit-ecosystem-card-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.bookqubit-ecosystem-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.bookqubit-ecosystem-card-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.bookqubit-ecosystem-card-desc {
+  font-size: 0.7rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.3;
+  opacity: 0.7;
+}
+
+.bookqubit-ecosystem-card-arrow-wrapper {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.bookqubit-ecosystem-card-arrow {
+  font-size: 0.9rem;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.bookqubit-ecosystem-card:hover .bookqubit-ecosystem-card-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Stats */
+.bookqubit-ecosystem-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.04);
+  border: 1px solid rgba(59, 130, 246, 0.08);
+}
+
+.bookqubit-ecosystem-stat {
+  text-align: center;
+}
+
+.bookqubit-ecosystem-stat-number {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.bookqubit-ecosystem-stat-label {
+  font-size: 0.7rem;
+  color: #64748b;
+  opacity: 0.6;
+}
+
+/* CTA */
+.bookqubit-ecosystem-cta {
+  text-align: center;
+}
+
+.bookqubit-ecosystem-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.75rem;
+  border-radius: 9999px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+}
+
+.bookqubit-ecosystem-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
+}
+
+.bookqubit-ecosystem-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* Dark Mode */
+.dark .bookqubit-ecosystem-title {
+  color: #f1f5f9;
+}
+
+.dark .bookqubit-ecosystem-subtitle {
+  color: #94a3b8;
+}
+
+.dark .bookqubit-ecosystem-card-desc {
+  color: #94a3b8;
+}
+
+.dark .bookqubit-ecosystem-card-inner {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dark .bookqubit-ecosystem-card-icon {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .bookqubit-ecosystem-stats {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .bookqubit-ecosystem-stat-number {
+  color: #f1f5f9;
+}
+
+.dark .bookqubit-ecosystem-stat-label {
+  color: #94a3b8;
+}
+
+/* Dark Mode Hover */
+.dark .bookqubit-ecosystem-card-inner:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bookqubit-ecosystem-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .bookqubit-ecosystem-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .bookqubit-ecosystem {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .bookqubit-ecosystem-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .bookqubit-ecosystem-card-inner {
+    padding: 0.6rem 0.75rem;
+    gap: 0.6rem;
+  }
+
+  .bookqubit-ecosystem-card-icon {
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+  }
+
+  .bookqubit-ecosystem-card-title {
+    font-size: 0.75rem;
+  }
+
+  .bookqubit-ecosystem-card-desc {
+    font-size: 0.6rem;
+  }
+
+  .bookqubit-ecosystem-card-arrow {
+    font-size: 0.8rem;
+  }
+
+  .bookqubit-ecosystem-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .bookqubit-ecosystem-stat-number {
+    font-size: 1rem;
+  }
+
+  .bookqubit-ecosystem-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookqubit-ecosystem-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
+
+  .bookqubit-ecosystem-card-inner {
+    padding: 0.5rem 0.6rem;
+    gap: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .bookqubit-ecosystem-card-icon {
+    font-size: 0.9rem;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+  }
+
+  .bookqubit-ecosystem-card-title {
+    font-size: 0.7rem;
+  }
+
+  .bookqubit-ecosystem-card-desc {
+    display: none;
+  }
+
+  .bookqubit-ecosystem-card-arrow {
+    font-size: 0.7rem;
+  }
+
+  .bookqubit-ecosystem-title {
+    font-size: 1rem;
+  }
+
+  .bookqubit-ecosystem-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .bookqubit-ecosystem-badge {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.8rem;
+  }
+
+  .bookqubit-ecosystem-cta-btn {
+    font-size: 0.75rem;
+    padding: 0.4rem 1.25rem;
+  }
+
+  .bookqubit-ecosystem-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .bookqubit-ecosystem-stat-number {
+    font-size: 0.85rem;
+  }
+
+  .bookqubit-ecosystem-stat-label {
+    font-size: 0.6rem;
+  }
+}

@@ -1,0 +1,588 @@
+/* ============================================
+   BOOKQUBIT ECOSYSTEM PAGE - STYLES
+   ============================================ */
+
+/* Hero Section */
+.eco-hero {
+  padding: 4rem 2rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.eco-hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.eco-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.eco-hero-badge {
+  display: inline-block;
+  padding: 0.4rem 1.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.eco-hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.eco-hero-highlight {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.eco-hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.7;
+  max-width: 500px;
+}
+
+.eco-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.eco-hero-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eco-hero-stat-icon {
+  font-size: 1.25rem;
+  opacity: 0.5;
+}
+
+.eco-hero-stat-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.eco-hero-stat-label {
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+.eco-hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eco-hero-icon-large {
+  font-size: 8rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Tabs */
+.eco-tabs-section {
+  padding: 1rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.eco-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.eco-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: 2px solid rgba(128, 128, 128, 0.15);
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: inherit;
+}
+
+.eco-tab:hover {
+  border-color: #3b82f6;
+}
+
+.eco-tab.active {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* Products */
+.eco-products {
+  padding: 2rem 2rem 3rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.eco-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.eco-product-card {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.eco-product-card:hover {
+  transform: translateY(-6px);
+}
+
+.eco-product-card-inner {
+  padding: 1.75rem;
+  border-radius: 12px;
+  border: 2px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.eco-product-card-inner:hover {
+  border-color: currentColor !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.eco-product-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0.15rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.eco-product-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.eco-product-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.eco-product-desc {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.eco-product-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.eco-product-feature {
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.eco-product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.06);
+}
+
+.eco-product-stats {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.eco-product-arrow {
+  font-size: 1.1rem;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.eco-product-card:hover .eco-product-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Features */
+.eco-features {
+  padding: 3rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.eco-features-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.eco-features-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+}
+
+.eco-features-highlight {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.eco-features-subtitle {
+  font-size: 1rem;
+  opacity: 0.6;
+  margin-top: 0.25rem;
+}
+
+.eco-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.eco-feature-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(128, 128, 128, 0.06);
+  transition: all 0.3s ease;
+}
+
+.eco-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.eco-feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.eco-feature-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.eco-feature-desc {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  line-height: 1.4;
+}
+
+/* CTA */
+.eco-cta {
+  padding: 1rem 2rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.eco-cta-container {
+  border-radius: 16px;
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.eco-cta-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+               radial-gradient(circle at 80% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+.eco-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.eco-cta-title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.eco-cta-desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eco-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.eco-cta-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 2rem;
+  border-radius: 9999px;
+  background: #fff;
+  color: #3b82f6;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.eco-cta-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.eco-cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.eco-cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Dark Mode */
+.dark .eco-product-card-inner {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dark .eco-feature-card {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dark .eco-tab {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+}
+
+.dark .eco-tab:hover {
+  border-color: #3b82f6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .eco-hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .eco-hero-content {
+    align-items: center;
+  }
+
+  .eco-hero-badge {
+    margin: 0 auto;
+  }
+
+  .eco-hero-desc {
+    max-width: 100%;
+  }
+
+  .eco-hero-stats {
+    width: 100%;
+  }
+
+  .eco-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .eco-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .eco-hero {
+    padding: 2rem 1rem;
+  }
+
+  .eco-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .eco-hero-icon-large {
+    font-size: 5rem;
+  }
+
+  .eco-tabs-section {
+    padding: 1rem;
+  }
+
+  .eco-tab {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .eco-products {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .eco-products-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .eco-product-card-inner {
+    padding: 1rem;
+  }
+
+  .eco-product-desc {
+    font-size: 0.75rem;
+  }
+
+  .eco-product-feature {
+    font-size: 0.6rem;
+  }
+
+  .eco-features {
+    padding: 2rem 1rem;
+  }
+
+  .eco-features-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .eco-feature-card {
+    padding: 1rem;
+  }
+
+  .eco-cta {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .eco-cta-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .eco-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eco-cta-btn-primary,
+  .eco-cta-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .eco-products-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .eco-product-card-inner {
+    padding: 0.75rem;
+  }
+
+  .eco-product-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .eco-product-name {
+    font-size: 0.85rem;
+  }
+
+  .eco-product-desc {
+    display: none;
+  }
+
+  .eco-product-features {
+    display: none;
+  }
+
+  .eco-product-footer {
+    margin-top: 0;
+    padding-top: 0.25rem;
+  }
+
+  .eco-product-stats {
+    font-size: 0.65rem;
+  }
+
+  .eco-product-arrow {
+    font-size: 0.9rem;
+  }
+
+  .eco-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .eco-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .eco-tabs {
+    gap: 0.3rem;
+  }
+
+  .eco-tab {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+  }
+}

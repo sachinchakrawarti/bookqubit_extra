@@ -6,6 +6,7 @@ import ExplorePage from "./components/ExplorePage";
 import FooterMain from "./components/FooterMain";
 import LegalFooter from "./components/LegalFooter";
 import SocialFooter from "./components/SocialFooter";
+import BookQubitEcosystem from "./components/BookQubit_Ecosystem";
 
 const Footer = () => {
   const { theme } = useTheme();
@@ -18,6 +19,7 @@ const Footer = () => {
   return (
     <footer className={`${theme.background?.section || 'bg-white dark:bg-gray-900'} relative overflow-hidden`}>
       <ExplorePage />
+      <BookQubitEcosystem />
       <FooterMain />
       <SocialFooter />
       <CopyrightFooter />

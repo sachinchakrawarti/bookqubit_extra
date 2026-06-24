@@ -11,16 +11,21 @@ export default function PublicLayout({ children }) {
 
   const isSocialApp = pathname?.includes("/drift") || false;
   const isEthos = pathname?.includes("/ethos") || false;
+  const isQubitStationery = pathname?.includes("/qubit-stationery") || false;
+  const isQubitReads = pathname?.includes("/qubit-reads") || false;
+  const isAuthorDashboard = pathname?.includes("/author-dashboard") || false;
 
-  // Hide second row (Discovery/Drift/Ethos bar) for Drift and Ethos pages
-  // since they have their own navigation
-  const hideSecondRow = isSocialApp || isEthos;
+  // Hide second row for Drift, Ethos, QubitStationery, QubitReads, and Author Dashboard pages
+  const hideSecondRow = isSocialApp || isEthos || isQubitStationery || isQubitReads || isAuthorDashboard;
 
-  // Show Footer for all pages except Drift and Ethos
-  const showFooter = !isSocialApp && !isEthos;
+  // Hide entire Navbar for Author Dashboard
+  const hideNavbar = isAuthorDashboard;
 
-  // Show GoToUp for all pages except Drift and Ethos
-  const showGoToUp = !isSocialApp && !isEthos;
+  // Show Footer for all pages except Drift, Ethos, QubitStationery, QubitReads, and Author Dashboard
+  const showFooter = !isSocialApp && !isEthos && !isQubitStationery && !isQubitReads && !isAuthorDashboard;
+
+  // Show GoToUp for all pages except Drift, Ethos, QubitStationery, QubitReads, and Author Dashboard
+  const showGoToUp = !isSocialApp && !isEthos && !isQubitStationery && !isQubitReads && !isAuthorDashboard;
 
   return (
     <>
@@ -30,7 +35,7 @@ export default function PublicLayout({ children }) {
         onRouteChange={true}
       />
 
-      <Navbar hideSecondRow={hideSecondRow} />
+      {!hideNavbar && <Navbar hideSecondRow={hideSecondRow} />}
 
       <main>
         {children}

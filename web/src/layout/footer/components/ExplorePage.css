@@ -1,0 +1,129 @@
+/* ExplorePage Styles */
+
+/* Card Hover Animations */
+.explore-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.explore-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Link Hover Effects */
+.explore-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.explore-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 0.3s ease;
+}
+
+.explore-link:hover::after {
+  width: 100%;
+}
+
+/* Icon Container Pulse */
+.explore-icon-container {
+  position: relative;
+}
+
+.explore-icon-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.explore-icon-container:hover::before {
+  opacity: 0.1;
+}
+
+/* Gradient Border Animation */
+.explore-card-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.explore-card:hover .explore-card-border {
+  opacity: 0.15;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .explore-grid {
+    gap: 1rem;
+  }
+  
+  .explore-card {
+    padding: 1rem;
+  }
+  
+  .explore-card-header {
+    margin-bottom: 0.75rem;
+  }
+  
+  .explore-link-text {
+    font-size: 0.875rem;
+  }
+}
+
+/* Dark Mode Enhancements */
+.dark .explore-card {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .explore-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .explore-card,
+  .explore-link,
+  .explore-icon-container {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .explore-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Loading Skeleton Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.explore-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .explore-skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+}

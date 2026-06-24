@@ -35,5 +35,6 @@ export const footerTranslationsEnglish = {
   "explorepage.authors.social_media": "Drift (By BookQubit)",
   "explorepage.explore_.tags.search": "Tags Search",
   "explorepage.search": "Search",
-  "explorepage.search_subtitle": "Find stories, tags, and categories"
+  "explorepage.search_subtitle": "Find stories, tags, and categories",
+  "explorepage.author.dashboard": "Author Dashboard",
 };
