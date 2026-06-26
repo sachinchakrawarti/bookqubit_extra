@@ -1,0 +1,67 @@
+/* src/layout/navbar/navbardesktop/navbar_desktop_second_row/Navbar_Desktop_Second_Row_Slider.css */
+
+/* ONLY target elements inside the slider */
+.navbar-slider-sidebar,
+.navbar-slider-sidebar * {
+  border-radius: 0 !important;
+}
+
+/* Class to explicitly remove radius from specific elements */
+.slider-no-radius {
+  border-radius: 0 !important;
+}
+
+/* Scrollable navigation container */
+.scrollable-nav {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar - ONLY for slider */
+.scrollable-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable-nav::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 !important;
+}
+
+.dark .scrollable-nav::-webkit-scrollbar-thumb,
+.midnight .scrollable-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0 !important;
+}
+
+.cyberpunk .scrollable-nav::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+  border-radius: 0 !important;
+}
+
+/* RTL Support */
+[dir="rtl"] .navbar-slider-sidebar {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .navbar-slider-sidebar .nav-item {
+  flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .navbar-slider-sidebar {
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-slider-sidebar {
+    width: 280px;
+  }
+}

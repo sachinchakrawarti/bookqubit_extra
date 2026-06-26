@@ -1,0 +1,91 @@
+/* src/features/book/bookdeatils/styles/BookSectionNavigator.css */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animation for sticky */
+.section-navigator-sticky {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+  .section-navigator {
+    padding: 8px 0;
+  }
+  
+  .section-navigator button {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-navigator button {
+    font-size: 10px;
+    padding: 4px 10px;
+    gap: 4px;
+  }
+  
+  .section-navigator .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* src/features/book/bookdeatils/styles/BookSectionNavigator.css */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sticky animation */
+.navigator-sticky {
+  animation: slideDown 0.3s ease-out;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Dark mode shadow */
+.dark .navigator-sticky {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile specific */
+@media (max-width: 768px) {
+  .navigator-sticky {
+    animation: slideDown 0.3s ease-out;
+  }
+}

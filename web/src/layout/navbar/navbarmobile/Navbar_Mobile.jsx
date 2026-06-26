@@ -1,3 +1,5 @@
+// src/layout/navbar/navbarmobile/Navbar_Mobile.jsx
+
 "use client";
 
 import Link from "next/link";
@@ -12,9 +14,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import Silder_Mobile from "./components/silder_mobile/silder_mobile";
 import Control_Mobile_Slider from "./components/control_mobile/Control_Mobile_Slider";
 import SearchBar_Mobile from "@/components/searchbar/searchbar_mobile/searchbar_mobile";
-
-import DiscoveryDriftBarMobile from "./components/discovery_drift_bar_mobile/discovery_drift_bar_mobile"; // Import the second row component
-
+import DiscoveryDriftBarMobile from "./components/discovery_drift_bar_mobile/discovery_drift_bar_mobile";
+import BottomNavbarMobile from "./components/bottom_navbar_mobile/bottom_navbar_mobile";
 import "./Navbar_Mobile.css";
 
 const Navbar_Mobile = () => {
@@ -110,6 +111,18 @@ const Navbar_Mobile = () => {
       ? theme.background?.navbar || "rgba(255, 255, 255, 0.95)"
       : "transparent",
   };
+
+  // Check if bottom navbar should be shown (only on mobile)
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   if (loading) {
     return (
@@ -282,6 +295,9 @@ const Navbar_Mobile = () => {
           <DiscoveryDriftBarMobile />
         </div>
       </div>
+
+      {/* Bottom Navigation Bar - Only on mobile */}
+      {isMobile && <BottomNavbarMobile />}
     </div>
   );
 };

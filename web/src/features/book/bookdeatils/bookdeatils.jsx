@@ -1,3 +1,5 @@
+// src/features/book/bookdeatils/bookdeatils.jsx
+
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
@@ -20,6 +22,7 @@ import BookSummary from "@/features/book/bookdeatils/components/BookSummary";
 import RelatedBooks from "@/features/book/bookdeatils/components/RelatedBooks";
 import BookNavigation from "@/features/book/bookdeatils/components/BookNavigation";
 import BookSEO from "@/features/book/bookdeatils/components/BookSEO";
+import BookSectionNavigator from "@/features/book/bookdeatils/components/BookSectionNavigator";
 
 // Import dynamic tags components
 import {
@@ -77,8 +80,14 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
 
   const currentLanguage = getLanguageFromURL();
 
-  // Create ref for summary section
+  // Create refs for sections
   const summaryRef = useRef(null);
+  const highlightsRef = useRef(null);
+  const subjectsRef = useRef(null);
+  const publicationRef = useRef(null);
+  const aboutRef = useRef(null);
+  const commentsRef = useRef(null);
+  const relatedRef = useRef(null);
 
   // State for book status and user interactions
   const [bookStatus, setBookStatus] = useState("unread");
@@ -88,11 +97,23 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
   const [booksData, setBooksData] = useState([]);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeSection, setActiveSection] = useState("highlights");
 
   // State for dynamic tags
   const [dynamicTags, setDynamicTags] = useState([]);
   const [relatedTags, setRelatedTags] = useState([]);
   const [categorizedTags, setCategorizedTags] = useState({});
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Load books based on language from URL
   useEffect(() => {
@@ -165,6 +186,76 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
       router.replace(`/${currentLanguage}/books/${targetSlug}`);
     }
   }, [book, slug, router, isRedirecting, initialBook, currentLanguage]);
+
+  // Section definitions for mobile navigator
+  const sections = [
+    { id: "highlights", label: "Highlights" },
+    { id: "subjects", label: "Subjects" },
+    { id: "publication", label: "Publication" },
+    { id: "about", label: "About" },
+    { id: "summary", label: "Summary" },
+    { id: "comments", label: "Comments" },
+    { id: "related", label: "Related" },
+  ];
+
+  // Handle section click
+  const handleSectionClick = (sectionId) => {
+    setActiveSection(sectionId);
+    const sectionRefs = {
+      highlights: highlightsRef,
+      subjects: subjectsRef,
+      publication: publicationRef,
+      about: aboutRef,
+      summary: summaryRef,
+      comments: commentsRef,
+      related: relatedRef,
+    };
+    const ref = sectionRefs[sectionId];
+    if (ref && ref.current) {
+      const offset = isMobile ? 120 : 120;
+      const elementPosition = ref.current.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Update active section on scroll
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleScroll = () => {
+      const sectionRefs = [
+        { id: "highlights", ref: highlightsRef },
+        { id: "subjects", ref: subjectsRef },
+        { id: "publication", ref: publicationRef },
+        { id: "about", ref: aboutRef },
+        { id: "summary", ref: summaryRef },
+        { id: "comments", ref: commentsRef },
+        { id: "related", ref: relatedRef },
+      ];
+
+      let currentSection = "highlights";
+      const scrollPosition = window.scrollY + 180;
+
+      for (const section of sectionRefs) {
+        if (section.ref && section.ref.current) {
+          const element = section.ref.current;
+          const offsetTop = element.offsetTop;
+          if (scrollPosition >= offsetTop) {
+            currentSection = section.id;
+          }
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
 
   const scrollToSummary = () => {
     if (summaryRef.current) {
@@ -330,6 +421,7 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
           ${theme.layout?.containerWidth || "max-w-7xl"} 
           mx-auto 
           ${theme.layout?.sectionPadding || "py-12 px-4 sm:px-6 lg:px-8"}
+          ${isMobile ? "pb-24" : ""}
         `}
         >
           {/* Language Indicator */}
@@ -348,7 +440,7 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
           {/* Main Book Details */}
           <div
             className={`
-            flex flex-col lg:flex-row gap-8 mb-16 
+            flex flex-col lg:flex-row gap-8 
             ${theme.shadow?.container || "shadow-lg"} 
             ${theme.border?.default || "border border-gray-200 dark:border-gray-700"} 
             p-6 
@@ -375,19 +467,84 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
             </div>
           </div>
 
-          {/* Detailed Information Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {/* Mobile Section Navigator - Below Book Cover and Buttons */}
+          {isMobile && (
+            <div className="mt-6 mb-6">
+              <BookSectionNavigator
+                sections={sections}
+                activeSection={activeSection}
+                onSectionClick={handleSectionClick}
+              />
+            </div>
+          )}
+
+          {/* Key Highlights Section */}
+          <div
+            ref={highlightsRef}
+            id="section-highlights"
+            className="mb-16 scroll-mt-28"
+          >
             <BookKeyPoints book={book} />
+          </div>
+
+          {/* Subjects Section */}
+          <div
+            ref={subjectsRef}
+            id="section-subjects"
+            className="mb-16 scroll-mt-28"
+          >
             <BookSubjects book={book} />
+          </div>
+
+          {/* Publication Details Section */}
+          <div
+            ref={publicationRef}
+            id="section-publication"
+            className="mb-16 scroll-mt-28"
+          >
             <BookPublicationDetails book={book} />
           </div>
 
-          <BookAbout book={book} />
+          {/* About Section */}
+          <div ref={aboutRef} id="section-about" className="mb-16 scroll-mt-28">
+            <BookAbout book={book} />
+          </div>
 
-          <div ref={summaryRef}>
+          {/* Summary Section */}
+          <div
+            ref={summaryRef}
+            id="section-summary"
+            className="mb-16 scroll-mt-28"
+          >
             <BookSummary book={book} />
           </div>
 
+          {/* Comments Section */}
+          <div
+            ref={commentsRef}
+            id="section-comments"
+            className="mb-16 scroll-mt-28"
+          >
+            {/* Add comments component here */}
+            <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+              <p>💬 Comments section coming soon</p>
+            </div>
+          </div>
+
+          {/* Related Books Section */}
+          <div ref={relatedRef} id="section-related" className="scroll-mt-28">
+            {uniqueRelatedBooks.length > 0 && (
+              <RelatedBooks
+                relatedByAuthor={relatedByAuthor}
+                relatedByCategory={relatedByCategory}
+                book={book}
+                relatedBooks={uniqueRelatedBooks}
+                currentLang={currentLanguage}
+              />
+            )}
+          </div>
+
+          {/* Dynamic Tags */}
           {(dynamicTags.length > 0 || relatedTags.length > 0) && (
             <div className="my-12">
               <RelatedTagsSection
@@ -397,16 +554,6 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
                 onTagClick={handleTagClick}
               />
             </div>
-          )}
-
-          {uniqueRelatedBooks.length > 0 && (
-            <RelatedBooks
-              relatedByAuthor={relatedByAuthor}
-              relatedByCategory={relatedByCategory}
-              book={book}
-              relatedBooks={uniqueRelatedBooks}
-              currentLang={currentLanguage}
-            />
           )}
 
           <BookNavigation currentLang={currentLanguage} />

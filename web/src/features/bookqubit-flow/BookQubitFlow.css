@@ -1,0 +1,393 @@
+/* src/features/bookqubit-flow/components/BookQubitFlow.css */
+
+/* Feed Container */
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Feed Item Base */
+.feed-item {
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.feed-item:hover {
+  transform: translateY(-2px);
+}
+
+/* Badges */
+.featured-badge,
+.news-badge,
+.blog-badge,
+.trending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.featured-badge {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+.news-badge {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+.blog-badge {
+  background: rgba(168, 85, 247, 0.1);
+  color: #8b5cf6;
+}
+.trending-badge {
+  background: rgba(244, 63, 94, 0.1);
+  color: #f43f5e;
+}
+
+/* Images */
+.featured-image,
+.trending-image {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Titles */
+.featured-title,
+.trending-title,
+.news-title,
+.blog-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+/* Authors */
+.featured-author,
+.trending-author {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 0.5rem 0;
+}
+
+.dark .featured-author,
+.dark .trending-author {
+  color: #9ca3af;
+}
+
+/* Descriptions */
+.featured-description,
+.trending-description,
+.news-excerpt,
+.blog-excerpt {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0.5rem 0 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dark .featured-description,
+.dark .trending-description,
+.dark .news-excerpt,
+.dark .blog-excerpt {
+  color: #9ca3af;
+}
+
+/* Comment Card */
+.comment-header,
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.comment-avatar,
+.review-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.dark .comment-avatar,
+.dark .review-avatar {
+  background: #1f2937;
+  color: #9ca3af;
+}
+
+.comment-user,
+.review-user {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.comment-book,
+.review-book {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.dark .comment-book,
+.dark .review-book {
+  color: #9ca3af;
+}
+
+.comment-body {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+}
+
+.quote-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.comment-text,
+.review-text {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.review-text {
+  font-style: italic;
+}
+
+.review-rating {
+  display: flex;
+  gap: 0.125rem;
+}
+
+/* Category Tag */
+.category-tag {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.dark .category-tag {
+  background: #1f2937;
+  color: #9ca3af;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: relative;
+  height: 20px;
+  background: #f3f4f6;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.dark .progress-bar {
+  background: #1f2937;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  transition: width 0.5s ease;
+}
+
+.progress-text {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Feed Actions */
+.feed-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .feed-actions {
+  border-top-color: #374151;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0.375rem;
+}
+
+.dark .action-btn {
+  color: #9ca3af;
+}
+
+.action-btn:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.dark .action-btn:hover {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+.action-btn svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.time-stamp {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-left: auto;
+}
+
+.dark .time-stamp {
+  color: #9ca3af;
+}
+
+.extra-badge {
+  margin-left: auto;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.loading-spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.dark .loading-spinner {
+  border-color: #374151;
+  border-top-color: #3b82f6;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Loader Observer */
+.loader-observer {
+  height: 20px;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .featured-image,
+  .trending-image {
+    width: 80px;
+    height: 120px;
+  }
+
+  .feed-item {
+    padding: 1rem;
+  }
+
+  .feed-actions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .time-stamp {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .extra-badge {
+    margin-left: 0;
+  }
+
+  .comment-header,
+  .review-header {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-image,
+  .trending-image {
+    width: 60px;
+    height: 90px;
+  }
+
+  .feed-item .flex {
+    flex-direction: column;
+  }
+
+  .filter-tabs {
+    gap: 0.25rem;
+  }
+}

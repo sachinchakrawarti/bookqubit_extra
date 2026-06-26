@@ -12,7 +12,7 @@ import {
   FiHeart,
   FiUserPlus,
 } from "react-icons/fi";
-import "./bookqubit_readers_explorer.css";
+import "./Bookqubit_Readers_Explorer.css";
 
 const BookqubitReadersExplorer = () => {
   const { theme, themeName } = useTheme();

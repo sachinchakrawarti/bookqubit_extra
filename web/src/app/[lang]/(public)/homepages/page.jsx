@@ -1,70 +1,34 @@
+// src/app/[lang]/(public)/homepages/page.jsx
+
 "use client";
 
-import HeroSectionSlider from "@/components/homepages/HeroSectionSlider";
-import HeroPartOne from "@/components/homepages/HeroPartOne";
-import ExploreBooks from "@/components/homepages/ExploreBooks";
-import ExploreCollections from "@/components/homepages/ExploreCollections";
-import ExploreAuthor from "@/components/homepages/ExploreAuthor";
-import ExplorePublications from "@/components/homepages/ExplorePublications";
-import ExploreComics from "@/components/homepages/ExploreComics";
-import ExploreAcademicBooks from "@/components/homepages/ExploreAcademicBooks";
-import ThirdPartyAD from "@/components/homepages/ThirdPartyAD";
-import LaunchYourBook from "@/components/homepages/LunchYourBook";
-import DiscoveryPlatform from "@/components/homepages/DiscoveryPlatform";
-import AiTools from "@/components/homepages/AiTools";
-import TrendDashboardSlider from "@/components/homepages/trend_dashboard_slider";
-import TagsHome from "@/components/homepages/TagsHome";
-import HeroSectionSlider_mobile from "@/components/homepages/mobile_homepages/HeroSectionSlider_mobile";
-import BookQubit_Mobile from "@/components/homepages/mobile_homepages/BookQubit_Mobile";
-import BookqubitImmerseExplorer from "@/components/homepages/Bookqubit_Immerse_Explorer";
-import BookqubitLensExplorer from "@/components/homepages/Bookqubit_Lens_Explorer";
-// ✅ KEEP ONLY ONE - Remove the duplicate line below
-import BookqubitUpdatesExplorer from "@/components/homepages/Bookqubit_Updates_Explorer";
-import BookqubitInsightsExplorer from "@/components/homepages/Bookqubit_Insights_Explorer";
-import BookqubitDiscoveryExplorer from "@/components/homepages/bookqubit_discovery_explorer/Bookqubit_Discovery_Explorer";
-import BookqubitReadersExplorer from "@/components/homepages/bookqubit_readers_explorer/Bookqubit_Readers_Explorer";
+import { useTheme } from "@/themes/useTheme";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useFont } from "@/contexts/FontContext";
+import BookQubitFlow from "@/features/bookqubit-flow/BookQubitFlow";
 
-export default function HomepagesPage() {
+export default function HomePages() {
+  const { theme, themeName } = useTheme();
+  const { t, language } = useLanguage();
+  const { currentFont } = useFont();
+
+  // Font style
+  const fontStyle = currentFont?.family
+    ? {
+        fontFamily: currentFont.family,
+      }
+    : {};
+
   return (
-    <main>
-      {/* Mobile Only - Hidden on PC */}
-      <div className="block md:hidden">
-        <HeroSectionSlider_mobile />
-        <BookQubit_Mobile />
-      </div>
-
-      {/* PC Only - Hidden on Mobile */}
-      <div className="hidden md:block">
-        <HeroSectionSlider />
-      </div>
-
-      {/* Visible on Both Mobile and PC */}
-      <BookqubitDiscoveryExplorer />
-      <TrendDashboardSlider />
-      <BookqubitReadersExplorer />
-
-      {/* Hidden Components (Commented) */}
-      {/* <TagsHome /> */}
-      {/* <ThirdPartyAD /> */}
-
-      {/* Visible on Both */}
-      <HeroPartOne />
-      <BookqubitImmerseExplorer />
-
-      <ExploreBooks />
-      <ExploreAcademicBooks />
-      <ExploreCollections />
-      <ExploreAuthor />
-      <ExplorePublications />
-      <ExploreComics />
-      <BookqubitUpdatesExplorer />
-
-      <BookqubitLensExplorer />
-      <BookqubitInsightsExplorer />
-
-      {/* Hidden Components (Commented) */}
-      {/* <LaunchYourBook />
-      <AiTools /> */}
+    <main
+      className={`
+        min-h-screen
+        ${theme.background?.page || "bg-white dark:bg-gray-950"}
+        transition-colors duration-300
+      `}
+      style={fontStyle}
+    >
+      <BookQubitFlow />
     </main>
   );
 }

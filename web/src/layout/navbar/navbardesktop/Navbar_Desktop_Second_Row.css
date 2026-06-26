@@ -1,5 +1,5 @@
 /* ============================================ */
-/* Navbar Desktop Second Row - Main Styles */
+/* Navbar Desktop Second Row - Main Styles      */
 /* ============================================ */
 
 /* Base container styles - theme-agnostic */
@@ -7,9 +7,14 @@
   width: 100%;
   border-top: 1px solid;
   position: sticky;
-  top: 60px; /* Adjust based on your first row height */
+  top: 60px;
   z-index: 40;
   background-color: inherit;
+}
+
+/* Wrapper for positioning */
+.navbar-desktop-second-row-wrapper {
+  position: relative;
 }
 
 /* Container for all navigation items */
@@ -29,6 +34,33 @@
 /* RTL support */
 [dir="rtl"] .navbar-desktop-links-container {
   flex-direction: row-reverse;
+}
+
+/* --------------------------------------------
+   HAMBURGER BUTTON
+   -------------------------------------------- */
+.navbar-hamburger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.navbar-hamburger-btn:hover {
+  background: rgba(59, 130, 246, 0.08);
+  transform: scale(1.05);
+}
+
+.navbar-hamburger-btn:active {
+  transform: scale(0.95);
 }
 
 /* Individual navigation items (non-dropdown) */
@@ -89,9 +121,13 @@
     gap: 1.25rem;
   }
   
-  .navbar-desktop-item,
-  .navbar-desktop-dropdown-button {
+  .navbar-desktop-item {
     padding: 0.625rem 0.875rem;
+  }
+  
+  .navbar-hamburger-btn {
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -145,7 +181,7 @@
   background: #0284c7;
 }
 
-/* Dark mode scrollbar - will be overridden by themes */
+/* Dark mode scrollbar */
 .dark-mode .navbar-desktop-second-row::-webkit-scrollbar-track {
   background: #2d3748;
 }
@@ -184,5 +220,25 @@ html[lang="ml"] .navbar-desktop-dropdown-button {
 @media print {
   .navbar-desktop-second-row {
     display: none;
+  }
+}
+
+/* --------------------------------------------
+   SMALL SCREEN ADJUSTMENTS
+   -------------------------------------------- */
+@media (max-width: 480px) {
+  .navbar-hamburger-btn {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .navbar-hamburger-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .navbar-desktop-links-container {
+    padding: 0.35rem 0.5rem;
+    gap: 0.5rem;
   }
 }

@@ -11,6 +11,29 @@ export const navbarEnglish = {
   "nav.about": "About",
   "nav.more": "More",
   
+  // NEW NAVIGATION ITEMS FOR SLIDER
+  "nav.explore": "Explore",
+  "nav.ecosystem": "Ecosystem",
+  "nav.immerse": "Immerse",
+  "nav.main_menu": "Main Menu",
+  "nav.discover": "Discover More",
+  "nav.discover_more": "Discover More",
+  "nav.scroll_to_top": "Scroll to Top",
+  "nav.get_started": "Get Started",
+  "nav.reading_journey": "Reading Journey",
+  "nav.reader": "Reader",
+  "nav.reader_dashboard": "Reader Dashboard • Track your reading journey",
+  "nav.user_name": "John Doe",
+  "nav.version": "Version",
+  "nav.premium": "Premium",
+  "nav.help": "Help",
+  "nav.logout": "Logout",
+  "nav.go_premium": "Go Premium",
+  "nav.premium_desc": "Unlock exclusive features, early access, and more!",
+  "nav.upgrade_now": "Upgrade Now 🚀",
+  "nav.menu": "Menu",
+  "nav.explore_books": "Explore thousands of books",
+  
   // Books Dropdown
   "nav.bestsellers": "Best Sellers",
   "nav.new_releases": "New Releases",
@@ -55,6 +78,16 @@ export const navbarEnglish = {
   "nav.magazines": "Magazines",
   "nav.journals": "Journals",
   "nav.newspapers": "Newspapers",
+
+  // NEW ITEMS FOR SLIDER NAVIGATION
+  "nav.trending": "Trending Now",
+  "nav.award_winning": "Award Winning",
+  "nav.classics": "Classics",
+  "nav.rare_books": "Rare Books",
+  "nav.poetry": "Poetry",
+  "nav.drama": "Drama",
+  "nav.history": "History",
+  "nav.nature": "Nature",
 
   // Navbar Mobile Translations
   "navbar.toggle_dark_mode": "Toggle dark mode",
@@ -112,5 +145,33 @@ export const navbarEnglish = {
   "nav.japanese": "Japanese",
   "nav.korean": "Korean",
   "nav.persian": "Persian",
-  "nav.russian": "Russian"
+  "nav.russian": "Russian",
+  // Explore
+"nav.explore": "Explore",
+"nav.explore_all": "Explore All",
+"nav.trending": "Trending Now",
+"nav.new_releases": "New Releases",
+"nav.bestsellers": "Bestsellers",
+"nav.award_winning": "Award Winning",
+"nav.classics": "Classics",
+"nav.rare_books": "Rare Books",
+
+// Immerse
+"nav.immerse": "Immerse",
+"nav.immerse_all": "All Immersive",
+"nav.audiobooks": "Audiobooks",
+"nav.visual_books": "Visual Books",
+"nav.podcasts": "Podcasts",
+"nav.interactive_books": "Interactive Books",
+"nav.video_books": "Video Books",
+
+// Ecosystem
+"nav.ecosystem": "Ecosystem",
+"nav.ecosystem_all": "All Ecosystem",
+"nav.book_clubs": "Book Clubs",
+"nav.reading_challenges": "Reading Challenges",
+"nav.author_spotlight": "Author Spotlight",
+"nav.community_reviews": "Community Reviews",
+"nav.events": "Events",
+"nav.blog": "Blog",
 };

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import {
+  // Original icons
   FaHome,
   FaBook,
   FaBoxes,
@@ -18,9 +19,38 @@ import {
   FaLaptopCode,
   FaBriefcase,
   FaFlask,
+  FaSquareRootAlt, // Keep this one from react-icons/fa
+  // Explore section
+  FaCompass,
+  FaRocket,
+  FaAward,
+  FaCrown,
+  FaGem,
+  // Immerse section
+  FaBookOpen,
+  FaHeadphones,
+  FaEye,
+  FaMicrophone,
+  FaHandPointer,
+  FaVideo,
+  // Ecosystem section
+  FaGlobe,
+  FaUsers,
+  FaUserTie,
+  FaComments,
+  FaCalendarAlt,
+  FaBlog,
+  // Additional icons
+  FaTrophy,
+  FaMagic,
+  FaFeatherAlt,
+  FaTheaterMasks,
+  FaHistory,
+  FaLeaf,
+  FaHeart,
+  FaPenFancy,
 } from "react-icons/fa";
-import { FaUserDoctor } from "react-icons/fa6";
-import { FaSquareRootAlt } from "react-icons/fa";
+import { FaUserDoctor } from "react-icons/fa6"; // Only import FaUserDoctor from fa6
 import { MoreDropdown } from "./MoreDropdown";
 import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -33,6 +63,38 @@ const getNavigationConfig = (t, currentLang) => ({
       icon: <FaHome />,
       path: `/${currentLang}/homepages`,
       translationKey: "nav.home",
+    },
+    {
+      name: t("nav.explore"),
+      icon: <FaCompass />,
+      path: `/${currentLang}/explore`,
+      translationKey: "nav.explore",
+      dropdown: [
+        {
+          name: t("nav.explore_all"),
+          path: `/${currentLang}/explore`,
+          icon: <FaCompass />,
+          translationKey: "nav.explore_all",
+        },
+        {
+          name: t("nav.trending"),
+          path: `/${currentLang}/explore/trending`,
+          icon: <FaFire />,
+          translationKey: "nav.trending",
+        },
+        {
+          name: t("nav.new_releases"),
+          path: `/${currentLang}/explore/new-releases`,
+          icon: <FaStar />,
+          translationKey: "nav.new_releases",
+        },
+        {
+          name: t("nav.rare_books"),
+          path: `/${currentLang}/explore/rare-books`,
+          icon: <FaGem />,
+          translationKey: "nav.rare_books",
+        },
+      ],
     },
     {
       name: t("nav.books"),
@@ -61,50 +123,6 @@ const getNavigationConfig = (t, currentLang) => ({
       ],
     },
     {
-      name: t("nav.academic_books"),
-      icon: <FaGraduationCap />,
-      path: `/${currentLang}/academicbooks`,
-      translationKey: "nav.academic_books",
-      dropdown: [
-        {
-          name: t("nav.engineering"),
-          path: `/${currentLang}/academic-books/engineering`,
-          icon: <FaCogs />,
-          translationKey: "nav.engineering",
-        },
-        {
-          name: t("nav.computer_science"),
-          path: `/${currentLang}/academic-books/computer-science`,
-          icon: <FaLaptopCode />,
-          translationKey: "nav.computer_science",
-        },
-        {
-          name: t("nav.medical"),
-          path: `/${currentLang}/academic-books/medical`,
-          icon: <FaUserDoctor />,
-          translationKey: "nav.medical",
-        },
-        {
-          name: t("nav.business_management"),
-          path: `/${currentLang}/academic-books/business`,
-          icon: <FaBriefcase />,
-          translationKey: "nav.business_management",
-        },
-        {
-          name: t("nav.science"),
-          path: `/${currentLang}/academic-books/science`,
-          icon: <FaFlask />,
-          translationKey: "nav.science",
-        },
-        {
-          name: t("nav.mathematics"),
-          path: `/${currentLang}/academic-books/mathematics`,
-          icon: <FaSquareRootAlt />,
-          translationKey: "nav.mathematics",
-        },
-      ],
-    },
-    {
       name: t("nav.comics"),
       icon: <FaBook />,
       path: `/${currentLang}/comics`,
@@ -127,49 +145,6 @@ const getNavigationConfig = (t, currentLang) => ({
           path: `/${currentLang}/comics/manga`,
           icon: <FaBook />,
           translationKey: "nav.manga",
-        },
-      ],
-    },
-    {
-      name: t("nav.genre_category"),
-      icon: <FaBoxes />,
-      path: `/${currentLang}/category`,
-      translationKey: "nav.genre_category",
-      dropdown: [
-        {
-          name: t("nav.fiction"),
-          path: `/${currentLang}/category/fiction`,
-          translationKey: "nav.fiction",
-        },
-        {
-          name: t("nav.non_fiction"),
-          path: `/${currentLang}/category/non-fiction`,
-          translationKey: "nav.non_fiction",
-        },
-        {
-          name: t("nav.sci_fi"),
-          path: `/${currentLang}/category/sci-fi`,
-          translationKey: "nav.sci_fi",
-        },
-        {
-          name: t("nav.fantasy"),
-          path: `/${currentLang}/category/fantasy`,
-          translationKey: "nav.fantasy",
-        },
-        {
-          name: t("nav.mystery"),
-          path: `/${currentLang}/category/mystery`,
-          translationKey: "nav.mystery",
-        },
-        {
-          name: t("nav.romance"),
-          path: `/${currentLang}/category/romance`,
-          translationKey: "nav.romance",
-        },
-        {
-          name: t("nav.biography"),
-          path: `/${currentLang}/category/biography`,
-          translationKey: "nav.biography",
         },
       ],
     },
@@ -238,42 +213,98 @@ const getNavigationConfig = (t, currentLang) => ({
       ],
     },
     {
-      name: t("nav.publications"),
-      icon: <FaBook />,
-      path: `/${currentLang}/publications`,
-      translationKey: "nav.publications",
+      name: t("nav.immerse"),
+      icon: <FaBookOpen />,
+      path: `/${currentLang}/immerse`,
+      translationKey: "nav.immerse",
       dropdown: [
         {
-          name: t("nav.all_publications"),
-          path: `/${currentLang}/publications`,
-          icon: <FaBook />,
-          translationKey: "nav.all_publications",
+          name: t("nav.immerse_all"),
+          path: `/${currentLang}/immerse`,
+          icon: <FaBookOpen />,
+          translationKey: "nav.immerse_all",
         },
         {
-          name: t("nav.magazines"),
-          path: `/${currentLang}/publications/magazines`,
-          icon: <FaNewspaper />,
-          translationKey: "nav.magazines",
+          name: t("nav.audiobooks"),
+          path: `/${currentLang}/immerse/audiobooks`,
+          icon: <FaHeadphones />,
+          translationKey: "nav.audiobooks",
         },
         {
-          name: t("nav.journals"),
-          path: `/${currentLang}/publications/journals`,
-          icon: <FaBook />,
-          translationKey: "nav.journals",
+          name: t("nav.visual_books"),
+          path: `/${currentLang}/immerse/visual-books`,
+          icon: <FaEye />,
+          translationKey: "nav.visual_books",
         },
         {
-          name: t("nav.newspapers"),
-          path: `/${currentLang}/publications/newspapers`,
-          icon: <FaNewspaper />,
-          translationKey: "nav.newspapers",
+          name: t("nav.podcasts"),
+          path: `/${currentLang}/immerse/podcasts`,
+          icon: <FaMicrophone />,
+          translationKey: "nav.podcasts",
+        },
+        {
+          name: t("nav.interactive_books"),
+          path: `/${currentLang}/immerse/interactive`,
+          icon: <FaHandPointer />,
+          translationKey: "nav.interactive_books",
+        },
+        {
+          name: t("nav.video_books"),
+          path: `/${currentLang}/immerse/video-books`,
+          icon: <FaVideo />,
+          translationKey: "nav.video_books",
         },
       ],
     },
     {
-      name: t("nav.about"),
-      icon: <FaInfoCircle />,
-      path: `/${currentLang}/about`,
-      translationKey: "nav.about",
+      name: t("nav.ecosystem"),
+      icon: <FaGlobe />,
+      path: `/${currentLang}/ecosystem`,
+      translationKey: "nav.ecosystem",
+      dropdown: [
+        {
+          name: t("nav.ecosystem_all"),
+          path: `/${currentLang}/ecosystem`,
+          icon: <FaGlobe />,
+          translationKey: "nav.ecosystem_all",
+        },
+        {
+          name: t("nav.book_clubs"),
+          path: `/${currentLang}/ecosystem/book-clubs`,
+          icon: <FaUsers />,
+          translationKey: "nav.book_clubs",
+        },
+        {
+          name: t("nav.reading_challenges"),
+          path: `/${currentLang}/ecosystem/challenges`,
+          icon: <FaTrophy />,
+          translationKey: "nav.reading_challenges",
+        },
+        {
+          name: t("nav.author_spotlight"),
+          path: `/${currentLang}/ecosystem/authors`,
+          icon: <FaUserTie />,
+          translationKey: "nav.author_spotlight",
+        },
+        {
+          name: t("nav.community_reviews"),
+          path: `/${currentLang}/ecosystem/reviews`,
+          icon: <FaComments />,
+          translationKey: "nav.community_reviews",
+        },
+        {
+          name: t("nav.events"),
+          path: `/${currentLang}/ecosystem/events`,
+          icon: <FaCalendarAlt />,
+          translationKey: "nav.events",
+        },
+        {
+          name: t("nav.blog"),
+          path: `/${currentLang}/ecosystem/blog`,
+          icon: <FaBlog />,
+          translationKey: "nav.blog",
+        },
+      ],
     },
   ],
 });
