@@ -1,3 +1,4 @@
+// src/layout/navbar/navbardesktop/components/Control.jsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -6,6 +7,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useTheme } from "@/themes/useTheme";
 import ThemeSwitchDropdown from "./control/ThemeSwitchDropdown";
 import FontChanger from "./control/FontChanger";
+import WidgetControls from "./control/WidgetControls";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Control = () => {
@@ -108,7 +110,7 @@ const Control = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Determine dark mode for conditional classes (same as HeroSection)
+  // Determine dark mode for conditional classes
   const isDarkMode = themeName === "dark" || themeName === "midnight" || themeName === "cyberpunk";
 
   const getButtonClasses = () => `
@@ -138,6 +140,8 @@ const Control = () => {
         onClick={() => setIsOpen(!isOpen)} 
         className={getButtonClasses()}
         dir={isRTL ? "rtl" : "ltr"}
+        aria-label="Open controls"
+        aria-expanded={isOpen}
       >
         <AiFillControl size={18} />
         <span>{isOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}</span>
@@ -145,7 +149,7 @@ const Control = () => {
 
       {isOpen && (
         <div 
-          className={`absolute mt-3 w-96 rounded-2xl overflow-hidden border shadow-2xl z-50 ${dropdownBg} ${borderColor}`}
+          className={`absolute mt-3 w-96 max-h-[90vh] rounded-2xl overflow-hidden border shadow-2xl z-50 ${dropdownBg} ${borderColor}`}
           style={{ 
             top: "100%",
             ...dropdownPosition
@@ -157,6 +161,8 @@ const Control = () => {
             <button 
               onClick={() => setActiveTab("theme")} 
               className={getTabClasses("theme")}
+              aria-selected={activeTab === "theme"}
+              role="tab"
             >
               <div className="flex items-center justify-center gap-2">
                 <span className="text-lg">🎨</span> 
@@ -166,16 +172,29 @@ const Control = () => {
             <button 
               onClick={() => setActiveTab("font")} 
               className={getTabClasses("font")}
+              aria-selected={activeTab === "font"}
+              role="tab"
             >
               <div className="flex items-center justify-center gap-2">
                 <span className="text-lg">🔤</span> 
                 <span>Font</span>
               </div>
             </button>
+            <button 
+              onClick={() => setActiveTab("widgets")} 
+              className={getTabClasses("widgets")}
+              aria-selected={activeTab === "widgets"}
+              role="tab"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-lg">⚙️</span> 
+                <span>Widgets</span>
+              </div>
+            </button>
           </div>
 
           {/* Content */}
-          <div className="p-4">
+          <div className="p-4 max-h-[60vh] overflow-y-auto custom-scrollbar">
             {activeTab === "theme" && (
               <ThemeSwitchDropdown 
                 isInline={true} 
@@ -186,6 +205,12 @@ const Control = () => {
               <FontChanger 
                 isInline={true} 
                 onFontChange={closeDropdown} 
+              />
+            )}
+            {activeTab === "widgets" && (
+              <WidgetControls 
+                isInline={true} 
+                onWidgetChange={closeDropdown}
               />
             )}
           </div>

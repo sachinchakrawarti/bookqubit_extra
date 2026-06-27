@@ -2,56 +2,105 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/layout/navbar/Navbar";
 import Footer from "@/layout/footer/Footer";
 import GoToUp from "@/utils/GoToUp";
 import ScrollToTop from "@/utils/scrolltotop/ScrollToTop";
+import QuickAction from "@/utils/quickaction/QuickAction";
+import useWidgetStore from "@/store/widgetStore";
 
 export default function PublicLayout({ children }) {
   const pathname = usePathname();
-
-  const isSocialApp = pathname?.includes("/drift") || false;
-  const isEthos = pathname?.includes("/ethos") || false;
-  const isQubitStationery = pathname?.includes("/qubit-stationery") || false;
-  const isQubitReads = pathname?.includes("/qubit-reads") || false;
-  const isAuthorDashboard = pathname?.includes("/author-dashboard") || false;
   
-  const isHomePages = pathname === "/homepages" || 
-                      pathname === "/en/homepages" || 
-                      pathname?.endsWith("/homepages") || false;
+  // Get widget visibility from store - FIXED: Use individual selectors
+  const widgets = useWidgetStore((state) => state.widgets);
+  // Remove the problematic selector - use direct access instead
+
+  // Page detection with useMemo for performance
+  const pageFlags = useMemo(() => ({
+    isSocialApp: pathname?.includes("/drift") || false,
+    isEthos: pathname?.includes("/ethos") || false,
+    isQubitStationery: pathname?.includes("/qubit-stationery") || false,
+    isQubitReads: pathname?.includes("/qubit-reads") || false,
+    isAuthorDashboard: pathname?.includes("/author-dashboard") || false,
+    isHomePages: pathname === "/homepages" || 
+                 pathname === "/en/homepages" || 
+                 pathname?.endsWith("/homepages") || false,
+  }), [pathname]);
 
   const [isMobile, setIsMobile] = useState(false);
 
+  // Mobile detection with cleanup
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+    
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const hideSecondRow = isSocialApp || isEthos || isQubitStationery || isQubitReads || isAuthorDashboard;
-  const hideNavbar = isAuthorDashboard;
-  const showFooter = !isSocialApp && !isEthos && !isQubitStationery && !isQubitReads && !isAuthorDashboard && !isHomePages;
-  const showGoToUp = !isSocialApp && !isEthos && !isQubitStationery && !isQubitReads && !isAuthorDashboard && !isMobile;
+  // Compute layout flags with useMemo
+  const layoutFlags = useMemo(() => {
+    const { isSocialApp, isEthos, isQubitStationery, isQubitReads, isAuthorDashboard, isHomePages } = pageFlags;
+    
+    const hideSecondRow = isSocialApp || isEthos || isQubitStationery || isQubitReads || isAuthorDashboard;
+    const hideNavbar = isAuthorDashboard;
+    const hideWidgets = isSocialApp || isEthos || isQubitStationery || isQubitReads || isAuthorDashboard || isHomePages;
+    const showFooter = !isSocialApp && !isEthos && !isQubitStationery && !isQubitReads && !isAuthorDashboard && !isHomePages;
+    const showGoToUp = !isSocialApp && !isEthos && !isQubitStationery && !isQubitReads && !isAuthorDashboard && !isHomePages && !isMobile;
+    
+    return {
+      hideSecondRow,
+      hideNavbar,
+      hideWidgets,
+      showFooter,
+      showGoToUp,
+    };
+  }, [pageFlags, isMobile]);
+
+  // Individual widget visibility with page override - FIXED: Direct access
+  const showScrollToTop = useMemo(() => {
+    return !layoutFlags.hideWidgets && widgets.scrollToTop;
+  }, [layoutFlags.hideWidgets, widgets.scrollToTop]);
+
+  const showQuickAction = useMemo(() => {
+    return !layoutFlags.hideWidgets && widgets.quickAction;
+  }, [layoutFlags.hideWidgets, widgets.quickAction]);
+
+  // Render widgets conditionally
+  const renderWidgets = useCallback(() => {
+    if (layoutFlags.hideWidgets) return null;
+    
+    return (
+      <>
+        {showScrollToTop && <ScrollToTop />}
+        {showQuickAction && <QuickAction />}
+      </>
+    );
+  }, [layoutFlags.hideWidgets, showScrollToTop, showQuickAction]);
 
   return (
     <>
-      {/* ScrollToTop - Always renders, controls itself */}
-      <ScrollToTop />
+      {/* Widgets - Only render if not hidden and globally visible */}
+      {renderWidgets()}
 
-      {!hideNavbar && <Navbar hideSecondRow={hideSecondRow} />}
+      {/* Navbar */}
+      {!layoutFlags.hideNavbar && <Navbar hideSecondRow={layoutFlags.hideSecondRow} />}
 
+      {/* Main Content */}
       <main className={isMobile ? 'pb-[72px]' : ''}>
         {children}
       </main>
 
-      {showFooter && <Footer />}
+      {/* Footer */}
+      {layoutFlags.showFooter && <Footer />}
 
-      {showGoToUp && (
+      {/* GoToUp Button */}
+      {layoutFlags.showGoToUp && (
         <GoToUp
           showAfter={300}
           smooth={true}
