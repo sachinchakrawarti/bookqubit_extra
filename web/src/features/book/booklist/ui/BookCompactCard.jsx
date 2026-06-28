@@ -6,6 +6,7 @@ import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useFont } from "@/contexts/FontContext";
 import { useRTL } from "@/contexts/RTLContext";
+import { ButtonInline } from "@/shared/buttoninline";
 import "./BookCompactCard.css";
 
 const BookCompactCard = ({
@@ -20,48 +21,79 @@ const BookCompactCard = ({
   const { currentFont } = useFont();
   const { direction, textAlign, flexDirection } = useRTL();
 
-  // Guard against undefined theme
-  if (!theme) {
-    return null;
-  }
+  if (!theme) return null;
 
-  // Check if current theme is dark mode
   const isDarkMode =
     themeName === "dark" ||
     themeName === "midnight" ||
     themeName === "cyberpunk";
 
-  // Helper function to get collections as array
   const getCollectionsAsArray = (collection) => {
     if (!collection) return [];
     return Array.isArray(collection) ? collection : [collection];
   };
 
-  // Use provided collections or extract from book
   const bookCollections =
     collections.length > 0
       ? collections
       : getCollectionsAsArray(book.collection);
 
-  // Fallback image
   const fallbackImage = "/placeholder-book.jpg";
 
-  // Handle card click - navigate to book details
   const handleCardClick = () => {
     router.push(`/books/${book.slug || book.id}`);
   };
 
-  // Handle tag click - stop propagation to prevent card navigation
   const handleTagClick = (e, tag) => {
     e.stopPropagation();
-    // You can add tag filtering logic here
     console.log("Tag clicked:", tag);
   };
 
-  // Apply font family inline style
-  const fontStyle = currentFont?.family ? {
-    fontFamily: currentFont.family
-  } : {};
+  const handleLike = (liked) => {
+    console.log(`${liked ? "Liked" : "Unliked"}:`, book?.title);
+  };
+
+  const handleAddToLibrary = (shelf) => {
+    console.log(`Added to library shelf "${shelf}":`, book?.title);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: book?.title || "Book",
+          text: `Check out "${book?.title}" by ${book?.author}`,
+          url: window.location.href,
+        })
+        .catch((err) => console.log("Error sharing:", err));
+    } else {
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => alert("Link copied to clipboard!"))
+        .catch((err) => console.log("Error copying to clipboard:", err));
+    }
+  };
+
+  const handleReport = () => {
+    console.log("Report book:", book?.title);
+  };
+
+  const handleAskAI = () => {
+    console.log("Ask AI about:", book?.title);
+  };
+
+  const handleGetBook = (e) => {
+    e.stopPropagation();
+    if (book?.buttons?.getBook) {
+      window.open(book.buttons.getBook, "_blank");
+    }
+  };
+
+  const fontStyle = currentFont?.family
+    ? {
+        fontFamily: currentFont.family,
+      }
+    : {};
 
   return (
     <div
@@ -71,20 +103,19 @@ const BookCompactCard = ({
       className={`book-compact-card
         ${theme.background?.section || (isDarkMode ? "bg-gray-800" : "bg-white")} 
         ${theme.border?.default || "border border-gray-200 dark:border-gray-700"} 
-        overflow-hidden rounded-xl 
-        flex flex-col h-full
         ${className}
-        ${direction === 'rtl' ? 'rtl' : ''}
+        ${direction === "rtl" ? "rtl" : ""}
       `}
     >
-      <div className="p-5">
-        <div className={`flex flex-col sm:flex-row gap-4 ${flexDirection}`}>
-          {/* Book Cover Image */}
-          <div className="flex-shrink-0">
+      <div className="p-4 w-full flex flex-col">
+        {/* Top Section: Split layout for Image and Metadata Content */}
+        <div className="flex gap-4 w-full">
+          {/* Left Column: Image Area */}
+          <div className="flex-shrink-0 w-[96px] mobile-left-col">
             <img
               src={book.imageUrl || fallbackImage}
               alt={book.title}
-              className="book-compact-cover w-24 h-36 object-cover"
+              className="book-compact-cover"
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = fallbackImage;
@@ -93,29 +124,30 @@ const BookCompactCard = ({
             />
           </div>
 
-          {/* Book Details */}
-          <div className="flex-1 min-w-0">
-            {/* Title */}
+          {/* Right Column: Text Content Info */}
+          <div className="flex-1 min-w-0 flex flex-col">
             <h3
-              className={`compact-title ${theme.textColors?.primary || (isDarkMode ? "text-white" : "text-gray-900")} mb-1 ${textAlign}`}
+              className={`compact-title ${theme.textColors?.primary || (isDarkMode ? "text-white" : "text-gray-900")}`}
             >
               {book.title}
             </h3>
 
-            {/* Author */}
             <p
-              className={`compact-author ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")} ${textAlign}`}
+              className={`compact-author ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")}`}
             >
               {t("book.by")} {book.author}
             </p>
 
-            {/* Rating */}
-            <div className="flex items-center mb-3">
+            <div className="flex items-center gap-2 mb-2">
               <div className="compact-stars">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className={`compact-star-icon ${i < Math.floor(book.rating || 0) ? theme.iconColors?.starFilled || "text-amber-400" : theme.iconColors?.starEmpty || "text-gray-300"}`}
+                    className={`compact-star-icon ${
+                      i < Math.floor(book.rating || 0)
+                        ? "text-amber-400"
+                        : "text-gray-300 dark:text-gray-600"
+                    }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -124,63 +156,87 @@ const BookCompactCard = ({
                 ))}
               </div>
               <span
-                className={`compact-rating-value ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")}`}
+                className={`text-xs ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")}`}
               >
                 ({book.rating?.toFixed(1) || "0"})
               </span>
             </div>
 
-            {/* Description */}
             <p
-              className={`compact-description ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")} mb-3 ${textAlign}`}
+              className={`compact-description ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")}`}
             >
               {book.description}
             </p>
 
-            {/* Collections Tags */}
-            {showCollections && bookCollections.length > 0 && (
-              <div className={`flex flex-wrap gap-1.5 mb-3 ${flexDirection}`}>
-                {bookCollections.slice(0, 2).map((collection, idx) => (
-                  <span
-                    key={idx}
-                    onClick={(e) => handleTagClick(e, collection)}
-                    className={`compact-tag clickable-element ${theme.textColors?.badge || "text-sky-800 dark:text-sky-400"} ${isDarkMode ? "bg-sky-900/30" : "bg-sky-50"}`}
-                  >
-                    {collection}
-                  </span>
-                ))}
-                {bookCollections.length > 2 && (
-                  <span
-                    className={`compact-tag ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")} ${isDarkMode ? "bg-gray-700" : "bg-gray-100"}`}
-                  >
-                    +{bookCollections.length - 2} {t("book.more")}
-                  </span>
-                )}
-              </div>
-            )}
-
-            {/* Tags */}
-            {book.tags && book.tags.length > 0 && (
-              <div className={`flex flex-wrap gap-1.5 mb-3 ${flexDirection}`}>
-                {book.tags.slice(0, 2).map((tag, idx) => (
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {bookCollections.slice(0, 3).map((collection, idx) => (
+                <span
+                  key={idx}
+                  onClick={(e) => handleTagClick(e, collection)}
+                  className={`compact-tag ${isDarkMode ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"}`}
+                >
+                  {collection}
+                </span>
+              ))}
+              {book.tags &&
+                book.tags.slice(0, 3).map((tag, idx) => (
                   <span
                     key={idx}
                     onClick={(e) => handleTagClick(e, tag)}
-                    className={`compact-tag clickable-element ${theme.textColors?.badge || "text-sky-800 dark:text-sky-400"} ${isDarkMode ? "bg-sky-900/30" : "bg-sky-50"}`}
+                    className={`compact-tag ${isDarkMode ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"}`}
                   >
                     {tag}
                   </span>
                 ))}
-              </div>
-            )}
+            </div>
+          </div>
+        </div>
 
-            {/* View Details Button - Now optional but kept for clarity */}
+        {/* Bottom Section: Full Width Action Controls */}
+        <div className="full-width-actions-panel mt-4 w-full flex flex-col gap-2">
+          {/* Row 1: ButtonInline Component */}
+          {book?.id && (
+            <div className="book-compact-card-actions w-full">
+              <ButtonInline
+                bookId={book.id}
+                bookName={book.title || "Book"}
+                authorName={book.author || "Unknown Author"}
+                launchYear={book.publicationYear || book.year || "N/A"}
+                bookCover={book.imageUrl || null}
+                bookRating={book.rating || 4.5}
+                totalReviews={book.reviews || 128}
+                pageCount={book.pages || 180}
+                language={book.language || "English"}
+                genres={book.genres || ["Fiction", "Classic"]}
+                description={book.description || ""}
+                summary={book.summary || ""}
+                initialLiked={book.userLiked || false}
+                initialInLibrary={book.userInLibrary || false}
+                onLike={handleLike}
+                onAddToLibrary={handleAddToLibrary}
+                onShare={handleShare}
+                onReport={handleReport}
+                onAskAI={handleAskAI}
+                className="w-full"
+                variant="auto"
+              />
+            </div>
+          )}
+
+          {/* Row 2: Action Trigger Buttons */}
+          <div className="grid grid-cols-2 gap-2 w-full">
+            <button
+              onClick={handleGetBook}
+              className={`action-btn get-book ${theme.buttonColors?.primaryButton?.background || "bg-emerald-600"} text-white`}
+            >
+              {t("book.get_book") || "Get Book"}
+            </button>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 router.push(`/books/${book.slug || book.id}`);
               }}
-              className={`view-details-button clickable-element ${theme.buttonColors?.primaryButton?.background || "bg-gradient-to-r from-sky-600 to-sky-500"} text-white`}
+              className={`action-btn view-details ${theme.buttonColors?.secondaryButton?.textColor || ""}`}
             >
               {t("book.view_details") || "View Details"}
             </button>

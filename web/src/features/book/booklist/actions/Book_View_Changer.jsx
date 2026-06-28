@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -20,9 +20,18 @@ const BookViewChanger = ({
   const { t } = useLanguage();
   const [showViewOptions, setShowViewOptions] = useState(false);
   const [showSortOptions, setShowSortOptions] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   // Check if current theme is dark mode
-  const isDarkMode = themeName === 'dark' || themeName === 'midnight' || themeName === 'cyberpunk';
+  const isDarkMode =
+    themeName === "dark" ||
+    themeName === "midnight" ||
+    themeName === "cyberpunk";
+
+  // Set isClient to true after mount to avoid hydration issues
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // View options with Grid, Compact, and List views
   const viewOptions = [
@@ -45,7 +54,6 @@ const BookViewChanger = ({
         </svg>
       ),
       description: t("view.grid_description") || "Card grid layout",
-      previewIcon: "⊞"
     },
     {
       id: "compact",
@@ -67,7 +75,6 @@ const BookViewChanger = ({
         </svg>
       ),
       description: t("view.compact_description") || "Horizontal compact cards",
-      previewIcon: "⧉"
     },
     {
       id: "list",
@@ -88,7 +95,6 @@ const BookViewChanger = ({
         </svg>
       ),
       description: t("view.list_description") || "Detailed list display",
-      previewIcon: "≡"
     },
   ];
 
@@ -111,35 +117,33 @@ const BookViewChanger = ({
     { value: 96, label: t("items_per_page.96") || "96 per page" },
   ];
 
-  const gridDensityOptions = [
-    { id: "compact", label: t("density.compact") || "Compact", icon: "≡" },
-    { id: "normal", label: t("density.normal") || "Normal", icon: "☰" },
-    { id: "spacious", label: t("density.spacious") || "Spacious", icon: "⧉" },
-  ];
-
   // Get current view option label
-  const currentViewLabel = viewOptions.find((v) => v.id === viewType)?.label || (t("view.grid_view") || "Grid View");
+  const currentViewLabel =
+    viewOptions.find((v) => v.id === viewType)?.label ||
+    t("view.grid_view") ||
+    "Grid View";
   const currentViewIcon = viewOptions.find((v) => v.id === viewType)?.icon;
 
   // Get button styles based on theme
   const getButtonClasses = (isActive = false) => {
     const baseClasses = `
-      px-4 py-2 
-      flex items-center justify-center gap-2 
+      px-3 py-1.5 sm:px-4 sm:py-2 
+      flex items-center justify-center gap-1 sm:gap-2 
       rounded-md 
       transition-all duration-200 
       hover:opacity-80
+      text-xs sm:text-sm
     `;
-    
+
     if (isActive) {
-      return `${baseClasses} ${theme.buttonColors?.primaryButton?.background || 'bg-gradient-to-r from-sky-600 to-sky-500'} text-white`;
+      return `${baseClasses} ${theme.buttonColors?.primaryButton?.background || "bg-gradient-to-r from-sky-600 to-sky-500"} text-white`;
     }
-    
+
     return `${baseClasses} 
-      ${theme.background?.secondary || 'bg-gray-100 dark:bg-gray-800'} 
-      ${theme.textColors?.primary || 'text-gray-900 dark:text-white'} 
-      border ${theme.border?.button || 'border-gray-300 dark:border-gray-600'} 
-      ${theme.shadow?.button || 'shadow-sm'}
+      ${theme.background?.secondary || "bg-gray-100 dark:bg-gray-800"} 
+      ${theme.textColors?.primary || "text-gray-900 dark:text-white"} 
+      border ${theme.border?.button || "border-gray-300 dark:border-gray-600"} 
+      ${theme.shadow?.button || "shadow-sm"}
     `;
   };
 
@@ -148,22 +152,31 @@ const BookViewChanger = ({
       absolute right-0 mt-2 w-56 
       rounded-md shadow-lg z-50 
       border 
-      ${theme.background?.card === '#ffffff' ? 'bg-white dark:bg-gray-800' : theme.background?.card || 'bg-white dark:bg-gray-800'} 
-      ${theme.border?.default || 'border-gray-200 dark:border-gray-700'}
+      ${theme.background?.card === "#ffffff" ? "bg-white dark:bg-gray-800" : theme.background?.card || "bg-white dark:bg-gray-800"} 
+      ${theme.border?.default || "border-gray-200 dark:border-gray-700"}
       overflow-hidden
     `;
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center gap-2">
+    <div className="flex flex-wrap items-center gap-1 sm:gap-2">
       {/* Filters Toggle Button - Always visible */}
       <div className="relative">
         <button
           onClick={() => setShowFilters(!showFilters)}
           className={getButtonClasses()}
-          title={showFilters ? (t("filter.hide_filters") || "Hide Filters") : (t("filter.show_filters") || "Show Filters")}
+          title={
+            showFilters
+              ? t("filter.hide_filters") || "Hide Filters"
+              : t("filter.show_filters") || "Show Filters"
+          }
         >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            className="h-3 w-3 sm:h-4 sm:w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -172,220 +185,201 @@ const BookViewChanger = ({
             />
           </svg>
           <span className="hidden sm:inline">
-            {showFilters ? (t("filter.hide_filters") || "Hide Filters") : (t("filter.filters") || "Filters")}
+            {showFilters
+              ? t("filter.hide_filters") || "Hide Filters"
+              : t("filter.filters") || "Filters"}
           </span>
         </button>
       </div>
 
-      {/* Desktop-only controls */}
-      {!isMobile && (
-        <>
-          {/* View Type Selector */}
-          <div className="relative">
-            <button
-              onClick={() => setShowViewOptions(!showViewOptions)}
-              className={getButtonClasses()}
-              title={t("view.change_view") || "Change View"}
-            >
-              <span className="mr-1">{currentViewIcon}</span>
-              <span className="hidden sm:inline">{currentViewLabel}</span>
-              <svg
-                className={`h-4 w-4 transition-transform ${showViewOptions ? "rotate-180" : ""}`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+      {/* View Type Selector - Now visible on mobile too */}
+      <div className="relative">
+        <button
+          onClick={() => setShowViewOptions(!showViewOptions)}
+          className={getButtonClasses()}
+          title={t("view.change_view") || "Change View"}
+        >
+          <span className="mr-0 sm:mr-1">{currentViewIcon}</span>
+          <span className="hidden xs:inline sm:inline">{currentViewLabel}</span>
+          <svg
+            className={`h-3 w-3 sm:h-4 sm:w-4 transition-transform ${showViewOptions ? "rotate-180" : ""}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
 
-            {/* View Options Dropdown */}
-            {showViewOptions && (
-              <div className={getDropdownClasses()}>
-                <div className="py-1">
-                  <div className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider ${theme.textColors?.secondary || 'text-gray-500 dark:text-gray-400'}`}>
-                    {t("view.view_options") || "View Options"}
-                  </div>
-                  {viewOptions.map((option) => {
-                    const isActive = viewType === option.id;
-                    return (
-                      <button
-                        key={option.id}
-                        onClick={() => {
-                          setViewType(option.id);
-                          setShowViewOptions(false);
-                        }}
-                        className={`
-                          flex items-center w-full px-4 py-3 text-left 
-                          transition-all duration-200 hover:opacity-80
-                          ${isActive 
-                            ? `${theme.background?.selected || 'bg-sky-50 dark:bg-sky-900/20'} ${theme.textColors?.highlight || 'text-sky-600 dark:text-sky-400'}`
-                            : theme.textColors?.primary || 'text-gray-900 dark:text-white'
-                          }
-                        `}
-                      >
-                        <div className="flex items-center justify-center w-8">
-                          {option.icon}
-                        </div>
-                        <div className="ml-3">
-                          <div className="text-sm font-medium">
-                            {option.label}
-                          </div>
-                          <div className={`text-xs ${theme.textColors?.secondary || 'text-gray-500 dark:text-gray-400'}`}>
-                            {option.description}
-                          </div>
-                        </div>
-                        {isActive && (
-                          <svg
-                            className={`ml-auto h-5 w-5 ${theme.textColors?.highlight || 'text-sky-600 dark:text-sky-400'}`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
+        {/* View Options Dropdown */}
+        {showViewOptions && (
+          <div className={getDropdownClasses()}>
+            <div className="py-1">
+              <div
+                className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}`}
+              >
+                {t("view.view_options") || "View Options"}
               </div>
-            )}
-          </div>
-
-          {/* Sort Options */}
-          {showAdvancedControls && (
-            <div className="relative">
-              <button
-                onClick={() => setShowSortOptions(!showSortOptions)}
-                className={getButtonClasses()}
-                title={t("sort.sort_options") || "Sort Options"}
-              >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"
-                  />
-                </svg>
-                <span className="hidden sm:inline">{t("sort.sort") || "Sort"}</span>
-              </button>
-
-              {/* Sort Options Dropdown */}
-              {showSortOptions && (
-                <div className={`${getDropdownClasses()} w-48`}>
-                  <div className="py-1">
-                    <div className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider ${theme.textColors?.secondary || 'text-gray-500 dark:text-gray-400'}`}>
-                      {t("sort.sort_by") || "Sort By"}
+              {viewOptions.map((option) => {
+                const isActive = viewType === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => {
+                      setViewType(option.id);
+                      setShowViewOptions(false);
+                    }}
+                    className={`
+                      flex items-center w-full px-4 py-3 text-left 
+                      transition-all duration-200 hover:opacity-80
+                      ${
+                        isActive
+                          ? `${theme.background?.selected || "bg-sky-50 dark:bg-sky-900/20"} ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"}`
+                          : theme.textColors?.primary ||
+                            "text-gray-900 dark:text-white"
+                      }
+                    `}
+                  >
+                    <div className="flex items-center justify-center w-8">
+                      {option.icon}
                     </div>
-                    {sortOptions.map((option) => (
-                      <button
-                        key={option.value}
-                        onClick={() => {
-                          setSortOption(option.value);
-                          setShowSortOptions(false);
-                        }}
-                        className={`
-                          block w-full text-left px-4 py-2 text-sm 
-                          transition-all duration-200 hover:opacity-80
-                          ${sortOption === option.value 
-                            ? `${theme.background?.selected || 'bg-sky-50 dark:bg-sky-900/20'} ${theme.textColors?.highlight || 'text-sky-600 dark:text-sky-400'}`
-                            : theme.textColors?.primary || 'text-gray-900 dark:text-white'
-                          }
-                        `}
+                    <div className="ml-3">
+                      <div className="text-sm font-medium">{option.label}</div>
+                      <div
+                        className={`text-xs ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}`}
                       >
-                        {option.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+                        {option.description}
+                      </div>
+                    </div>
+                    {isActive && (
+                      <svg
+                        className={`ml-auto h-5 w-5 ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                );
+              })}
             </div>
-          )}
+          </div>
+        )}
+      </div>
 
-          {/* Items Per Page */}
-          {showAdvancedControls && (
-            <div className="relative">
-              <select
-                value={itemsPerPage}
-                onChange={(e) => setItemsPerPage(Number(e.target.value))}
-                className={`
-                  pl-3 pr-8 py-2 
-                  appearance-none 
-                  rounded-md 
-                  focus:outline-none focus:ring-2 focus:ring-sky-500
-                  transition-colors duration-200
-                  ${theme.background?.secondary || 'bg-gray-100 dark:bg-gray-800'}
-                  ${theme.textColors?.primary || 'text-gray-900 dark:text-white'}
-                  border ${theme.border?.button || 'border-gray-300 dark:border-gray-600'}
-                  ${theme.shadow?.button || 'shadow-sm'}
-                  cursor-pointer
-                `}
-                title={t("items_per_page.title") || "Items per page"}
-              >
-                {itemsPerPageOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <svg
-                className={`absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 pointer-events-none ${theme.textColors?.tertiary || 'text-gray-400 dark:text-gray-500'}`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-          )}
-
-          {/* Grid Density Toggle (Only for grid view) */}
-          {viewType === "grid" && (
-            <div
-              className={`
-                flex items-center gap-1 rounded-md p-1
-                ${theme.background?.tertiary || 'bg-gray-100 dark:bg-gray-800'}
-              `}
+      {/* Sort Options - Show on mobile too */}
+      {showAdvancedControls && (
+        <div className="relative">
+          <button
+            onClick={() => setShowSortOptions(!showSortOptions)}
+            className={getButtonClasses()}
+            title={t("sort.sort_options") || "Sort Options"}
+          >
+            <svg
+              className="h-3 w-3 sm:h-4 sm:w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              {gridDensityOptions.map((density) => (
-                <button
-                  key={density.id}
-                  onClick={() => {
-                    /* Handle density change */
-                  }}
-                  className={`
-                    px-3 py-1 text-sm rounded 
-                    transition-all duration-200
-                    ${density.id === "normal"
-                      ? `${theme.background?.card || 'bg-white dark:bg-gray-700'} ${theme.textColors?.primary || 'text-gray-900 dark:text-white'} shadow-sm`
-                      : `${theme.textColors?.secondary || 'text-gray-500 dark:text-gray-400'} hover:${theme.background?.card || 'bg-gray-50 dark:bg-gray-700'}`
-                    }
-                  `}
-                  title={density.label}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"
+              />
+            </svg>
+            <span className="hidden sm:inline">{t("sort.sort") || "Sort"}</span>
+          </button>
+
+          {/* Sort Options Dropdown */}
+          {showSortOptions && (
+            <div className={`${getDropdownClasses()} w-48`}>
+              <div className="py-1">
+                <div
+                  className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}`}
                 >
-                  {density.icon}
-                </button>
-              ))}
+                  {t("sort.sort_by") || "Sort By"}
+                </div>
+                {sortOptions.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => {
+                      setSortOption(option.value);
+                      setShowSortOptions(false);
+                    }}
+                    className={`
+                      block w-full text-left px-4 py-2 text-sm 
+                      transition-all duration-200 hover:opacity-80
+                      ${
+                        sortOption === option.value
+                          ? `${theme.background?.selected || "bg-sky-50 dark:bg-sky-900/20"} ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"}`
+                          : theme.textColors?.primary ||
+                            "text-gray-900 dark:text-white"
+                      }
+                    `}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
-        </>
+        </div>
+      )}
+
+      {/* Items Per Page - Show on mobile too */}
+      {showAdvancedControls && (
+        <div className="relative">
+          <select
+            value={itemsPerPage}
+            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            className={`
+              pl-2 pr-6 sm:pl-3 sm:pr-8 py-1.5 sm:py-2 
+              appearance-none 
+              rounded-md 
+              focus:outline-none focus:ring-2 focus:ring-sky-500
+              transition-colors duration-200
+              ${theme.background?.secondary || "bg-gray-100 dark:bg-gray-800"}
+              ${theme.textColors?.primary || "text-gray-900 dark:text-white"}
+              border ${theme.border?.button || "border-gray-300 dark:border-gray-600"}
+              ${theme.shadow?.button || "shadow-sm"}
+              cursor-pointer
+              text-xs sm:text-sm
+            `}
+            title={t("items_per_page.title") || "Items per page"}
+          >
+            {itemsPerPageOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <svg
+            className={`absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 h-3 w-3 sm:h-4 sm:w-4 pointer-events-none ${theme.textColors?.tertiary || "text-gray-400 dark:text-gray-500"}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
       )}
     </div>
   );

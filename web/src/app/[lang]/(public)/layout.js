@@ -1,5 +1,3 @@
-// src/app/[lang]/(public)/layout.jsx
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -10,13 +8,14 @@ import GoToUp from "@/utils/GoToUp";
 import ScrollToTop from "@/utils/scrolltotop/ScrollToTop";
 import QuickAction from "@/utils/quickaction/QuickAction";
 import useWidgetStore from "@/store/widgetStore";
+import { GlobalSheetProvider } from "@/shared/buttoninline/GlobalSheetManager";
+import GlobalSheetRenderer from "@/shared/buttoninline/GlobalSheetRenderer";
 
 export default function PublicLayout({ children }) {
   const pathname = usePathname();
   
-  // Get widget visibility from store - FIXED: Use individual selectors
+  // Get widget visibility from store
   const widgets = useWidgetStore((state) => state.widgets);
-  // Remove the problematic selector - use direct access instead
 
   // Page detection with useMemo for performance
   const pageFlags = useMemo(() => ({
@@ -62,7 +61,7 @@ export default function PublicLayout({ children }) {
     };
   }, [pageFlags, isMobile]);
 
-  // Individual widget visibility with page override - FIXED: Direct access
+  // Individual widget visibility with page override
   const showScrollToTop = useMemo(() => {
     return !layoutFlags.hideWidgets && widgets.scrollToTop;
   }, [layoutFlags.hideWidgets, widgets.scrollToTop]);
@@ -84,7 +83,10 @@ export default function PublicLayout({ children }) {
   }, [layoutFlags.hideWidgets, showScrollToTop, showQuickAction]);
 
   return (
-    <>
+    <GlobalSheetProvider>
+      {/* Global Sheet Renderer - Only ONE instance for the entire app */}
+      <GlobalSheetRenderer />
+
       {/* Widgets - Only render if not hidden and globally visible */}
       {renderWidgets()}
 
@@ -106,6 +108,6 @@ export default function PublicLayout({ children }) {
           smooth={true}
         />
       )}
-    </>
+    </GlobalSheetProvider>
   );
 }

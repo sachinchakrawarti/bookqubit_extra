@@ -1,0 +1,189 @@
+/* ============================================================
+   SHEET FOOTER STYLES
+   ============================================================ */
+
+.sheet-footer {
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+
+
+/* ===== DIVIDER ===== */
+.sheet-footer-divider {
+  height: 1px;
+  background: #F3F4F6;
+  margin-bottom: 16px;
+}
+
+.sheet-footer.dark .sheet-footer-divider {
+  background: #374151;
+}
+
+/* ===== FOOTER CONTENT ===== */
+.sheet-footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== CHILDREN ===== */
+.sheet-footer-children {
+  width: 100%;
+}
+
+/* ===== BUTTONS CONTAINER ===== */
+.sheet-footer-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.sheet-footer-buttons.single {
+  grid-template-columns: 1fr;
+}
+
+.sheet-footer-buttons.single-centered {
+  grid-template-columns: 1fr;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* ===== FOOTER BUTTONS ===== */
+.footer-btn {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  width: 100%;
+}
+
+.footer-btn .btn-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-btn:active {
+  transform: scale(0.98);
+}
+
+.footer-btn:disabled,
+.footer-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+}
+
+/* ===== SECONDARY BUTTON ===== */
+.secondary-btn {
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background: #E5E7EB;
+  transform: scale(1.02);
+}
+
+.secondary-btn.dark {
+  background: #374151;
+  color: #9CA3AF;
+}
+
+.secondary-btn.dark:hover:not(:disabled) {
+  background: #4B5563;
+}
+
+/* ===== PRIMARY BUTTON ===== */
+.primary-btn {
+  color: white;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.primary-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sheet-footer-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-btn {
+    padding: 12px 16px;
+    font-size: 15px;
+    min-height: 48px;
+  }
+
+  .footer-btn .btn-icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+    min-height: 44px;
+    border-radius: 12px;
+  }
+
+  .footer-btn .btn-icon {
+    font-size: 14px;
+  }
+}
+
+/* ===== TOUCH FRIENDLY ===== */
+@media (pointer: coarse) {
+  .footer-btn {
+    min-height: 52px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-btn {
+      min-height: 48px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-btn {
+      min-height: 44px;
+    }
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .footer-btn {
+    transition: none !important;
+  }
+  
+  .footer-btn:hover:not(:disabled) {
+    transform: none !important;
+  }
+  
+  .primary-btn:hover:not(:disabled) {
+    transform: none !important;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+.footer-btn:focus-visible {
+  outline: 2px solid #6366F1;
+  outline-offset: 2px;
+  border-radius: 14px;
+}

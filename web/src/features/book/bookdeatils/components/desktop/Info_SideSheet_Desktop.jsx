@@ -1,4 +1,3 @@
-// src/features/book/bookdetails/components/desktop/SideSheet_Desktop.jsx
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
@@ -31,9 +30,9 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
-import "./SideSheet_Desktop.css";
+import "./Info_SideSheet_Desktop.css";
 
-const SideSheet_Desktop = ({
+const Info_SideSheet_Desktop = ({
   isOpen,
   onClose,
   bookName = "The Great Gatsby",
@@ -95,17 +94,15 @@ const SideSheet_Desktop = ({
 
   // Get theme-based colors
   const getBgColor = () =>
-    theme.background?.card || (isDarkMode ? "bg-gray-800" : "bg-white");
+    theme.background?.card || (isDarkMode ? "#1F2937" : "#FFFFFF");
   const getBorderColor = () =>
-    theme.border?.default ||
-    (isDarkMode ? "border-gray-700" : "border-gray-200");
+    theme.border?.default || (isDarkMode ? "#374151" : "#E5E7EB");
   const getTextColor = () =>
-    theme.textColors?.secondary ||
-    (isDarkMode ? "text-gray-400" : "text-gray-600");
+    theme.textColors?.secondary || (isDarkMode ? "#9CA3AF" : "#6B7280");
   const getPrimaryTextColor = () =>
-    theme.textColors?.primary || (isDarkMode ? "text-white" : "text-gray-900");
+    theme.textColors?.primary || (isDarkMode ? "#F9FAFB" : "#111827");
   const getSectionBg = () =>
-    theme.background?.section || (isDarkMode ? "bg-gray-900" : "bg-white");
+    theme.background?.section || (isDarkMode ? "#111827" : "#F9FAFB");
 
   const sideSheetBg = getSectionBg();
   const sideSheetBorder = getBorderColor();
@@ -124,7 +121,7 @@ const SideSheet_Desktop = ({
         stars.push(
           <FaStar
             key={i}
-            className="star"
+            className="star filled"
             onClick={() => handleRating(i)}
             onMouseEnter={() => setHoverRating(i)}
             onMouseLeave={() => setHoverRating(0)}
@@ -134,7 +131,7 @@ const SideSheet_Desktop = ({
         stars.push(
           <FaStarHalfAlt
             key={i}
-            className="star half"
+            className="star half-filled"
             onClick={() => handleRating(i)}
             onMouseEnter={() => setHoverRating(i)}
             onMouseLeave={() => setHoverRating(0)}
@@ -225,43 +222,52 @@ const SideSheet_Desktop = ({
         <>
           {/* Backdrop */}
           <motion.div
-            className={`side-sheet-backdrop ${isDarkMode ? "dark" : ""}`}
+            className={`info-sidesheet-backdrop ${isDarkMode ? "dark" : ""}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25 }}
             onClick={onClose}
           />
 
           {/* Side Sheet */}
           <motion.div
-            className={`side-sheet ${sideSheetBg} ${sideSheetBorder} ${className}`}
+            className={`info-sidesheet ${isDarkMode ? "dark" : ""} ${className}`}
+            style={{
+              background: getBgColor(),
+              borderColor: getBorderColor(),
+              boxShadow: isDarkMode
+                ? "-10px 0 40px rgba(0,0,0,0.5)"
+                : "-10px 0 40px rgba(0,0,0,0.15)",
+            }}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{
               type: "spring",
               damping: 30,
-              stiffness: 300,
+              stiffness: 280,
               mass: 0.8,
             }}
           >
             {/* Header */}
-            <div className={`side-sheet-header ${sideSheetBorder}`}>
-              <div className="side-sheet-header-content">
-                <h2 className={`book-title ${getPrimaryTextColor()}`}>
+            <div
+              className={`info-sidesheet-header ${isDarkMode ? "dark" : ""}`}
+            >
+              <div className="info-sidesheet-header-content">
+                <h2 className={`book-title ${isDarkMode ? "dark" : ""}`}>
                   {bookName}
                 </h2>
                 <div className="book-meta">
-                  <span className={`author ${getTextColor()}`}>
+                  <span className={`author ${isDarkMode ? "dark" : ""}`}>
                     <FaUser className="meta-icon" />
                     {authorName}
                   </span>
-                  <span className={`year ${getTextColor()}`}>
+                  <span className={`year ${isDarkMode ? "dark" : ""}`}>
                     <FaCalendarAlt className="meta-icon" />
                     {launchYear}
                   </span>
-                  <span className={`language ${getTextColor()}`}>
+                  <span className={`language ${isDarkMode ? "dark" : ""}`}>
                     <FaLanguage className="meta-icon" />
                     {language}
                   </span>
@@ -277,7 +283,7 @@ const SideSheet_Desktop = ({
             </div>
 
             {/* Section Navigator */}
-            <div className={`side-sheet-nav ${sideSheetBorder}`}>
+            <div className={`info-sidesheet-nav ${isDarkMode ? "dark" : ""}`}>
               <div className="nav-scroll">
                 {sectionData.map((section) => (
                   <button
@@ -293,37 +299,41 @@ const SideSheet_Desktop = ({
             </div>
 
             {/* Content */}
-            <div className="side-sheet-content">
+            <div className="info-sidesheet-content">
               {/* Section 1: Overview */}
               <div
                 ref={(el) => {
                   sectionRefs.current.overview = el;
                 }}
-                className="side-sheet-section"
+                className="info-sidesheet-section"
                 id="section-overview"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3 className={`section-title ${isDarkMode ? "dark" : ""}`}>
                     <FaInfoCircle className="section-icon" />
                     Overview
                   </h3>
                 </div>
 
                 {/* Rating */}
-                <div className="side-sheet-rating">
+                <div className="info-sidesheet-rating">
                   <div className="rating-stars">{renderStars()}</div>
                   <div className="rating-info">
-                    <span className={`rating-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`rating-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {rating.toFixed(1)}
                     </span>
-                    <span className={`rating-count ${getTextColor()}`}>
+                    <span
+                      className={`rating-count ${isDarkMode ? "dark" : ""}`}
+                    >
                       ({totalReviews} reviews)
                     </span>
                   </div>
                 </div>
 
                 {/* Genres */}
-                <div className="side-sheet-genres">
+                <div className="info-sidesheet-genres">
                   {genres.map((genre, index) => (
                     <span
                       key={index}
@@ -337,12 +347,12 @@ const SideSheet_Desktop = ({
 
                 {/* Description */}
                 <div
-                  className={`side-sheet-description ${isExpanded ? "expanded" : ""}`}
+                  className={`info-sidesheet-description ${isExpanded ? "expanded" : ""}`}
                 >
-                  <p className={`${getTextColor()}`}>{description}</p>
+                  <p className={isDarkMode ? "dark" : ""}>{description}</p>
                   {description.length > 150 && (
                     <button
-                      className={`read-more-btn ${getTextColor()}`}
+                      className={`read-more-btn ${isDarkMode ? "dark" : ""}`}
                       onClick={() => setIsExpanded(!isExpanded)}
                     >
                       {isExpanded ? "Show less" : "Read more"}
@@ -356,11 +366,11 @@ const SideSheet_Desktop = ({
                 ref={(el) => {
                   sectionRefs.current.details = el;
                 }}
-                className="side-sheet-section"
+                className="info-sidesheet-section"
                 id="section-details"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3 className={`section-title ${isDarkMode ? "dark" : ""}`}>
                     <FaBook className="section-icon" />
                     Book Details
                   </h3>
@@ -368,64 +378,92 @@ const SideSheet_Desktop = ({
 
                 <div className="details-grid">
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Author
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {authorName}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Published
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {launchYear}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Pages
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {pageCount}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Language
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {language}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       ISBN
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       978-0-7432-7356-5
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Genre
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {genres.join(", ")}
                     </span>
                   </div>
                 </div>
 
                 {/* Reading Progress */}
-                <div className="side-sheet-progress">
+                <div
+                  className={`info-sidesheet-progress ${isDarkMode ? "dark" : ""}`}
+                >
                   <div className="progress-header">
-                    <span className={`progress-label ${getTextColor()}`}>
+                    <span
+                      className={`progress-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       <FaBookOpen className="progress-icon" />
                       Reading Progress
                     </span>
                     <span
-                      className={`progress-percentage ${getPrimaryTextColor()}`}
+                      className={`progress-percentage ${isDarkMode ? "dark" : ""}`}
                     >
                       {readingProgress}%
                     </span>
@@ -447,17 +485,17 @@ const SideSheet_Desktop = ({
                 ref={(el) => {
                   sectionRefs.current.stats = el;
                 }}
-                className="side-sheet-section"
+                className="info-sidesheet-section"
                 id="section-stats"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3 className={`section-title ${isDarkMode ? "dark" : ""}`}>
                     <FaChartBar className="section-icon" />
                     Statistics
                   </h3>
                 </div>
 
-                <div className="side-sheet-stats-grid">
+                <div className="info-sidesheet-stats-grid">
                   {displayStats.map((stat) => (
                     <div key={stat.id} className="stat-card">
                       <div
@@ -473,11 +511,13 @@ const SideSheet_Desktop = ({
                       </div>
                       <div className="stat-info">
                         <span
-                          className={`stat-number ${getPrimaryTextColor()}`}
+                          className={`stat-number ${isDarkMode ? "dark" : ""}`}
                         >
                           {stat.count}
                         </span>
-                        <span className={`stat-label ${getTextColor()}`}>
+                        <span
+                          className={`stat-label ${isDarkMode ? "dark" : ""}`}
+                        >
                           {stat.label}
                         </span>
                       </div>
@@ -485,16 +525,18 @@ const SideSheet_Desktop = ({
                   ))}
                 </div>
 
-                <div className={`side-sheet-stats ${sideSheetBorder}`}>
+                <div
+                  className={`info-sidesheet-stats ${isDarkMode ? "dark" : ""}`}
+                >
                   <div className="stat-item">
                     <FaHeart
                       className="stat-icon"
                       style={{ color: "#EF4444" }}
                     />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {likeCount}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Likes
                     </span>
                   </div>
@@ -504,20 +546,20 @@ const SideSheet_Desktop = ({
                       className="stat-icon"
                       style={{ color: "#3B82F6" }}
                     />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {shareCount}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Shares
                     </span>
                   </div>
                   <div className={`stat-divider ${isDarkMode ? "dark" : ""}`} />
                   <div className="stat-item">
                     <FaEye className="stat-icon" style={{ color: "#8B5CF6" }} />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {totalReviews * 10}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Views
                     </span>
                   </div>
@@ -527,10 +569,10 @@ const SideSheet_Desktop = ({
                       className="stat-icon"
                       style={{ color: "#F59E0B" }}
                     />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {pageCount}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Pages
                     </span>
                   </div>
@@ -542,21 +584,21 @@ const SideSheet_Desktop = ({
                 ref={(el) => {
                   sectionRefs.current.actions = el;
                 }}
-                className="side-sheet-section"
+                className="info-sidesheet-section"
                 id="section-actions"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3 className={`section-title ${isDarkMode ? "dark" : ""}`}>
                     <FaList className="section-icon" />
                     Actions
                   </h3>
                 </div>
 
-                <div className="side-sheet-actions">
+                <div className="info-sidesheet-actions">
                   {displayActions.map((action) => (
                     <button
                       key={action.id}
-                      className={`side-sheet-action ${isDarkMode ? "dark" : ""}`}
+                      className={`info-sidesheet-action ${isDarkMode ? "dark" : ""}`}
                       onClick={action.onClick}
                       style={{ "--action-color": action.color }}
                     >
@@ -573,12 +615,12 @@ const SideSheet_Desktop = ({
                       </div>
                       <div className="action-content">
                         <span
-                          className={`action-label ${getPrimaryTextColor()}`}
+                          className={`action-label ${isDarkMode ? "dark" : ""}`}
                         >
                           {action.label}
                         </span>
                         <span
-                          className={`action-description ${getTextColor()}`}
+                          className={`action-description ${isDarkMode ? "dark" : ""}`}
                         >
                           {action.description}
                         </span>
@@ -592,7 +634,7 @@ const SideSheet_Desktop = ({
                   ))}
                 </div>
 
-                <div className="side-sheet-quick-actions">
+                <div className="info-sidesheet-quick-actions">
                   <button
                     className={`quick-action-btn ${isDarkMode ? "dark" : ""}`}
                     onClick={onBookmarkToggle}
@@ -624,7 +666,9 @@ const SideSheet_Desktop = ({
             </div>
 
             {/* Footer */}
-            <div className="side-sheet-footer">
+            <div
+              className={`info-sidesheet-footer ${isDarkMode ? "dark" : ""}`}
+            >
               <button
                 className={`footer-btn close-footer-btn ${isDarkMode ? "dark" : ""}`}
                 onClick={onClose}
@@ -659,4 +703,4 @@ const FaCheckCircle = () => (
   </svg>
 );
 
-export default SideSheet_Desktop;
+export default Info_SideSheet_Desktop;

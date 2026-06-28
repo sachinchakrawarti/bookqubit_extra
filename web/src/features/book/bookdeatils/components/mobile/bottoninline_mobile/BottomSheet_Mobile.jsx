@@ -80,6 +80,18 @@ const BottomSheet_Mobile = ({
     themeName === "midnight" ||
     themeName === "cyberpunk";
 
+  // Get theme-based colors as actual CSS values
+  const getBgColor = () =>
+    theme.background?.card || (isDarkMode ? "#1F2937" : "#FFFFFF");
+  const getBorderColor = () =>
+    theme.border?.default || (isDarkMode ? "#374151" : "#E5E7EB");
+  const getTextColor = () =>
+    theme.textColors?.secondary || (isDarkMode ? "#9CA3AF" : "#6B7280");
+  const getPrimaryTextColor = () =>
+    theme.textColors?.primary || (isDarkMode ? "#F9FAFB" : "#111827");
+  const getSectionBg = () =>
+    theme.background?.section || (isDarkMode ? "#111827" : "#F9FAFB");
+
   // Define sections
   const sectionData = [
     { id: "overview", label: "Overview", icon: <FaInfoCircle /> },
@@ -132,23 +144,6 @@ const BottomSheet_Mobile = ({
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
-
-  // Get theme-based colors
-  const getBgColor = () =>
-    theme.background?.card || (isDarkMode ? "bg-gray-800" : "bg-white");
-  const getBorderColor = () =>
-    theme.border?.default ||
-    (isDarkMode ? "border-gray-700" : "border-gray-200");
-  const getTextColor = () =>
-    theme.textColors?.secondary ||
-    (isDarkMode ? "text-gray-400" : "text-gray-600");
-  const getPrimaryTextColor = () =>
-    theme.textColors?.primary || (isDarkMode ? "text-white" : "text-gray-900");
-  const getSectionBg = () =>
-    theme.background?.section || (isDarkMode ? "bg-gray-900" : "bg-white");
-
-  const bottomSheetBg = getSectionBg();
-  const bottomSheetBorder = getBorderColor();
 
   // Reading progress (mock data)
   const readingProgress = 65;
@@ -277,7 +272,11 @@ const BottomSheet_Mobile = ({
           {/* Sheet */}
           <motion.div
             ref={contentRef}
-            className={`bottom-sheet-mobile ${bottomSheetBg} ${bottomSheetBorder} ${className}`}
+            className={`bottom-sheet-mobile ${className}`}
+            style={{
+              background: getBgColor(),
+              borderColor: getBorderColor(),
+            }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
@@ -299,7 +298,9 @@ const BottomSheet_Mobile = ({
             </div>
 
             {/* Section Navigator */}
-            <div className={`bottom-sheet-mobile-nav ${bottomSheetBorder}`}>
+            <div
+              className={`bottom-sheet-mobile-nav ${isDarkMode ? "dark" : ""}`}
+            >
               <div className="nav-scroll">
                 {sectionData.map((section) => (
                   <button
@@ -325,7 +326,10 @@ const BottomSheet_Mobile = ({
                 id="section-overview"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3
+                    className={`section-title ${isDarkMode ? "dark" : ""}`}
+                    style={{ color: getPrimaryTextColor() }}
+                  >
                     <FaInfoCircle className="section-icon" />
                     Overview
                   </h3>
@@ -333,22 +337,22 @@ const BottomSheet_Mobile = ({
 
                 {/* Header */}
                 <div
-                  className={`bottom-sheet-mobile-header ${bottomSheetBorder}`}
+                  className={`bottom-sheet-mobile-header ${isDarkMode ? "dark" : ""}`}
                 >
                   <div className="bottom-sheet-mobile-header-content">
-                    <h2 className={`book-title ${getPrimaryTextColor()}`}>
+                    <h2 className={`book-title ${isDarkMode ? "dark" : ""}`}>
                       {bookName}
                     </h2>
                     <div className="book-meta">
-                      <span className={`author ${getTextColor()}`}>
+                      <span className={`author ${isDarkMode ? "dark" : ""}`}>
                         <FaUser className="meta-icon" />
                         {authorName}
                       </span>
-                      <span className={`year ${getTextColor()}`}>
+                      <span className={`year ${isDarkMode ? "dark" : ""}`}>
                         <FaCalendarAlt className="meta-icon" />
                         {launchYear}
                       </span>
-                      <span className={`language ${getTextColor()}`}>
+                      <span className={`language ${isDarkMode ? "dark" : ""}`}>
                         <FaLanguage className="meta-icon" />
                         {language}
                       </span>
@@ -367,10 +371,14 @@ const BottomSheet_Mobile = ({
                 <div className="bottom-sheet-mobile-rating">
                   <div className="rating-stars">{renderStars()}</div>
                   <div className="rating-info">
-                    <span className={`rating-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`rating-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {rating.toFixed(1)}
                     </span>
-                    <span className={`rating-count ${getTextColor()}`}>
+                    <span
+                      className={`rating-count ${isDarkMode ? "dark" : ""}`}
+                    >
                       ({totalReviews} reviews)
                     </span>
                   </div>
@@ -393,10 +401,10 @@ const BottomSheet_Mobile = ({
                 <div
                   className={`bottom-sheet-mobile-description ${isExpanded ? "expanded" : ""}`}
                 >
-                  <p className={`${getTextColor()}`}>{description}</p>
+                  <p className={isDarkMode ? "dark" : ""}>{description}</p>
                   {description.length > 150 && (
                     <button
-                      className={`read-more-btn ${getTextColor()}`}
+                      className={`read-more-btn ${isDarkMode ? "dark" : ""}`}
                       onClick={() => setIsExpanded(!isExpanded)}
                     >
                       {isExpanded ? "Show less" : "Read more"}
@@ -414,7 +422,10 @@ const BottomSheet_Mobile = ({
                 id="section-details"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3
+                    className={`section-title ${isDarkMode ? "dark" : ""}`}
+                    style={{ color: getPrimaryTextColor() }}
+                  >
                     <FaBook className="section-icon" />
                     Book Details
                   </h3>
@@ -422,64 +433,92 @@ const BottomSheet_Mobile = ({
 
                 <div className="details-grid">
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Author
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {authorName}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Published
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {launchYear}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Pages
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {pageCount}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Language
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {language}
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       ISBN
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       978-0-7432-7356-5
                     </span>
                   </div>
                   <div className="detail-item">
-                    <span className={`detail-label ${getTextColor()}`}>
+                    <span
+                      className={`detail-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       Genre
                     </span>
-                    <span className={`detail-value ${getPrimaryTextColor()}`}>
+                    <span
+                      className={`detail-value ${isDarkMode ? "dark" : ""}`}
+                    >
                       {genres.join(", ")}
                     </span>
                   </div>
                 </div>
 
                 {/* Reading Progress */}
-                <div className="bottom-sheet-mobile-progress">
+                <div
+                  className={`bottom-sheet-mobile-progress ${isDarkMode ? "dark" : ""}`}
+                >
                   <div className="progress-header">
-                    <span className={`progress-label ${getTextColor()}`}>
+                    <span
+                      className={`progress-label ${isDarkMode ? "dark" : ""}`}
+                    >
                       <FaBookOpen className="progress-icon" />
                       Reading Progress
                     </span>
                     <span
-                      className={`progress-percentage ${getPrimaryTextColor()}`}
+                      className={`progress-percentage ${isDarkMode ? "dark" : ""}`}
                     >
                       {readingProgress}%
                     </span>
@@ -505,7 +544,10 @@ const BottomSheet_Mobile = ({
                 id="section-stats"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3
+                    className={`section-title ${isDarkMode ? "dark" : ""}`}
+                    style={{ color: getPrimaryTextColor() }}
+                  >
                     <FaChartBar className="section-icon" />
                     Statistics
                   </h3>
@@ -528,11 +570,13 @@ const BottomSheet_Mobile = ({
                       </div>
                       <div className="stat-info">
                         <span
-                          className={`stat-number ${getPrimaryTextColor()}`}
+                          className={`stat-number ${isDarkMode ? "dark" : ""}`}
                         >
                           {stat.count}
                         </span>
-                        <span className={`stat-label ${getTextColor()}`}>
+                        <span
+                          className={`stat-label ${isDarkMode ? "dark" : ""}`}
+                        >
                           {stat.label}
                         </span>
                       </div>
@@ -542,17 +586,17 @@ const BottomSheet_Mobile = ({
 
                 {/* Quick Stats */}
                 <div
-                  className={`bottom-sheet-mobile-stats ${bottomSheetBorder}`}
+                  className={`bottom-sheet-mobile-stats ${isDarkMode ? "dark" : ""}`}
                 >
                   <div className="stat-item">
                     <FaHeart
                       className="stat-icon"
                       style={{ color: "#EF4444" }}
                     />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {likeCount}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Likes
                     </span>
                   </div>
@@ -562,20 +606,20 @@ const BottomSheet_Mobile = ({
                       className="stat-icon"
                       style={{ color: "#3B82F6" }}
                     />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {shareCount}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Shares
                     </span>
                   </div>
                   <div className={`stat-divider ${isDarkMode ? "dark" : ""}`} />
                   <div className="stat-item">
                     <FaEye className="stat-icon" style={{ color: "#8B5CF6" }} />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {totalReviews * 10}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Views
                     </span>
                   </div>
@@ -585,10 +629,10 @@ const BottomSheet_Mobile = ({
                       className="stat-icon"
                       style={{ color: "#F59E0B" }}
                     />
-                    <span className={`stat-value ${getPrimaryTextColor()}`}>
+                    <span className={`stat-value ${isDarkMode ? "dark" : ""}`}>
                       {pageCount}
                     </span>
-                    <span className={`stat-label ${getTextColor()}`}>
+                    <span className={`stat-label ${isDarkMode ? "dark" : ""}`}>
                       Pages
                     </span>
                   </div>
@@ -604,7 +648,10 @@ const BottomSheet_Mobile = ({
                 id="section-actions"
               >
                 <div className="section-header">
-                  <h3 className={`section-title ${getPrimaryTextColor()}`}>
+                  <h3
+                    className={`section-title ${isDarkMode ? "dark" : ""}`}
+                    style={{ color: getPrimaryTextColor() }}
+                  >
                     <FaList className="section-icon" />
                     Actions
                   </h3>
@@ -631,12 +678,12 @@ const BottomSheet_Mobile = ({
                       </div>
                       <div className="action-content">
                         <span
-                          className={`action-label ${getPrimaryTextColor()}`}
+                          className={`action-label ${isDarkMode ? "dark" : ""}`}
                         >
                           {action.label}
                         </span>
                         <span
-                          className={`action-description ${getTextColor()}`}
+                          className={`action-description ${isDarkMode ? "dark" : ""}`}
                         >
                           {action.description}
                         </span>
@@ -654,36 +701,28 @@ const BottomSheet_Mobile = ({
                 <div className="bottom-sheet-mobile-quick-actions">
                   <button
                     className={`quick-action-btn ${isDarkMode ? "dark" : ""}`}
-                    onClick={() => {
-                      onBookmarkToggle?.();
-                    }}
+                    onClick={onBookmarkToggle}
                   >
                     {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
                     <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
                   </button>
                   <button
                     className={`quick-action-btn ${isDarkMode ? "dark" : ""}`}
-                    onClick={() => {
-                      onLike?.();
-                    }}
+                    onClick={onLike}
                   >
                     <FaHeart />
                     <span>Like</span>
                   </button>
                   <button
                     className={`quick-action-btn ${isDarkMode ? "dark" : ""}`}
-                    onClick={() => {
-                      // Add to reading list
-                    }}
+                    onClick={() => {}}
                   >
                     <FaBookOpen />
                     <span>Read</span>
                   </button>
                   <button
                     className={`quick-action-btn ${isDarkMode ? "dark" : ""}`}
-                    onClick={() => {
-                      // Add to wishlist
-                    }}
+                    onClick={() => {}}
                   >
                     <FaStar />
                     <span>Wishlist</span>
@@ -693,7 +732,9 @@ const BottomSheet_Mobile = ({
             </div>
 
             {/* Footer */}
-            <div className="bottom-sheet-mobile-footer">
+            <div
+              className={`bottom-sheet-mobile-footer ${isDarkMode ? "dark" : ""}`}
+            >
               <button
                 className={`footer-btn close-footer-btn ${isDarkMode ? "dark" : ""}`}
                 onClick={onClose}
@@ -701,13 +742,11 @@ const BottomSheet_Mobile = ({
                 Close
               </button>
               <button
-                className={`footer-btn action-footer-btn`}
+                className="footer-btn action-footer-btn"
                 style={{
                   background: `linear-gradient(135deg, ${theme.colors?.primary || "#6366F1"}, ${theme.colors?.secondary || "#8B5CF6"})`,
                 }}
-                onClick={() => {
-                  onClose();
-                }}
+                onClick={onClose}
               >
                 View Full Details
               </button>

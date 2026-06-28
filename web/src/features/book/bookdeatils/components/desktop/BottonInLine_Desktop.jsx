@@ -1,19 +1,10 @@
 "use client";
 
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   FaHeart,
   FaRegHeart,
   FaShare,
-  FaRobot,
-  FaFlag,
-  FaInfoCircle,
-  FaLink,
-  FaBook,
-  FaBookOpen,
-  FaUsers,
-  FaChartBar,
-  FaList,
   FaPlus,
   FaCheck,
   FaFileAlt,
@@ -23,6 +14,7 @@ import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useUserInteractions } from "@/shared/buttons";
 import Summary_SideSheet_Desktop from "./Summary_SideSheet_Desktop";
+import Info_SideSheet_Desktop from "./Info_SideSheet_Desktop";
 import MyLibrary_SideSheet_Desktop from "./MyLibrary_SideSheet_Desktop";
 import "./BottonInLine_Desktop.css";
 
@@ -58,15 +50,11 @@ const BottonInLine_Desktop = ({
   const [isLiked, setIsLiked] = useState(initialLiked);
   const [isInLibrary, setIsInLibrary] = useState(initialInLibrary);
   const [isSummarySheetOpen, setIsSummarySheetOpen] = useState(false);
+  const [isInfoSheetOpen, setIsInfoSheetOpen] = useState(false);
   const [isMyLibraryOpen, setIsMyLibraryOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(null);
   const [likeCount, setLikeCount] = useState(42);
   const [shareCount, setShareCount] = useState(12);
-  const [readingStats, setReadingStats] = useState({
-    reading: 0,
-    markedRead: 0,
-    currentlyReading: 0,
-  });
 
   // Get user interactions - with error handling
   let userInteractions = null;
@@ -85,25 +73,12 @@ const BottonInLine_Desktop = ({
           typeof userInteractions.getCounts === "function"
         ) {
           const counts = userInteractions.getCounts();
-          setReadingStats({
-            reading: counts?.reading || 0,
-            markedRead: counts?.markedRead || 0,
-            currentlyReading: counts?.currentlyReading || 0,
-          });
+          // Reading stats are handled inside Info_SideSheet_Desktop
         } else {
-          setReadingStats({
-            reading: 0,
-            markedRead: 0,
-            currentlyReading: 0,
-          });
+          // Reading stats are handled inside Info_SideSheet_Desktop
         }
       } catch (error) {
         console.warn("Failed to load reading stats:", error);
-        setReadingStats({
-          reading: 0,
-          markedRead: 0,
-          currentlyReading: 0,
-        });
       }
     };
 
@@ -136,6 +111,7 @@ const BottonInLine_Desktop = ({
   const handleLibraryToggle = useCallback(() => {
     setIsMyLibraryOpen(true);
     setIsSummarySheetOpen(false);
+    setIsInfoSheetOpen(false);
   }, []);
 
   const handleAddToLibrary = useCallback(
@@ -175,130 +151,6 @@ const BottonInLine_Desktop = ({
     }
   }, [bookName, authorName, onShare]);
 
-  const handleAskAI = useCallback(() => {
-    setIsSummarySheetOpen(false);
-    onAskAI?.();
-  }, [onAskAI]);
-
-  const handleReport = useCallback(() => {
-    setIsSummarySheetOpen(false);
-    onReport?.();
-  }, [onReport]);
-
-  const handleCopyLink = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setShowTooltip("link-copied");
-      setTimeout(() => setShowTooltip(null), 2000);
-      setIsSummarySheetOpen(false);
-    } catch (error) {
-      console.error("Copy link failed:", error);
-    }
-  }, []);
-
-  // Summary sheet actions (for the menu)
-  const summarySheetActions = useMemo(
-    () => [
-      {
-        id: "ask-ai",
-        icon: <FaRobot />,
-        label: t("book.ask_ai") || "Ask AI",
-        description:
-          t("book.ask_ai_description") ||
-          "Get AI-powered insights about this book",
-        color: theme.colors?.ai || "#8B5CF6",
-        onClick: handleAskAI,
-      },
-      {
-        id: "report",
-        icon: <FaFlag />,
-        label: t("book.report") || "Report",
-        description:
-          t("book.report_description") || "Report inappropriate content",
-        color: theme.colors?.danger || "#EF4444",
-        onClick: handleReport,
-      },
-      {
-        id: "details",
-        icon: <FaInfoCircle />,
-        label: t("book.details") || "Book Details",
-        description:
-          t("book.details_description") || "View complete book information",
-        color: theme.colors?.info || "#3B82F6",
-        onClick: () => {
-          setIsSummarySheetOpen(false);
-        },
-      },
-      {
-        id: "copy-link",
-        icon: <FaLink />,
-        label: t("book.copy_link") || "Copy Link",
-        description:
-          t("book.copy_link_description") || "Copy book URL to clipboard",
-        color: theme.colors?.success || "#10B981",
-        onClick: handleCopyLink,
-      },
-    ],
-    [handleAskAI, handleReport, handleCopyLink, t, theme],
-  );
-
-  // Reading stats items for summary sheet
-  const readingStatItems = useMemo(
-    () => [
-      {
-        id: "reading",
-        icon: <FaBookOpen />,
-        label: t("book.reading") || "Reading",
-        count: readingStats.reading || 0,
-        color: theme.colors?.info || "#3B82F6",
-      },
-      {
-        id: "marked-read",
-        icon: <FaBook />,
-        label: t("book.marked_read") || "Marked Read",
-        count: readingStats.markedRead || 0,
-        color: theme.colors?.success || "#10B981",
-      },
-      {
-        id: "currently-reading",
-        icon: <FaUsers />,
-        label: t("book.currently_reading") || "Currently Reading",
-        count: readingStats.currentlyReading || 0,
-        color: theme.colors?.warning || "#F59E0B",
-      },
-    ],
-    [readingStats, theme, t],
-  );
-
-  // Get theme-based colors with fallbacks
-  const getBgColor = () => {
-    return theme.background?.card || (isDarkMode ? "#1F2937" : "#FFFFFF");
-  };
-
-  const getBorderColor = () => {
-    return theme.border?.default || (isDarkMode ? "#374151" : "#E5E7EB");
-  };
-
-  const getTextColor = () => {
-    return theme.textColors?.secondary || (isDarkMode ? "#9CA3AF" : "#6B7280");
-  };
-
-  const getHoverBg = () => {
-    return theme.background?.hover || (isDarkMode ? "#374151" : "#F3F4F6");
-  };
-
-  const getLikeColor = () => {
-    return theme.iconColors?.like || "#EF4444";
-  };
-
-  const getLibraryColor = () => {
-    return theme.iconColors?.library || "#6366F1";
-  };
-
-  const getShadow = () => {
-    return theme.shadow?.small || "0 4px 6px rgba(0,0,0,0.1)";
-  };
-
   // If no bookId, don't render
   if (!bookId) {
     return null;
@@ -306,15 +158,8 @@ const BottonInLine_Desktop = ({
 
   return (
     <>
-      {/* Desktop Action Bar - Floating on the side */}
-      <div
-        className={`book-action-bar-desktop ${className}`}
-        style={{
-          background: getBgColor(),
-          borderColor: getBorderColor(),
-          boxShadow: getShadow(),
-        }}
-      >
+      {/* Desktop Action Bar - Inside card */}
+      <div className={`book-action-bar-desktop ${className}`}>
         {/* Like Button */}
         <button
           className={`action-btn-desktop like-btn-desktop ${isLiked ? "liked" : ""}`}
@@ -322,7 +167,7 @@ const BottonInLine_Desktop = ({
           aria-label={
             isLiked ? t("book.unlike") || "Unlike" : t("book.like") || "Like"
           }
-          style={isLiked ? { color: getLikeColor() } : {}}
+          style={isLiked ? { color: "#EF4444" } : {}}
         >
           {isLiked ? (
             <FaHeart className="icon" />
@@ -331,7 +176,7 @@ const BottonInLine_Desktop = ({
           )}
           <span
             className={`count ${isLiked ? "liked-text" : ""}`}
-            style={isLiked ? { color: getLikeColor() } : {}}
+            style={isLiked ? { color: "#EF4444" } : {}}
           >
             {likeCount}
           </span>
@@ -351,10 +196,13 @@ const BottonInLine_Desktop = ({
           )}
         </button>
 
-        {/* Summary Button */}
+        {/* Summary Button - Opens Summary side sheet from right */}
         <button
           className="action-btn-desktop summary-btn-desktop"
-          onClick={() => setIsSummarySheetOpen(true)}
+          onClick={() => {
+            setIsSummarySheetOpen(true);
+            setIsInfoSheetOpen(false);
+          }}
           aria-label={t("book.summary") || "View Summary"}
         >
           <FaFileAlt className="icon" />
@@ -372,7 +220,7 @@ const BottonInLine_Desktop = ({
               ? t("book.in_library") || "In Library"
               : t("book.add_to_library") || "Add to Library"
           }
-          style={isInLibrary ? { color: getLibraryColor() } : {}}
+          style={isInLibrary ? { color: "#6366F1" } : {}}
         >
           {isInLibrary ? (
             <FaCheck className="icon" />
@@ -386,17 +234,20 @@ const BottonInLine_Desktop = ({
           )}
         </button>
 
-        {/* Menu Button */}
+        {/* Menu Button - Opens Info side sheet from right */}
         <button
           className="action-btn-desktop menu-btn-desktop"
-          onClick={() => setIsSummarySheetOpen(true)}
+          onClick={() => {
+            setIsInfoSheetOpen(true);
+            setIsSummarySheetOpen(false);
+          }}
           aria-label={t("book.more_options") || "More options"}
         >
           <RiMenuAddLine className="icon" />
         </button>
       </div>
 
-      {/* Summary Side Sheet Component */}
+      {/* Summary Side Sheet - Slides from RIGHT side of screen */}
       <Summary_SideSheet_Desktop
         isOpen={isSummarySheetOpen}
         onClose={() => setIsSummarySheetOpen(false)}
@@ -420,7 +271,27 @@ const BottonInLine_Desktop = ({
         onAddToLibrary={handleLibraryToggle}
       />
 
-      {/* My Library Component */}
+      {/* Info Side Sheet - Slides from RIGHT side of screen */}
+      <Info_SideSheet_Desktop
+        isOpen={isInfoSheetOpen}
+        onClose={() => setIsInfoSheetOpen(false)}
+        bookName={bookName}
+        authorName={authorName}
+        launchYear={launchYear}
+        likeCount={likeCount}
+        shareCount={shareCount}
+        isBookmarked={isInLibrary}
+        bookRating={4.5}
+        totalReviews={128}
+        pageCount={180}
+        language="English"
+        genres={["Fiction", "Classic", "Literary"]}
+        description="A story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan."
+        onBookmarkToggle={handleLibraryToggle}
+        onLike={handleLike}
+      />
+
+      {/* My Library Side Sheet - Slides from RIGHT side of screen */}
       <MyLibrary_SideSheet_Desktop
         isOpen={isMyLibraryOpen}
         onClose={() => setIsMyLibraryOpen(false)}

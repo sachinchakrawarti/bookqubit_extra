@@ -1,5 +1,3 @@
-// src/features/book/bookdeatils/bookdeatils.jsx
-
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
@@ -24,9 +22,8 @@ import BookNavigation from "@/features/book/bookdeatils/components/BookNavigatio
 import BookSEO from "@/features/book/bookdeatils/components/BookSEO";
 import BookSectionNavigator from "@/features/book/bookdeatils/components/BookSectionNavigator";
 
-// Import BottonInLine components (mobile and desktop)
-import BottonInLine_Mobile from "@/features/book/bookdeatils/components/mobile/bottoninline_mobile/BottonInLine_Mobile";
-import BottonInLine_Desktop from "@/features/book/bookdeatils/components/desktop/BottonInLine_Desktop";
+// Import unified ButtonInline component
+import { ButtonInline } from "@/shared/buttoninline";
 
 // Import dynamic tags components
 import {
@@ -370,26 +367,20 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
   // Handle Ask AI
   const handleAskAI = () => {
     console.log("Ask AI about:", book?.title);
-    // Implement AI chat functionality here
-    // Example: Open AI chat modal or navigate to AI chat page
   };
 
   // Handle Report
   const handleReport = () => {
     console.log("Report book:", book?.title);
-    // Implement report functionality here
-    // Example: Open report modal
   };
 
-  // Handle BottonInLine actions
-  const handleBottonLike = (liked) => {
+  // Handle ButtonInline actions
+  const handleButtonLike = (liked) => {
     console.log(`${liked ? "Liked" : "Unliked"}:`, book?.title);
-    // Update book state or make API call
   };
 
-  const handleBottonAddToLibrary = (shelf) => {
+  const handleButtonAddToLibrary = (shelf) => {
     console.log(`Added to library shelf "${shelf}":`, book?.title);
-    // Update book state or make API call
   };
 
   // Show loading state
@@ -437,11 +428,6 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
     themeName === "midnight" ||
     themeName === "cyberpunk";
 
-  // Determine which BottonInLine component to use based on device
-  const BottonInLineComponent = isMobile
-    ? BottonInLine_Mobile
-    : BottonInLine_Desktop;
-
   return (
     <>
       <BookSEO book={book} language={currentLanguage} />
@@ -486,27 +472,36 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
             <div className="lg:w-2/3 space-y-6">
               <BookInfo book={book} />
 
-              {/* BottonInLine - Responsive Action Bar with Like, Share, Summary, Library, Menu */}
+              {/* ButtonInline - Unified Action Bar */}
               <div
                 className={`flex ${isMobile ? "justify-center" : "justify-start"}`}
               >
-                <BottonInLineComponent
+                <ButtonInline
                   bookId={book.id}
                   bookName={book.title}
                   authorName={book.author}
                   launchYear={book.publicationYear || book.year || "N/A"}
+                  bookCover={book.imageUrl || null}
+                  bookRating={book.rating || 4.5}
+                  totalReviews={book.reviews || 128}
+                  pageCount={book.pages || 180}
+                  language={book.language || "English"}
+                  genres={book.genres || ["Fiction", "Classic"]}
+                  description={book.description || ""}
+                  summary={book.summary || ""}
                   initialLiked={book.userLiked || false}
                   initialInLibrary={book.userInLibrary || false}
-                  onLike={handleBottonLike}
-                  onAddToLibrary={handleBottonAddToLibrary}
+                  onLike={handleButtonLike}
+                  onAddToLibrary={handleButtonAddToLibrary}
                   onShare={handleShare}
                   onReport={handleReport}
                   onAskAI={handleAskAI}
                   className={isMobile ? "w-full sm:w-auto" : ""}
+                  variant="auto"
                 />
               </div>
 
-              {/* Book Actions - Get Book, Read Status, Wishlist (Summary removed) */}
+              {/* Book Actions - Get Book, Read Status, Wishlist */}
               <BookActions
                 book={book}
                 bookStatus={bookStatus}
@@ -581,7 +576,6 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
             id="section-comments"
             className="mb-16 scroll-mt-28"
           >
-            {/* Add comments component here */}
             <div className="text-center text-gray-500 dark:text-gray-400 py-8">
               <p>💬 Comments section coming soon</p>
             </div>

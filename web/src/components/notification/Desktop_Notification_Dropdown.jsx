@@ -39,7 +39,8 @@ const generateNotifications = () => [
     id: "2",
     type: "comment",
     title: "New comment on your post",
-    message: "Michael Chen commented: 'Great review! I totally agree with you.'",
+    message:
+      "Michael Chen commented: 'Great review! I totally agree with you.'",
     time: "1 hour ago",
     read: false,
     icon: <FaComment className="text-blue-500" />,
@@ -129,63 +130,64 @@ const NotificationDropdown = ({ user }) => {
   if (!user) return null;
 
   // Check if current language is RTL
-  const isRTL = ['ur', 'ar', 'he', 'fa', 'ps', 'sd'].includes(language);
+  const isRTL = ["ur", "ar", "he", "fa", "ps", "sd"].includes(language);
 
-  const isDarkMode = themeName === 'dark' || themeName === 'midnight' || themeName === 'cyberpunk';
+  const isDarkMode =
+    themeName === "dark" ||
+    themeName === "midnight" ||
+    themeName === "cyberpunk";
 
   // Calculate dropdown position to prevent going off-screen
   const calculatePosition = () => {
     if (!buttonRef.current || typeof window === "undefined") return {};
-    
+
     const buttonRect = buttonRef.current.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const dropdownWidth = 384; // w-96 = 384px
     const margin = 10;
-    
+
     let position = {};
-    
+
     if (isRTL) {
       // For RTL languages - align to the LEFT edge of button
       const dropdownLeft = buttonRect.left;
-      
+
       // Check if dropdown would go off the LEFT edge
       if (dropdownLeft - dropdownWidth < 0) {
         // If goes off left edge, align to left edge of viewport
         position.left = `${margin}px`;
-        position.right = 'auto';
-      } 
+        position.right = "auto";
+      }
       // Check if it would go off the RIGHT edge
       else if (buttonRect.left + dropdownWidth > viewportWidth) {
         position.right = `${margin}px`;
-        position.left = 'auto';
-      }
-      else {
+        position.left = "auto";
+      } else {
         // Normal RTL positioning - align to left of button
-        position.left = '0';
-        position.right = 'auto';
+        position.left = "0";
+        position.right = "auto";
       }
     } else {
       // For LTR languages - align to the RIGHT edge of button
       const dropdownRight = buttonRect.right;
-      
+
       // Check if dropdown would go off the RIGHT edge
       if (dropdownRight + dropdownWidth > viewportWidth) {
         // If goes off right edge, align to right edge of viewport
         position.right = `${margin}px`;
-        position.left = 'auto';
+        position.left = "auto";
       }
       // Check if it would go off the LEFT edge
       else if (buttonRect.left - dropdownWidth < 0) {
         position.left = `${margin}px`;
-        position.right = 'auto';
-      }
-      else {
+        position.right = "auto";
+      } else {
         // Normal LTR positioning - align to right of button
-        position.right = '0';
-        position.left = 'auto';
+        position.right = "0";
+        position.left = "auto";
       }
     }
-    
+
     return position;
   };
 
@@ -195,14 +197,14 @@ const NotificationDropdown = ({ user }) => {
       const updatePosition = () => {
         setDropdownPosition(calculatePosition());
       };
-      
+
       updatePosition();
-      window.addEventListener('resize', updatePosition);
-      window.addEventListener('scroll', updatePosition);
-      
+      window.addEventListener("resize", updatePosition);
+      window.addEventListener("scroll", updatePosition);
+
       return () => {
-        window.removeEventListener('resize', updatePosition);
-        window.removeEventListener('scroll', updatePosition);
+        window.removeEventListener("resize", updatePosition);
+        window.removeEventListener("scroll", updatePosition);
       };
     }
   }, [isOpen, isRTL, language]);
@@ -213,44 +215,98 @@ const NotificationDropdown = ({ user }) => {
     const loadNotifications = () => {
       const notifs = generateNotifications();
       setNotifications(notifs);
-      const unread = notifs.filter(n => !n.read).length;
+      const unread = notifs.filter((n) => !n.read).length;
       setUnreadCount(unread);
     };
     loadNotifications();
   }, []);
 
-  // Close dropdown when clicking outside
+  // ============================================================
+  // FIXED: Close dropdown when clicking outside
+  // ============================================================
   useEffect(() => {
+    // Only add listener if dropdown is open
+    if (!isOpen) return;
+
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      // Check if click is outside both dropdown and button
+      const isOutsideDropdown =
+        dropdownRef.current && !dropdownRef.current.contains(event.target);
+      const isOutsideButton =
+        buttonRef.current && !buttonRef.current.contains(event.target);
+
+      if (isOutsideDropdown && isOutsideButton) {
         setIsOpen(false);
       }
     };
+
+    // Use mousedown for better UX
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]); // Only re-run when isOpen changes
+
+  // ============================================================
+  // FIXED: Handle escape key
+  // ============================================================
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]); // Only re-run when isOpen changes
+
+  // ============================================================
+  // FIXED: Prevent body scroll when dropdown is open
+  // ============================================================
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  // ... rest of the component remains the same ...
 
   const markAsRead = (notificationId) => {
-    setNotifications(prev =>
-      prev.map(notif =>
-        notif.id === notificationId ? { ...notif, read: true } : notif
-      )
+    setNotifications((prev) =>
+      prev.map((notif) =>
+        notif.id === notificationId ? { ...notif, read: true } : notif,
+      ),
     );
-    setUnreadCount(prev => Math.max(0, prev - 1));
+    setUnreadCount((prev) => Math.max(0, prev - 1));
   };
 
   const markAllAsRead = () => {
-    setNotifications(prev =>
-      prev.map(notif => ({ ...notif, read: true }))
-    );
+    setNotifications((prev) => prev.map((notif) => ({ ...notif, read: true })));
     setUnreadCount(0);
   };
 
   const deleteNotification = (notificationId) => {
-    setNotifications(prev => prev.filter(notif => notif.id !== notificationId));
-    const wasUnread = notifications.find(n => n.id === notificationId)?.read === false;
+    setNotifications((prev) =>
+      prev.filter((notif) => notif.id !== notificationId),
+    );
+    const wasUnread =
+      notifications.find((n) => n.id === notificationId)?.read === false;
     if (wasUnread) {
-      setUnreadCount(prev => Math.max(0, prev - 1));
+      setUnreadCount((prev) => Math.max(0, prev - 1));
     }
   };
 
@@ -278,7 +334,7 @@ const NotificationDropdown = ({ user }) => {
     return icons[type] || <FaBell />;
   };
 
-  const filteredNotifications = notifications.filter(notif => {
+  const filteredNotifications = notifications.filter((notif) => {
     if (activeTab === "unread") return !notif.read;
     return true;
   });
@@ -300,7 +356,9 @@ const NotificationDropdown = ({ user }) => {
         aria-label="Notifications"
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <FaBell className={`text-xl ${isDarkMode ? "text-gray-300" : "text-gray-600"}`} />
+        <FaBell
+          className={`text-xl ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+        />
         {unreadCount > 0 && (
           <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center animate-pulse">
             {unreadCount > 9 ? "9+" : unreadCount}
@@ -313,21 +371,27 @@ const NotificationDropdown = ({ user }) => {
         <div
           className={`
             absolute mt-2 w-96 rounded-xl shadow-2xl z-50 overflow-hidden
-            ${theme.background?.section || (isDarkMode ? 'bg-gray-800' : 'bg-white')}
-            border ${theme.border?.default || (isDarkMode ? 'border-gray-700' : 'border-gray-200')}
+            ${theme.background?.section || (isDarkMode ? "bg-gray-800" : "bg-white")}
+            border ${theme.border?.default || (isDarkMode ? "border-gray-700" : "border-gray-200")}
           `}
-          style={{ 
+          style={{
             top: "100%",
-            ...dropdownPosition
+            ...dropdownPosition,
           }}
           dir={isRTL ? "rtl" : "ltr"}
         >
           {/* Header */}
-          <div className={`flex items-center justify-between px-4 py-3 border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-            <h3 className={`font-semibold ${theme.textColors?.primary || (isDarkMode ? 'text-white' : 'text-gray-900')}`}>
+          <div
+            className={`flex items-center justify-between px-4 py-3 border-b ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}
+          >
+            <h3
+              className={`font-semibold ${theme.textColors?.primary || (isDarkMode ? "text-white" : "text-gray-900")}`}
+            >
               {isRTL ? "اطلاعات" : "Notifications"}
               {notifications.length > 0 && (
-                <span className={`mr-2 text-xs ${theme.textColors?.secondary || 'text-gray-500'}`}>
+                <span
+                  className={`mr-2 text-xs ${theme.textColors?.secondary || "text-gray-500"}`}
+                >
                   ({notifications.length})
                 </span>
               )}
@@ -336,9 +400,9 @@ const NotificationDropdown = ({ user }) => {
               {unreadCount > 0 && (
                 <button
                   onClick={markAllAsRead}
-                  className={`text-xs ${theme.textColors?.highlight || 'text-sky-600'} hover:underline flex items-center gap-1`}
+                  className={`text-xs ${theme.textColors?.highlight || "text-sky-600"} hover:underline flex items-center gap-1`}
                 >
-                  <FaCheckDouble size={12} /> 
+                  <FaCheckDouble size={12} />
                   {isRTL ? "سبھی پڑھیں" : "Mark all read"}
                 </button>
               )}
@@ -346,13 +410,15 @@ const NotificationDropdown = ({ user }) => {
           </div>
 
           {/* Tabs */}
-          <div className={`flex border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+          <div
+            className={`flex border-b ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}
+          >
             <button
               onClick={() => setActiveTab("all")}
               className={`flex-1 py-2 text-sm font-medium transition-all ${
                 activeTab === "all"
-                  ? `${theme.textColors?.highlight || 'text-sky-600'} border-b-2 border-sky-600`
-                  : `${theme.textColors?.secondary || 'text-gray-500'} hover:${theme.textColors?.primary || 'text-gray-900'}`
+                  ? `${theme.textColors?.highlight || "text-sky-600"} border-b-2 border-sky-600`
+                  : `${theme.textColors?.secondary || "text-gray-500"} hover:${theme.textColors?.primary || "text-gray-900"}`
               }`}
             >
               {isRTL ? "سب" : "All"}
@@ -361,8 +427,8 @@ const NotificationDropdown = ({ user }) => {
               onClick={() => setActiveTab("unread")}
               className={`flex-1 py-2 text-sm font-medium transition-all ${
                 activeTab === "unread"
-                  ? `${theme.textColors?.highlight || 'text-sky-600'} border-b-2 border-sky-600`
-                  : `${theme.textColors?.secondary || 'text-gray-500'} hover:${theme.textColors?.primary || 'text-gray-900'}`
+                  ? `${theme.textColors?.highlight || "text-sky-600"} border-b-2 border-sky-600`
+                  : `${theme.textColors?.secondary || "text-gray-500"} hover:${theme.textColors?.primary || "text-gray-900"}`
               }`}
             >
               {isRTL ? "ناپڑھے" : "Unread"}
@@ -378,12 +444,19 @@ const NotificationDropdown = ({ user }) => {
           <div className="max-h-96 overflow-y-auto">
             {filteredNotifications.length === 0 ? (
               <div className="text-center py-12">
-                <FaBell className={`text-4xl mx-auto mb-3 ${theme.textColors?.secondary || 'text-gray-400'}`} />
-                <p className={`${theme.textColors?.secondary || 'text-gray-500'}`}>
-                  {activeTab === "unread" 
-                    ? (isRTL ? "کوئی نہیں پڑھی اطلاع نہیں" : "No unread notifications")
-                    : (isRTL ? "کوئی اطلاع نہیں" : "No notifications yet")
-                  }
+                <FaBell
+                  className={`text-4xl mx-auto mb-3 ${theme.textColors?.secondary || "text-gray-400"}`}
+                />
+                <p
+                  className={`${theme.textColors?.secondary || "text-gray-500"}`}
+                >
+                  {activeTab === "unread"
+                    ? isRTL
+                      ? "کوئی نہیں پڑھی اطلاع نہیں"
+                      : "No unread notifications"
+                    : isRTL
+                      ? "کوئی اطلاع نہیں"
+                      : "No notifications yet"}
                 </p>
               </div>
             ) : (
@@ -392,39 +465,47 @@ const NotificationDropdown = ({ user }) => {
                   key={notification.id}
                   className={`
                     relative group border-b last:border-b-0 transition-all hover:bg-opacity-50
-                    ${notification.read ? 'opacity-80' : ''}
-                    ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'}
-                    ${isDarkMode ? 'border-gray-700' : 'border-gray-100'}
+                    ${notification.read ? "opacity-80" : ""}
+                    ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-50"}
+                    ${isDarkMode ? "border-gray-700" : "border-gray-100"}
                   `}
                 >
                   <button
                     onClick={() => handleNotificationClick(notification)}
-                    className={`w-full text-left p-4 flex gap-3 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}
+                    className={`w-full text-left p-4 flex gap-3 ${isRTL ? "flex-row-reverse" : "flex-row"}`}
                   >
                     {/* Icon */}
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
                       {getTypeIcon(notification.type)}
                     </div>
-                    
+
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                      <div className={`flex items-center justify-between gap-2 mb-1 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <p className={`text-sm font-medium ${theme.textColors?.primary || (isDarkMode ? 'text-white' : 'text-gray-900')}`}>
+                      <div
+                        className={`flex items-center justify-between gap-2 mb-1 ${isRTL ? "flex-row-reverse" : "flex-row"}`}
+                      >
+                        <p
+                          className={`text-sm font-medium ${theme.textColors?.primary || (isDarkMode ? "text-white" : "text-gray-900")}`}
+                        >
                           {notification.title}
                         </p>
                         {!notification.read && (
                           <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                         )}
                       </div>
-                      <p className={`text-xs ${theme.textColors?.secondary || 'text-gray-500'} line-clamp-2`}>
+                      <p
+                        className={`text-xs ${theme.textColors?.secondary || "text-gray-500"} line-clamp-2`}
+                      >
                         {notification.message}
                       </p>
-                      <p className={`text-xs mt-1 ${theme.textColors?.secondary || 'text-gray-400'}`}>
+                      <p
+                        className={`text-xs mt-1 ${theme.textColors?.secondary || "text-gray-400"}`}
+                      >
                         {getTimeAgo(notification.time)}
                       </p>
                     </div>
                   </button>
-                  
+
                   {/* Delete button */}
                   <button
                     onClick={(e) => {
@@ -432,12 +513,14 @@ const NotificationDropdown = ({ user }) => {
                       deleteNotification(notification.id);
                     }}
                     className={`
-                      absolute ${isRTL ? 'left-2' : 'right-2'} top-1/2 -translate-y-1/2 p-1.5 rounded-full
+                      absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2 p-1.5 rounded-full
                       opacity-0 group-hover:opacity-100 transition-opacity
-                      ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'}
+                      ${isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-200"}
                     `}
                   >
-                    <FaTrash className={`text-xs ${theme.textColors?.secondary || 'text-gray-500'}`} />
+                    <FaTrash
+                      className={`text-xs ${theme.textColors?.secondary || "text-gray-500"}`}
+                    />
                   </button>
                 </div>
               ))
@@ -446,11 +529,13 @@ const NotificationDropdown = ({ user }) => {
 
           {/* Footer */}
           {notifications.length > 0 && (
-            <div className={`px-4 py-3 border-t text-center ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+            <div
+              className={`px-4 py-3 border-t text-center ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}
+            >
               <Link
                 href="/profile/notifications"
                 onClick={() => setIsOpen(false)}
-                className={`text-sm ${theme.textColors?.highlight || 'text-sky-600'} hover:underline`}
+                className={`text-sm ${theme.textColors?.highlight || "text-sky-600"} hover:underline`}
               >
                 {isRTL ? "تمام اطلاعات دیکھیں" : "View all notifications"}
               </Link>
@@ -458,23 +543,6 @@ const NotificationDropdown = ({ user }) => {
           )}
         </div>
       )}
-
-      {/* Animation styles */}
-      <style jsx>{`
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slide-down {
-          animation: slideDown 0.2s ease-out;
-        }
-      `}</style>
     </div>
   );
 };

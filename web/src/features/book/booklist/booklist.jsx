@@ -66,9 +66,30 @@ const BookList = () => {
     return getBooksByLanguage(currentLanguage);
   }, [currentLanguage]);
 
-  // State for search and display
+  // ============================================================
+  // VIEW TYPE - PERSIST IN LOCAL STORAGE + COMPACT DEFAULT
+  // ============================================================
+  const [viewType, setViewType] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("bookViewType");
+      return saved || "compact"; // Default to "compact"
+    }
+    return "compact";
+  });
+
+  // ============================================================
+  // SAVE VIEW TYPE TO LOCAL STORAGE WHEN CHANGED
+  // ============================================================
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("bookViewType", viewType);
+    }
+  }, [viewType]);
+
+  // ============================================================
+  // STATE
+  // ============================================================
   const [searchTerm, setSearchTerm] = useState("");
-  const [viewType, setViewType] = useState("grid");
   const [isMobile, setIsMobile] = useState(false);
 
   // State for filters
@@ -90,10 +111,7 @@ const BookList = () => {
     const checkScreenSize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      if (mobile) {
-        setViewType("grid");
-        setShowAdvancedControls(false);
-      }
+      // Don't force viewType change on mobile - let user choose
     };
 
     checkScreenSize();
@@ -321,7 +339,7 @@ const BookList = () => {
         return (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {currentBooks.map((book) => (
-              <BookSquareCard
+              <BookCompactCard
                 key={book.id}
                 book={book}
                 onTagClick={handleTagClick}

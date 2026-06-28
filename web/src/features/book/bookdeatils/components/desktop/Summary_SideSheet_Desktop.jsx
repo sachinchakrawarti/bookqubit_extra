@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 import {
   FaTimes,
   FaBookOpen,
@@ -55,11 +55,10 @@ const Summary_SideSheet_Desktop = ({
   className = "",
 }) => {
   const { theme, themeName } = useTheme();
-  const [activeTab, setActiveTab] = useState("summary"); // 'summary' or 'details'
+  const [activeTab, setActiveTab] = useState("summary");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  // Guard against undefined theme
   if (!theme) {
     return null;
   }
@@ -69,33 +68,22 @@ const Summary_SideSheet_Desktop = ({
     themeName === "midnight" ||
     themeName === "cyberpunk";
 
-  // Handle like
   const handleLike = useCallback(() => {
     setIsLiked(!isLiked);
     onLike?.();
   }, [isLiked, onLike]);
 
-  // Get theme-based colors
   const getBgColor = () =>
     theme.background?.card || (isDarkMode ? "#1F2937" : "#FFFFFF");
   const getTextColor = () =>
     theme.textColors?.primary || (isDarkMode ? "#F9FAFB" : "#111827");
-  const getSecondaryTextColor = () =>
-    theme.textColors?.secondary || (isDarkMode ? "#9CA3AF" : "#6B7280");
   const getBorderColor = () =>
     theme.border?.default || (isDarkMode ? "#374151" : "#E5E7EB");
-  const getSectionBg = () =>
-    theme.background?.section || (isDarkMode ? "#111827" : "#F9FAFB");
-  const getHoverBg = () =>
-    theme.background?.hover || (isDarkMode ? "#374151" : "#F3F4F6");
 
-  // Render stars
   const renderStars = () => {
     const stars = [];
-    const totalStars = 5;
     const rating = bookRating || 0;
-
-    for (let i = 1; i <= totalStars; i++) {
+    for (let i = 1; i <= 5; i++) {
       if (i <= Math.floor(rating)) {
         stars.push(<FaStar key={i} className="star filled" />);
       } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
@@ -107,7 +95,6 @@ const Summary_SideSheet_Desktop = ({
     return stars;
   };
 
-  // Details items
   const detailsItems = [
     { label: "Author", value: authorName, icon: <FaUser /> },
     { label: "Published", value: launchYear, icon: <FaCalendarAlt /> },
@@ -117,7 +104,6 @@ const Summary_SideSheet_Desktop = ({
     { label: "ISBN", value: "978-0-7432-7356-5", icon: <FaInfoCircle /> },
   ];
 
-  // Reading stats
   const readingStats = [
     { label: "Reading", count: 234, color: "#3B82F6" },
     { label: "Marked Read", count: 156, color: "#10B981" },
@@ -128,7 +114,6 @@ const Summary_SideSheet_Desktop = ({
     <AnimatePresence mode="wait">
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             className={`summary-sidesheet-backdrop ${isDarkMode ? "dark" : ""}`}
             initial={{ opacity: 0 }}
@@ -138,15 +123,11 @@ const Summary_SideSheet_Desktop = ({
             onClick={onClose}
           />
 
-          {/* Side Sheet */}
           <motion.div
-            className={`summary-sidesheet ${isDarkMode ? "dark" : ""}`}
+            className={`summary-sidesheet ${isDarkMode ? "dark" : ""} ${className}`}
             style={{
               background: getBgColor(),
               borderColor: getBorderColor(),
-              boxShadow: isDarkMode
-                ? "-10px 0 40px rgba(0,0,0,0.5)"
-                : "-10px 0 40px rgba(0,0,0,0.15)",
             }}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -180,7 +161,7 @@ const Summary_SideSheet_Desktop = ({
 
             {/* Content */}
             <div className="summary-sidesheet-content">
-              {/* Book Cover & Title */}
+              {/* Book Header */}
               <div className="book-header">
                 <div className="book-cover-wrapper">
                   <div className="book-cover">
@@ -278,7 +259,6 @@ const Summary_SideSheet_Desktop = ({
 
               {/* Tab Content */}
               <div className="tab-content">
-                {/* Summary Tab */}
                 {activeTab === "summary" && (
                   <motion.div
                     className="summary-content"
@@ -305,7 +285,6 @@ const Summary_SideSheet_Desktop = ({
                       </button>
                     )}
 
-                    {/* Key Themes */}
                     <div className="key-themes">
                       <h4
                         className={`themes-title ${isDarkMode ? "dark" : ""}`}
@@ -332,7 +311,6 @@ const Summary_SideSheet_Desktop = ({
                   </motion.div>
                 )}
 
-                {/* Details Tab */}
                 {activeTab === "details" && (
                   <motion.div
                     className="details-content"
@@ -341,7 +319,6 @@ const Summary_SideSheet_Desktop = ({
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {/* Book Details */}
                     <div className="details-grid">
                       {detailsItems.map((item, index) => (
                         <div
@@ -365,7 +342,6 @@ const Summary_SideSheet_Desktop = ({
                       ))}
                     </div>
 
-                    {/* Reading Stats */}
                     <div className="reading-stats">
                       <h4 className={`stats-title ${isDarkMode ? "dark" : ""}`}>
                         <FaChartBar className="stats-icon" />
@@ -396,7 +372,6 @@ const Summary_SideSheet_Desktop = ({
                       </div>
                     </div>
 
-                    {/* Description */}
                     <div className="book-description">
                       <h4
                         className={`description-title ${isDarkMode ? "dark" : ""}`}
