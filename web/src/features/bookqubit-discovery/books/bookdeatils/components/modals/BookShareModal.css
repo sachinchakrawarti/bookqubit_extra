@@ -1,0 +1,368 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/modals/BookShareModal.css */
+
+/* ============================================
+   BACKDROP
+   ============================================ */
+
+.book-share-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.book-share-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 1000;
+  max-width: 480px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.book-share-modal.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.book-share-modal::-webkit-scrollbar {
+  width: 4px;
+}
+
+.book-share-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.book-share-modal::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.dark .book-share-modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.book-share-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.book-share-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.book-share-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.book-share-modal-close:hover {
+  transform: scale(1.1);
+}
+
+/* ============================================
+   PREVIEW
+   ============================================ */
+
+.book-share-modal-preview {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.03);
+  margin-bottom: 1rem;
+}
+
+.dark .book-share-modal-preview {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.book-share-modal-preview-image {
+  width: 60px;
+  height: 80px;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.book-share-modal-preview-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.book-share-modal-preview-title {
+  font-size: 0.9375rem;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.book-share-modal-preview-author {
+  margin: 0;
+}
+
+/* ============================================
+   URL
+   ============================================ */
+
+.book-share-modal-url {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.book-share-modal-url-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  outline: none;
+  border: 1px solid #e5e7eb;
+  min-width: 0;
+}
+
+.dark .book-share-modal-url-input {
+  border-color: #374151;
+}
+
+.book-share-modal-url-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.book-share-modal-url-copy:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   QR CODE
+   ============================================ */
+
+.book-share-modal-qr {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.book-share-modal-qr-btn,
+.book-share-modal-download-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: transparent;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark .book-share-modal-qr-btn,
+.dark .book-share-modal-download-btn {
+  border-color: #374151;
+  color: #d1d5db;
+}
+
+.book-share-modal-qr-btn:hover,
+.book-share-modal-download-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.05);
+}
+
+.dark .book-share-modal-qr-btn:hover,
+.dark .book-share-modal-download-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   PLATFORMS
+   ============================================ */
+
+.book-share-modal-platforms-label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.book-share-modal-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.book-share-modal-platform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.book-share-modal-platform:hover {
+  transform: scale(1.05);
+}
+
+.book-share-modal-platform svg {
+  font-size: 1.25rem;
+}
+
+/* ============================================
+   NATIVE SHARE
+   ============================================ */
+
+.book-share-modal-native {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.book-share-modal-native:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .book-share-modal {
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  .book-share-modal-title {
+    font-size: 1rem;
+  }
+
+  .book-share-modal-platforms-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+
+  .book-share-modal-preview {
+    padding: 0.5rem;
+  }
+
+  .book-share-modal-preview-image {
+    width: 50px;
+    height: 65px;
+  }
+
+  .book-share-modal-preview-title {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-share-modal {
+    padding: 0.75rem;
+    max-width: 98%;
+  }
+
+  .book-share-modal-platforms-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 0.375rem;
+  }
+
+  .book-share-modal-platform {
+    padding: 0.375rem;
+    font-size: 0.6rem;
+  }
+
+  .book-share-modal-platform svg {
+    font-size: 1rem;
+  }
+
+  .book-share-modal-url {
+    flex-direction: column;
+  }
+
+  .book-share-modal-qr {
+    flex-direction: column;
+  }
+
+  .book-share-modal-url-copy {
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .book-share-modal-backdrop {
+    animation: none !important;
+  }
+
+  .book-share-modal {
+    transition: none !important;
+  }
+}

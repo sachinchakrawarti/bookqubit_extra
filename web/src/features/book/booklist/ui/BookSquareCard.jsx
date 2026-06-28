@@ -1,12 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { useTheme } from "@/themes/useTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useFont } from "@/contexts/FontContext";
 import { useRTL } from "@/contexts/RTLContext";
 import { BookButtons } from "@/shared/buttons";
+
+// Import BottonInLine components with dynamic import for better loading
+const BottonInLine_Mobile = React.lazy(
+  () =>
+    import("@/features/book/bookdeatils/components/mobile/bottoninline_mobile/BottonInLine_Mobile"),
+);
+
+// Fallback component while loading
+const BottonInLineFallback = () => (
+  <div className="w-full h-10 flex items-center justify-center">
+    <div className="w-6 h-6 border-2 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 const BookSquareCard = ({ book, onTagClick }) => {
   const { theme, themeName } = useTheme();
@@ -40,6 +53,40 @@ const BookSquareCard = ({ book, onTagClick }) => {
     return Array.isArray(book.category) ? book.category : [book.category];
   };
 
+  // BottonInLine handlers with error handling
+  const handleLike = (liked) => {
+    console.log(`${liked ? "Liked" : "Unliked"}:`, book?.title);
+  };
+
+  const handleAddToLibrary = (shelf) => {
+    console.log(`Added to library shelf "${shelf}":`, book?.title);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: book?.title || "Book",
+          text: `Check out "${book?.title}" by ${book?.author}`,
+          url: window.location.href,
+        })
+        .catch((err) => console.log("Error sharing:", err));
+    } else {
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => alert("Link copied to clipboard!"))
+        .catch((err) => console.log("Error copying to clipboard:", err));
+    }
+  };
+
+  const handleReport = () => {
+    console.log("Report book:", book?.title);
+  };
+
+  const handleAskAI = () => {
+    console.log("Ask AI about:", book?.title);
+  };
+
   // Apply font family inline style
   const fontStyle = currentFont?.family
     ? {
@@ -70,8 +117,8 @@ const BookSquareCard = ({ book, onTagClick }) => {
         className={`relative aspect-[3/4] ${isDarkMode ? "bg-gray-800" : "bg-gray-50"} flex items-center justify-center group overflow-hidden`}
       >
         <img
-          src={book.imageUrl || "/placeholder-book.jpg"}
-          alt={`${t("book.cover_of") || "Cover of"} ${book.title}`}
+          src={book?.imageUrl || "/placeholder-book.jpg"}
+          alt={`${t("book.cover_of") || "Cover of"} ${book?.title || "Book"}`}
           className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
           onError={handleImageError}
           loading="lazy"
@@ -80,7 +127,7 @@ const BookSquareCard = ({ book, onTagClick }) => {
         {/* Image overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        {book.badge && (
+        {book?.badge && (
           <span
             className={`
             absolute top-2 right-2 
@@ -95,14 +142,14 @@ const BookSquareCard = ({ book, onTagClick }) => {
       </div>
 
       {/* Content */}
-      <div className="p-4 flex flex-col flex-grow">
+      <div className="p-4 flex flex-col flex-grow min-h-0">
         <div className="flex-grow">
           {/* Title */}
           <h3
             className={`text-base font-semibold ${theme.textColors?.primary || "text-gray-900 dark:text-white"} line-clamp-2 mb-1 ${textAlign}`}
-            title={book.title}
+            title={book?.title}
           >
-            {book.title}
+            {book?.title || "Untitled"}
           </h3>
 
           {/* Author and Published Year */}
@@ -117,7 +164,7 @@ const BookSquareCard = ({ book, onTagClick }) => {
             >
               {t("book.by")}
             </span>
-            {book.authorId ? (
+            {book?.authorId ? (
               <Link
                 href={`/authors/${book.authorId}`}
                 className={`font-medium ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} hover:underline`}
@@ -128,10 +175,10 @@ const BookSquareCard = ({ book, onTagClick }) => {
               <span
                 className={`font-medium ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"}`}
               >
-                {book.author}
+                {book?.author || "Unknown Author"}
               </span>
             )}
-            {book.published && (
+            {book?.published && (
               <span
                 className={`text-[10px] ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"}`}
               >
@@ -141,7 +188,7 @@ const BookSquareCard = ({ book, onTagClick }) => {
           </div>
 
           {/* Description */}
-          {book.description && (
+          {book?.description && (
             <p
               className={`text-xs ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} mb-3 line-clamp-2 ${textAlign}`}
               title={book.description}
@@ -151,7 +198,7 @@ const BookSquareCard = ({ book, onTagClick }) => {
           )}
 
           {/* Category */}
-          {book.category && getCategoryArray().length > 0 && (
+          {book?.category && getCategoryArray().length > 0 && (
             <div className="mb-2">
               <span
                 className={`text-[10px] font-semibold ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} uppercase tracking-wider`}
@@ -182,7 +229,7 @@ const BookSquareCard = ({ book, onTagClick }) => {
           )}
 
           {/* Subjects */}
-          {book.subjects && book.subjects.length > 0 && (
+          {book?.subjects && book.subjects.length > 0 && (
             <div className="mb-2">
               <span
                 className={`text-[10px] font-semibold ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} uppercase tracking-wider`}
@@ -213,7 +260,7 @@ const BookSquareCard = ({ book, onTagClick }) => {
           )}
 
           {/* Tags */}
-          {book.tags && book.tags.length > 0 && (
+          {book?.tags && book.tags.length > 0 && (
             <div className="mb-2">
               <span
                 className={`text-[10px] font-semibold ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} uppercase tracking-wider`}
@@ -244,20 +291,44 @@ const BookSquareCard = ({ book, onTagClick }) => {
           )}
         </div>
 
+        {/* BottonInLine - Mobile only (Desktop version is floating on the side) */}
+        {book?.id && (
+          <div className="mt-3 mb-2 w-full overflow-hidden">
+            <Suspense fallback={<BottonInLineFallback />}>
+              <div className="w-full">
+                <BottonInLine_Mobile
+                  bookId={book.id}
+                  bookName={book.title || "Book"}
+                  authorName={book.author || "Unknown Author"}
+                  launchYear={book.publicationYear || book.year || "N/A"}
+                  initialLiked={book.userLiked || false}
+                  initialInLibrary={book.userInLibrary || false}
+                  onLike={handleLike}
+                  onAddToLibrary={handleAddToLibrary}
+                  onShare={handleShare}
+                  onReport={handleReport}
+                  onAskAI={handleAskAI}
+                  className="w-full"
+                />
+              </div>
+            </Suspense>
+          </div>
+        )}
+
         {/* Buttons using BookButtons */}
-        <div className="mt-4 space-y-2">
+        <div className="mt-2 space-y-2">
           {/* First row - 50/50 buttons */}
           <div className={`grid grid-cols-2 gap-2 ${flexDirection}`}>
             {/* View Details - Using BookButtons */}
             <BookButtons.ViewDetails
-              slug={book.slug || book.id}
+              slug={book?.slug || book?.id}
               size="sm"
               label={t("book.know_more") || "Know More"}
               className="w-full text-center"
             />
 
             {/* Summary - Using BookButtons */}
-            {book.buttons?.readSummary && (
+            {book?.buttons?.readSummary && (
               <BookButtons.Summary
                 slug={book.slug || book.id}
                 size="sm"
@@ -268,7 +339,7 @@ const BookSquareCard = ({ book, onTagClick }) => {
           </div>
 
           {/* Second row - full width buttons */}
-          {book.buttons?.getBook && (
+          {book?.buttons?.getBook && (
             <BookButtons.GetBook
               url={book.buttons.getBook}
               size="sm"
@@ -278,10 +349,10 @@ const BookSquareCard = ({ book, onTagClick }) => {
           )}
 
           {/* Audiobook - Custom button (not in BookButtons) */}
-          {book.buttons?.listenAudiobook && (
+          {book?.buttons?.listenAudiobook && (
             <a
               href={book.buttons.listenAudiobook}
-              className="block"
+              className="block w-full"
               target="_blank"
               rel="noopener noreferrer"
             >

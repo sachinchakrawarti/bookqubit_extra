@@ -1,0 +1,392 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/desktop/DesktopBookCover.css */
+
+.desktop-book-cover-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Cover Wrapper */
+.desktop-book-cover-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.desktop-book-cover-image-wrapper {
+  position: relative;
+  aspect-ratio: 2/3;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #f3f4f6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dark .desktop-book-cover-image-wrapper {
+  background: #1f2937;
+}
+
+.desktop-book-cover-image-wrapper:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.desktop-book-cover-image-wrapper.zoomed {
+  transform: scale(1.02);
+}
+
+.desktop-book-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.desktop-book-cover-image-wrapper:hover .desktop-book-cover-image {
+  transform: scale(1.05);
+}
+
+/* Zoom Overlay */
+.desktop-book-cover-zoom-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.desktop-book-cover-image-wrapper:hover .desktop-book-cover-zoom-overlay {
+  opacity: 1;
+}
+
+.desktop-book-cover-zoom-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.desktop-book-cover-zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Status Badge */
+.desktop-book-cover-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Quick Actions */
+.desktop-book-cover-quick-actions {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 5;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.desktop-book-cover-image-wrapper:hover .desktop-book-cover-quick-actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.desktop-book-cover-quick-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6b7280;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.desktop-book-cover-quick-action:hover {
+  transform: scale(1.1);
+}
+
+.desktop-book-cover-quick-action.active {
+  color: #3b82f6;
+}
+
+.desktop-book-cover-quick-action svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Progress Bar */
+.desktop-book-cover-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.desktop-book-cover-progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  transition: width 0.5s ease;
+}
+
+.desktop-book-cover-progress-text {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+}
+
+/* Book Info Panel */
+.desktop-book-cover-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.desktop-book-cover-info-title {
+  font-size: 1rem;
+}
+
+.desktop-book-cover-info-author {
+  font-size: 0.875rem;
+}
+
+.desktop-book-cover-info-rating {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-book-cover-info-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.desktop-book-cover-info-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* More Menu */
+.desktop-book-cover-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 200px;
+  z-index: 20;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.desktop-book-cover-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #374151;
+}
+
+.dark .desktop-book-cover-menu-item {
+  color: #d1d5db;
+}
+
+.desktop-book-cover-menu-item:hover {
+  background: #f3f4f6;
+}
+
+.dark .desktop-book-cover-menu-item:hover {
+  background: #1f2937;
+}
+
+.desktop-book-cover-menu-item.text-red-500 {
+  color: #ef4444;
+}
+
+.desktop-book-cover-menu-item.text-red-500:hover {
+  background: #fef2f2;
+}
+
+.dark .desktop-book-cover-menu-item.text-red-500:hover {
+  background: #7f1d1d;
+}
+
+/* Full Screen */
+.desktop-book-cover-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.desktop-book-cover-fullscreen-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.desktop-book-cover-fullscreen-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.desktop-book-cover-fullscreen-image {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.desktop-book-cover-fullscreen-info {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(8px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .desktop-book-cover-container {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-book-cover-container {
+    max-width: 200px;
+  }
+
+  .desktop-book-cover-quick-actions {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .desktop-book-cover-image-wrapper:hover .desktop-book-cover-image {
+    transform: none;
+  }
+
+  .desktop-book-cover-zoom-overlay {
+    display: none;
+  }
+}
+
+/* Dark Mode Overrides */
+.dark .desktop-book-cover-image-wrapper {
+  background: #1f2937;
+}
+
+.dark .desktop-book-cover-menu {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark .desktop-book-cover-menu-item {
+  color: #d1d5db;
+}
+
+.dark .desktop-book-cover-menu-item:hover {
+  background: #374151;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .desktop-book-cover-quick-actions {
+    transition: none;
+  }
+
+  .desktop-book-cover-fullscreen {
+    animation: none;
+  }
+
+  .desktop-book-cover-menu {
+    animation: none;
+  }
+
+  .desktop-book-cover-image-wrapper:hover .desktop-book-cover-image {
+    transform: none;
+  }
+}

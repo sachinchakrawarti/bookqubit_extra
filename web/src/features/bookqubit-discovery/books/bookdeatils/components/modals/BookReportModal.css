@@ -1,0 +1,433 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/modals/BookReportModal.css */
+
+/* ============================================
+   BACKDROP
+   ============================================ */
+
+.book-report-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.book-report-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 1000;
+  max-width: 520px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.book-report-modal.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.book-report-modal::-webkit-scrollbar {
+  width: 4px;
+}
+
+.book-report-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.book-report-modal::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.dark .book-report-modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.book-report-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.book-report-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.book-report-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.book-report-modal-close:hover {
+  transform: scale(1.1);
+}
+
+/* ============================================
+   SUCCESS
+   ============================================ */
+
+.book-report-modal-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.book-report-modal-success-icon {
+  margin-bottom: 1rem;
+}
+
+.book-report-modal-success-title {
+  margin-bottom: 0.5rem;
+}
+
+.book-report-modal-success-message {
+  max-width: 360px;
+}
+
+/* ============================================
+   FORM
+   ============================================ */
+
+.book-report-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ============================================
+   BOOK INFO
+   ============================================ */
+
+.book-report-modal-book {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.dark .book-report-modal-book {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.book-report-modal-book-image {
+  width: 40px;
+  height: 50px;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.book-report-modal-book-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.book-report-modal-book-title {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.book-report-modal-book-author {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* ============================================
+   FIELD
+   ============================================ */
+
+.book-report-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.book-report-modal-label {
+  font-size: 0.875rem;
+}
+
+/* ============================================
+   REASONS
+   ============================================ */
+
+.book-report-modal-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.book-report-modal-reason {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.book-report-modal-reason:hover {
+  transform: scale(1.01);
+}
+
+.book-report-modal-reason.active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.dark .book-report-modal-reason.active {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.book-report-modal-reason-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.book-report-modal-reason-content span:first-child {
+  font-weight: 500;
+}
+
+/* ============================================
+   INPUTS
+   ============================================ */
+
+.book-report-modal-input,
+.book-report-modal-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  outline: none;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.dark .book-report-modal-input,
+.dark .book-report-modal-textarea {
+  border-color: #374151;
+}
+
+.book-report-modal-input:focus,
+.book-report-modal-textarea:focus {
+  border-color: #3b82f6;
+}
+
+.book-report-modal-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ============================================
+   ATTACHMENT
+   ============================================ */
+
+.book-report-modal-attachment {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.book-report-modal-attachment:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dark .book-report-modal-attachment:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.book-report-modal-attachment-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ============================================
+   ACTIONS
+   ============================================ */
+
+.book-report-modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.book-report-modal-cancel,
+.book-report-modal-submit {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.book-report-modal-cancel:hover,
+.book-report-modal-submit:hover {
+  transform: scale(1.02);
+}
+
+.book-report-modal-cancel:active,
+.book-report-modal-submit:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   ERROR
+   ============================================ */
+
+.book-report-modal-error {
+  font-size: 0.75rem;
+  color: #ef4444;
+  margin-top: 0.125rem;
+}
+
+/* ============================================
+   SPINNER
+   ============================================ */
+
+.book-report-modal-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .book-report-modal {
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  .book-report-modal-title {
+    font-size: 1rem;
+  }
+
+  .book-report-modal-actions {
+    flex-direction: column;
+  }
+
+  .book-report-modal-reason {
+    padding: 0.5rem 0.625rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-report-modal {
+    padding: 0.75rem;
+    max-width: 98%;
+  }
+
+  .book-report-modal-book {
+    padding: 0.5rem;
+  }
+
+  .book-report-modal-book-image {
+    width: 32px;
+    height: 40px;
+  }
+
+  .book-report-modal-book-title {
+    font-size: 0.8125rem;
+  }
+
+  .book-report-modal-reason-content span:first-child {
+    font-size: 0.8125rem;
+  }
+
+  .book-report-modal-reason-content span:last-child {
+    font-size: 0.65rem;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .book-report-modal-backdrop {
+    animation: none !important;
+  }
+
+  .book-report-modal {
+    transition: none !important;
+  }
+
+  .book-report-modal-spinner {
+    animation-duration: 1s !important;
+  }
+}

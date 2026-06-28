@@ -1,0 +1,409 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/cards/RelatedBookCard.css */
+
+/* ============================================
+   RELATED BOOK CARD
+   ============================================ */
+
+.related-book-card {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.related-book-card.hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.dark .related-book-card.hoverable:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.related-book-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================================
+   IMAGE WRAPPER
+   ============================================ */
+
+.related-book-card-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: #f3f4f6;
+  flex-shrink: 0;
+}
+
+.dark .related-book-card-image-wrapper {
+  background: #1f2937;
+}
+
+.related-book-card-image {
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.related-book-card:hover .related-book-card-image {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   STATUS BADGE
+   ============================================ */
+
+.related-book-card-status {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 5;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+.related-book-card-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.related-book-card-progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  transition: width 0.5s ease;
+}
+
+/* ============================================
+   OVERLAY
+   ============================================ */
+
+.related-book-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.related-book-card-overlay-text {
+  padding: 0.5rem 1rem;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.related-book-card-overlay-text:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* ============================================
+   CONTENT
+   ============================================ */
+
+.related-book-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ============================================
+   CATEGORY
+   ============================================ */
+
+.related-book-card-category {
+  display: inline-block;
+  width: fit-content;
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.related-book-card-title {
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* ============================================
+   AUTHOR
+   ============================================ */
+
+.related-book-card-author {
+  margin: 0;
+}
+
+/* ============================================
+   RATING
+   ============================================ */
+
+.related-book-card-rating {
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================
+   META
+   ============================================ */
+
+.related-book-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.related-book-card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ============================================
+   ACTIONS
+   ============================================ */
+
+.related-book-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.related-book-card-action {
+  transition: all 0.2s ease;
+}
+
+.related-book-card-action:hover {
+  transform: scale(1.1);
+}
+
+.related-book-card-action:active {
+  transform: scale(0.95);
+}
+
+.related-book-card-action.active {
+  color: #3b82f6;
+}
+
+/* ============================================
+   SIZES
+   ============================================ */
+
+/* Small */
+.related-book-card-small .related-book-card-title {
+  font-size: 0.75rem;
+}
+
+.related-book-card-small .related-book-card-author {
+  font-size: 0.65rem;
+}
+
+.related-book-card-small .related-book-card-actions {
+  gap: 0.25rem;
+}
+
+.related-book-card-small .related-book-card-action {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.6rem;
+}
+
+/* Large */
+.related-book-card-large .related-book-card-title {
+  font-size: 1rem;
+}
+
+.related-book-card-large .related-book-card-author {
+  font-size: 0.875rem;
+}
+
+.related-book-card-large .related-book-card-actions {
+  gap: 0.75rem;
+}
+
+.related-book-card-large .related-book-card-action {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.875rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .related-book-card {
+    width: 160px !important;
+  }
+
+  .related-book-card .related-book-card-image {
+    height: 200px !important;
+  }
+
+  .related-book-card-actions {
+    gap: 0.25rem !important;
+  }
+
+  .related-book-card-action {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    font-size: 0.6rem !important;
+  }
+
+  .related-book-card-title {
+    font-size: 0.75rem !important;
+  }
+
+  .related-book-card-author {
+    font-size: 0.65rem !important;
+  }
+
+  .related-book-card-overlay {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .related-book-card {
+    width: 140px !important;
+  }
+
+  .related-book-card .related-book-card-image {
+    height: 170px !important;
+  }
+
+  .related-book-card-content {
+    padding: 0.5rem !important;
+  }
+
+  .related-book-card-category {
+    font-size: 0.6rem !important;
+  }
+
+  .related-book-card-rating {
+    font-size: 0.6rem !important;
+  }
+
+  .related-book-card-meta-item {
+    font-size: 0.6rem !important;
+  }
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .related-book-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark .related-book-card.hoverable:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dark .related-book-card-image-wrapper {
+  background: #1f2937;
+}
+
+.dark .related-book-card-actions {
+  border-color: #374151;
+}
+
+.dark .related-book-card-action {
+  color: #9ca3af;
+}
+
+.dark .related-book-card-action:hover {
+  color: #f9fafb;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+.related-book-card {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.related-book-card:nth-child(1) { animation-delay: 0.05s; }
+.related-book-card:nth-child(2) { animation-delay: 0.1s; }
+.related-book-card:nth-child(3) { animation-delay: 0.15s; }
+.related-book-card:nth-child(4) { animation-delay: 0.2s; }
+.related-book-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .related-book-card {
+    animation: none !important;
+  }
+
+  .related-book-card.hoverable:hover {
+    transform: none !important;
+  }
+
+  .related-book-card .related-book-card-image {
+    transition: none !important;
+  }
+
+  .related-book-card-overlay {
+    transition: none !important;
+  }
+
+  .related-book-card-action {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .related-book-card-actions,
+  .related-book-card-overlay {
+    display: none !important;
+  }
+
+  .related-book-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .related-book-card.hoverable:hover {
+    transform: none !important;
+  }
+}

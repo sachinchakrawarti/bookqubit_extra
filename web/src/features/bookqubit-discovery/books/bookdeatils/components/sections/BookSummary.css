@@ -1,0 +1,303 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/sections/BookSummary.css */
+
+.book-summary-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Header */
+.book-summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.book-summary-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-summary-icon {
+  font-size: 1.25rem;
+}
+
+.book-summary-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.book-summary-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-summary-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* Summary Text */
+.book-summary-text-wrapper {
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.book-summary-quote-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.25rem;
+  opacity: 0.3;
+}
+
+.book-summary-quote-icon-right {
+  top: auto;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.book-summary-text {
+  padding: 0.5rem 0;
+}
+
+.book-summary-paragraph {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  margin: 0;
+  text-align: justify;
+}
+
+/* Toggle Button */
+.book-summary-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Key Takeaways */
+.book-summary-takeaways {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #f8fafc;
+}
+
+.dark .book-summary-takeaways {
+  background: #0f172a;
+}
+
+.book-summary-takeaways-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-summary-takeaways-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.book-summary-takeaways-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-summary-takeaway-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.book-summary-takeaway-item:hover {
+  transform: translateX(4px);
+}
+
+.book-summary-takeaways-more {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  width: fit-content;
+}
+
+/* Actions */
+.book-summary-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.book-summary-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+/* Footer */
+.book-summary-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Empty State */
+.book-summary-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-summary-title {
+    font-size: 1rem;
+  }
+
+  .book-summary-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-summary-paragraph {
+    font-size: 0.875rem;
+  }
+
+  .book-summary-text-wrapper {
+    padding: 0 1rem;
+  }
+
+  .book-summary-quote-icon {
+    font-size: 1rem;
+  }
+
+  .book-summary-takeaways {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-summary-paragraph {
+    font-size: 0.8125rem;
+  }
+
+  .book-summary-text-wrapper {
+    padding: 0 0.75rem;
+  }
+
+  .book-summary-meta {
+    gap: 0.5rem;
+  }
+
+  .book-summary-meta-item {
+    font-size: 0.65rem;
+  }
+
+  .book-summary-takeaway-item {
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .book-summary-actions {
+    justify-content: center;
+  }
+}
+
+/* Dark Mode Overrides */
+.dark .book-summary-takeaways {
+  background: #0f172a;
+}
+
+/* Animation */
+.book-summary-container {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .book-summary-actions,
+  .book-summary-toggle,
+  .book-summary-takeaways-more {
+    display: none;
+  }
+
+  .book-summary-text-wrapper {
+    padding: 0;
+  }
+
+  .book-summary-quote-icon {
+    display: none;
+  }
+
+  .book-summary-takeaways {
+    break-inside: avoid;
+    background: transparent !important;
+  }
+
+  .book-summary-takeaway-item {
+    border-color: #ddd !important;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .book-summary-container {
+    animation: none;
+  }
+}

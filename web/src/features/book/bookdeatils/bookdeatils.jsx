@@ -24,6 +24,10 @@ import BookNavigation from "@/features/book/bookdeatils/components/BookNavigatio
 import BookSEO from "@/features/book/bookdeatils/components/BookSEO";
 import BookSectionNavigator from "@/features/book/bookdeatils/components/BookSectionNavigator";
 
+// Import BottonInLine components (mobile and desktop)
+import BottonInLine_Mobile from "@/features/book/bookdeatils/components/mobile/bottoninline_mobile/BottonInLine_Mobile";
+import BottonInLine_Desktop from "@/features/book/bookdeatils/components/desktop/BottonInLine_Desktop";
+
 // Import dynamic tags components
 import {
   extractDynamicTagsFromBook,
@@ -363,6 +367,31 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
     }
   };
 
+  // Handle Ask AI
+  const handleAskAI = () => {
+    console.log("Ask AI about:", book?.title);
+    // Implement AI chat functionality here
+    // Example: Open AI chat modal or navigate to AI chat page
+  };
+
+  // Handle Report
+  const handleReport = () => {
+    console.log("Report book:", book?.title);
+    // Implement report functionality here
+    // Example: Open report modal
+  };
+
+  // Handle BottonInLine actions
+  const handleBottonLike = (liked) => {
+    console.log(`${liked ? "Liked" : "Unliked"}:`, book?.title);
+    // Update book state or make API call
+  };
+
+  const handleBottonAddToLibrary = (shelf) => {
+    console.log(`Added to library shelf "${shelf}":`, book?.title);
+    // Update book state or make API call
+  };
+
   // Show loading state
   if (isLoading || (booksData.length === 0 && !initialBook)) {
     return (
@@ -408,6 +437,11 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
     themeName === "midnight" ||
     themeName === "cyberpunk";
 
+  // Determine which BottonInLine component to use based on device
+  const BottonInLineComponent = isMobile
+    ? BottonInLine_Mobile
+    : BottonInLine_Desktop;
+
   return (
     <>
       <BookSEO book={book} language={currentLanguage} />
@@ -451,6 +485,28 @@ const BookDetailsPage = ({ initialBook, initialSlug, initialLanguage }) => {
             <BookCover book={book} />
             <div className="lg:w-2/3 space-y-6">
               <BookInfo book={book} />
+
+              {/* BottonInLine - Responsive Action Bar with Like, Share, Summary, Library, Menu */}
+              <div
+                className={`flex ${isMobile ? "justify-center" : "justify-start"}`}
+              >
+                <BottonInLineComponent
+                  bookId={book.id}
+                  bookName={book.title}
+                  authorName={book.author}
+                  launchYear={book.publicationYear || book.year || "N/A"}
+                  initialLiked={book.userLiked || false}
+                  initialInLibrary={book.userInLibrary || false}
+                  onLike={handleBottonLike}
+                  onAddToLibrary={handleBottonAddToLibrary}
+                  onShare={handleShare}
+                  onReport={handleReport}
+                  onAskAI={handleAskAI}
+                  className={isMobile ? "w-full sm:w-auto" : ""}
+                />
+              </div>
+
+              {/* Book Actions - Get Book, Read Status, Wishlist (Summary removed) */}
               <BookActions
                 book={book}
                 bookStatus={bookStatus}

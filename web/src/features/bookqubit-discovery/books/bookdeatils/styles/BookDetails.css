@@ -1,0 +1,425 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/styles/BookDetails.css */
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+
+.book-details-page {
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.book-details-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+/* ============================================
+   LANGUAGE INDICATOR
+   ============================================ */
+
+.book-details-language {
+  text-align: right;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   MAIN LAYOUT
+   ============================================ */
+
+.book-details-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2rem;
+}
+
+.dark .book-details-main {
+  border-color: #374151;
+  background: #1f2937;
+}
+
+@media (min-width: 1024px) {
+  .book-details-main {
+    flex-direction: row;
+  }
+}
+
+/* ============================================
+   SECTIONS GRID
+   ============================================ */
+
+.book-details-sections {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .book-details-sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-details-sections {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   SECTION WRAPPER
+   ============================================ */
+
+.book-details-section {
+  scroll-margin-top: 6rem;
+  margin-bottom: 2rem;
+}
+
+.book-details-section:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.book-details-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.book-details-loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.dark .book-details-loading-spinner {
+  border-color: #374151;
+  border-top-color: #3b82f6;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   ERROR STATE
+   ============================================ */
+
+.book-details-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+.book-details-error-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #ef4444;
+}
+
+.book-details-error-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark .book-details-error-title {
+  color: #f9fafb;
+}
+
+.book-details-error-message {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+}
+
+.dark .book-details-error-message {
+  color: #9ca3af;
+}
+
+.book-details-error-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ============================================
+   NOT FOUND STATE
+   ============================================ */
+
+.book-details-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+.book-details-not-found-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #9ca3af;
+}
+
+.book-details-not-found-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark .book-details-not-found-title {
+  color: #f9fafb;
+}
+
+.book-details-not-found-message {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.dark .book-details-not-found-message {
+  color: #9ca3af;
+}
+
+.book-details-not-found-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ============================================
+   BACK TO TOP
+   ============================================ */
+
+.book-details-back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 40;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.book-details-back-to-top.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.book-details-back-to-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.book-details-back-to-top:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-details-fade-in {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.book-details-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .book-details-container {
+    padding: 1rem 0.75rem;
+  }
+
+  .book-details-main {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .book-details-sections {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .book-details-section {
+    scroll-margin-top: 5rem;
+  }
+
+  .book-details-back-to-top {
+    bottom: 5rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-details-container {
+    padding: 0.5rem;
+  }
+
+  .book-details-main {
+    padding: 0.75rem;
+    gap: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .book-details-sections {
+    gap: 1rem;
+  }
+
+  .book-details-section {
+    scroll-margin-top: 4.5rem;
+  }
+
+  .book-details-back-to-top {
+    bottom: 4.5rem;
+    right: 0.75rem;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .book-details-back-to-top {
+    display: none !important;
+  }
+
+  .book-details-main {
+    box-shadow: none !important;
+    border-color: #ddd !important;
+  }
+
+  .book-details-container {
+    padding: 0 !important;
+  }
+
+  .book-details-language {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .book-details-fade-in,
+  .book-details-scale-in {
+    animation: none !important;
+  }
+
+  .book-details-back-to-top {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   THEME VARIABLES
+   ============================================ */
+
+:root {
+  --book-details-bg: #ffffff;
+  --book-details-text: #111827;
+  --book-details-border: #e5e7eb;
+  --book-details-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --book-details-bg: #1f2937;
+  --book-details-text: #f9fafb;
+  --book-details-border: #374151;
+  --book-details-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+.book-details-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.book-details-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.book-details-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.dark .book-details-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}

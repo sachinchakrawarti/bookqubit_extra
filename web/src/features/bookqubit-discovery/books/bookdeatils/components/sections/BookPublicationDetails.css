@@ -1,0 +1,246 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/sections/BookPublicationDetails.css */
+
+.book-publication-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Header */
+.book-publication-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.book-publication-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-publication-icon {
+  font-size: 1.25rem;
+}
+
+.book-publication-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.book-publication-count {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: #f3f4f6;
+}
+
+.dark .book-publication-count {
+  background: #1f2937;
+}
+
+/* Publication Grid */
+.book-publication-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Field Item */
+.book-publication-field {
+  transition: all 0.2s ease;
+}
+
+.book-publication-field:hover {
+  transform: translateY(-2px);
+}
+
+.book-publication-field-content {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.book-publication-field-icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.field-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.book-publication-field-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-publication-field-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.book-publication-field-value-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.125rem;
+}
+
+.book-publication-field-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.book-publication-field-copy {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.125rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Toggle Button */
+.book-publication-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+/* Website Link */
+.book-publication-website {
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Footer */
+.book-publication-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Empty State */
+.book-publication-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-publication-title {
+    font-size: 1rem;
+  }
+
+  .book-publication-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .book-publication-field {
+    padding: 0.75rem;
+  }
+
+  .book-publication-field-value {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-publication-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-publication-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .book-publication-field {
+    padding: 0.625rem;
+  }
+
+  .book-publication-field-value {
+    font-size: 0.75rem;
+  }
+
+  .book-publication-field-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* Dark Mode Overrides */
+.dark .book-publication-count {
+  background: #1f2937;
+}
+
+/* Animation */
+.book-publication-field {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-publication-field:nth-child(1) { animation-delay: 0.05s; }
+.book-publication-field:nth-child(2) { animation-delay: 0.1s; }
+.book-publication-field:nth-child(3) { animation-delay: 0.15s; }
+.book-publication-field:nth-child(4) { animation-delay: 0.2s; }
+.book-publication-field:nth-child(5) { animation-delay: 0.25s; }
+.book-publication-field:nth-child(6) { animation-delay: 0.3s; }
+
+/* Print Styles */
+@media print {
+  .book-publication-toggle,
+  .book-publication-field-copy {
+    display: none;
+  }
+
+  .book-publication-field {
+    break-inside: avoid;
+    border-color: #ddd !important;
+  }
+
+  .book-publication-grid {
+    gap: 0.5rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .book-publication-field {
+    animation: none;
+  }
+}

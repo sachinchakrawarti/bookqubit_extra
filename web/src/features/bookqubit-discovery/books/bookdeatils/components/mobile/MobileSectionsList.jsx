@@ -1,0 +1,424 @@
+// src/features/bookqubit-discovery/books/bookdeatils/components/mobile/MobileSectionsList.jsx
+
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import {
+  FaStar,
+  FaBook,
+  FaInfoCircle,
+  FaList,
+  FaComment,
+  FaTag,
+  FaFileAlt,
+  FaNewspaper,
+  FaBlog,
+  FaChartBar,
+  FaChevronRight,
+  FaCheckCircle,
+  FaClock,
+  FaEye,
+  FaHeart,
+  FaShare,
+  FaBookmark,
+} from "react-icons/fa";
+import { useTheme } from "@/themes/useTheme";
+import { useLanguage } from "@/contexts/LanguageContext";
+import "./MobileSectionsList.css";
+
+const MobileSectionsList = ({
+  book,
+  sections,
+  activeSection,
+  onSectionClick,
+  theme: propTheme,
+}) => {
+  const { theme: hookTheme, themeName } = useTheme();
+  const { t } = useLanguage();
+  const theme = propTheme || hookTheme;
+  const [expandedSections, setExpandedSections] = useState([]);
+  const [hoveredSection, setHoveredSection] = useState(null);
+  const listRef = useRef(null);
+
+  if (!theme || !book) return null;
+
+  const isDarkMode =
+    themeName === "dark" ||
+    themeName === "midnight" ||
+    themeName === "cyberpunk";
+
+  // Get section icon
+  const getSectionIcon = (id) => {
+    switch (id) {
+      case "highlights":
+        return <FaStar className="section-icon" />;
+      case "subjects":
+        return <FaBook className="section-icon" />;
+      case "publication":
+        return <FaInfoCircle className="section-icon" />;
+      case "about":
+        return <FaFileAlt className="section-icon" />;
+      case "summary":
+        return <FaList className="section-icon" />;
+      case "reviews":
+        return <FaComment className="section-icon" />;
+      case "news":
+        return <FaNewspaper className="section-icon" />;
+      case "blog":
+        return <FaBlog className="section-icon" />;
+      case "related":
+        return <FaBook className="section-icon" />;
+      case "analytics":
+        return <FaChartBar className="section-icon" />;
+      case "tags":
+        return <FaTag className="section-icon" />;
+      default:
+        return <FaTag className="section-icon" />;
+    }
+  };
+
+  // Get section display name
+  const getSectionDisplayName = (id) => {
+    const names = {
+      highlights: "Highlights",
+      subjects: "Subjects",
+      publication: "Publication",
+      about: "About",
+      summary: "Summary",
+      reviews: "Reviews",
+      news: "News",
+      blog: "Blog",
+      related: "Related",
+      analytics: "Analytics",
+      tags: "Tags",
+    };
+    return names[id] || id;
+  };
+
+  // Get section description
+  const getSectionDescription = (id) => {
+    const descriptions = {
+      highlights: "Key highlights of the book",
+      subjects: "Subjects covered in the book",
+      publication: "Publication details",
+      about: "About this book",
+      summary: "Book summary",
+      reviews: "User reviews and ratings",
+      news: "Latest news about the book",
+      blog: "Blog posts related to the book",
+      related: "Related books you might enjoy",
+      analytics: "Reading analytics and stats",
+      tags: "Tags and keywords",
+    };
+    return descriptions[id] || "";
+  };
+
+  // Get section color
+  const getSectionColor = (id) => {
+    const colors = {
+      highlights: "text-amber-500",
+      subjects: "text-blue-500",
+      publication: "text-purple-500",
+      about: "text-emerald-500",
+      summary: "text-indigo-500",
+      reviews: "text-rose-500",
+      news: "text-sky-500",
+      blog: "text-orange-500",
+      related: "text-teal-500",
+      analytics: "text-pink-500",
+      tags: "text-gray-500",
+    };
+    return colors[id] || "text-gray-500";
+  };
+
+  // Get section progress (mock)
+  const getSectionProgress = (id) => {
+    const progress = {
+      highlights: 100,
+      subjects: 80,
+      publication: 60,
+      about: 40,
+      summary: 20,
+      reviews: 0,
+      news: 0,
+      blog: 0,
+      related: 0,
+      analytics: 0,
+      tags: 0,
+    };
+    return progress[id] || 0;
+  };
+
+  // Toggle section expand
+  const toggleSection = (id) => {
+    setExpandedSections((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+    );
+  };
+
+  // Handle section click
+  const handleSectionClick = (id) => {
+    onSectionClick(id);
+  };
+
+  // Scroll to active section
+  useEffect(() => {
+    if (activeSection && listRef.current) {
+      const activeElement = listRef.current.querySelector(
+        `[data-section-id="${activeSection}"]`,
+      );
+      if (activeElement) {
+        activeElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [activeSection]);
+
+  // Get reading status
+  const getReadingStatus = (progress) => {
+    if (progress === 100) return "completed";
+    if (progress > 0) return "reading";
+    return "not_started";
+  };
+
+  // Get status label
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case "completed":
+        return t("book.completed") || "Completed";
+      case "reading":
+        return t("book.in_progress") || "In Progress";
+      default:
+        return t("book.not_started") || "Not Started";
+    }
+  };
+
+  // Get status color
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "completed":
+        return "text-emerald-500 bg-emerald-50 dark:bg-emerald-900/20";
+      case "reading":
+        return "text-sky-500 bg-sky-50 dark:bg-sky-900/20";
+      default:
+        return "text-gray-400 bg-gray-50 dark:bg-gray-800";
+    }
+  };
+
+  return (
+    <div className="mobile-sections-list-container">
+      {/* Header */}
+      <div className="mobile-sections-list-header">
+        <h3
+          className={`
+          mobile-sections-list-title
+          ${theme.textColors?.primary || "text-gray-900 dark:text-white"}
+        `}
+        >
+          📚 {t("book.sections") || "Sections"}
+        </h3>
+        <span
+          className={`
+          mobile-sections-list-count
+          ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}
+        `}
+        >
+          {sections.length} {t("book.items") || "items"}
+        </span>
+      </div>
+
+      {/* Sections List */}
+      <div ref={listRef} className="mobile-sections-list">
+        {sections.map((section) => {
+          const isActive = activeSection === section.id;
+          const isExpanded = expandedSections.includes(section.id);
+          const progress = getSectionProgress(section.id);
+          const status = getReadingStatus(progress);
+          const isHovered = hoveredSection === section.id;
+
+          return (
+            <div
+              key={section.id}
+              data-section-id={section.id}
+              className={`
+                mobile-sections-item
+                ${isActive ? "active" : ""}
+                ${isHovered ? "hovered" : ""}
+                ${theme.background?.section || "bg-white dark:bg-gray-900"}
+                ${theme.border?.default || "border border-gray-200 dark:border-gray-700"}
+                transition-all duration-200
+              `}
+              onMouseEnter={() => setHoveredSection(section.id)}
+              onMouseLeave={() => setHoveredSection(null)}
+            >
+              {/* Section Header */}
+              <div
+                className="mobile-sections-item-header"
+                onClick={() => handleSectionClick(section.id)}
+              >
+                <div className="mobile-sections-item-left">
+                  <div
+                    className={`
+                    mobile-sections-item-icon
+                    ${getSectionColor(section.id)}
+                  `}
+                  >
+                    {getSectionIcon(section.id)}
+                  </div>
+                  <div className="mobile-sections-item-info">
+                    <span
+                      className={`
+                      mobile-sections-item-name
+                      ${
+                        isActive
+                          ? theme.textColors?.primary ||
+                            "text-gray-900 dark:text-white"
+                          : theme.textColors?.secondary ||
+                            "text-gray-600 dark:text-gray-400"
+                      }
+                      font-medium
+                    `}
+                    >
+                      {getSectionDisplayName(section.id)}
+                    </span>
+                    <span
+                      className={`
+                      mobile-sections-item-description
+                      ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}
+                      text-xs
+                    `}
+                    >
+                      {getSectionDescription(section.id)}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mobile-sections-item-right">
+                  {/* Status Badge */}
+                  <span
+                    className={`
+                    mobile-sections-item-status
+                    ${getStatusColor(status)}
+                    text-xs px-2 py-0.5 rounded-full
+                  `}
+                  >
+                    {getStatusLabel(status)}
+                  </span>
+
+                  {/* Progress Indicator */}
+                  {progress > 0 && progress < 100 && (
+                    <div className="mobile-sections-item-progress">
+                      <div
+                        className="mobile-sections-item-progress-fill"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                  )}
+
+                  {/* Active Indicator */}
+                  {isActive && (
+                    <span className="mobile-sections-item-active-dot">
+                      <FaCheckCircle className="w-4 h-4 text-sky-500" />
+                    </span>
+                  )}
+
+                  {/* Expand Button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSection(section.id);
+                    }}
+                    className={`
+                      mobile-sections-item-expand
+                      ${theme.textColors?.secondary || "text-gray-400 dark:text-gray-500"}
+                      hover:${theme.textColors?.primary || "hover:text-gray-700 dark:hover:text-gray-300"}
+                      transition-all duration-200
+                    `}
+                  >
+                    <FaChevronRight
+                      className={`
+                      w-4 h-4
+                      transition-transform duration-200
+                      ${isExpanded ? "rotate-90" : ""}
+                    `}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              {/* Expanded Content */}
+              {isExpanded && (
+                <div className="mobile-sections-item-content">
+                  <div
+                    className={`
+                    mobile-sections-item-preview
+                    ${theme.background?.navigationDots || "bg-gray-50 dark:bg-gray-800/50"}
+                    rounded-lg
+                    p-3
+                  `}
+                  >
+                    {/* Section Preview Content */}
+                    <div className="flex items-center gap-4 text-sm">
+                      <span
+                        className={`
+                        ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}
+                      `}
+                      >
+                        {t("book.preview") ||
+                          "Preview content will appear here"}
+                      </span>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="mobile-sections-item-quick-actions">
+                      <button className="mobile-sections-item-quick-action">
+                        <FaEye className="w-3.5 h-3.5" />
+                        <span>{t("book.view") || "View"}</span>
+                      </button>
+                      <button className="mobile-sections-item-quick-action">
+                        <FaHeart className="w-3.5 h-3.5" />
+                        <span>{t("book.save") || "Save"}</span>
+                      </button>
+                      <button className="mobile-sections-item-quick-action">
+                        <FaShare className="w-3.5 h-3.5" />
+                        <span>{t("book.share") || "Share"}</span>
+                      </button>
+                      <button className="mobile-sections-item-quick-action">
+                        <FaBookmark className="w-3.5 h-3.5" />
+                        <span>{t("book.bookmark") || "Bookmark"}</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <div
+        className={`
+        mobile-sections-list-footer
+        ${theme.border?.default || "border-t border-gray-200 dark:border-gray-700"}
+      `}
+      >
+        <FaClock
+          className={`
+          w-4 h-4
+          ${theme.textColors?.secondary || "text-gray-400 dark:text-gray-500"}
+        `}
+        />
+        <span
+          className={`
+          text-xs
+          ${theme.textColors?.secondary || "text-gray-500 dark:text-gray-400"}
+        `}
+        >
+          {t("book.sections_footer") || "Navigate through book sections"}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default MobileSectionsList;

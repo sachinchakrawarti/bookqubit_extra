@@ -1,0 +1,133 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/mobile/MobileNavigator.css */
+
+.mobile-navigator {
+  transition: all 0.3s ease;
+}
+
+/* Scrollbar Hide */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile Navigator Tags */
+.mobile-navigator-tag {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.mobile-navigator-tag:active {
+  transform: scale(0.95);
+}
+
+/* Sticky Animation */
+.mobile-navigator-sticky {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Arrow Buttons */
+.mobile-navigator-arrow {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.mobile-navigator-arrow:hover {
+  transform: scale(1.1);
+}
+
+.mobile-navigator-arrow:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mobile-navigator {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .mobile-navigator-tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .mobile-navigator-tag svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-navigator-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .mobile-navigator-tag svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .mobile-navigator-arrow {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .mobile-navigator-arrow svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+/* Dark Mode Overrides */
+.dark .mobile-navigator {
+  background: #1f2937;
+}
+
+.dark .mobile-navigator-tag {
+  background: #374151;
+}
+
+.dark .mobile-navigator-tag.active {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-navigator-sticky {
+    animation: none;
+  }
+
+  .mobile-navigator-tag {
+    transition: none;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .mobile-navigator-tag:hover {
+    transform: none;
+  }
+
+  .mobile-navigator-arrow:hover {
+    transform: none;
+  }
+}

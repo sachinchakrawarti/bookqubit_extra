@@ -1,0 +1,254 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/desktop/DesktopNavigator.css */
+
+.desktop-navigator {
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.desktop-navigator-placeholder {
+  height: 56px;
+}
+
+.desktop-navigator-inner {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Search Bar */
+.desktop-navigator-search {
+  width: 100%;
+}
+
+.desktop-navigator-search-form {
+  position: relative;
+  width: 100%;
+}
+
+.desktop-navigator-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: #9ca3af;
+}
+
+.desktop-navigator-search-input {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.desktop-navigator-search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.desktop-navigator-search-clear {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+}
+
+.desktop-navigator-search-clear:hover {
+  color: #6b7280;
+}
+
+/* Section Grid */
+.desktop-navigator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 0.125rem;
+}
+
+.desktop-navigator-grid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.desktop-navigator-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.desktop-navigator-grid::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.dark .desktop-navigator-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Navigator Item */
+.desktop-navigator-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  text-align: left;
+  border: 1px solid transparent;
+}
+
+.desktop-navigator-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.desktop-navigator-item.active {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  border-color: #3b82f6;
+  color: white;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+}
+
+.desktop-navigator-item:not(.active):hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: #e5e7eb;
+}
+
+.dark .desktop-navigator-item:not(.active):hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: #374151;
+}
+
+.desktop-navigator-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.desktop-navigator-item-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.desktop-navigator-item-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.desktop-navigator-item-name {
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+.desktop-navigator-item-description {
+  font-size: 0.7rem;
+  line-height: 1.2;
+  opacity: 0.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.desktop-navigator-item-indicator {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: white;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Empty State */
+.desktop-navigator-empty {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Footer */
+.desktop-navigator-footer {
+  padding-top: 0.5rem;
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .desktop-navigator-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-navigator {
+    display: none;
+  }
+}
+
+/* Dark Mode Overrides */
+.dark .desktop-navigator-item.active {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+.dark .desktop-navigator-item:not(.active):hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: #374151;
+}
+
+.dark .desktop-navigator-search-input {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .desktop-navigator-item {
+    transition: none;
+  }
+
+  .desktop-navigator-item-indicator {
+    animation: none;
+  }
+
+  .desktop-navigator-item:hover {
+    transform: none !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .desktop-navigator {
+    display: none;
+  }
+}

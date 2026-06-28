@@ -1,0 +1,187 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/shared/BookHeader.css */
+
+.book-header-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+/* Title Section */
+.book-header-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.book-header-title {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.book-header-author {
+  line-height: 1.4;
+}
+
+/* Meta Section */
+.book-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+}
+
+.book-header-category {
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.book-header-category:hover {
+  transform: scale(1.05);
+}
+
+.book-header-rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+/* Stats Section */
+.book-header-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .book-header-stats {
+  border-color: #374151;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stat-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.dark .stat-icon {
+  color: #9ca3af;
+}
+
+/* Description Section */
+.book-header-description {
+  margin-top: 0.25rem;
+}
+
+.book-header-description p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-header-container {
+    gap: 0.75rem;
+  }
+
+  .book-header-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+  }
+
+  .stat-item {
+    gap: 0.5rem;
+  }
+
+  .stat-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-header-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .book-header-meta {
+    gap: 0.5rem;
+  }
+
+  .book-header-description p {
+    -webkit-line-clamp: 2;
+    font-size: 0.875rem;
+  }
+}
+
+/* Dark Mode Overrides */
+.dark .book-header-stats {
+  border-color: #374151;
+}
+
+.dark .stat-icon {
+  color: #9ca3af;
+}
+
+/* Animation */
+.book-header-container {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading Skeleton */
+.book-header-skeleton {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .book-header-container {
+    gap: 0.5rem;
+  }
+
+  .book-header-stats {
+    border-color: #ccc;
+  }
+
+  .stat-icon {
+    color: #666;
+  }
+}

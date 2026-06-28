@@ -1,0 +1,181 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/shared/BookCover.css */
+
+.book-cover-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  aspect-ratio: 2/3;
+  transition: all 0.3s ease;
+}
+
+/* Image Wrapper */
+.book-cover-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.book-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.book-cover-container:hover .book-cover-image {
+  transform: scale(1.05);
+}
+
+/* Overlay */
+.book-cover-overlay {
+  pointer-events: none;
+}
+
+/* Actions */
+.book-cover-actions {
+  pointer-events: none;
+}
+
+.book-cover-actions button {
+  pointer-events: auto;
+}
+
+/* Info Overlay */
+.book-cover-info {
+  pointer-events: none;
+}
+
+/* Badge */
+.book-cover-badge {
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+
+/* Progress Bar */
+.book-cover-progress {
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-cover-container {
+    max-width: 240px;
+  }
+  
+  .book-cover-actions {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .book-cover-actions button {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .book-cover-info {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .book-cover-container {
+    max-width: 200px;
+  }
+  
+  .book-cover-actions button {
+    padding: 1rem;
+  }
+  
+  .book-cover-info {
+    padding: 0.5rem;
+  }
+  
+  .book-cover-info h3 {
+    font-size: 0.75rem;
+  }
+  
+  .book-cover-info p {
+    font-size: 0.65rem;
+  }
+}
+
+/* Dark Mode */
+.dark .book-cover-container {
+  background: linear-gradient(to bottom right, #1f2937, #111827);
+}
+
+.dark .book-cover-actions button {
+  background: rgba(31, 41, 55, 0.9);
+  color: #9ca3af;
+}
+
+.dark .book-cover-actions button:hover {
+  background: rgba(55, 65, 81, 0.9);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.book-cover-container {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Loading Skeleton */
+.book-cover-skeleton {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .book-cover-actions,
+  .book-cover-overlay,
+  .book-cover-info,
+  .book-cover-badge,
+  .book-cover-progress {
+    display: none !important;
+  }
+  
+  .book-cover-container {
+    max-width: 200px;
+  }
+  
+  .book-cover-image {
+    transform: none !important;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .book-cover-actions {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .book-cover-info {
+    transform: translateY(0);
+  }
+  
+  .book-cover-image {
+    transform: none !important;
+  }
+}

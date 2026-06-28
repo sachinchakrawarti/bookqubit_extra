@@ -135,7 +135,7 @@ export const bookTranslationsEnglish = {
 "book.country": "Country",
 "book.edition": "Edition",
 "book.format": "Format",
-
+"book.reading_now": "Reading Now",
 // Add to existing file
 "book.liked": "Liked",
 "book.like": "Like",
@@ -145,7 +145,8 @@ export const bookTranslationsEnglish = {
 "book.my_library": "My Library",
 "book.read": "Read",
 "book.mark_read": "Mark Read",
-
+"book.want_to_read": "Want to Read",
+"book.add_to_library": "Add to Library",
 // Add to existing file
 "book.cover_not_available": "Book cover not available",
 
@@ -226,6 +227,31 @@ export const bookTranslationsEnglish = {
   "pagination.of": "of",
   "pagination.jump_to": "Jump to page:",
   "pagination.go": "Go",
+
+  "book.like": "Like",
+  "book.unlike": "Unlike",
+  "book.likes": "Likes",
+  "book.shares": "Shares",
+  "book.bookmarked": "Bookmarked",
+  "book.share": "Share",
+  "book.add_bookmark": "Add bookmark",
+  "book.remove_bookmark": "Remove bookmark",
+  "book.more_options": "More options",
+  "book.ask_ai": "Ask AI",
+  "book.ask_ai_description": "Get AI-powered insights about this book",
+  "book.report": "Report",
+  "book.report_description": "Report inappropriate content",
+  "book.details": "Book Details",
+  "book.details_description": "View complete book information",
+  "book.print": "Print",
+  "book.print_description": "Print book details",
+  "book.copy_link": "Copy Link",
+  "book.copy_link_description": "Copy book URL to clipboard",
+  "book.link_copied": "Link copied!",
+  "book.close": "Close",
+  "book.by": "by",
+  "book.in_library": "In Library",
+  "book.add_to_library": "Add to Library"
 
 
 };

@@ -1,0 +1,228 @@
+/* src/features/bookqubit-discovery/books/bookdeatils/components/sections/BookKeyPoints.css */
+
+.book-keypoints-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Header */
+.book-keypoints-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.book-keypoints-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-keypoints-icon {
+  font-size: 1.25rem;
+}
+
+.book-keypoints-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.book-keypoints-count {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: #f3f4f6;
+}
+
+.dark .book-keypoints-count {
+  background: #1f2937;
+}
+
+/* Highlights List */
+.book-keypoints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Highlight Item */
+.book-keypoint-item {
+  transition: all 0.2s ease;
+}
+
+.book-keypoint-item:hover {
+  transform: translateY(-2px);
+}
+
+.book-keypoint-content {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.book-keypoint-icon-wrapper {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.highlight-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.book-keypoint-text-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-keypoint-text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.book-keypoint-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.book-keypoint-number {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.book-keypoint-like {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+/* Toggle Button */
+.book-keypoints-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+/* Footer */
+.book-keypoints-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Empty State */
+.book-keypoints-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-keypoints-title {
+    font-size: 1rem;
+  }
+
+  .book-keypoint-text {
+    font-size: 0.875rem;
+  }
+
+  .book-keypoint-item {
+    padding: 0.75rem;
+  }
+
+  .book-keypoint-icon-wrapper .highlight-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-keypoints-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-keypoint-content {
+    gap: 0.5rem;
+  }
+
+  .book-keypoint-text {
+    font-size: 0.8125rem;
+  }
+
+  .book-keypoints-toggle {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* Dark Mode Overrides */
+.dark .book-keypoints-count {
+  background: #1f2937;
+}
+
+/* Animation */
+.book-keypoint-item {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-keypoint-item:nth-child(1) { animation-delay: 0.05s; }
+.book-keypoint-item:nth-child(2) { animation-delay: 0.1s; }
+.book-keypoint-item:nth-child(3) { animation-delay: 0.15s; }
+.book-keypoint-item:nth-child(4) { animation-delay: 0.2s; }
+.book-keypoint-item:nth-child(5) { animation-delay: 0.25s; }
+.book-keypoint-item:nth-child(6) { animation-delay: 0.3s; }
+
+/* Print Styles */
+@media print {
+  .book-keypoints-toggle {
+    display: none;
+  }
+
+  .book-keypoint-like {
+    display: none;
+  }
+
+  .book-keypoint-item {
+    break-inside: avoid;
+    border-color: #ddd !important;
+  }
+}
