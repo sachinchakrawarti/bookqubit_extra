@@ -33,7 +33,7 @@ const BookViewChanger = ({
     setIsClient(true);
   }, []);
 
-  // View options with Grid, Compact, and List views
+  // View options with 4 views (removed masonry)
   const viewOptions = [
     {
       id: "grid",
@@ -95,6 +95,39 @@ const BookViewChanger = ({
         </svg>
       ),
       description: t("view.list_description") || "Detailed list display",
+    },
+    {
+      id: "elevated",
+      label: t("view.elevated_view") || "Elevated View",
+      icon: (
+        <svg
+          className="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm0 16H5V5h14v14z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 9h8M8 13h6M8 17h4"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M16 9a1 1 0 11-2 0 1 1 0 012 0z"
+          />
+        </svg>
+      ),
+      description:
+        t("view.elevated_description") || "Magazine-style hero cards",
     },
   ];
 
@@ -192,7 +225,7 @@ const BookViewChanger = ({
         </button>
       </div>
 
-      {/* View Type Selector - Now visible on mobile too */}
+      {/* View Type Selector */}
       <div className="relative">
         <button
           onClick={() => setShowViewOptions(!showViewOptions)}
@@ -279,7 +312,7 @@ const BookViewChanger = ({
         )}
       </div>
 
-      {/* Sort Options - Show on mobile too */}
+      {/* Sort Options */}
       {showAdvancedControls && (
         <div className="relative">
           <button
@@ -339,7 +372,7 @@ const BookViewChanger = ({
         </div>
       )}
 
-      {/* Items Per Page - Show on mobile too */}
+      {/* Items Per Page */}
       {showAdvancedControls && (
         <div className="relative">
           <select

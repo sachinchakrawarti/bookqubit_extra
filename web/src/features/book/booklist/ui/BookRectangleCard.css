@@ -1,653 +1,634 @@
-/* ============================================================
-   BOOK RECTANGLE CARD - MAIN CONTAINER
-   ============================================================ */
+/* src/features/book/booklist/ui/BookRectangleCard.css */
+
 .book-rectangle-card {
+  max-width: 100%;
+  margin: 0 auto;
   transition: all 0.3s ease;
-  position: relative;
+  height: 100%;
+  min-height: 200px;
   overflow: hidden;
 }
 
-.book-rectangle-card:hover {
-  transform: translateY(-4px);
-}
-
-/* ============================================================
-   CUSTOM SCROLLBAR FOR CONTENT
-   ============================================================ */
-.book-card-content {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
-  overflow-y: auto;
-}
-
-.book-card-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.book-card-content::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 10px;
-}
-
-.book-card-content::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.5);
-  border-radius: 10px;
-}
-
-.book-card-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.7);
-}
-
-/* Dark mode scrollbar */
-.dark .book-card-content {
-  scrollbar-color: rgba(75, 85, 99, 0.5) transparent;
-}
-
-.dark .book-card-content::-webkit-scrollbar-thumb {
-  background: rgba(75, 85, 99, 0.5);
-}
-
-.dark .book-card-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(75, 85, 99, 0.7);
-}
-
-/* ============================================================
-   METADATA TAGS
-   ============================================================ */
-.metadata-label {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  min-width: 55px;
-  text-transform: uppercase;
-  flex-shrink: 0;
-}
-
-.metadata-tag {
-  font-size: 9px;
-  padding: 2px 8px;
-  border-radius: 9999px;
-  transition: all 0.2s ease;
-  font-weight: 400;
-  white-space: nowrap;
-  cursor: pointer;
-  border: none;
-  background: #f3f4f6;
-  color: #4b5563;
-}
-
-.metadata-tag:hover {
-  transform: translateY(-1px);
-  filter: brightness(0.95);
-  background: #e5e7eb;
-}
-
-/* Dark mode metadata tags */
-.dark .metadata-tag {
-  background: #374151;
-  color: #d1d5db;
-}
-
-.dark .metadata-tag:hover {
-  background: #4b5563;
-}
-
-/* ============================================================
-   METADATA TAG - MORE INDICATOR
-   ============================================================ */
-.metadata-tag-more {
-  font-size: 9px;
-  padding: 2px 8px;
-  border-radius: 9999px;
-  background: rgba(156, 163, 175, 0.2);
-  color: #6b7280;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.dark .metadata-tag-more {
-  background: rgba(156, 163, 175, 0.15);
-  color: #9ca3af;
-}
-
-/* ============================================================
-   RATING STARS
-   ============================================================ */
-.star-rating {
+.rectangle-card-inner {
   display: flex;
-  align-items: center;
-  gap: 2px;
+  height: 100%;
+  min-height: 200px;
 }
 
-.star-icon {
-  font-size: 14px;
-  line-height: 1;
+/* ===== IMAGE SECTION ===== */
+.rectangle-image-wrapper {
+  flex: 0 0 35%;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  background: #f3f4f6;
 }
 
-.rating-value {
-  font-size: 12px;
-  font-weight: 600;
-  margin-left: 4px;
+.dark .rectangle-image-wrapper {
+  background: #374151;
 }
 
-/* ============================================================
-   BOOK ACTION BUTTONS
-   ============================================================ */
-.book-action-button {
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  text-align: center;
-  white-space: nowrap;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  text-decoration: none;
-  border: none;
-  font-family: inherit;
-  line-height: 1;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
+.rectangle-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.book-action-button:active {
-  transform: scale(0.97);
+.book-rectangle-card:hover .rectangle-image {
+  transform: scale(1.03);
 }
 
-.book-action-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none !important;
+/* Badge on Image */
+.rectangle-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Primary Button */
-.book-action-button-primary {
-  background: linear-gradient(135deg, #0284c7, #0ea5e9);
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.book-action-button-primary:hover {
-  background: linear-gradient(135deg, #0369a1, #0284c7);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.badge-new {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
   color: white;
 }
 
-.book-action-button-primary:active {
-  transform: scale(0.97);
+.badge-bestseller {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: white;
 }
 
-/* Secondary Button */
-.book-action-button-secondary {
-  border: 2px solid #0ea5e9;
-  color: #0ea5e9;
-  background: transparent;
+/* ===== CONTENT SECTION ===== */
+.rectangle-content-wrapper {
+  flex: 1;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  overflow: hidden;
 }
 
-.book-action-button-secondary:hover {
-  background: rgba(14, 165, 233, 0.08);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  color: #0ea5e9;
+.rectangle-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  justify-content: space-between;
 }
 
-.book-action-button-secondary:active {
-  transform: scale(0.97);
-}
-
-/* ============================================================
-   DARK MODE - ACTION BUTTONS
-   ============================================================ */
-.dark .book-action-button-primary {
-  background: linear-gradient(135deg, #0284c7, #0ea5e9);
-}
-
-.dark .book-action-button-primary:hover {
-  background: linear-gradient(135deg, #0369a1, #0284c7);
-}
-
-.dark .book-action-button-secondary {
-  color: #38bdf8;
-  border-color: #38bdf8;
-}
-
-.dark .book-action-button-secondary:hover {
-  background: rgba(56, 189, 248, 0.1);
-  color: #38bdf8;
-}
-
-/* ============================================================
-   RTL (RIGHT-TO-LEFT) SUPPORT
-   ============================================================ */
-.rtl .metadata-label {
-  text-align: right;
-}
-
-.rtl .flex-row-reverse-rtl {
-  flex-direction: row-reverse;
-}
-
-.rtl .star-rating {
-  flex-direction: row-reverse;
-}
-
-.rtl .rating-value {
-  margin-left: 0;
-  margin-right: 4px;
-}
-
-/* ============================================================
-   RESPONSIVE - MOBILE (max-width: 768px)
-   ============================================================ */
-@media (max-width: 768px) {
-  .book-rectangle-card {
-    height: auto !important;
-    min-height: 380px;
-    border-radius: 0.75rem;
-  }
-  
-  .book-rectangle-card:hover {
-    transform: none;
-    box-shadow: inherit;
-  }
-  
-  .book-card-content {
-    max-height: 180px;
-    overflow-y: auto;
-    padding-right: 0.5rem;
-  }
-  
-  .metadata-label {
-    min-width: 45px;
-    font-size: 8px;
-  }
-  
-  .metadata-tag {
-    font-size: 8px;
-    padding: 1px 6px;
-  }
-  
-  .metadata-tag-more {
-    font-size: 8px;
-    padding: 1px 6px;
-  }
-  
-  .star-icon {
-    font-size: 11px;
-  }
-  
-  .rating-value {
-    font-size: 10px;
-  }
-  
-  .book-action-button {
-    font-size: 11px;
-    padding: 6px 12px;
-    min-height: 36px;
-    border-radius: 6px;
-  }
-  
-  .book-action-button-secondary {
-    border-width: 1.5px;
-  }
-  
-  /* ButtonInline on mobile */
-  .button-inline.mobile {
-    padding: 4px 8px;
-    gap: 4px;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE - SMALL MOBILE (max-width: 480px)
-   ============================================================ */
-@media (max-width: 480px) {
-  .book-rectangle-card {
-    min-height: 340px;
-    border-radius: 0.5rem;
-  }
-  
-  .book-card-content {
-    max-height: 140px;
-    padding-right: 0.25rem;
-  }
-  
-  .metadata-label {
-    min-width: 40px;
-    font-size: 7px;
-  }
-  
-  .metadata-tag {
-    font-size: 7px;
-    padding: 1px 4px;
-  }
-  
-  .metadata-tag-more {
-    font-size: 7px;
-    padding: 1px 4px;
-  }
-  
-  .star-icon {
-    font-size: 10px;
-  }
-  
-  .rating-value {
-    font-size: 9px;
-  }
-  
-  .book-action-button {
-    font-size: 10px;
-    padding: 5px 10px;
-    min-height: 32px;
-    border-radius: 6px;
-  }
-  
-  .book-action-button-secondary {
-    border-width: 1.5px;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE - EXTRA SMALL MOBILE (max-width: 360px)
-   ============================================================ */
-@media (max-width: 360px) {
-  .book-rectangle-card {
-    min-height: 300px;
-  }
-  
-  .book-card-content {
-    max-height: 120px;
-  }
-  
-  .metadata-label {
-    min-width: 35px;
-    font-size: 6px;
-  }
-  
-  .metadata-tag {
-    font-size: 6px;
-    padding: 1px 3px;
-  }
-  
-  .metadata-tag-more {
-    font-size: 6px;
-    padding: 1px 3px;
-  }
-  
-  .star-icon {
-    font-size: 9px;
-  }
-  
-  .rating-value {
-    font-size: 8px;
-  }
-  
-  .book-action-button {
-    font-size: 9px;
-    padding: 4px 8px;
-    min-height: 28px;
-    border-radius: 4px;
-  }
-}
-
-/* ============================================================
-   ACCESSIBILITY - FOCUS STATES
-   ============================================================ */
-.book-rectangle-card:focus-visible,
-.metadata-tag:focus-visible,
-.book-action-button:focus-visible {
-  outline: 2px solid #0284c7;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.dark .book-rectangle-card:focus-visible,
-.dark .metadata-tag:focus-visible,
-.dark .book-action-button:focus-visible {
-  outline-color: #60a5fa;
-}
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-@media (prefers-reduced-motion: reduce) {
-  .book-rectangle-card,
-  .book-rectangle-card:hover,
-  .metadata-tag,
-  .metadata-tag:hover,
-  .book-action-button,
-  .book-action-button:hover {
-    transition: none !important;
-    transform: none !important;
-    animation: none !important;
-  }
-  
-  .book-rectangle-card:hover {
-    transform: none !important;
-  }
-}
-
-/* ============================================================
-   HIGH CONTRAST MODE
-   ============================================================ */
-@media (prefers-contrast: high) {
-  .book-rectangle-card {
-    border-width: 2px !important;
-  }
-  
-  .metadata-tag {
-    border: 1px solid currentColor;
-  }
-  
-  .book-action-button {
-    border-width: 2px !important;
-  }
-  
-  .book-action-button-primary {
-    background: #0284c7 !important;
-    color: white !important;
-  }
-  
-  .book-action-button-primary:hover {
-    background: #0369a1 !important;
-  }
-  
-  .book-action-button-secondary {
-    border-color: #0ea5e9 !important;
-    color: #0ea5e9 !important;
-  }
-}
-
-/* ============================================================
-   PRINT STYLES
-   ============================================================ */
-@media print {
-  .book-rectangle-card {
-    box-shadow: none !important;
-    transform: none !important;
-    border: 1px solid #000 !important;
-    page-break-inside: avoid;
-  }
-  
-  .book-rectangle-card:hover {
-    transform: none !important;
-    box-shadow: none !important;
-  }
-  
-  .book-action-button,
-  .metadata-tag {
-    background: #f3f4f6 !important;
-    border: 1px solid #000 !important;
-    color: #000 !important;
-  }
-  
-  .book-action-button-primary {
-    background: #e5e7eb !important;
-    color: #000 !important;
-  }
-  
-  .book-action-button-secondary {
-    border-color: #000 !important;
-    color: #000 !important;
-  }
-  
-  .book-card-content {
-    overflow: visible !important;
-    max-height: none !important;
-  }
-  
-  .book-card-content::-webkit-scrollbar {
-    display: none !important;
-  }
-}
-
-/* ============================================================
-   SELECTION STYLES
-   ============================================================ */
-.book-rectangle-card ::selection {
-  background: rgba(14, 165, 233, 0.3);
-  color: inherit;
-}
-
-.dark .book-rectangle-card ::selection {
-  background: rgba(56, 189, 248, 0.3);
-  color: inherit;
-}
-
-/* ============================================================
-   LOADING STATE
-   ============================================================ */
-.book-rectangle-card.loading {
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.book-rectangle-card.loading .book-card-content {
-  opacity: 0.5;
-}
-
-/* ============================================================
-   TOUCH DEVICE OPTIMIZATIONS
-   ============================================================ */
-@media (hover: none) {
-  .book-rectangle-card:hover {
-    transform: none !important;
-  }
-  
-  .metadata-tag:hover {
-    transform: none !important;
-  }
-  
-  .book-action-button:hover {
-    transform: none !important;
-  }
-  
-  .metadata-tag,
-  .book-action-button {
-    -webkit-tap-highlight-color: rgba(14, 165, 233, 0.2);
-  }
-}
-
-/* ============================================================
-   BUTTON INLINE OVERRIDES
-   ============================================================ */
-.book-rectangle-card .button-inline {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.book-rectangle-card .button-inline.desktop {
-  justify-content: space-around !important;
-}
-
-.book-rectangle-card .button-inline.mobile {
-  justify-content: space-around !important;
-  padding: 4px 8px !important;
-}
-
-/* ============================================================
-   ANIMATION - SMOOTH ENTRANCE
-   ============================================================ */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.book-rectangle-card.animate {
-  animation: fadeInUp 0.5s ease forwards;
-}
-
-/* ============================================================
-   GRID LAYOUT HELPER
-   ============================================================ */
-.book-rectangle-card .grid-cols-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.book-rectangle-card .gap-2 {
-  gap: 0.5rem;
-}
-
-.book-rectangle-card .gap-1 {
-  gap: 0.25rem;
-}
-
-/* ============================================================
-   TEXT UTILITIES
-   ============================================================ */
-.book-rectangle-card .line-clamp-2 {
+/* Title */
+.rectangle-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.2;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin: 0;
 }
 
-.book-rectangle-card .line-clamp-3 {
+.dark .rectangle-title {
+  color: #f3f4f6;
+}
+
+/* Author */
+.rectangle-author-row {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.dark .rectangle-author-row {
+  color: #9ca3af;
+}
+
+.rectangle-author-prefix {
+  opacity: 0.7;
+}
+
+.rectangle-author-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.rectangle-author-link:hover {
+  text-decoration: underline;
+}
+
+.rectangle-author-name {
+  font-weight: 500;
+  color: #4b5563;
+  font-size: 12px;
+}
+
+.dark .rectangle-author-name {
+  color: #d1d5db;
+}
+
+.rectangle-year {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* Rating */
+.rectangle-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 1px;
+}
+
+.rectangle-star {
+  width: 14px;
+  height: 14px;
+}
+
+.rectangle-rating-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-left: 4px;
+}
+
+.dark .rectangle-rating-text {
+  color: #f3f4f6;
+}
+
+.rectangle-rating-count {
+  font-size: 11px;
+  color: #6b7280;
+  margin-left: 2px;
+}
+
+.dark .rectangle-rating-count {
+  color: #9ca3af;
+}
+
+/* Description */
+.rectangle-description {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin: 2px 0;
 }
 
-/* ============================================================
-   RESPONSIVE - TABLET (768px - 1024px)
-   ============================================================ */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .book-rectangle-card {
-    height: auto !important;
-    min-height: 420px;
+.dark .rectangle-description {
+  color: #9ca3af;
+}
+
+/* Tags */
+.rectangle-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.rectangle-tag {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: 500;
+  background: #f3f4f6;
+  color: #6b7280;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.dark .rectangle-tag {
+  background: #374151;
+  color: #9ca3af;
+}
+
+.rectangle-tag:hover {
+  background: #e5e7eb;
+  transform: scale(1.05);
+}
+
+.dark .rectangle-tag:hover {
+  background: #4b5563;
+}
+
+.rectangle-tag-more {
+  font-size: 9px;
+  color: #9ca3af;
+  padding: 2px 4px;
+}
+
+/* Actions - ButtonInline */
+.rectangle-actions {
+  margin-top: 3px;
+  width: 100%;
+}
+
+/* Bottom Buttons */
+.rectangle-bottom-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .rectangle-bottom-buttons {
+  border-top-color: #374151;
+}
+
+.rectangle-btn {
+  flex: 1;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 11px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.rectangle-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+}
+
+.rectangle-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.rectangle-btn-secondary {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.dark .rectangle-btn-secondary {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+.rectangle-btn-secondary:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.dark .rectangle-btn-secondary:hover {
+  background: #4b5563;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Desktop Large */
+@media (min-width: 1400px) {
+  .rectangle-image-wrapper {
+    flex: 0 0 30%;
+    min-height: 260px;
   }
-  
-  .book-card-content {
-    max-height: 220px;
+  .rectangle-content-wrapper {
+    padding: 20px 24px;
+    min-height: 260px;
   }
-  
-  .metadata-label {
-    min-width: 50px;
-    font-size: 9px;
+  .rectangle-title {
+    font-size: 20px;
   }
-  
-  .metadata-tag {
-    font-size: 9px;
-    padding: 2px 7px;
+  .rectangle-description {
+    font-size: 14px;
   }
-  
-  .book-action-button {
+  .rectangle-author-row {
+    font-size: 13px;
+  }
+  .rectangle-author-link {
+    font-size: 13px;
+  }
+  .rectangle-author-name {
+    font-size: 13px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) and (max-width: 1399px) {
+  .rectangle-image-wrapper {
+    flex: 0 0 32%;
+    min-height: 220px;
+  }
+  .rectangle-content-wrapper {
+    padding: 16px 20px;
+    min-height: 220px;
+  }
+  .rectangle-title {
+    font-size: 17px;
+  }
+  .rectangle-description {
     font-size: 12px;
-    padding: 7px 14px;
-    min-height: 38px;
+  }
+}
+
+/* Tablet / Laptop */
+@media (max-width: 1024px) {
+  .rectangle-image-wrapper {
+    flex: 0 0 30%;
+    min-height: 180px;
+  }
+  .rectangle-content-wrapper {
+    padding: 14px 16px;
+    min-height: 180px;
+  }
+  .rectangle-title {
+    font-size: 15px;
+  }
+  .rectangle-description {
+    font-size: 11px;
+    -webkit-line-clamp: 2;
+  }
+  .rectangle-author-row {
+    font-size: 11px;
+  }
+  .rectangle-author-link {
+    font-size: 11px;
+  }
+  .rectangle-author-name {
+    font-size: 11px;
+  }
+  .rectangle-btn {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  .rectangle-star {
+    width: 12px;
+    height: 12px;
+  }
+  .rectangle-tag {
+    font-size: 8px;
+    padding: 1px 6px;
+  }
+}
+
+/* Mobile - FIXED IMAGE */
+@media (max-width: 768px) {
+  .book-rectangle-card {
+    min-height: 140px;
+  }
+  
+  .rectangle-card-inner {
+    min-height: 140px;
+  }
+  
+  .rectangle-image-wrapper {
+    flex: 0 0 30%;
+    min-height: 140px;
+    position: relative;
+  }
+  
+  .rectangle-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .rectangle-content-wrapper {
+    padding: 10px 12px;
+    min-height: 140px;
+  }
+  
+  .rectangle-title {
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+  }
+  
+  .rectangle-description {
+    font-size: 11px;
+    -webkit-line-clamp: 1;
+  }
+  
+  .rectangle-author-row {
+    font-size: 10px;
+    gap: 3px;
+  }
+  
+  .rectangle-author-link {
+    font-size: 10px;
+  }
+  
+  .rectangle-author-name {
+    font-size: 10px;
+  }
+  
+  .rectangle-year {
+    font-size: 9px;
+  }
+  
+  .rectangle-rating-text {
+    font-size: 11px;
+  }
+  
+  .rectangle-rating-count {
+    font-size: 10px;
+  }
+  
+  .rectangle-star {
+    width: 11px;
+    height: 11px;
+  }
+  
+  .rectangle-tag {
+    font-size: 8px;
+    padding: 1px 6px;
+  }
+  
+  .rectangle-tag-more {
+    font-size: 8px;
+  }
+  
+  .rectangle-btn {
+    font-size: 9px;
+    padding: 4px 8px;
+    min-width: 50px;
+  }
+  
+  .rectangle-bottom-buttons {
+    gap: 4px;
+    padding-top: 6px;
+    margin-top: 4px;
+  }
+  
+  .rectangle-badge {
+    top: 6px;
+    left: 6px;
+    font-size: 7px;
+    padding: 2px 8px;
+  }
+  
+  .rectangle-actions {
+    margin-top: 2px;
+  }
+}
+
+/* Small Mobile - FIXED IMAGE */
+@media (max-width: 480px) {
+  .book-rectangle-card {
+    min-height: 120px;
+  }
+  
+  .rectangle-card-inner {
+    min-height: 120px;
+  }
+  
+  .rectangle-image-wrapper {
+    flex: 0 0 28%;
+    min-height: 120px;
+    position: relative;
+  }
+  
+  .rectangle-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .rectangle-content-wrapper {
+    padding: 8px 10px;
+    min-height: 120px;
+  }
+  
+  .rectangle-title {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+  }
+  
+  .rectangle-description {
+    font-size: 10px;
+    -webkit-line-clamp: 1;
+  }
+  
+  .rectangle-author-row {
+    font-size: 9px;
+    gap: 2px;
+  }
+  
+  .rectangle-author-link {
+    font-size: 9px;
+  }
+  
+  .rectangle-author-name {
+    font-size: 9px;
+  }
+  
+  .rectangle-year {
+    font-size: 8px;
+  }
+  
+  .rectangle-rating-text {
+    font-size: 10px;
+  }
+  
+  .rectangle-rating-count {
+    font-size: 9px;
+  }
+  
+  .rectangle-star {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .rectangle-tag {
+    font-size: 7px;
+    padding: 1px 5px;
+  }
+  
+  .rectangle-tag-more {
+    font-size: 7px;
+    padding: 1px 3px;
+  }
+  
+  .rectangle-btn {
+    font-size: 8px;
+    padding: 3px 6px;
+    min-width: 40px;
+  }
+  
+  .rectangle-bottom-buttons {
+    gap: 3px;
+    padding-top: 4px;
+    margin-top: 3px;
+  }
+  
+  .rectangle-badge {
+    top: 4px;
+    left: 4px;
+    font-size: 6px;
+    padding: 1px 6px;
+  }
+  
+  .rectangle-actions {
+    margin-top: 1px;
+  }
+}
+
+/* ===== GRID LAYOUT FIX ===== */
+/* For grid layout, ensure cards fill space properly */
+.grid > .book-rectangle-card {
+  height: 100%;
+}
+
+.grid > .book-rectangle-card .rectangle-card-inner {
+  height: 100%;
+}
+
+/* ===== RTL Support ===== */
+.rtl .rectangle-badge {
+  left: auto;
+  right: 10px;
+}
+
+.rtl .rectangle-author-row {
+  flex-direction: row-reverse;
+}
+
+.rtl .rectangle-tags {
+  flex-direction: row-reverse;
+}
+
+.rtl .rectangle-bottom-buttons {
+  flex-direction: row-reverse;
+}
+
+.rtl .rectangle-rating {
+  flex-direction: row-reverse;
+}
+
+/* RTL Mobile */
+@media (max-width: 480px) {
+  .rtl .rectangle-badge {
+    right: 4px;
+    left: auto;
   }
 }

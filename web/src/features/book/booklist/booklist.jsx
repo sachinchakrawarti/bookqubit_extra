@@ -7,6 +7,7 @@ import { getBooksByLanguage } from "@/data/books";
 import BookSquareCard from "@/features/book/booklist/ui/BookSquareCard";
 import BookRectangleCard from "@/features/book/booklist/ui/BookRectangleCard";
 import BookCompactCard from "@/features/book/booklist/ui/BookCompactCard";
+import BookElevatedCard from "@/features/book/booklist/ui/BookElevatedCard";
 import BooksSearch from "@/features/book/booklist/components/Books_Search";
 import BooksFilter from "@/features/book/booklist/components/Books_Filter";
 import BookViewChanger from "@/features/book/booklist/actions/Book_View_Changer";
@@ -72,7 +73,7 @@ const BookList = () => {
   const [viewType, setViewType] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("bookViewType");
-      return saved || "compact"; // Default to "compact"
+      return saved || "compact";
     }
     return "compact";
   });
@@ -111,7 +112,6 @@ const BookList = () => {
     const checkScreenSize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      // Don't force viewType change on mobile - let user choose
     };
 
     checkScreenSize();
@@ -321,9 +321,23 @@ const BookList = () => {
           </div>
         );
 
+      case "elevated":
+        return (
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
+            {currentBooks.map((book) => (
+              <BookElevatedCard
+                key={book.id}
+                book={book}
+                onTagClick={handleTagClick}
+                currentLang={currentLanguage}
+              />
+            ))}
+          </div>
+        );
+
       case "list":
         return (
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
             {currentBooks.map((book) => (
               <BookRectangleCard
                 key={book.id}
