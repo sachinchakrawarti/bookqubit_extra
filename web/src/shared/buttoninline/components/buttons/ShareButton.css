@@ -1,0 +1,439 @@
+/* ============================================================
+   SHARE BUTTON STYLES
+   ============================================================ */
+.btn-share {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  padding: 8px;
+  font-family: inherit;
+  line-height: 1;
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-share:hover {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-share:active {
+  transform: scale(0.95);
+}
+
+.btn-share.dark:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-share.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-share.sharing {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* ============================================================
+   VARIANTS
+   ============================================================ */
+/* Icon only */
+.btn-share-icon {
+  border-radius: 50%;
+  padding: 8px;
+}
+
+.btn-share-icon .label {
+  display: none;
+}
+
+/* Text only */
+.btn-share-text {
+  border-radius: 8px;
+  padding: 8px 16px;
+  gap: 0;
+}
+
+.btn-share-text .icon {
+  display: none;
+}
+
+.btn-share-text .label {
+  display: inline;
+}
+
+/* Icon + Text */
+.btn-share-icon-text {
+  border-radius: 8px;
+  padding: 8px 16px;
+  gap: 8px;
+}
+
+.btn-share-icon-text .label {
+  display: inline;
+}
+
+/* ============================================================
+   SIZE VARIANTS
+   ============================================================ */
+/* Small */
+.btn-share-sm {
+  padding: 4px;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+}
+
+.btn-share-sm .icon {
+  font-size: 14px;
+}
+
+.btn-share-sm .text-sm {
+  font-size: 12px;
+}
+
+.btn-share-sm.btn-share-text {
+  padding: 4px 12px;
+  width: auto;
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+}
+
+.btn-share-sm.btn-share-icon-text {
+  padding: 4px 12px;
+  width: auto;
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+}
+
+/* Medium */
+.btn-share-md {
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.btn-share-md .icon {
+  font-size: 18px;
+}
+
+.btn-share-md .text-md {
+  font-size: 14px;
+}
+
+.btn-share-md.btn-share-text {
+  padding: 8px 16px;
+  width: auto;
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+}
+
+.btn-share-md.btn-share-icon-text {
+  padding: 8px 16px;
+  width: auto;
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+}
+
+/* Large */
+.btn-share-lg {
+  padding: 10px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.btn-share-lg .icon {
+  font-size: 22px;
+}
+
+.btn-share-lg .text-lg {
+  font-size: 16px;
+}
+
+.btn-share-lg.btn-share-text {
+  padding: 10px 20px;
+  width: auto;
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+}
+
+.btn-share-lg.btn-share-icon-text {
+  padding: 10px 20px;
+  width: auto;
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+}
+
+/* ============================================================
+   ICON STYLES
+   ============================================================ */
+.icon {
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   LABEL STYLES
+   ============================================================ */
+.label {
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   TOOLTIP STYLES
+   ============================================================ */
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2937;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  animation: fadeInUp 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  pointer-events: none;
+}
+
+.tooltip.dark {
+  background: #374151;
+  color: #f9fafb;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #1f2937;
+}
+
+.tooltip.dark::after {
+  border-top-color: #374151;
+}
+
+/* ============================================================
+   SPINNER STYLES
+   ============================================================ */
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+  width: 20px;
+  height: 20px;
+}
+
+.btn-share-sm .animate-spin {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-share-lg .animate-spin {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE STYLES
+   ============================================================ */
+@media (max-width: 640px) {
+  .btn-share-sm {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    padding: 3px;
+  }
+  
+  .btn-share-sm .icon {
+    font-size: 12px;
+  }
+  
+  .btn-share-md {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 6px;
+  }
+  
+  .btn-share-md .icon {
+    font-size: 16px;
+  }
+  
+  .btn-share-lg {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 8px;
+  }
+  
+  .btn-share-lg .icon {
+    font-size: 18px;
+  }
+  
+  .tooltip {
+    font-size: 10px;
+    padding: 3px 10px;
+  }
+  
+  .btn-share-sm.btn-share-text,
+  .btn-share-sm.btn-share-icon-text {
+    padding: 3px 10px;
+  }
+  
+  .btn-share-md.btn-share-text,
+  .btn-share-md.btn-share-icon-text {
+    padding: 6px 12px;
+  }
+  
+  .btn-share-lg.btn-share-text,
+  .btn-share-lg.btn-share-icon-text {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-share-md {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    padding: 5px;
+  }
+  
+  .btn-share-md .icon {
+    font-size: 14px;
+  }
+  
+  .btn-share-md .text-md {
+    font-size: 12px;
+  }
+  
+  .tooltip {
+    font-size: 9px;
+    padding: 2px 8px;
+    bottom: calc(100% + 6px);
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .btn-share,
+  .btn-share:hover,
+  .btn-share:active {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .tooltip {
+    animation: none !important;
+  }
+  
+  .animate-spin {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+.btn-share:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.btn-share.dark:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* ============================================================
+   HIGH CONTRAST MODE
+   ============================================================ */
+@media (prefers-contrast: high) {
+  .btn-share {
+    border: 1px solid currentColor;
+  }
+  
+  .btn-share:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-share.dark:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .tooltip {
+    border: 1px solid currentColor;
+  }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  .btn-share {
+    display: none !important;
+  }
+}

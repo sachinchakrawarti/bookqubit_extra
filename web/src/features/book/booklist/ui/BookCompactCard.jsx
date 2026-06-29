@@ -7,6 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useFont } from "@/contexts/FontContext";
 import { useRTL } from "@/contexts/RTLContext";
 import { ButtonInline } from "@/shared/buttoninline";
+import { BookButtons } from "@/shared/buttons";
 import "./BookCompactCard.css";
 
 const BookCompactCard = ({
@@ -40,8 +41,22 @@ const BookCompactCard = ({
 
   const fallbackImage = "/placeholder-book.jpg";
 
+  // Format published year
+  const formatPublishedYear = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return isNaN(date.getTime()) ? dateString : date.getFullYear().toString();
+  };
+
+  // Get the slug for the book - use ONLY slug
+  const bookSlug = book?.slug;
+
   const handleCardClick = () => {
-    router.push(`/books/${book.slug || book.id}`);
+    if (bookSlug) {
+      router.push(`/books/${bookSlug}`);
+    } else if (book?.id) {
+      router.push(`/books/${book.id}`);
+    }
   };
 
   const handleTagClick = (e, tag) => {
@@ -58,20 +73,7 @@ const BookCompactCard = ({
   };
 
   const handleShare = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: book?.title || "Book",
-          text: `Check out "${book?.title}" by ${book?.author}`,
-          url: window.location.href,
-        })
-        .catch((err) => console.log("Error sharing:", err));
-    } else {
-      navigator.clipboard
-        .writeText(window.location.href)
-        .then(() => alert("Link copied to clipboard!"))
-        .catch((err) => console.log("Error copying to clipboard:", err));
-    }
+    console.log("Share triggered for:", book?.title);
   };
 
   const handleReport = () => {
@@ -89,11 +91,23 @@ const BookCompactCard = ({
     }
   };
 
+  const handleViewDetails = (e) => {
+    e.stopPropagation();
+    if (bookSlug) {
+      router.push(`/books/${bookSlug}`);
+    } else if (book?.id) {
+      router.push(`/books/${book.id}`);
+    }
+  };
+
   const fontStyle = currentFont?.family
     ? {
         fontFamily: currentFont.family,
       }
     : {};
+
+  // Get the published year
+  const publishedYear = book?.published ? formatPublishedYear(book.published) : "";
 
   return (
     <div
@@ -132,10 +146,16 @@ const BookCompactCard = ({
               {book.title}
             </h3>
 
+            {/* Author and Year - Year directly after author name */}
             <p
               className={`compact-author ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")}`}
             >
               {t("book.by")} {book.author}
+              {publishedYear && (
+                <span className="compact-year">
+                  {" "}({publishedYear})
+                </span>
+              )}
             </p>
 
             <div className="flex items-center gap-2 mb-2">
@@ -155,11 +175,7 @@ const BookCompactCard = ({
                   </svg>
                 ))}
               </div>
-              <span
-                className={`text-xs ${theme.textColors?.secondary || (isDarkMode ? "text-gray-400" : "text-gray-600")}`}
-              >
-                ({book.rating?.toFixed(1) || "0"})
-              </span>
+          
             </div>
 
             <p
@@ -194,14 +210,15 @@ const BookCompactCard = ({
 
         {/* Bottom Section: Full Width Action Controls */}
         <div className="full-width-actions-panel mt-4 w-full flex flex-col gap-2">
-          {/* Row 1: ButtonInline Component */}
+          {/* Row 1: ButtonInline Component - Pass slug correctly */}
           {book?.id && (
             <div className="book-compact-card-actions w-full">
               <ButtonInline
                 bookId={book.id}
+                bookSlug={bookSlug}
                 bookName={book.title || "Book"}
                 authorName={book.author || "Unknown Author"}
-                launchYear={book.publicationYear || book.year || "N/A"}
+                launchYear={book.publicationYear || book.year || publishedYear || "N/A"}
                 bookCover={book.imageUrl || null}
                 bookRating={book.rating || 4.5}
                 totalReviews={book.reviews || 128}
@@ -217,6 +234,7 @@ const BookCompactCard = ({
                 onShare={handleShare}
                 onReport={handleReport}
                 onAskAI={handleAskAI}
+                navigateToBookOnShare={true}
                 className="w-full"
                 variant="auto"
               />
@@ -225,21 +243,23 @@ const BookCompactCard = ({
 
           {/* Row 2: Action Trigger Buttons */}
           <div className="grid grid-cols-2 gap-2 w-full">
-            <button
-              onClick={handleGetBook}
-              className={`action-btn get-book ${theme.buttonColors?.primaryButton?.background || "bg-emerald-600"} text-white`}
-            >
-              {t("book.get_book") || "Get Book"}
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                router.push(`/books/${book.slug || book.id}`);
-              }}
-              className={`action-btn view-details ${theme.buttonColors?.secondaryButton?.textColor || ""}`}
-            >
-              {t("book.view_details") || "View Details"}
-            </button>
+            {/* Get Book Button */}
+            {book?.buttons?.getBook && (
+              <button
+                onClick={handleGetBook}
+                className={`action-btn get-book ${theme.buttonColors?.primaryButton?.background || "bg-emerald-600"} text-white hover:opacity-90 transition-all duration-200`}
+              >
+                {t("book.get_book") || "Get Book"}
+              </button>
+            )}
+
+            {/* View Details Button - Uses slug */}
+            <BookButtons.ViewDetails
+              slug={bookSlug || book?.id}
+              size="sm"
+              label={t("book.view_details") || "View Details"}
+              className="action-btn view-details w-full text-center"
+            />
           </div>
         </div>
       </div>

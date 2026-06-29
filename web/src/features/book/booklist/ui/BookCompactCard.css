@@ -8,11 +8,23 @@
   border-radius: 0.75rem;
   overflow: hidden;
   width: 100%;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
 }
 
 .book-compact-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark mode border */
+.dark .book-compact-card {
+  border-color: #374151;
+  background: #1f2937;
+}
+
+.dark .book-compact-card:hover {
+  border-color: #4b5563;
 }
 
 /* ============================================================
@@ -22,6 +34,7 @@
   width: 96px;
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .book-compact-cover {
@@ -50,11 +63,21 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
+  color: #111827;
+}
+
+.dark .compact-title {
+  color: #ffffff;
 }
 
 .compact-author {
   font-size: 12px;
   margin-bottom: 4px;
+  color: #6b7280;
+}
+
+.dark .compact-author {
+  color: #9ca3af;
 }
 
 .compact-stars {
@@ -76,6 +99,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
+  color: #6b7280;
+}
+
+.dark .compact-description {
+  color: #9ca3af;
 }
 
 .compact-tag {
@@ -88,11 +116,22 @@
   transition: all 0.2s ease;
   letter-spacing: 0.01em;
   cursor: pointer;
+  background: #f3f4f6;
+  color: #374151;
 }
 
 .compact-tag:hover {
   transform: translateY(-1px);
   filter: brightness(0.95);
+}
+
+.dark .compact-tag {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.dark .compact-tag:hover {
+  background: #4b5563;
 }
 
 /* ============================================================
@@ -140,6 +179,11 @@
   transition: all 0.2s ease;
   width: 100%;
   white-space: nowrap;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
 }
 
 .action-btn:hover {
@@ -152,45 +196,120 @@
   transform: scale(0.98);
 }
 
+/* Get Book Button - Always visible */
 .get-book {
-  color: white;
-  border: none;
+  color: white !important;
+  background: #059669 !important;
+  border: none !important;
 }
 
-/* Specific CSS Fix for visibility bug shown in image_336820.png */
-.view-details {
-  background: transparent !important;
-  border: 2px solid #00a3ff !important; /* Locks fallback border color matching image */
-  color: #00a3ff !important;           /* Forces text to match border brand coloring */
+.get-book:hover {
+  background: #047857 !important;
+  opacity: 1 !important;
 }
 
-.view-details:hover {
-  background: rgba(0, 163, 255, 0.08) !important;
+.dark .get-book {
+  background: #059669 !important;
+}
+
+.dark .get-book:hover {
+  background: #047857 !important;
 }
 
 /* ============================================================
-   DARK THEME CONTRAST MANIPULATIONS
+   VIEW DETAILS BUTTON - Using BookButtons.ViewDetails
    ============================================================ */
-.dark .compact-tag {
-  background: #374151;
-  color: #d1d5db;
+.view-details {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: 2px solid #3b82f6 !important;
+  color: #3b82f6 !important;
+  padding: 10px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+  white-space: nowrap !important;
+  min-height: 42px !important;
+  text-decoration: none !important;
 }
 
-.dark .compact-tag:hover {
-  background: #4b5563;
+.view-details:hover {
+  background: rgba(59, 130, 246, 0.08) !important;
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+  transform: translateY(-1px) !important;
+  opacity: 1 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
 }
 
-.dark .book-compact-cover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+.view-details:active {
+  transform: scale(0.98) !important;
 }
 
+/* View Details - Dark mode */
 .dark .view-details {
-  color: #38bdf8 !important;
-  border-color: #38bdf8 !important;
+  color: #60a5fa !important;
+  border-color: #60a5fa !important;
 }
 
 .dark .view-details:hover {
-  background: rgba(56, 189, 248, 0.1) !important;
+  background: rgba(96, 165, 250, 0.1) !important;
+  border-color: #3b82f6 !important;
+  color: #93bbfc !important;
+}
+
+/* Grid cell override */
+.grid .view-details {
+  width: 100% !important;
+}
+
+/* Override any conflicting styles */
+.action-btn.view-details {
+  background: transparent !important;
+}
+
+/* Ensure view-details works with BookButtons component */
+.view-details.book-button {
+  all: unset !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: 2px solid #3b82f6 !important;
+  color: #3b82f6 !important;
+  padding: 10px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  min-height: 42px !important;
+  transition: all 0.2s ease !important;
+}
+
+.view-details.book-button:hover {
+  background: rgba(59, 130, 246, 0.08) !important;
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+  transform: translateY(-1px) !important;
+}
+
+.dark .view-details.book-button {
+  color: #60a5fa !important;
+  border-color: #60a5fa !important;
+}
+
+.dark .view-details.book-button:hover {
+  background: rgba(96, 165, 250, 0.1) !important;
+  border-color: #3b82f6 !important;
+  color: #93bbfc !important;
 }
 
 /* ============================================================
@@ -240,6 +359,13 @@
   .action-btn {
     font-size: 11px;
     padding: 8px 12px;
+    min-height: 36px;
+  }
+
+  .view-details {
+    font-size: 11px !important;
+    padding: 8px 12px !important;
+    min-height: 36px !important;
   }
 
   .full-width-actions-panel {
@@ -285,6 +411,14 @@
   .action-btn {
     font-size: 10px;
     padding: 6px 10px;
+    min-height: 32px;
+  }
+
+  .view-details {
+    font-size: 10px !important;
+    padding: 6px 10px !important;
+    min-height: 32px !important;
+    border-width: 1.5px !important;
   }
 
   .full-width-actions-panel {
@@ -300,12 +434,67 @@
   }
 }
 
+@media (max-width: 360px) {
+  .mobile-left-col {
+    width: 50px !important;
+  }
+
+  .book-compact-cover {
+    width: 50px;
+    height: 75px;
+  }
+
+  .compact-title {
+    font-size: 12px;
+  }
+
+  .compact-author {
+    font-size: 9px;
+  }
+
+  .compact-description {
+    font-size: 9px;
+    -webkit-line-clamp: 1;
+  }
+
+  .compact-tag {
+    font-size: 7px;
+    padding: 1px 4px;
+  }
+
+  .action-btn {
+    font-size: 9px;
+    padding: 4px 8px;
+    min-height: 28px;
+  }
+
+  .view-details {
+    font-size: 9px !important;
+    padding: 4px 8px !important;
+    min-height: 28px !important;
+    border-width: 1.5px !important;
+  }
+
+  .full-width-actions-panel {
+    margin-top: 0.25rem !important;
+  }
+
+  .book-compact-card .p-4 {
+    padding: 0.25rem;
+  }
+
+  .book-compact-card .gap-4 {
+    gap: 0.25rem;
+  }
+}
+
 /* ============================================================
    ACCESSIBILITY & UTILITIES
    ============================================================ */
 .book-compact-card:focus-visible,
 .action-btn:focus-visible,
-.compact-tag:focus-visible {
+.compact-tag:focus-visible,
+.view-details:focus-visible {
   outline: 2px solid #0284c7;
   outline-offset: 2px;
 }
@@ -313,11 +502,143 @@
 @media (prefers-reduced-motion: reduce) {
   .book-compact-card,
   .compact-tag,
-  .action-btn {
+  .action-btn,
+  .view-details,
+  .book-compact-cover {
     transition: none !important;
     transform: none !important;
   }
   .book-compact-card:hover .book-compact-cover {
     transform: none !important;
   }
+  .book-compact-card:hover {
+    transform: none !important;
+  }
 }
+
+/* ============================================================
+   HIGH CONTRAST MODE
+   ============================================================ */
+@media (prefers-contrast: high) {
+  .book-compact-card {
+    border-width: 2px !important;
+  }
+  
+  .view-details {
+    border-width: 2px !important;
+  }
+  
+  .compact-tag {
+    border: 1px solid currentColor;
+  }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  .book-compact-card {
+    box-shadow: none !important;
+    transform: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  .book-compact-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  .action-btn,
+  .view-details {
+    background: #f3f4f6 !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+  
+  .book-compact-card-actions {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   SELECTION STYLES
+   ============================================================ */
+.book-compact-card ::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: inherit;
+}
+
+.dark .book-compact-card ::selection {
+  background: rgba(96, 165, 250, 0.3);
+  color: inherit;
+}
+
+/* ============================================================
+   YEAR STYLE - Directly after author name
+   ============================================================ */
+.compact-year {
+  font-size: 11px;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.dark .compact-year {
+  color: #6b7280;
+}
+
+/* ============================================================
+   AUTHOR STYLE WITH YEAR
+   ============================================================ */
+.compact-author {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.dark .compact-author {
+  color: #9ca3af;
+}
+
+/* Make sure author and year stay on same line */
+.compact-author .compact-year {
+  display: inline;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   CARD CLICK INDICATOR
+   ============================================================ */
+.book-compact-card {
+  cursor: pointer;
+  /* ... existing styles ... */
+}
+
+.book-compact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* ... existing styles ... */
+}
+
+/* Prevent button clicks from triggering card click */
+.action-btn,
+.compact-tag,
+.book-compact-card-actions button,
+.book-compact-card-actions a,
+.get-book,
+.view-details,
+.ButtonInline,
+.share-button {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Ensure card click works on empty areas */
+.book-compact-card .p-4 {
+  position: relative;
+}
+
