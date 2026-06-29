@@ -7,6 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useFont } from "@/contexts/FontContext";
 import { useRTL } from "@/contexts/RTLContext";
 import { BookButtons } from "@/shared/buttons";
+import { ButtonInline } from "@/shared/buttoninline";
 import "./BookRectangleCard.css";
 
 const BookRectangleCard = ({ book, onTagClick }) => {
@@ -75,6 +76,39 @@ const BookRectangleCard = ({ book, onTagClick }) => {
     return Array.isArray(book.category) ? book.category : [book.category];
   };
 
+  // Helper to ensure tags is always an array
+  const getTagsArray = () => {
+    if (!book.tags) return [];
+    return Array.isArray(book.tags) ? book.tags : [book.tags];
+  };
+
+  // Helper to ensure subjects is always an array
+  const getSubjectsArray = () => {
+    if (!book.subjects) return [];
+    return Array.isArray(book.subjects) ? book.subjects : [book.subjects];
+  };
+
+  // ButtonInline handlers
+  const handleLike = (liked) => {
+    console.log(`${liked ? "Liked" : "Unliked"}:`, book?.title);
+  };
+
+  const handleAddToLibrary = (shelf) => {
+    console.log(`Added to library shelf "${shelf}":`, book?.title);
+  };
+
+  const handleShare = () => {
+    console.log("Share triggered for:", book?.title);
+  };
+
+  const handleReport = () => {
+    console.log("Report book:", book?.title);
+  };
+
+  const handleAskAI = () => {
+    console.log("Ask AI about:", book?.title);
+  };
+
   // Apply font family inline style
   const fontStyle = currentFont?.family
     ? {
@@ -82,21 +116,24 @@ const BookRectangleCard = ({ book, onTagClick }) => {
       }
     : {};
 
+  // Get year for display
+  const displayYear = book.published ? formatPublishedYear(book.published) : "";
+
   return (
     <div
       dir={direction}
       style={fontStyle}
-      className={`book-rectangle-card hidden md:flex h-[520px] mx-auto w-[85%] max-w-6xl 
+      className={`book-rectangle-card flex flex-col md:flex-row h-auto md:h-[520px] mx-auto w-full md:w-[85%] max-w-6xl 
       ${theme.border?.default || "border border-gray-200 dark:border-gray-700"} 
       ${theme.shadow?.book || "shadow-2xl"} 
       ${theme.background?.section || "bg-white dark:bg-gray-800"}
       overflow-hidden rounded-xl relative ${direction === "rtl" ? "rtl" : ""}`}
     >
-      {/* Image section - 35% width */}
+      {/* Image section - Full width on mobile, 35% on desktop */}
       <div
-        className={`w-[35%] h-full 
+        className={`w-full md:w-[35%] h-[200px] md:h-full 
         ${theme.background?.bookCoverSide || "bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800"} 
-        flex items-center justify-center p-5 flex-shrink-0 relative group`}
+        flex items-center justify-center p-4 md:p-5 flex-shrink-0 relative group`}
       >
         <img
           src={book.imageUrl}
@@ -109,19 +146,19 @@ const BookRectangleCard = ({ book, onTagClick }) => {
         />
       </div>
 
-      {/* Details section - 65% width */}
-      <div className="w-[65%] p-5 flex flex-col h-full">
+      {/* Details section - Full width on mobile, 65% on desktop */}
+      <div className="w-full md:w-[65%] p-3 md:p-5 flex flex-col h-full">
         <div className="book-card-content flex-1 overflow-y-auto pr-2">
           {/* Title */}
           <h2
-            className={`text-2xl font-bold ${theme.textColors?.primary || "text-gray-900 dark:text-white"} mb-2 line-clamp-2 ${textAlign}`}
+            className={`text-lg md:text-2xl font-bold ${theme.textColors?.primary || "text-gray-900 dark:text-white"} mb-1 md:mb-2 line-clamp-2 ${textAlign}`}
           >
             {book.title}
           </h2>
 
-          {/* Author and year */}
+          {/* Author and year - Year in parentheses */}
           <div
-            className={`flex flex-wrap items-center gap-2 mb-3 text-sm ${flexDirection}`}
+            className={`flex flex-wrap items-center gap-1 md:gap-2 mb-2 md:mb-3 text-xs md:text-sm ${flexDirection}`}
           >
             <span
               className={
@@ -134,52 +171,52 @@ const BookRectangleCard = ({ book, onTagClick }) => {
             {book.authorId ? (
               <Link
                 href={`/authors/${book.authorId}`}
-                className={`font-semibold ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} hover:underline text-sm`}
+                className={`font-semibold ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} hover:underline text-xs md:text-sm`}
               >
                 {book.author}
               </Link>
             ) : (
               <span
-                className={`font-semibold ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} text-sm`}
+                className={`font-semibold ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} text-xs md:text-sm`}
               >
                 {book.author}
               </span>
             )}
-            {book.published && (
+            {displayYear && (
               <span
-                className={`text-[11px] px-2 py-0.5 ${theme.border?.default || "border border-gray-200 dark:border-gray-700"} ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} rounded-full`}
+                className={`text-[10px] md:text-[11px] ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"}`}
               >
-                {formatPublishedYear(book.published)}
+                ({displayYear})
               </span>
             )}
           </div>
 
           {/* Rating */}
           {book.rating && (
-            <div className="mb-3">{renderStars(book.rating)}</div>
+            <div className="mb-2 md:mb-3">{renderStars(book.rating)}</div>
           )}
 
-          {/* Description */}
+          {/* Description - Show on mobile too */}
           <p
-            className={`text-sm ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} mb-4 line-clamp-3 leading-relaxed ${textAlign}`}
+            className={`text-xs md:text-sm ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} mb-2 md:mb-4 line-clamp-2 md:line-clamp-3 leading-relaxed ${textAlign}`}
           >
             {book.description}
           </p>
 
-          {/* Metadata tags - Horizontal layout */}
-          <div className="space-y-2">
+          {/* Tags - Show on mobile too */}
+          <div className="space-y-1.5 md:space-y-2">
             {/* Category */}
-            {book.category && (
+            {book.category && getCategoryArray().length > 0 && (
               <div
-                className={`flex items-start gap-2 ${direction === "rtl" ? "flex-row-reverse" : ""}`}
+                className={`flex flex-wrap items-start gap-1 md:gap-2 ${direction === "rtl" ? "flex-row-reverse" : ""}`}
               >
                 <span
                   className={`metadata-label ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} ${textAlign === "text-right" ? "text-right" : "text-left"}`}
                 >
                   {t("book.category")}:
                 </span>
-                <div className={`flex flex-wrap gap-1.5 ${flexDirection}`}>
-                  {getCategoryArray().map((cat, index) => (
+                <div className={`flex flex-wrap gap-1 ${flexDirection}`}>
+                  {getCategoryArray().slice(0, 3).map((cat, index) => (
                     <button
                       key={index}
                       onClick={() => onTagClick && onTagClick(cat)}
@@ -188,72 +225,27 @@ const BookRectangleCard = ({ book, onTagClick }) => {
                       {cat}
                     </button>
                   ))}
+                  {getCategoryArray().length > 3 && (
+                    <span className="metadata-tag-more">
+                      +{getCategoryArray().length - 3}
+                    </span>
+                  )}
                 </div>
               </div>
             )}
 
-            {/* Key Points */}
-            {book.keyPoints && book.keyPoints.length > 0 && (
+            {/* Tags - Always visible */}
+            {book.tags && getTagsArray().length > 0 && (
               <div
-                className={`flex items-start gap-2 ${direction === "rtl" ? "flex-row-reverse" : ""}`}
-              >
-                <span
-                  className={`metadata-label ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} ${textAlign === "text-right" ? "text-right" : "text-left"}`}
-                >
-                  {t("book.key_points")}:
-                </span>
-                <div className={`flex flex-wrap gap-1.5 ${flexDirection}`}>
-                  {book.keyPoints.slice(0, 3).map((point, index) => (
-                    <button
-                      key={index}
-                      onClick={() => onTagClick && onTagClick(point)}
-                      className={`metadata-tag ${theme.background?.navigationDots || "bg-gray-100 dark:bg-gray-700"} ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} hover:${theme.background?.bookCoverSide || "bg-gray-200 dark:bg-gray-600"}`}
-                    >
-                      {point.length > 25
-                        ? `${point.substring(0, 25)}...`
-                        : point}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Subjects */}
-            {book.subjects && book.subjects.length > 0 && (
-              <div
-                className={`flex items-start gap-2 ${direction === "rtl" ? "flex-row-reverse" : ""}`}
-              >
-                <span
-                  className={`metadata-label ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} ${textAlign === "text-right" ? "text-right" : "text-left"}`}
-                >
-                  {t("book.subjects")}:
-                </span>
-                <div className={`flex flex-wrap gap-1.5 ${flexDirection}`}>
-                  {book.subjects.slice(0, 3).map((subject, index) => (
-                    <button
-                      key={index}
-                      onClick={() => onTagClick && onTagClick(subject)}
-                      className={`metadata-tag ${theme.background?.navigationDots || "bg-gray-100 dark:bg-gray-700"} ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} hover:${theme.background?.bookCoverSide || "bg-gray-200 dark:bg-gray-600"}`}
-                    >
-                      {subject}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Tags */}
-            {book.tags && book.tags.length > 0 && (
-              <div
-                className={`flex items-start gap-2 ${direction === "rtl" ? "flex-row-reverse" : ""}`}
+                className={`flex flex-wrap items-start gap-1 md:gap-2 ${direction === "rtl" ? "flex-row-reverse" : ""}`}
               >
                 <span
                   className={`metadata-label ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} ${textAlign === "text-right" ? "text-right" : "text-left"}`}
                 >
                   {t("book.tags")}:
                 </span>
-                <div className={`flex flex-wrap gap-1.5 ${flexDirection}`}>
-                  {book.tags.slice(0, 3).map((tag, index) => (
+                <div className={`flex flex-wrap gap-1 ${flexDirection}`}>
+                  {getTagsArray().slice(0, 3).map((tag, index) => (
                     <button
                       key={index}
                       onClick={() => onTagClick && onTagClick(tag)}
@@ -262,22 +254,88 @@ const BookRectangleCard = ({ book, onTagClick }) => {
                       {tag}
                     </button>
                   ))}
+                  {getTagsArray().length > 3 && (
+                    <span className="metadata-tag-more">
+                      +{getTagsArray().length - 3}
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Subjects - Show on mobile too */}
+            {book.subjects && getSubjectsArray().length > 0 && (
+              <div
+                className={`flex flex-wrap items-start gap-1 md:gap-2 ${direction === "rtl" ? "flex-row-reverse" : ""}`}
+              >
+                <span
+                  className={`metadata-label ${theme.textColors?.highlight || "text-sky-600 dark:text-sky-400"} ${textAlign === "text-right" ? "text-right" : "text-left"}`}
+                >
+                  {t("book.subjects")}:
+                </span>
+                <div className={`flex flex-wrap gap-1 ${flexDirection}`}>
+                  {getSubjectsArray().slice(0, 3).map((subject, index) => (
+                    <button
+                      key={index}
+                      onClick={() => onTagClick && onTagClick(subject)}
+                      className={`metadata-tag ${theme.background?.navigationDots || "bg-gray-100 dark:bg-gray-700"} ${theme.textColors?.secondary || "text-gray-600 dark:text-gray-400"} hover:${theme.background?.bookCoverSide || "bg-gray-200 dark:bg-gray-600"}`}
+                    >
+                      {subject}
+                    </button>
+                  ))}
+                  {getSubjectsArray().length > 3 && (
+                    <span className="metadata-tag-more">
+                      +{getSubjectsArray().length - 3}
+                    </span>
+                  )}
                 </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* Buttons - Fixed at bottom using BookButtons */}
+        {/* ButtonInline - Mobile and Desktop */}
+        {book?.id && (
+          <div className="mt-2 md:mt-4 w-full">
+            <ButtonInline
+              bookId={book.id}
+              bookSlug={book.slug}
+              bookName={book.title || "Book"}
+              authorName={book.author || "Unknown Author"}
+              launchYear={book.publicationYear || book.year || "N/A"}
+              bookCover={book.imageUrl || null}
+              bookRating={book.rating || 4.5}
+              totalReviews={book.reviews || 128}
+              pageCount={book.pages || 180}
+              language={book.language || "English"}
+              genres={getCategoryArray()}
+              description={book.description || ""}
+              summary={book.summary || ""}
+              initialLiked={book.userLiked || false}
+              initialInLibrary={book.userInLibrary || false}
+              onLike={handleLike}
+              onAddToLibrary={handleAddToLibrary}
+              onShare={handleShare}
+              onReport={handleReport}
+              onAskAI={handleAskAI}
+              navigateToBookOnShare={true}
+              className="w-full"
+              variant="auto"
+            />
+          </div>
+        )}
+
+        {/* Buttons - View Details and Get Book (Mobile & Desktop) */}
         <div
-          className={`flex flex-col gap-2 pt-3 mt-3 border-t ${theme.border?.default || "border-gray-200 dark:border-gray-700"}`}
+          className={`flex flex-col gap-2 pt-2 md:pt-3 mt-2 md:mt-3 border-t ${theme.border?.default || "border-gray-200 dark:border-gray-700"}`}
         >
           <div className={`flex flex-wrap gap-2 ${flexDirection}`}>
             {/* View Details - Using BookButtons */}
             <BookButtons.ViewDetails
               slug={book.slug || book.id}
               size="md"
-              className="flex-1 min-w-[120px]"
+              label={t("book.view_details") || "View Details"}
+              className="flex-1 min-w-[120px] book-action-button book-action-button-primary"
             />
 
             {/* Get Book - Using BookButtons */}
@@ -286,37 +344,10 @@ const BookRectangleCard = ({ book, onTagClick }) => {
                 url={book.buttons.getBook}
                 size="md"
                 label={t("book.get_book") || "Get Book"}
-                className="flex-1 min-w-[120px]"
-              />
-            )}
-
-            {/* Summary - Using BookButtons */}
-            {book.buttons?.readSummary && (
-              <BookButtons.Summary
-                slug={book.slug || book.id}
-                size="md"
-                label={t("book.summary") || "Summary"}
-                className="flex-1 min-w-[120px]"
+                className="flex-1 min-w-[120px] book-action-button book-action-button-secondary"
               />
             )}
           </div>
-
-          {/* Audiobook - Using BookButtons */}
-          {book.buttons?.listenAudiobook && (
-            <button
-              onClick={() =>
-                window.open(book.buttons.listenAudiobook, "_blank")
-              }
-              className={`book-action-button book-action-button-secondary w-full
-                ${theme.buttonColors?.secondaryButton?.background || "border-2 border-sky-500 bg-transparent"}
-                ${theme.buttonColors?.secondaryButton?.hoverBackground || "hover:bg-sky-50 dark:hover:bg-sky-900/20"}
-                ${theme.buttonColors?.secondaryButton?.textColor || "text-sky-600 dark:text-sky-400"}
-                px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105
-              `}
-            >
-              {t("book.audiobook") || "Audiobook"}
-            </button>
-          )}
         </div>
       </div>
     </div>

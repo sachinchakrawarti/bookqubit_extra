@@ -1,16 +1,23 @@
-/* Book Rectangle Card Styles */
+/* ============================================================
+   BOOK RECTANGLE CARD - MAIN CONTAINER
+   ============================================================ */
 .book-rectangle-card {
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .book-rectangle-card:hover {
   transform: translateY(-4px);
 }
 
-/* Custom scrollbar for content */
+/* ============================================================
+   CUSTOM SCROLLBAR FOR CONTENT
+   ============================================================ */
 .book-card-content {
   scrollbar-width: thin;
   scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  overflow-y: auto;
 }
 
 .book-card-content::-webkit-scrollbar {
@@ -31,28 +38,81 @@
   background: rgba(156, 163, 175, 0.7);
 }
 
-/* Metadata tags */
+/* Dark mode scrollbar */
+.dark .book-card-content {
+  scrollbar-color: rgba(75, 85, 99, 0.5) transparent;
+}
+
+.dark .book-card-content::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+.dark .book-card-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.7);
+}
+
+/* ============================================================
+   METADATA TAGS
+   ============================================================ */
 .metadata-label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  min-width: 65px;
+  min-width: 55px;
+  text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .metadata-tag {
-  font-size: 10px;
+  font-size: 9px;
   padding: 2px 8px;
   border-radius: 9999px;
   transition: all 0.2s ease;
   font-weight: 400;
   white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  background: #f3f4f6;
+  color: #4b5563;
 }
 
 .metadata-tag:hover {
   transform: translateY(-1px);
+  filter: brightness(0.95);
+  background: #e5e7eb;
 }
 
-/* Rating stars */
+/* Dark mode metadata tags */
+.dark .metadata-tag {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.dark .metadata-tag:hover {
+  background: #4b5563;
+}
+
+/* ============================================================
+   METADATA TAG - MORE INDICATOR
+   ============================================================ */
+.metadata-tag-more {
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(156, 163, 175, 0.2);
+  color: #6b7280;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dark .metadata-tag-more {
+  background: rgba(156, 163, 175, 0.15);
+  color: #9ca3af;
+}
+
+/* ============================================================
+   RATING STARS
+   ============================================================ */
 .star-rating {
   display: flex;
   align-items: center;
@@ -61,6 +121,7 @@
 
 .star-icon {
   font-size: 14px;
+  line-height: 1;
 }
 
 .rating-value {
@@ -69,17 +130,41 @@
   margin-left: 4px;
 }
 
-/* Buttons */
+/* ============================================================
+   BOOK ACTION BUTTONS
+   ============================================================ */
 .book-action-button {
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 500;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
   border-radius: 8px;
   transition: all 0.2s ease;
   text-align: center;
   white-space: nowrap;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  text-decoration: none;
+  border: none;
+  font-family: inherit;
+  line-height: 1;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.book-action-button:active {
+  transform: scale(0.97);
+}
+
+.book-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Primary Button */
 .book-action-button-primary {
   background: linear-gradient(135deg, #0284c7, #0ea5e9);
   color: white;
@@ -90,8 +175,14 @@
   background: linear-gradient(135deg, #0369a1, #0284c7);
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: white;
 }
 
+.book-action-button-primary:active {
+  transform: scale(0.97);
+}
+
+/* Secondary Button */
 .book-action-button-secondary {
   border: 2px solid #0ea5e9;
   color: #0ea5e9;
@@ -99,9 +190,25 @@
 }
 
 .book-action-button-secondary:hover {
-  background: rgba(14, 165, 233, 0.1);
+  background: rgba(14, 165, 233, 0.08);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  color: #0ea5e9;
+}
+
+.book-action-button-secondary:active {
+  transform: scale(0.97);
+}
+
+/* ============================================================
+   DARK MODE - ACTION BUTTONS
+   ============================================================ */
+.dark .book-action-button-primary {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+}
+
+.dark .book-action-button-primary:hover {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
 }
 
 .dark .book-action-button-secondary {
@@ -111,9 +218,12 @@
 
 .dark .book-action-button-secondary:hover {
   background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
 }
 
-/* RTL Support */
+/* ============================================================
+   RTL (RIGHT-TO-LEFT) SUPPORT
+   ============================================================ */
 .rtl .metadata-label {
   text-align: right;
 }
@@ -122,20 +232,422 @@
   flex-direction: row-reverse;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+.rtl .star-rating {
+  flex-direction: row-reverse;
+}
+
+.rtl .rating-value {
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+/* ============================================================
+   RESPONSIVE - MOBILE (max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .book-rectangle-card {
+    height: auto !important;
+    min-height: 380px;
+    border-radius: 0.75rem;
+  }
+  
+  .book-rectangle-card:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+  
+  .book-card-content {
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  
   .metadata-label {
-    min-width: 55px;
+    min-width: 45px;
+    font-size: 8px;
+  }
+  
+  .metadata-tag {
+    font-size: 8px;
+    padding: 1px 6px;
+  }
+  
+  .metadata-tag-more {
+    font-size: 8px;
+    padding: 1px 6px;
+  }
+  
+  .star-icon {
+    font-size: 11px;
+  }
+  
+  .rating-value {
+    font-size: 10px;
+  }
+  
+  .book-action-button {
+    font-size: 11px;
+    padding: 6px 12px;
+    min-height: 36px;
+    border-radius: 6px;
+  }
+  
+  .book-action-button-secondary {
+    border-width: 1.5px;
+  }
+  
+  /* ButtonInline on mobile */
+  .button-inline.mobile {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE - SMALL MOBILE (max-width: 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .book-rectangle-card {
+    min-height: 340px;
+    border-radius: 0.5rem;
+  }
+  
+  .book-card-content {
+    max-height: 140px;
+    padding-right: 0.25rem;
+  }
+  
+  .metadata-label {
+    min-width: 40px;
+    font-size: 7px;
+  }
+  
+  .metadata-tag {
+    font-size: 7px;
+    padding: 1px 4px;
+  }
+  
+  .metadata-tag-more {
+    font-size: 7px;
+    padding: 1px 4px;
+  }
+  
+  .star-icon {
+    font-size: 10px;
+  }
+  
+  .rating-value {
+    font-size: 9px;
+  }
+  
+  .book-action-button {
+    font-size: 10px;
+    padding: 5px 10px;
+    min-height: 32px;
+    border-radius: 6px;
+  }
+  
+  .book-action-button-secondary {
+    border-width: 1.5px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE - EXTRA SMALL MOBILE (max-width: 360px)
+   ============================================================ */
+@media (max-width: 360px) {
+  .book-rectangle-card {
+    min-height: 300px;
+  }
+  
+  .book-card-content {
+    max-height: 120px;
+  }
+  
+  .metadata-label {
+    min-width: 35px;
+    font-size: 6px;
+  }
+  
+  .metadata-tag {
+    font-size: 6px;
+    padding: 1px 3px;
+  }
+  
+  .metadata-tag-more {
+    font-size: 6px;
+    padding: 1px 3px;
+  }
+  
+  .star-icon {
+    font-size: 9px;
+  }
+  
+  .rating-value {
+    font-size: 8px;
+  }
+  
+  .book-action-button {
+    font-size: 9px;
+    padding: 4px 8px;
+    min-height: 28px;
+    border-radius: 4px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY - FOCUS STATES
+   ============================================================ */
+.book-rectangle-card:focus-visible,
+.metadata-tag:focus-visible,
+.book-action-button:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.dark .book-rectangle-card:focus-visible,
+.dark .metadata-tag:focus-visible,
+.dark .book-action-button:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .book-rectangle-card,
+  .book-rectangle-card:hover,
+  .metadata-tag,
+  .metadata-tag:hover,
+  .book-action-button,
+  .book-action-button:hover {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  
+  .book-rectangle-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   HIGH CONTRAST MODE
+   ============================================================ */
+@media (prefers-contrast: high) {
+  .book-rectangle-card {
+    border-width: 2px !important;
+  }
+  
+  .metadata-tag {
+    border: 1px solid currentColor;
+  }
+  
+  .book-action-button {
+    border-width: 2px !important;
+  }
+  
+  .book-action-button-primary {
+    background: #0284c7 !important;
+    color: white !important;
+  }
+  
+  .book-action-button-primary:hover {
+    background: #0369a1 !important;
+  }
+  
+  .book-action-button-secondary {
+    border-color: #0ea5e9 !important;
+    color: #0ea5e9 !important;
+  }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  .book-rectangle-card {
+    box-shadow: none !important;
+    transform: none !important;
+    border: 1px solid #000 !important;
+    page-break-inside: avoid;
+  }
+  
+  .book-rectangle-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  .book-action-button,
+  .metadata-tag {
+    background: #f3f4f6 !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+  
+  .book-action-button-primary {
+    background: #e5e7eb !important;
+    color: #000 !important;
+  }
+  
+  .book-action-button-secondary {
+    border-color: #000 !important;
+    color: #000 !important;
+  }
+  
+  .book-card-content {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+  
+  .book-card-content::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   SELECTION STYLES
+   ============================================================ */
+.book-rectangle-card ::selection {
+  background: rgba(14, 165, 233, 0.3);
+  color: inherit;
+}
+
+.dark .book-rectangle-card ::selection {
+  background: rgba(56, 189, 248, 0.3);
+  color: inherit;
+}
+
+/* ============================================================
+   LOADING STATE
+   ============================================================ */
+.book-rectangle-card.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.book-rectangle-card.loading .book-card-content {
+  opacity: 0.5;
+}
+
+/* ============================================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================================ */
+@media (hover: none) {
+  .book-rectangle-card:hover {
+    transform: none !important;
+  }
+  
+  .metadata-tag:hover {
+    transform: none !important;
+  }
+  
+  .book-action-button:hover {
+    transform: none !important;
+  }
+  
+  .metadata-tag,
+  .book-action-button {
+    -webkit-tap-highlight-color: rgba(14, 165, 233, 0.2);
+  }
+}
+
+/* ============================================================
+   BUTTON INLINE OVERRIDES
+   ============================================================ */
+.book-rectangle-card .button-inline {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.book-rectangle-card .button-inline.desktop {
+  justify-content: space-around !important;
+}
+
+.book-rectangle-card .button-inline.mobile {
+  justify-content: space-around !important;
+  padding: 4px 8px !important;
+}
+
+/* ============================================================
+   ANIMATION - SMOOTH ENTRANCE
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-rectangle-card.animate {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ============================================================
+   GRID LAYOUT HELPER
+   ============================================================ */
+.book-rectangle-card .grid-cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.book-rectangle-card .gap-2 {
+  gap: 0.5rem;
+}
+
+.book-rectangle-card .gap-1 {
+  gap: 0.25rem;
+}
+
+/* ============================================================
+   TEXT UTILITIES
+   ============================================================ */
+.book-rectangle-card .line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-rectangle-card .line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   RESPONSIVE - TABLET (768px - 1024px)
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .book-rectangle-card {
+    height: auto !important;
+    min-height: 420px;
+  }
+  
+  .book-card-content {
+    max-height: 220px;
+  }
+  
+  .metadata-label {
+    min-width: 50px;
     font-size: 9px;
   }
   
   .metadata-tag {
     font-size: 9px;
-    padding: 2px 6px;
+    padding: 2px 7px;
   }
   
   .book-action-button {
-    padding: 4px 8px;
-    font-size: 11px;
+    font-size: 12px;
+    padding: 7px 14px;
+    min-height: 38px;
   }
 }
