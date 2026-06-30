@@ -334,3 +334,11 @@
 {"level":"info","message":"📚 Environment: development","service":"book-api","timestamp":"2026-06-30 11:39:18"}
 {"level":"info","message":"📍 URL: http://localhost:5000","service":"book-api","timestamp":"2026-06-30 11:39:18"}
 {"level":"info","message":"📖 Books endpoint: http://localhost:5000/api/v1/books","service":"book-api","timestamp":"2026-06-30 11:39:18"}
+{"level":"info","message":"🚀 Books API Server running on port 5000","service":"book-api","timestamp":"2026-06-30 11:44:43"}
+{"level":"info","message":"📚 Environment: development","service":"book-api","timestamp":"2026-06-30 11:44:43"}
+{"level":"info","message":"📍 URL: http://localhost:5000","service":"book-api","timestamp":"2026-06-30 11:44:43"}
+{"level":"info","message":"📖 Books endpoint: http://localhost:5000/api/v1/books","service":"book-api","timestamp":"2026-06-30 11:44:43"}
+{"level":"info","message":"🚀 Books API Server running on port 5000","service":"book-api","timestamp":"2026-06-30 12:05:08"}
+{"level":"info","message":"📚 Environment: development","service":"book-api","timestamp":"2026-06-30 12:05:08"}
+{"level":"info","message":"📍 URL: http://localhost:5000","service":"book-api","timestamp":"2026-06-30 12:05:08"}
+{"level":"info","message":"📖 Books endpoint: http://localhost:5000/api/v1/books","service":"book-api","timestamp":"2026-06-30 12:05:08"}
