@@ -1,0 +1,172 @@
+/* ============================================================
+   ADMIN DASHBOARD LAYOUT - MAIN CONTAINER
+   ============================================================ */
+.admin-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
+.admin-dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.admin-dashboard-main.sidebar-closed {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+/* ============================================================
+   CONTENT WRAPPER - NO GAP
+   ============================================================ */
+.admin-dashboard-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+}
+
+/* ============================================================
+   DASHBOARD CONTENT
+   ============================================================ */
+.admin-dashboard-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  margin: 0;
+  padding-top: 24px;
+}
+
+.admin-dashboard-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+.dark .admin-dashboard-main {
+  background-color: #111827 !important;
+  color: #F9FAFB !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .admin-dashboard-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .admin-dashboard-main.sidebar-open {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .admin-dashboard-main.sidebar-closed {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .admin-dashboard-content {
+    padding: 20px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard-content {
+    padding: 16px;
+    padding-top: 16px;
+  }
+  
+  .admin-dashboard-container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-dashboard-content {
+    padding: 12px;
+    padding-top: 12px;
+  }
+}
+
+/* ============================================================
+   SCROLLBAR STYLING
+   ============================================================ */
+.admin-dashboard-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-dashboard-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-dashboard-content::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 10px;
+}
+
+.admin-dashboard-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+.dark .admin-dashboard-content::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+.dark .admin-dashboard-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.7);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .admin-dashboard-main {
+    transition: none !important;
+  }
+  
+  .admin-dashboard-main.sidebar-open,
+  .admin-dashboard-main.sidebar-closed {
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-dashboard-container {
+  animation: fadeIn 0.3s ease forwards;
+}

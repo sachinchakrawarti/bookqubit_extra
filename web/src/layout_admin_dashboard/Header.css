@@ -1,0 +1,249 @@
+/* ============================================================
+   ADMIN HEADER
+   ============================================================ */
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  min-height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.admin-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-header-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.2s ease;
+}
+
+.admin-header-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .admin-header-toggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-header-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.admin-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ============================================================
+   USER MENU
+   ============================================================ */
+.admin-user-menu-container {
+  position: relative;
+}
+
+.admin-user-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 6px;
+  border: none;
+  border-radius: 30px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-user-menu-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .admin-user-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+}
+
+.admin-user-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ============================================================
+   USER DROPDOWN
+   ============================================================ */
+.admin-user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  border-radius: 12px;
+  border: 1px solid;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  z-index: 1000;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+.admin-user-dropdown.dark {
+  border-color: #374151;
+  background: #1F2937;
+}
+
+.admin-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-decoration: none;
+}
+
+.admin-dropdown-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .admin-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-dropdown-item svg {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.admin-dropdown-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 6px 8px;
+}
+
+.dark .admin-dropdown-divider {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.admin-dropdown-logout {
+  color: #EF4444 !important;
+}
+
+.admin-dropdown-logout:hover {
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 10px 16px;
+    min-height: 60px;
+  }
+  
+  .admin-header-title {
+    font-size: 16px;
+  }
+  
+  .admin-user-name {
+    display: none;
+  }
+  
+  .admin-user-menu-btn {
+    padding: 4px;
+  }
+  
+  .admin-user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  
+  .admin-user-dropdown {
+    min-width: 180px;
+    right: -8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-header {
+    padding: 8px 12px;
+    min-height: 56px;
+  }
+  
+  .admin-header-title {
+    font-size: 14px;
+  }
+  
+  .admin-header-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .admin-user-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .admin-user-dropdown {
+    animation: none !important;
+  }
+}

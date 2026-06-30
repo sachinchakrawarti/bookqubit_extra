@@ -1,10 +1,10 @@
-export default function AdminDashboardLayout({ children }) {
-  return (
-    <div style={{ 
-      minHeight: '100vh',
-      background: '#f5f5f5'
-    }}>
-      {children}
-    </div>
-  );
+import AdminDashboardLayout from "@/layout_admin_dashboard/AdminDashboardLayout";
+
+export const metadata = {
+  title: "Admin Dashboard",
+  description: "BookQubit Admin Dashboard",
+};
+
+export default function Layout({ children }) {
+  return <AdminDashboardLayout>{children}</AdminDashboardLayout>;
 }
