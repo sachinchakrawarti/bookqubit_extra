@@ -1,5 +1,4 @@
-//src\data\books\BooksData_Urdu.js
-import Books_Cover_Data from './Books_Cover_Data';
+import Books_Cover_Data from './Books_Cover_Data.js';
 
 const booksUrdu = [
   {

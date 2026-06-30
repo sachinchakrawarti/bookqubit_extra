@@ -1,6 +1,4 @@
-// src\data\books\BooksData_Spanish.js
-
-import Books_Cover_Data from './Books_Cover_Data';
+import Books_Cover_Data from './Books_Cover_Data.js';
 
 const booksSpanish = [
   {

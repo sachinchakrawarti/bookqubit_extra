@@ -1,6 +1,7 @@
 // src/api/v1/modules/books/controller/books.controller.js
-const { BooksService } = require('../services/books.service');
-const { logger } = require('../../../../../utils/logger');
+
+import { BooksService } from '../services/books.service.js';
+import { log } from '../../../../../utils/logger.js';
 
 class BooksController {
   constructor() {
@@ -37,7 +38,7 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in getAllBooks: ${error.message}`);
+      log.error(`Error in getAllBooks: ${error.message}`);
       next(error);
     }
   };
@@ -69,7 +70,7 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in getBookById: ${error.message}`);
+      log.error(`Error in getBookById: ${error.message}`);
       next(error);
     }
   };
@@ -101,7 +102,40 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in getBookBySlug: ${error.message}`);
+      log.error(`Error in getBookBySlug: ${error.message}`);
+      next(error);
+    }
+  };
+
+  /**
+   * Get books by language
+   */
+  getBooksByLanguage = async (req, res, next) => {
+    try {
+      const { language } = req.params;
+      const { page = 1, limit = 10 } = req.query;
+
+      const result = await this.booksService.getBooksByLanguage(language, {
+        page: parseInt(page),
+        limit: parseInt(limit)
+      });
+
+      res.status(200).json({
+        status: 'success',
+        data: result.books || [],
+        pagination: {
+          page: result.page || 1,
+          limit: result.limit || 10,
+          total: result.total || 0,
+          totalPages: result.totalPages || 0
+        },
+        metadata: {
+          language: language,
+          timestamp: new Date().toISOString()
+        }
+      });
+    } catch (error) {
+      log.error(`Error in getBooksByLanguage: ${error.message}`);
       next(error);
     }
   };
@@ -136,7 +170,7 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in getBooksByCategory: ${error.message}`);
+      log.error(`Error in getBooksByCategory: ${error.message}`);
       next(error);
     }
   };
@@ -171,7 +205,77 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in getBooksByAuthor: ${error.message}`);
+      log.error(`Error in getBooksByAuthor: ${error.message}`);
+      next(error);
+    }
+  };
+
+  /**
+   * Get books by genre
+   */
+  getBooksByGenre = async (req, res, next) => {
+    try {
+      const { genre } = req.params;
+      const { lang = 'english', page = 1, limit = 10 } = req.query;
+
+      const result = await this.booksService.getBooksByGenre(genre, {
+        lang,
+        page: parseInt(page),
+        limit: parseInt(limit)
+      });
+
+      res.status(200).json({
+        status: 'success',
+        data: result.books || [],
+        pagination: {
+          page: result.page || 1,
+          limit: result.limit || 10,
+          total: result.total || 0,
+          totalPages: result.totalPages || 0
+        },
+        metadata: {
+          genre,
+          language: lang,
+          timestamp: new Date().toISOString()
+        }
+      });
+    } catch (error) {
+      log.error(`Error in getBooksByGenre: ${error.message}`);
+      next(error);
+    }
+  };
+
+  /**
+   * Get books by tag
+   */
+  getBooksByTag = async (req, res, next) => {
+    try {
+      const { tag } = req.params;
+      const { lang = 'english', page = 1, limit = 10 } = req.query;
+
+      const result = await this.booksService.getBooksByTag(tag, {
+        lang,
+        page: parseInt(page),
+        limit: parseInt(limit)
+      });
+
+      res.status(200).json({
+        status: 'success',
+        data: result.books || [],
+        pagination: {
+          page: result.page || 1,
+          limit: result.limit || 10,
+          total: result.total || 0,
+          totalPages: result.totalPages || 0
+        },
+        metadata: {
+          tag,
+          language: lang,
+          timestamp: new Date().toISOString()
+        }
+      });
+    } catch (error) {
+      log.error(`Error in getBooksByTag: ${error.message}`);
       next(error);
     }
   };
@@ -197,7 +301,7 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in getFeaturedBooks: ${error.message}`);
+      log.error(`Error in getFeaturedBooks: ${error.message}`);
       next(error);
     }
   };
@@ -239,7 +343,7 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in searchBooks: ${error.message}`);
+      log.error(`Error in searchBooks: ${error.message}`);
       next(error);
     }
   };
@@ -259,7 +363,34 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in getBookStats: ${error.message}`);
+      log.error(`Error in getBookStats: ${error.message}`);
+      next(error);
+    }
+  };
+
+  /**
+   * Get related books
+   */
+  getRelatedBooks = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const { lang = 'english', limit = 5 } = req.query;
+
+      const books = await this.booksService.getRelatedBooks(id, {
+        lang,
+        limit: parseInt(limit)
+      });
+
+      res.status(200).json({
+        status: 'success',
+        data: books || [],
+        metadata: {
+          language: lang,
+          timestamp: new Date().toISOString()
+        }
+      });
+    } catch (error) {
+      log.error(`Error in getRelatedBooks: ${error.message}`);
       next(error);
     }
   };
@@ -290,7 +421,7 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in createBook: ${error.message}`);
+      log.error(`Error in createBook: ${error.message}`);
       next(error);
     }
   };
@@ -322,7 +453,7 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in updateBook: ${error.message}`);
+      log.error(`Error in updateBook: ${error.message}`);
       next(error);
     }
   };
@@ -352,10 +483,11 @@ class BooksController {
         }
       });
     } catch (error) {
-      logger.error(`Error in deleteBook: ${error.message}`);
+      log.error(`Error in deleteBook: ${error.message}`);
       next(error);
     }
   };
 }
 
-module.exports = { BooksController };
+export { BooksController };
+export default BooksController;

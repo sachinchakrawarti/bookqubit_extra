@@ -1,204 +1,283 @@
 // src/api/v1/modules/books/repository/books.repository.js
-const { logger } = require('../../../../../utils/logger');
 
-// Sample book data
-const sampleBooks = [
-  {
-    id: 1,
-    title: "Why I Am an Atheist",
-    slug: "why-i-am-an-atheist",
-    author: "Bhagat Singh",
-    description: "A powerful and reasoned essay by Indian revolutionary Bhagat Singh defending his atheism.",
-    category: "Atheism & Religion",
-    price: "$9.99",
-    imageUrl: "why_i_am_an_atheist.jpg",
-    rating: 4.8,
-    tags: ["Atheism", "Indian History", "Revolution"],
-    isbn: "9788170288808",
-    pageCount: 64,
-    language: "English",
-    summary: "Written from the confines of Lahore Central Jail in 1930."
-  },
-  {
-    id: 2,
-    title: "The God Delusion",
-    slug: "the-god-delusion",
-    author: "Richard Dawkins",
-    description: "A groundbreaking argument against religion and the belief in God.",
-    category: "Atheism & Science",
-    price: "$14.99",
-    imageUrl: "the_god_delusion.jpg",
-    rating: 4.6,
-    tags: ["Science", "Atheism", "Evolution"],
-    isbn: "9780618918249",
-    pageCount: 464,
-    language: "English",
-    summary: "A powerful argument against organized religion."
-  }
-];
+import * as bookData from '../data/index.js';
 
 class BooksRepository {
   constructor() {
-    this.booksData = {
-      english: sampleBooks,
-      hindi: sampleBooks.map(book => ({
-        ...book,
-        title: book.title === "Why I Am an Atheist" ? "मैं नास्तिक क्यों हूँ" : book.title,
-        language: "Hindi"
-      }))
-    };
-    this.supportedLanguages = ['english', 'hindi', 'bengali', 'telugu', 'marathi', 'tamil'];
+    this.booksData = bookData;
   }
 
-  getBooksByLanguage(lang = 'english') {
-    const normalizedLang = lang.toLowerCase();
-    if (!this.supportedLanguages.includes(normalizedLang)) {
-      logger.warn(`Language ${normalizedLang} not supported, falling back to English`);
-      return this.booksData.english || [];
-    }
-    return this.booksData[normalizedLang] || this.booksData.english || [];
-  }
-
-  findAll(options = {}) {
+  // Get all books with optional filters
+  async findAll(filters = {}) {
     try {
-      const { lang = 'english', page = 1, limit = 10, search = null, category = null } = options;
-      let books = this.getBooksByLanguage(lang);
-
-      if (category) {
+      let books = this.booksData.getAllBooks();
+      
+      // Apply language filter
+      if (filters.language) {
+        const langMap = {
+          'english': 'english',
+          'hindi': 'hindi',
+          'urdu': 'urdu',
+          'arabic': 'arabic',
+          'bangla': 'bangla',
+          'bengali': 'bangla',
+          'chinese': 'chinese',
+          'french': 'french',
+          'german': 'german',
+          'italian': 'italian',
+          'japanese': 'japanese',
+          'kannada': 'kannada',
+          'korean': 'korean',
+          'malayalam': 'malayalam',
+          'marathi': 'marathi',
+          'pashto': 'pashto',
+          'persian': 'persian',
+          'russian': 'russian',
+          'spanish': 'spanish',
+          'tamil': 'tamil',
+          'telugu': 'telugu'
+        };
+        
+        const langKey = filters.language.toLowerCase();
+        const mappedLang = langMap[langKey] || langKey;
+        
+        books = books.filter(book => {
+          const bookLang = book.language ? book.language.toLowerCase() : '';
+          return bookLang === mappedLang || bookLang === langKey;
+        });
+      }
+      
+      // Apply author filter
+      if (filters.author) {
         books = books.filter(book => 
-          book.category && book.category.toLowerCase().includes(category.toLowerCase())
+          book.author && book.author.toLowerCase().includes(filters.author.toLowerCase())
         );
       }
-
-      if (search) {
-        const searchLower = search.toLowerCase();
-        books = books.filter(book =>
-          (book.title && book.title.toLowerCase().includes(searchLower)) ||
-          (book.author && book.author.toLowerCase().includes(searchLower)) ||
-          (book.description && book.description.toLowerCase().includes(searchLower))
+      
+      // Apply category filter
+      if (filters.category) {
+        books = books.filter(book => 
+          book.category && book.category.toLowerCase().includes(filters.category.toLowerCase())
         );
       }
-
-      const total = books.length;
-      const totalPages = Math.ceil(total / limit);
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + limit;
-      const paginatedBooks = books.slice(startIndex, endIndex);
-
-      return { books: paginatedBooks, total, page, limit, totalPages, language: lang };
+      
+      // Apply genre filter
+      if (filters.genre) {
+        books = books.filter(book => 
+          book.genres && book.genres.some(g => 
+            g.toLowerCase().includes(filters.genre.toLowerCase())
+          )
+        );
+      }
+      
+      // Apply tag filter
+      if (filters.tag) {
+        books = books.filter(book => 
+          book.tags && book.tags.some(t => 
+            t.toLowerCase().includes(filters.tag.toLowerCase())
+          )
+        );
+      }
+      
+      // Apply minRating filter
+      if (filters.minRating) {
+        books = books.filter(book => 
+          book.rating && book.rating >= parseFloat(filters.minRating)
+        );
+      }
+      
+      // Apply search filter
+      if (filters.search) {
+        const searchTerm = filters.search.toLowerCase();
+        books = books.filter(book => 
+          (book.title && book.title.toLowerCase().includes(searchTerm)) ||
+          (book.author && book.author.toLowerCase().includes(searchTerm)) ||
+          (book.description && book.description.toLowerCase().includes(searchTerm)) ||
+          (book.summary && book.summary.toLowerCase().includes(searchTerm))
+        );
+      }
+      
+      // Apply sort
+      if (filters.sortBy) {
+        const sortField = filters.sortBy;
+        const sortOrder = filters.sortOrder === 'desc' ? -1 : 1;
+        books.sort((a, b) => {
+          const aVal = a[sortField] || 0;
+          const bVal = b[sortField] || 0;
+          return (aVal > bVal ? 1 : -1) * sortOrder;
+        });
+      }
+      
+      return books;
     } catch (error) {
-      logger.error(`Error in findAll: ${error.message}`);
+      console.error('Error in findAll:', error);
       throw error;
     }
   }
 
-  findById(id, lang = 'english') {
+  // Find book by ID
+  async findById(id) {
     try {
-      const books = this.getBooksByLanguage(lang);
-      const book = books.find(b => b.id === parseInt(id) || b.id === id);
-      return book ? { ...book, _language: lang } : null;
+      return this.booksData.getBookById(id);
     } catch (error) {
-      logger.error(`Error in findById: ${error.message}`);
+      console.error('Error in findById:', error);
       throw error;
     }
   }
 
-  findBySlug(slug, lang = 'english') {
+  // Find books by language
+  async findByLanguage(language) {
     try {
-      const books = this.getBooksByLanguage(lang);
-      const book = books.find(b => b.slug === slug);
-      return book ? { ...book, _language: lang } : null;
+      return this.booksData.getBooksByLanguage(language);
     } catch (error) {
-      logger.error(`Error in findBySlug: ${error.message}`);
+      console.error('Error in findByLanguage:', error);
       throw error;
     }
   }
 
-  findByCategory(category, options = {}) {
-    return this.findAll({ ...options, category });
-  }
-
-  findByAuthor(author, options = {}) {
+  // Find books by author
+  async findByAuthor(author) {
     try {
-      const { lang = 'english', page = 1, limit = 10 } = options;
-      const books = this.getBooksByLanguage(lang);
-      const filteredBooks = books.filter(book =>
-        book.author && book.author.toLowerCase().includes(author.toLowerCase())
-      );
-      const total = filteredBooks.length;
-      const totalPages = Math.ceil(total / limit);
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + limit;
-      return { books: filteredBooks.slice(startIndex, endIndex), total, page, limit, totalPages, language: lang };
+      return this.booksData.getBooksByAuthor(author);
     } catch (error) {
-      logger.error(`Error in findByAuthor: ${error.message}`);
+      console.error('Error in findByAuthor:', error);
       throw error;
     }
   }
 
-  findFeatured(options = {}) {
+  // Find books by category
+  async findByCategory(category) {
     try {
-      const { lang = 'english', limit = 5 } = options;
-      const books = this.getBooksByLanguage(lang);
-      return books.filter(book => book.rating && book.rating >= 4.5).slice(0, limit);
+      return this.booksData.getBooksByCategory(category);
     } catch (error) {
-      logger.error(`Error in findFeatured: ${error.message}`);
+      console.error('Error in findByCategory:', error);
       throw error;
     }
   }
 
-  search(searchTerm, options = {}) {
-    return this.findAll({ ...options, search: searchTerm });
+  // Find books by genre
+  async findByGenre(genre) {
+    try {
+      return this.booksData.getBooksByGenre(genre);
+    } catch (error) {
+      console.error('Error in findByGenre:', error);
+      throw error;
+    }
   }
 
-  getStats(lang = 'english') {
+  // Find books by tag
+  async findByTag(tag) {
     try {
-      const books = this.getBooksByLanguage(lang);
-      return {
-        totalBooks: books.length,
-        categories: [...new Set(books.map(b => b.category).filter(Boolean))],
-        authors: [...new Set(books.map(b => b.author).filter(Boolean))],
-        totalPages: books.reduce((sum, b) => sum + (parseInt(b.pageCount) || 0), 0),
-        averageRating: books.reduce((sum, b) => sum + (parseFloat(b.rating) || 0), 0) / books.length || 0,
-        languages: this.supportedLanguages
+      return this.booksData.getBooksByTag(tag);
+    } catch (error) {
+      console.error('Error in findByTag:', error);
+      throw error;
+    }
+  }
+
+  // Search books
+  async search(query) {
+    try {
+      return this.booksData.searchBooks(query);
+    } catch (error) {
+      console.error('Error in search:', error);
+      throw error;
+    }
+  }
+
+  // Create new book (for static data, this is a mock)
+  async create(bookData) {
+    try {
+      const newBook = {
+        id: Date.now(),
+        ...bookData,
+        createdAt: new Date().toISOString()
       };
-    } catch (error) {
-      logger.error(`Error in getStats: ${error.message}`);
-      throw error;
-    }
-  }
-
-  create(bookData) {
-    try {
-      const newBook = { id: Date.now(), ...bookData, createdAt: new Date().toISOString() };
-      logger.info(`Book created: ${newBook.title}`);
       return newBook;
     } catch (error) {
-      logger.error(`Error in create: ${error.message}`);
+      console.error('Error in create:', error);
       throw error;
     }
   }
 
-  update(id, updateData) {
+  // Update book (for static data, this is a mock)
+  async update(id, updateData) {
     try {
-      const updatedBook = { id: parseInt(id), ...updateData, updatedAt: new Date().toISOString() };
-      logger.info(`Book updated: ${id}`);
+      const book = await this.findById(id);
+      if (!book) {
+        return null;
+      }
+      
+      const updatedBook = {
+        ...book,
+        ...updateData,
+        updatedAt: new Date().toISOString()
+      };
+      
       return updatedBook;
     } catch (error) {
-      logger.error(`Error in update: ${error.message}`);
+      console.error('Error in update:', error);
       throw error;
     }
   }
 
-  delete(id) {
+  // Delete book (for static data, this is a mock)
+  async delete(id) {
     try {
-      logger.info(`Book deleted: ${id}`);
+      const book = await this.findById(id);
+      if (!book) {
+        return false;
+      }
       return true;
     } catch (error) {
-      logger.error(`Error in delete: ${error.message}`);
+      console.error('Error in delete:', error);
+      throw error;
+    }
+  }
+
+  // Get featured books
+  async getFeatured(limit = 10) {
+    try {
+      return this.booksData.getFeaturedBooks(limit);
+    } catch (error) {
+      console.error('Error in getFeatured:', error);
+      throw error;
+    }
+  }
+
+  // Get book statistics
+  async getStats() {
+    try {
+      const allBooks = this.booksData.getAllBooks();
+      const languages = [...new Set(allBooks.map(book => book.language).filter(Boolean))];
+      const categories = [...new Set(allBooks.map(book => book.category).filter(Boolean))];
+      const totalBooks = allBooks.length;
+      const avgRating = allBooks.reduce((sum, book) => sum + (book.rating || 0), 0) / totalBooks;
+      
+      // Count books by language
+      const languageCount = {};
+      languages.forEach(lang => {
+        languageCount[lang] = allBooks.filter(book => book.language === lang).length;
+      });
+      
+      return {
+        totalBooks,
+        languages: languages.length,
+        categories: categories.length,
+        averageRating: Math.round(avgRating * 10) / 10,
+        languagesList: languages,
+        categoriesList: categories,
+        languageCount: languageCount
+      };
+    } catch (error) {
+      console.error('Error in getStats:', error);
       throw error;
     }
   }
 }
 
-module.exports = { BooksRepository };
+// Export as default
+export default new BooksRepository();
+
+// Also export the class for testing or extension
+export { BooksRepository };

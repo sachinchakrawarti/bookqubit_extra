@@ -1,67 +1,69 @@
 // src/api/v1/modules/books/routes/books.routes.js
-const express = require('express');
-const { BooksController } = require('../controller/books.controller');
+
+import express from 'express';
+import BooksController from '../controller/books.controller.js';
+import { 
+  validateBookQuery, 
+  validateBookCreation, 
+  validateBookUpdate 
+} from '../validations/books.validation.js';
 
 const router = express.Router();
+
+// Create controller instance
 const booksController = new BooksController();
 
-// ==================== PUBLIC ROUTES ====================
+// ============================================
+// PUBLIC ROUTES
+// ============================================
 
-// Search books - MUST come before /:id
-router.get('/search', (req, res, next) => {
-  booksController.searchBooks(req, res, next);
-});
+// Get all books with filters and pagination
+router.get('/', validateBookQuery, booksController.getAllBooks.bind(booksController));
 
-// Featured books
-router.get('/featured', (req, res, next) => {
-  booksController.getFeaturedBooks(req, res, next);
-});
+// Search books
+router.get('/search', booksController.searchBooks.bind(booksController));
 
-// Book statistics
-router.get('/stats', (req, res, next) => {
-  booksController.getBookStats(req, res, next);
-});
+// Get featured books
+router.get('/featured', booksController.getFeaturedBooks.bind(booksController));
 
-// Get books by category
-router.get('/category/:category', (req, res, next) => {
-  booksController.getBooksByCategory(req, res, next);
-});
+// Get book statistics
+router.get('/stats', booksController.getBookStats.bind(booksController));
+
+// Get books by language
+router.get('/language/:language', booksController.getBooksByLanguage.bind(booksController));
 
 // Get books by author
-router.get('/author/:author', (req, res, next) => {
-  booksController.getBooksByAuthor(req, res, next);
-});
+router.get('/author/:author', booksController.getBooksByAuthor.bind(booksController));
 
-// Get book by slug - MUST come before /:id
-router.get('/slug/:slug', (req, res, next) => {
-  booksController.getBookBySlug(req, res, next);
-});
+// Get books by category
+router.get('/category/:category', booksController.getBooksByCategory.bind(booksController));
 
-// Get book by ID - This should come LAST
-router.get('/:id', (req, res, next) => {
-  booksController.getBookById(req, res, next);
-});
+// Get books by genre
+router.get('/genre/:genre', booksController.getBooksByGenre.bind(booksController));
 
-// Get all books - This should be the base route
-router.get('/', (req, res, next) => {
-  booksController.getAllBooks(req, res, next);
-});
+// Get books by tag
+router.get('/tag/:tag', booksController.getBooksByTag.bind(booksController));
 
-// ==================== ADMIN ROUTES ====================
+// Get book by slug
+router.get('/slug/:slug', booksController.getBookBySlug.bind(booksController));
 
-// Create new book (Admin only)
-router.post('/', (req, res, next) => {
-  booksController.createBook(req, res, next);
-});
+// Get book by ID
+router.get('/:id', booksController.getBookById.bind(booksController));
 
-// Update book (Admin only)
-router.put('/:id', (req, res, next) => {
-  booksController.updateBook(req, res, next);
-});
+// Get related books
+router.get('/:id/related', booksController.getRelatedBooks.bind(booksController));
 
-// Delete book (Admin only)
-router.delete('/:id', (req, res, next) => {
-  booksController.deleteBook(req, res, next);
-});
+// ============================================
+// PROTECTED ROUTES (Admin only)
+// ============================================
 
-module.exports = { booksRouter: router };
+// Create new book
+router.post('/', validateBookCreation, booksController.createBook.bind(booksController));
+
+// Update book
+router.put('/:id', validateBookUpdate, booksController.updateBook.bind(booksController));
+
+// Delete book
+router.delete('/:id', booksController.deleteBook.bind(booksController));
+
+export default router;

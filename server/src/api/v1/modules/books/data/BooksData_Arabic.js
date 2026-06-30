@@ -1,6 +1,6 @@
 // src\data\books\BooksData_Arabic.js
 
-import Books_Cover_Data from './Books_Cover_Data';
+import Books_Cover_Data from './Books_Cover_Data.js';
 
 const booksArabic = [
   {

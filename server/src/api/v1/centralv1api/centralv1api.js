@@ -1,12 +1,13 @@
 // src/api/v1/centralv1api/centralv1api.js
-const express = require('express');
-const { booksRouter } = require('../modules/books/routes/books.routes');
-const { logger } = require('../../../utils/logger');
+
+import express from 'express';
+import booksRoutes from '../modules/books/routes/books.routes.js';
+import logger from '../../../utils/logger.js';
 
 const router = express.Router();
 
 // IMPORTANT: Mount book routes
-router.use('/books', booksRouter);
+router.use('/books', booksRoutes);
 
 // Health check for API v1
 router.get('/health', (req, res) => {
@@ -31,8 +32,11 @@ router.get('/info', (req, res) => {
       'books/stats': '/api/v1/books/stats',
       'books/category/:category': '/api/v1/books/category/:category',
       'books/author/:author': '/api/v1/books/author/:author',
+      'books/genre/:genre': '/api/v1/books/genre/:genre',
+      'books/tag/:tag': '/api/v1/books/tag/:tag',
       'books/slug/:slug': '/api/v1/books/slug/:slug',
-      'books/:id': '/api/v1/books/:id'
+      'books/:id': '/api/v1/books/:id',
+      'books/:id/related': '/api/v1/books/:id/related'
     },
     supportedLanguages: [
       'english', 'hindi', 'bengali', 'telugu', 'marathi', 'tamil',
@@ -44,7 +48,7 @@ router.get('/info', (req, res) => {
   });
 });
 
-// 404 for any unmatched routes in v1 - FIXED: use router.use instead of router.use('*')
+// 404 for any unmatched routes in v1
 router.use((req, res) => {
   res.status(404).json({
     status: 'error',
@@ -57,12 +61,19 @@ router.use((req, res) => {
       '/api/v1/books/stats',
       '/api/v1/books/category/:category',
       '/api/v1/books/author/:author',
+      '/api/v1/books/genre/:genre',
+      '/api/v1/books/tag/:tag',
       '/api/v1/books/slug/:slug',
       '/api/v1/books/:id',
+      '/api/v1/books/:id/related',
       '/api/v1/health',
       '/api/v1/info'
     ]
   });
 });
 
-module.exports = { apiRouter: router };
+// Export as named export
+export const apiRouter = router;
+
+// Also export as default for convenience
+export default router;

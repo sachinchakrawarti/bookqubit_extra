@@ -1,7 +1,13 @@
 // src/utils/logger.js
-const winston = require('winston');
-const path = require('path');
-const fs = require('fs');
+
+import winston from 'winston';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Create logs directory if it doesn't exist
 const logDir = path.join(__dirname, '../../logs');
@@ -63,7 +69,30 @@ const log = {
     } else {
       logger.info(message);
     }
+  },
+  // Add custom logging methods
+  success: (message, meta = {}) => logger.info(`✅ ${message}`, meta),
+  failure: (message, meta = {}) => logger.error(`❌ ${message}`, meta),
+  start: (message, meta = {}) => logger.info(`🚀 ${message}`, meta),
+  end: (message, meta = {}) => logger.info(`🏁 ${message}`, meta),
+  database: (message, meta = {}) => logger.debug(`📊 ${message}`, meta),
+  request: (req, meta = {}) => {
+    const { method, url, params, query, body } = req;
+    logger.info(`📨 ${method} ${url}`, { 
+      ...meta, 
+      params, 
+      query, 
+      body: body && Object.keys(body).length > 0 ? body : undefined 
+    });
+  },
+  response: (res, meta = {}) => {
+    const { statusCode, statusMessage } = res;
+    logger.info(`📤 ${statusCode} - ${statusMessage || ''}`, meta);
   }
 };
 
-module.exports = { logger, stream, log };
+// Export all as named exports
+export { logger, stream, log };
+
+// Also export default for convenience
+export default { logger, stream, log };
