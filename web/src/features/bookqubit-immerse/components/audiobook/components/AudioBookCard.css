@@ -1,0 +1,617 @@
+/* src/features/bookqubit-immerse/components/audiobook/components/AudioBookCard.css */
+
+/* ============================================================
+   AUDIOBOOK CARD
+   ============================================================ */
+.audiobook-card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.light-mode .audiobook-card {
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .audiobook-card {
+  background: #1e293b;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.audiobook-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .audiobook-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.audiobook-card:active {
+  transform: scale(0.98);
+}
+
+/* Playing State */
+.audiobook-card.playing {
+  border-color: #3b82f6;
+}
+
+.dark-mode .audiobook-card.playing {
+  border-color: #60a5fa;
+}
+
+/* ============================================================
+   COVER IMAGE
+   ============================================================ */
+.audiobook-cover {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.dark-mode .audiobook-cover {
+  background: #334155;
+}
+
+.cover-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.audiobook-card:hover .cover-image {
+  transform: scale(1.05);
+}
+
+/* Placeholder */
+.cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-icon {
+  width: 3rem;
+  height: 3rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================================
+   PLAYING INDICATOR
+   ============================================================ */
+.playing-indicator {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.playing-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  background: white;
+  border-radius: 50%;
+  animation: bounce 0.6s ease-in-out infinite;
+}
+
+.playing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.playing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+/* ============================================================
+   PLAY OVERLAY
+   ============================================================ */
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  backdrop-filter: blur(2px);
+}
+
+.audiobook-card:hover .play-overlay {
+  opacity: 1;
+}
+
+.play-btn {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.play-btn:hover {
+  transform: scale(1.1);
+  background: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:active {
+  transform: scale(0.95);
+}
+
+.play-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #3b82f6;
+  margin-left: 0.25rem;
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+/* Progress Badge */
+.progress-badge {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.badge-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Completed Badge */
+.completed-badge {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: rgba(34, 197, 94, 0.95);
+  color: white;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.check-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Duration Badge */
+.duration-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.duration-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Bookmark Button */
+.bookmark-btn {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 4;
+  backdrop-filter: blur(4px);
+}
+
+.bookmark-btn:hover {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.bookmark-btn.active {
+  background: #f59e0b;
+  color: white;
+}
+
+.bookmark-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ============================================================
+   INFO SECTION
+   ============================================================ */
+.audiobook-info {
+  padding: 1rem;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.audiobook-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f59e0b;
+  flex-shrink: 0;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 9999px;
+}
+
+.rating-star {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.audiobook-author {
+  font-size: 0.8125rem;
+  opacity: 0.7;
+  margin: 0 0 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta */
+.audiobook-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-bottom: 0.25rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.meta-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.meta-separator {
+  opacity: 0.3;
+}
+
+/* Narrator */
+.audiobook-narrator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.narrator-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Description */
+.audiobook-description {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin: 0 0 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+/* Progress Bar */
+.audiobook-progress {
+  margin-top: 0.5rem;
+}
+
+.audiobook-progress .progress-bar {
+  width: 100%;
+  height: 0.25rem;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.dark-mode .audiobook-progress .progress-bar {
+  background: #334155;
+}
+
+.audiobook-progress .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.audiobook-progress .progress-fill.completed {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+/* Category Tag */
+.category-tag {
+  margin-top: 0.5rem;
+}
+
+.category-label {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.dark-mode .category-label {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .audiobook-info {
+    padding: 0.75rem;
+  }
+
+  .audiobook-title {
+    font-size: 0.875rem;
+  }
+
+  .audiobook-author {
+    font-size: 0.75rem;
+  }
+
+  .audiobook-meta {
+    font-size: 0.65rem;
+  }
+
+  .audiobook-narrator {
+    font-size: 0.65rem;
+  }
+
+  .play-btn {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .play-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .audiobook-info {
+    padding: 0.5rem;
+  }
+
+  .audiobook-title {
+    font-size: 0.8125rem;
+  }
+
+  .audiobook-author {
+    font-size: 0.7rem;
+  }
+
+  .audiobook-meta {
+    font-size: 0.6rem;
+  }
+
+  .audiobook-narrator {
+    font-size: 0.6rem;
+  }
+
+  .audiobook-description {
+    font-size: 0.65rem;
+  }
+
+  .rating-badge {
+    font-size: 0.65rem;
+  }
+
+  .play-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .play-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .progress-badge,
+  .completed-badge,
+  .duration-badge {
+    font-size: 0.55rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .bookmark-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .bookmark-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+.audiobook-card:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.play-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.bookmark-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audiobook-card,
+  .audiobook-card:hover,
+  .audiobook-card:active,
+  .cover-image,
+  .play-overlay,
+  .play-btn,
+  .play-btn:hover,
+  .bookmark-btn,
+  .bookmark-btn:hover,
+  .playing-dot {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  .audiobook-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+
+  .play-overlay {
+    display: none !important;
+  }
+
+  .audiobook-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   SELECTION STYLES
+   ============================================================ */
+.audiobook-card ::selection {
+  background: rgba(59, 130, 246, 0.2);
+  color: inherit;
+}
+
+.dark-mode .audiobook-card ::selection {
+  background: rgba(96, 165, 250, 0.2);
+  color: inherit;
+}

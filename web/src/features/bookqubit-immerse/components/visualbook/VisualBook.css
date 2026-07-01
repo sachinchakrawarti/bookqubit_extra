@@ -1,0 +1,123 @@
+/* src/features/bookqubit-immerse/components/visualbook/VisualBook.css */
+
+.visualbook-container {
+  width: 100%;
+}
+
+.visualbook-header {
+  margin-bottom: 2rem;
+}
+
+.visualbook-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.visualbook-subtitle {
+  font-size: 0.875rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.visualbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.visualbook-card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.light-mode .visualbook-card {
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .visualbook-card {
+  background: #1e293b;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.visualbook-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.visualbook-cover {
+  position: relative;
+  width: 100%;
+  padding-top: 60%;
+  overflow: hidden;
+}
+
+.cover-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+}
+
+.visualbook-type-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+}
+
+.dark-mode .visualbook-type-badge {
+  background: rgba(15, 23, 42, 0.9);
+  color: #f1f5f9;
+}
+
+.visualbook-info {
+  padding: 1rem;
+}
+
+.visualbook-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.visualbook-author {
+  font-size: 0.8125rem;
+  opacity: 0.7;
+  margin: 0 0 0.5rem;
+}
+
+.visualbook-meta {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .visualbook-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .visualbook-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  
+  .visualbook-info {
+    padding: 0.75rem;
+  }
+}
