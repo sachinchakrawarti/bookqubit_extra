@@ -8,6 +8,7 @@ import BookSquareCard from "@/features/book/booklist/ui/BookSquareCard";
 import BookRectangleCard from "@/features/book/booklist/ui/BookRectangleCard";
 import BookCompactCard from "@/features/book/booklist/ui/BookCompactCard";
 import BookElevatedCard from "@/features/book/booklist/ui/BookElevatedCard";
+import BookModernCard from "@/features/book/booklist/ui/BookModernCard"; // Import the new card
 import BooksSearch from "@/features/book/booklist/components/Books_Search";
 import BooksFilter from "@/features/book/booklist/components/Books_Filter";
 import BookViewChanger from "@/features/book/booklist/actions/Book_View_Changer";
@@ -292,6 +293,12 @@ const BookList = () => {
       setCurrentPage(1);
     };
 
+    // Handler for book actions (optional - for analytics)
+    const handleBookAction = (action, data) => {
+      console.log(`Book action: ${action}`, data);
+      // You can add analytics tracking here
+    };
+
     switch (viewType) {
       case "grid":
         return (
@@ -302,6 +309,22 @@ const BookList = () => {
                 book={book}
                 onTagClick={handleTagClick}
                 currentLang={currentLanguage}
+              />
+            ))}
+          </div>
+        );
+
+      case "modern":
+        return (
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            {currentBooks.map((book) => (
+              <BookModernCard
+                key={book.id}
+                book={book}
+                collections={book.collections || []}
+                showCollections={true}
+                variant="default"
+                onBookAction={handleBookAction}
               />
             ))}
           </div>
