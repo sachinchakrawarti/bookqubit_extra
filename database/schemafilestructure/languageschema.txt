@@ -1,0 +1,81 @@
+database/
+└── schema/
+    └── languageschema/
+        │
+        ├── languages/
+        │   ├── languages.sql
+        │   ├── languages.index.sql
+        │   ├── languages.seed.sql
+        │   ├── languages.view.sql
+        │   ├── languages.trigger.sql
+        │   └── README.md
+        │
+        ├── scripts/
+        │   ├── scripts.sql
+        │   ├── scripts.index.sql
+        │   ├── scripts.seed.sql
+        │   ├── scripts.view.sql
+        │   ├── scripts.trigger.sql
+        │   └── README.md
+        │
+        ├── locales/
+        │   ├── locales.sql
+        │   ├── locales.index.sql
+        │   ├── locales.seed.sql
+        │   └── README.md
+        │
+        ├── romanization/
+        │   ├── romanization_systems.sql
+        │   ├── romanization_rules.sql
+        │   ├── romanization_examples.sql
+        │   └── README.md
+        │
+        ├── translations/
+        │   ├── language_translations.sql
+        │   ├── language_translations.index.sql
+        │   ├── language_translations.seed.sql
+        │   └── README.md
+        │
+        ├── views/
+        │   ├── v_languages.sql
+        │   ├── v_language_full.sql
+        │   ├── v_scripts.sql
+        │   └── README.md
+        │
+        ├── triggers/
+        │   ├── trg_language_updated.sql
+        │   ├── trg_script_updated.sql
+        │   └── README.md
+        │
+        ├── migrations/
+        │   ├── 001_create_scripts.sql
+        │   ├── 002_create_languages.sql
+        │   ├── 003_create_locales.sql
+        │   ├── 004_create_translations.sql
+        │   └── README.md
+        │
+        ├── seed/
+        │   ├── scripts.seed.sql
+        │   ├── languages.seed.sql
+        │   ├── locales.seed.sql
+        │   ├── language_translations.seed.sql
+        │   └── README.md
+        │
+        ├── tests/
+        │   ├── language_tests.sql
+        │   ├── integrity_tests.sql
+        │   └── README.md
+        │
+        ├── docs/
+        │   ├── README.md
+        │   ├── ER_DIAGRAM.md
+        │   ├── TABLES.md
+        │   ├── RELATIONSHIPS.md
+        │   ├── ISO_CODES.md
+        │   ├── ROMANIZATION_GUIDE.md
+        │   └── API_GUIDE.md
+        │
+        ├── language.init.sql
+        ├── language.seed.sql
+        ├── language.rollback.sql
+        └── language.drop.sql
