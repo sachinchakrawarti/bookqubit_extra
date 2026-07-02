@@ -1,0 +1,114 @@
+database/
+└── schema/
+    └── bookschema/
+        │
+        ├── books/
+        │   ├── books.sql
+        │   ├── books.index.sql
+        │   ├── books.trigger.sql
+        │   ├── books.view.sql
+        │   ├── books.seed.sql
+        │   ├── books.sample.sql
+        │   └── README.md
+        │
+        ├── book_translations/
+        │   ├── book_translations.sql
+        │   ├── book_translations.index.sql
+        │   ├── book_translations.trigger.sql
+        │   ├── book_translations.view.sql
+        │   ├── book_translations.seed.sql
+        │   └── README.md
+        │
+        ├── book_authors/
+        │   ├── book_authors.sql
+        │   ├── book_authors.index.sql
+        │   ├── book_authors.trigger.sql
+        │   ├── book_authors.view.sql
+        │   └── README.md
+        │
+        ├── book_publishers/
+        │   ├── book_publishers.sql
+        │   ├── book_publishers.index.sql
+        │   ├── book_publishers.trigger.sql
+        │   └── README.md
+        │
+        ├── book_categories/
+        │   ├── book_categories.sql
+        │   ├── book_categories.index.sql
+        │   └── README.md
+        │
+        ├── book_genres/
+        │   ├── book_genres.sql
+        │   ├── book_genres.index.sql
+        │   └── README.md
+        │
+        ├── book_subjects/
+        │   ├── book_subjects.sql
+        │   ├── book_subjects.index.sql
+        │   └── README.md
+        │
+        ├── book_tags/
+        │   ├── book_tags.sql
+        │   ├── book_tags.index.sql
+        │   └── README.md
+        │
+        ├── book_series/
+        │   ├── book_series.sql
+        │   ├── book_series.index.sql
+        │   └── README.md
+        │
+        ├── book_collections/
+        │   ├── book_collections.sql
+        │   ├── book_collections.index.sql
+        │   └── README.md
+        │
+        ├── book_editions/
+        │   ├── book_editions.sql
+        │   ├── book_editions.index.sql
+        │   ├── edition_prices.sql
+        │   ├── edition_inventory.sql
+        │   ├── edition_files.sql
+        │   └── README.md
+        │
+        ├── book_formats/
+        │   ├── formats.sql
+        │   ├── book_formats.sql
+        │   ├── book_formats.index.sql
+        │   └── README.md
+        │
+        ├── book_media/
+        │   ├── book_media.sql
+        │   ├── book_media.index.sql
+        │   └── README.md
+        │
+        ├── book_links/
+        │   ├── book_links.sql
+        │   ├── book_links.index.sql
+        │   └── README.md
+        │
+        ├── book_reviews/
+        │   ├── book_reviews.sql
+        │   ├── review_reactions.sql
+        │   ├── review_reports.sql
+        │   ├── book_reviews.index.sql
+        │   └── README.md
+        │
+        ├── book_ratings/
+        │   ├── book_ratings.sql
+        │   ├── book_ratings.index.sql
+        │   └── README.md
+        │
+        ├── book_statistics/
+        │   ├── book_statistics.sql
+        │   ├── book_statistics.trigger.sql
+        │   ├── book_statistics.view.sql
+        │   └── README.md
+        │
+        ├── book_awards/
+        │   ├── awards.sql
+        │   ├── book_awards.sql
+        │   ├── book_awards.index.sql
+        │   └── README.md
+        │
+        ├── books.init.sql
+        └── books.drop.sql
