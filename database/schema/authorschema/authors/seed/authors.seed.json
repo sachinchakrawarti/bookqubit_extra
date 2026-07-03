@@ -1,0 +1,14 @@
+[
+  {
+    "author_id": 1,
+    "uuid": "author-000001",
+    "slug": "immanuel-kant",
+    "status": "active"
+  },
+  {
+    "author_id": 2,
+    "uuid": "author-000002",
+    "slug": "friedrich-nietzsche",
+    "status": "active"
+  }
+]
