@@ -1,0 +1,20 @@
+[
+  {
+    "language_id": 1,
+    "code": "en",
+    "name": "English",
+    "status": "active"
+  },
+  {
+    "language_id": 2,
+    "code": "hi",
+    "name": "Hindi",
+    "status": "active"
+  },
+  {
+    "language_id": 3,
+    "code": "ur",
+    "name": "Urdu",
+    "status": "active"
+  }
+]

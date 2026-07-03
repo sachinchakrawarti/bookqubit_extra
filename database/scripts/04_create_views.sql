@@ -2,4 +2,4 @@
 -- LANGUAGE SCHEMA
 -- =============================================================================
 
-.read ../schema/languageschema/languages/languages.sql
+.read ../schema/languageschema/languages/languages.view.sql
