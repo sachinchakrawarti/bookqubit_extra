@@ -1,0 +1,134 @@
+[
+  {
+    "book_id": 1,
+    "language_code": "hi",
+    "title": "महान साहसिक यात्रा",
+    "subtitle": "कल्पना से परे एक रोमांचक सफर",
+    "short_description": "एक रोमांचक साहसिक उपन्यास।",
+    "description": "यह पुस्तक साहस, मित्रता और अनजानी दुनियाओं की रोमांचक यात्रा का वर्णन करती है, जहाँ हर मोड़ पर नई चुनौतियाँ और रोमांच आपका इंतजार करते हैं।",
+    "slug": "mahan-sahasik-yatra",
+    "meta_title": "महान साहसिक यात्रा",
+    "meta_description": "एक रोमांच, साहस और कल्पना से भरपूर हिंदी उपन्यास।",
+    "meta_keywords": [
+      "रोमांच",
+      "साहस",
+      "उपन्यास",
+      "कहानी"
+    ],
+    "search_keywords": [
+      "रोमांच",
+      "यात्रा",
+      "कल्पना",
+      "साहस"
+    ],
+    "translator_name": "BookQubit Hindi Team",
+    "translation_version": "1.0",
+    "is_machine_translation": false,
+    "is_verified": true,
+    "status": "published"
+  },
+  {
+    "book_id": 2,
+    "language_code": "hi",
+    "title": "जावा सीखें",
+    "subtitle": "संपूर्ण प्रोग्रामिंग मार्गदर्शिका",
+    "short_description": "जावा प्रोग्रामिंग सीखें।",
+    "description": "यह पुस्तक जावा की मूल बातें, ऑब्जेक्ट ओरिएंटेड प्रोग्रामिंग, कलेक्शन्स, मल्टीथ्रेडिंग और आधुनिक जावा विकास को विस्तार से समझाती है।",
+    "slug": "java-sikhen",
+    "meta_title": "जावा सीखें",
+    "meta_description": "जावा प्रोग्रामिंग की संपूर्ण हिंदी गाइड।",
+    "meta_keywords": [
+      "जावा",
+      "प्रोग्रामिंग",
+      "कोडिंग"
+    ],
+    "search_keywords": [
+      "जावा",
+      "OOP",
+      "डेवलपमेंट"
+    ],
+    "translator_name": "BookQubit Hindi Team",
+    "translation_version": "1.0",
+    "is_machine_translation": false,
+    "is_verified": true,
+    "status": "published"
+  },
+  {
+    "book_id": 3,
+    "language_code": "hi",
+    "title": "मिशन मून",
+    "subtitle": "मानवता का अगला घर",
+    "short_description": "अंतरिक्ष अन्वेषण।",
+    "description": "चंद्रमा पर मानव बस्ती, अंतरिक्ष विज्ञान और भविष्य के अंतरिक्ष अभियानों की विस्तृत जानकारी।",
+    "slug": "mission-moon-hi",
+    "meta_title": "मिशन मून",
+    "meta_description": "चंद्रमा और अंतरिक्ष अन्वेषण पर आधारित पुस्तक।",
+    "meta_keywords": [
+      "चंद्रमा",
+      "अंतरिक्ष",
+      "विज्ञान"
+    ],
+    "search_keywords": [
+      "मून",
+      "स्पेस",
+      "भविष्य"
+    ],
+    "translator_name": "BookQubit Hindi Team",
+    "translation_version": "1.0",
+    "is_machine_translation": false,
+    "is_verified": true,
+    "status": "published"
+  },
+  {
+    "book_id": 4,
+    "language_code": "hi",
+    "title": "विश्व इतिहास",
+    "subtitle": "सभ्यताओं की समय यात्रा",
+    "short_description": "इतिहास संदर्भ पुस्तक।",
+    "description": "प्राचीन काल से आधुनिक युग तक विश्व की महान सभ्यताओं और उनके विकास का विस्तृत अध्ययन।",
+    "slug": "vishwa-itihas",
+    "meta_title": "विश्व इतिहास",
+    "meta_description": "विश्व इतिहास और सभ्यताओं की हिंदी पुस्तक।",
+    "meta_keywords": [
+      "इतिहास",
+      "सभ्यता",
+      "विश्व"
+    ],
+    "search_keywords": [
+      "इतिहास",
+      "प्राचीन",
+      "सभ्यता"
+    ],
+    "translator_name": "BookQubit Hindi Team",
+    "translation_version": "1.0",
+    "is_machine_translation": false,
+    "is_verified": true,
+    "status": "published"
+  },
+  {
+    "book_id": 5,
+    "language_code": "hi",
+    "title": "क्वांटम कंप्यूटिंग",
+    "subtitle": "भविष्य की कंप्यूटिंग",
+    "short_description": "क्वांटम कंप्यूटिंग की मूल बातें।",
+    "description": "क्यूबिट, क्वांटम एल्गोरिदम, क्वांटम गेट्स और भविष्य की कंप्यूटिंग तकनीकों का विस्तृत परिचय।",
+    "slug": "quantum-computing-hi",
+    "meta_title": "क्वांटम कंप्यूटिंग",
+    "meta_description": "क्वांटम कंप्यूटिंग की हिंदी गाइड।",
+    "meta_keywords": [
+      "क्वांटम",
+      "कंप्यूटिंग",
+      "तकनीक"
+    ],
+    "search_keywords": [
+      "क्वांटम",
+      "भौतिकी",
+      "तकनीक"
+    ],
+    "translator_name": "BookQubit Hindi Team",
+    "translation_version": "1.0",
+    "is_machine_translation": false,
+    "is_verified": true,
+    "status": "draft"
+  }
+]
