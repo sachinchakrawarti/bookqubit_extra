@@ -1,0 +1,64 @@
+{
+  "version": "2.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "tablePositions": [
+      {
+        "name": "authors",
+        "schemaName": "public",
+        "x": 12,
+        "y": 12
+      },
+      {
+        "name": "author_translations",
+        "schemaName": "public",
+        "x": 484.6669921875,
+        "y": 12
+      },
+      {
+        "name": "languages",
+        "schemaName": "public",
+        "x": 12,
+        "y": 250
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "author_id"
+        ],
+        "firstTableName": "author_translations",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "author_id"
+        ],
+        "secondTableName": "authors",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "language_code"
+        ],
+        "firstTableName": "author_translations",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "code"
+        ],
+        "secondTableName": "languages",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      }
+    ]
+  },
+  "views": {}
+}
