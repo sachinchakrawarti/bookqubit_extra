@@ -1,0 +1,115 @@
+{
+    "files.exclude": {
+        // Node.js
+        "**/node_modules": true,
+        "**/.pnpm-store": true,
+        "**/jspm_packages": true,
+        
+        // Build outputs
+        "**/.next": true,
+        "**/out": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.nuxt": true,
+        
+        // Logs
+        "**/logs": true,
+        "**/*.log": true,
+        "server/logs": true,
+        "server/src/logs": true,
+       
+        
+        // Cache directories
+        "**/.cache": true,
+        "**/.parcel-cache": true,
+        "**/.eslintcache": true,
+        "**/.nyc_output": true,
+        "**/coverage": true,
+        "**/.grunt": true,
+        
+
+        
+        // IDE files
+
+        "**/*.swp": true,
+        "**/*.swo": true,
+        
+     
+        
+        // Yarn
+        "**/.yarn/cache": true,
+        "**/.yarn/unplugged": true,
+        "**/.pnp.*": true,
+        
+        // Temp files
+        "**/*.tmp": true,
+        "**/*.temp": true,
+        "**/*.pid": true,
+    
+        
+        // Package locks (optional - uncomment if you want to hide)
+        // "**/package-lock.json": true,
+        // "**/yarn.lock": true,
+        // "**/pnpm-lock.yaml": true,
+        
+        // Vercel
+        "**/.vercel/output": true,
+        "**/.vercel/project.json": true,
+        "web/.vercel": true,  // Added to hide web/.vercel folder
+        
+        // Specific to your project
+        "server/public": true,
+        "web/.next": true,
+        "web/out": true,
+        
+        // Generated files
+        "**/*.generated.*": true,
+        "**/generated": true,
+     
+        // Test coverage
+        "**/coverage": true,
+        "**/.nyc_output": true,
+        
+        // Dependency directories
+        "**/bower_components": true,
+        "**/typings": true,
+        
+        // TypeScript
+        "**/*.d.ts.map": true,
+        "**/*.js.map": true,
+        "**/*.min.js": true
+    },
+    
+    // Additional useful settings
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/.next": true,
+        "**/out": true,
+        "**/dist": true,
+        "**/*.log": true,
+   
+        "**/coverage": true,
+        "**/.cache": true,
+        "**/logs": true,
+        "web/.vercel": true  // Added to exclude from search
+    },
+    
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/.next/**": true,
+        "**/out/**": true,
+        "**/dist/**": true,
+
+        "**/logs/**": true,
+        "**/backups/**": true,
+        "web/.vercel/**": true  // Added to exclude from file watching
+    },
+    
+    // Editor settings for better performance
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    
+  
+}
