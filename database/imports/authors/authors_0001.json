@@ -1,0 +1,86 @@
+[
+  {
+    "gender": "male",
+    "birth_date": "1564-04-26",
+    "death_date": "1616-04-23",
+
+    "translations": [
+      {
+        "language_code": "en",
+        "name": "William Shakespeare",
+        "biography": "English playwright, poet, and actor.",
+        "nationality": "English",
+        "birth_place": "Stratford-upon-Avon"
+      },
+      {
+        "language_code": "hi",
+        "name": "विलियम शेक्सपीयर",
+        "biography": "अंग्रेज़ नाटककार, कवि और अभिनेता।",
+        "nationality": "अंग्रेज़",
+        "birth_place": "स्ट्रैटफ़र्ड-अपॉन-एवन"
+      },
+      {
+        "language_code": "ur",
+        "name": "ولیم شیکسپیئر",
+        "biography": "انگریز ڈرامہ نگار، شاعر اور اداکار۔",
+        "nationality": "انگریز",
+        "birth_place": "اسٹریٹفورڈ اپون ایون"
+      }
+    ],
+
+    "aliases": [
+      {
+        "alias_name": "William Shakspere",
+        "alias_type": "alternate_name"
+      }
+    ],
+
+    "languages": [
+      {
+        "language_code": "en",
+        "language_type": "native",
+        "proficiency": "native"
+      }
+    ]
+  },
+
+  {
+    "gender": "female",
+    "birth_date": "1965-07-31",
+    "death_date": null,
+
+    "translations": [
+      {
+        "language_code": "en",
+        "name": "J. K. Rowling",
+        "biography": "British author of the Harry Potter series.",
+        "nationality": "British",
+        "birth_place": "Yate"
+      },
+      {
+        "language_code": "hi",
+        "name": "जे. के. रोलिंग",
+        "biography": "हैरी पॉटर श्रृंखला की ब्रिटिश लेखिका।",
+        "nationality": "ब्रिटिश",
+        "birth_place": "येट"
+      },
+      {
+        "language_code": "ur",
+        "name": "جے کے رولنگ",
+        "biography": "ہیری پوٹر سیریز کی برطانوی مصنفہ۔",
+        "nationality": "برطانوی",
+        "birth_place": "ییٹ"
+      }
+    ],
+
+    "aliases": [],
+
+    "languages": [
+      {
+        "language_code": "en",
+        "language_type": "native",
+        "proficiency": "native"
+      }
+    ]
+  }
+]
