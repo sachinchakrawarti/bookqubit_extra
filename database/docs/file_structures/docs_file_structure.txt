@@ -1,0 +1,109 @@
+docs/
+│
+├── README.md
+├── BookQubit_Database.md
+├── ROADMAP.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── FAQ.md
+├── GLOSSARY.md
+├── LICENSE.md
+│
+├── architecture/
+│   ├── README.md
+│   ├── database_architecture.md
+│   ├── folder_structure.md
+│   ├── naming_conventions.md
+│   ├── coding_standards.md
+│   ├── design_principles.md
+│   └── technology_stack.md
+│
+├── setup/
+│   ├── README.md
+│   ├── installation.md
+│   ├── sqlite_setup.md
+│   ├── postgresql_setup.md
+│   ├── knex_setup.md
+│   ├── environment_variables.md
+│   └── first_database.md
+│
+├── schemas/
+│   ├── README.md
+│   ├── schema_registry.md
+│   ├── schema_order.md
+│   ├── relationships.md
+│   └── naming_rules.md
+│
+├── import_system/
+│   ├── README.md
+│   ├── json_format.md
+│   ├── importer_architecture.md
+│   ├── validator.md
+│   ├── repository_layer.md
+│   ├── batch_import.md
+│   └── error_handling.md
+│
+├── queries/
+│   ├── README.md
+│   ├── query_structure.md
+│   ├── transactions.md
+│   ├── pagination.md
+│   ├── search.md
+│   └── optimization.md
+│
+├── migrations/
+│   ├── README.md
+│   ├── migration_guide.md
+│   ├── rollback.md
+│   ├── versioning.md
+│   └── upgrade_path.md
+│
+├── backup/
+│   ├── README.md
+│   ├── backup_strategy.md
+│   ├── restore.md
+│   └── disaster_recovery.md
+│
+├── security/
+│   ├── README.md
+│   ├── permissions.md
+│   ├── sql_injection.md
+│   ├── encryption.md
+│   └── auditing.md
+│
+├── performance/
+│   ├── README.md
+│   ├── indexing.md
+│   ├── query_optimization.md
+│   ├── caching.md
+│   └── benchmarking.md
+│
+├── api/
+│   ├── README.md
+│   ├── repository_api.md
+│   ├── importer_api.md
+│   └── database_api.md
+│
+├── diagrams/
+│   ├── README.md
+│   ├── er_diagram.drawio
+│   ├── database_architecture.drawio
+│   ├── import_pipeline.drawio
+│   ├── repository_flow.drawio
+│   └── schema_overview.drawio
+│
+├── examples/
+│   ├── README.md
+│   ├── author_import.md
+│   ├── create_schema.md
+│   ├── create_query.md
+│   ├── knex_examples.md
+│   └── json_examples.md
+│
+└── references/
+    ├── README.md
+    ├── sqlite_reference.md
+    ├── postgresql_reference.md
+    ├── knex_reference.md
+    ├── sql_style_guide.md
+    └── useful_links.md
