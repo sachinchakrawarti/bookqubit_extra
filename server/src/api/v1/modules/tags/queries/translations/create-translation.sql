@@ -1,0 +1,20 @@
+INSERT INTO book_tags_translations
+(
+    tag_id,
+    language_id,
+    tag_name,
+    short_name,
+    description,
+    seo_title,
+    seo_description
+)
+VALUES
+(
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?
+);

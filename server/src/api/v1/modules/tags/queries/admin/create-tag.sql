@@ -1,0 +1,22 @@
+INSERT INTO book_tags
+(
+    tag_code,
+    slug,
+    icon,
+    color,
+    sort_order,
+    is_system,
+    is_featured,
+    is_active
+)
+VALUES
+(
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?
+);

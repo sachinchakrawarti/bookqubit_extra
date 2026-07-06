@@ -1,13 +1,33 @@
-import db from "../../../../../database/connection.js";
+// src/api/v1/modules/tags/repositories/tags.repository.js
 
-export const findAll = async () => {
-    return await db("book_tags")
-        .select("*")
-        .orderBy("sort_order");
-};
+import db from "../../../../../../config/database.js";
+import queries from "../queries/index.js";
 
-export const findById = async (id) => {
-    return await db("book_tags")
-        .where({ tag_id: id })
-        .first();
-};
+class TagsRepository {
+
+    listTags(params = {}) {
+        return db.all(queries.public.listTags, params);
+    }
+
+    getTag(id, languageId) {
+        return db.get(
+            queries.public.getTag,
+            {
+                id,
+                languageId
+            }
+        );
+    }
+
+    searchTags(keyword) {
+        return db.all(
+            queries.public.searchTags,
+            {
+                keyword: `%${keyword}%`
+            }
+        );
+    }
+
+}
+
+export default new TagsRepository();

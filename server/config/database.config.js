@@ -1,14 +1,9 @@
-import path from "path";
-import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+dotenv.config();
 
 export default {
     sqlite: {
-        filename: path.resolve(
-            __dirname,
-            "../../database/databases/sqlite/db/bookqubit_database.db"
-        ),
+        filename: process.env.DATABASE_PATH,
     },
 };

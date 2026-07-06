@@ -1,9 +1,27 @@
-import * as repository from "../repositories/tags.repository.js";
+// src/api/v1/modules/tags/services/tags.service.js
 
-export const getAllTags = () => {
-    return repository.findAll();
-};
+import tagsRepository from "../repositories/tags.repository.js";
 
-export const getTagById = (id) => {
-    return repository.findById(id);
-};
+class TagsService {
+    async listTags() {
+        return await tagsRepository.listTags();
+    }
+
+    async getTag(id) {
+        return await tagsRepository.getTag(id);
+    }
+
+    async searchTags(keyword) {
+        return await tagsRepository.searchTags(keyword);
+    }
+
+    async popularTags() {
+        return await tagsRepository.popularTags();
+    }
+
+    async tagUsage() {
+        return await tagsRepository.tagUsage();
+    }
+}
+
+export default new TagsService();
