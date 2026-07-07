@@ -1,0 +1,262 @@
+[
+  {
+    "language_id": 1,
+    "display_language_id": 1,
+    "language_name": "English",
+    "native_name": "English",
+    "short_name": "English",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 1,
+    "display_language_id": 2,
+    "language_name": "अंग्रेज़ी",
+    "native_name": "English",
+    "short_name": "अंग्रेज़ी",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 2,
+    "display_language_id": 1,
+    "language_name": "Hindi",
+    "native_name": "हिन्दी",
+    "short_name": "Hindi",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 2,
+    "display_language_id": 2,
+    "language_name": "हिन्दी",
+    "native_name": "हिन्दी",
+    "short_name": "हिन्दी",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 3,
+    "display_language_id": 1,
+    "language_name": "Bengali",
+    "native_name": "বাংলা",
+    "short_name": "Bengali",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 3,
+    "display_language_id": 2,
+    "language_name": "बंगाली",
+    "native_name": "বাংলা",
+    "short_name": "बंगाली",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 4,
+    "display_language_id": 1,
+    "language_name": "Tamil",
+    "native_name": "தமிழ்",
+    "short_name": "Tamil",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 4,
+    "display_language_id": 2,
+    "language_name": "तमिल",
+    "native_name": "தமிழ்",
+    "short_name": "तमिल",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 5,
+    "display_language_id": 1,
+    "language_name": "Telugu",
+    "native_name": "తెలుగు",
+    "short_name": "Telugu",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 5,
+    "display_language_id": 2,
+    "language_name": "तेलुगु",
+    "native_name": "తెలుగు",
+    "short_name": "तेलुगु",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 6,
+    "display_language_id": 1,
+    "language_name": "Urdu",
+    "native_name": "اردو",
+    "short_name": "Urdu",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 6,
+    "display_language_id": 2,
+    "language_name": "उर्दू",
+    "native_name": "اردو",
+    "short_name": "उर्दू",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 7,
+    "display_language_id": 1,
+    "language_name": "Arabic",
+    "native_name": "العربية",
+    "short_name": "Arabic",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 7,
+    "display_language_id": 2,
+    "language_name": "अरबी",
+    "native_name": "العربية",
+    "short_name": "अरबी",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 8,
+    "display_language_id": 1,
+    "language_name": "Persian",
+    "native_name": "فارسی",
+    "short_name": "Persian",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 8,
+    "display_language_id": 2,
+    "language_name": "फ़ारसी",
+    "native_name": "فارسی",
+    "short_name": "फ़ारसी",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 9,
+    "display_language_id": 1,
+    "language_name": "French",
+    "native_name": "Français",
+    "short_name": "French",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 9,
+    "display_language_id": 2,
+    "language_name": "फ़्रेंच",
+    "native_name": "Français",
+    "short_name": "फ़्रेंच",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 10,
+    "display_language_id": 1,
+    "language_name": "German",
+    "native_name": "Deutsch",
+    "short_name": "German",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 10,
+    "display_language_id": 2,
+    "language_name": "जर्मन",
+    "native_name": "Deutsch",
+    "short_name": "जर्मन",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 11,
+    "display_language_id": 1,
+    "language_name": "Spanish",
+    "native_name": "Español",
+    "short_name": "Spanish",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 11,
+    "display_language_id": 2,
+    "language_name": "स्पेनिश",
+    "native_name": "Español",
+    "short_name": "स्पेनिश",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 12,
+    "display_language_id": 1,
+    "language_name": "Russian",
+    "native_name": "Русский",
+    "short_name": "Russian",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 13,
+    "display_language_id": 1,
+    "language_name": "Chinese",
+    "native_name": "中文",
+    "short_name": "Chinese",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 14,
+    "display_language_id": 1,
+    "language_name": "Japanese",
+    "native_name": "日本語",
+    "short_name": "Japanese",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  },
+  {
+    "language_id": 15,
+    "display_language_id": 1,
+    "language_name": "Korean",
+    "native_name": "한국어",
+    "short_name": "Korean",
+    "is_preferred": true,
+    "is_official": true,
+    "is_active": true
+  }
+]
