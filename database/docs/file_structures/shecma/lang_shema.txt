@@ -1,0 +1,94 @@
+language_schema/
+│
+├── constraints/
+│   ├── 01.languages.constraints.sql
+│   ├── 02.scripts.constraints.sql
+│   ├── 03.language_names.constraints.sql
+│   └── 04.language_regions.constraints.sql
+│
+├── docs/
+│   ├── README.md
+│   ├── TABLES.md
+│   ├── RELATIONSHIPS.md
+│   ├── DATA_TYPES.md
+│   ├── ER_DIAGRAM.dbml
+│   ├── MIGRATION_GUIDE.md
+│   ├── QUERY_EXAMPLES.md
+│   └── CHANGELOG.md
+│
+├── foreign_keys/
+│   ├── 01.languages.foreign_keys.sql
+│   ├── 02.language_names.foreign_keys.sql
+│   ├── 03.language_regions.foreign_keys.sql
+│   └── 04.scripts.foreign_keys.sql
+│
+├── indexes/
+│   ├── 01.languages.indexes.sql
+│   ├── 02.language_names.indexes.sql
+│   ├── 03.language_regions.indexes.sql
+│   └── 04.scripts.indexes.sql
+│
+├── migrations/
+│   ├── 001_initial_languages.sql
+│   ├── 002_add_scripts.sql
+│   ├── 003_add_regions.sql
+│   └── 004_add_native_names.sql
+│
+├── rollback/
+│   ├── 01.languages.rollback.sql
+│   ├── 02.language_names.rollback.sql
+│   ├── 03.language_regions.rollback.sql
+│   └── 04.scripts.rollback.sql
+│
+├── samples/
+│   ├── 01.languages.sample.sql
+│   ├── 02.language_names.sample.sql
+│   └── 03.scripts.sample.sql
+│
+├── seed/
+│   ├── data/
+│   │   ├── languages.seed.json
+│   │   ├── scripts.seed.json
+│   │   ├── regions.seed.json
+│   │   └── language_names.seed.json
+│   │
+│   ├── 01.languages.seed.sql
+│   ├── 02.scripts.seed.sql
+│   ├── 03.regions.seed.sql
+│   └── 04.language_names.seed.sql
+│
+├── tables/
+│   ├── 01.languages.sql
+│   ├── 02.scripts.sql
+│   ├── 03.language_names.sql
+│   ├── 04.language_regions.sql
+│   └── 05.language_aliases.sql
+│
+├── tests/
+│   ├── fixtures/
+│   │   ├── languages.fixture.json
+│   │   └── scripts.fixture.json
+│   │
+│   ├── integration/
+│   │   ├── test_languages.sql
+│   │   └── test_scripts.sql
+│   │
+│   └── unit/
+│       ├── test_language_codes.sql
+│       └── test_language_names.sql
+│
+├── triggers/
+│   ├── 01.languages.triggers.sql
+│   ├── 02.language_names.triggers.sql
+│   └── 03.scripts.triggers.sql
+│
+├── validation/
+│   ├── 01.languages.validation.sql
+│   └── 02.language_names.validation.sql
+│
+├── views/
+│   ├── 01.languages.views.sql
+│   ├── 02.language_names.views.sql
+│   └── 03.language_lookup.views.sql
+│
+└── schema_order.sql

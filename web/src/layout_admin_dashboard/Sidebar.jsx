@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen, isMobile, isDarkMode, onToggle, theme }) => {
     {
       section: "Content",
       items: [
-        { href: "/admin-dashboard/categories", icon: FaTags, label: "Categories" },
+        { href: "/admin-dashboard/languages", icon: FaTags, label: "Languages" },
         { href: "/admin-dashboard/tags", icon: FaTags, label: "Tags" },
         { href: "/admin-dashboard/comments", icon: FaComments, label: "Comments" },
         { href: "/admin-dashboard/reviews", icon: FaStar, label: "Reviews" },
