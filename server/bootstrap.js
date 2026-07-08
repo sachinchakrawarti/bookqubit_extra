@@ -1,30 +1,35 @@
-Microsoft Windows [Version 10.0.26200.8655]
-(c) Microsoft Corporation. All rights reserved.
+// bootstrap.js
+import { resolveUrl } from './config/paths.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server>npm run dev
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-> bookqubit-author-api@1.0.0 dev
-> nodemon bootstrap.js
+console.log('🔍 BookQubit Server Starting...\n');
 
-[nodemon] 3.1.14
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching path(s): *.*
-[nodemon] watching extensions: js,mjs,cjs,json
-[nodemon] starting `node bootstrap.js`
-🔍 BookQubit Server Starting...
+// Store original import
+const originalImport = globalThis.import;
 
-🔍 Verifying alias paths...
-  @config → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\config ✅
-  @database → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\database ✅
-  @api → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\src\api\v1 ✅
-  @modules → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\src\api\v1\modules ✅
-  @utils → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\src\utils ✅
-  @root → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server ✅
-  @src → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\src ✅
-  @logs → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\logs ✅
-  @public → D:\Sachin Chakrawarti\Learn\Done\bookqubit_extra\server\public ✅
+// Override import BEFORE loading server.js
+globalThis.import = async (specifier) => {
+  if (typeof specifier === 'string' && specifier.startsWith('@')) {
+    const url = resolveUrl(specifier);
+    console.log(`🔄 Resolving: ${specifier} → ${url.pathname}`);
+    return originalImport(url.href);
+  }
+  return originalImport(specifier);
+};
 
-✅ Alias resolver ready
+console.log('✅ Path resolver ready\n');
 
-❌ Failed to start server: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
-[nodemon] app crashed - waiting for file changes before starting...
+// Now import and run server
+try {
+  const server = await import('./server.js');
+  console.log('✅ Server loaded successfully');
+} catch (error) {
+  console.error('❌ Failed to start server:', error.message);
+  console.error(error.stack);
+  process.exit(1);
+}

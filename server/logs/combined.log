@@ -374,3 +374,106 @@
 {"level":"info","message":"📚 Environment: development","service":"book-api","timestamp":"2026-06-30 19:38:25"}
 {"level":"info","message":"📍 URL: http://localhost:5000","service":"book-api","timestamp":"2026-06-30 19:38:25"}
 {"level":"info","message":"📖 Books endpoint: http://localhost:5000/api/v1/books","service":"book-api","timestamp":"2026-06-30 19:38:25"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:23"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:23"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:33:23"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:33:23"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:33:23"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:29"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:29"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:33:29"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:33:29"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:33:29"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:45"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:45"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:33:45"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:33:45"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:33:45"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:58"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:33:58"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:33:58"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:33:58"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:33:58"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:34:28"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:34:28"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:34:28"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:34:28"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:34:28"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:04:53 +0000] \"GET /health HTTP/1.1\" 200 121 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:34:53"}
+{"level":"warn","message":"Route not found: GET /favicon.ico","service":"bookqubit-api","timestamp":"2026-07-08 16:34:53"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:04:53 +0000] \"GET /favicon.ico HTTP/1.1\" 404 68 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:34:53"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:35:08"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:35:08"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:35:08"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:35:08"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:35:08"}
+{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Error in LanguagesRepository.list: SQLITE_ERROR: no such table: vw_active_languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: vw_active_languages","timestamp":"2026-07-08 16:35:40"}
+{"level":"error","message":"SQLITE_ERROR: no such table: vw_active_languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: vw_active_languages","status":500,"timestamp":"2026-07-08 16:35:40"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:05:40 +0000] \"GET /api/v1/languages HTTP/1.1\" 500 78 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:35:40"}
+{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Error in LanguagesRepository.list: SQLITE_ERROR: no such table: vw_active_languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: vw_active_languages","timestamp":"2026-07-08 16:36:01"}
+{"level":"error","message":"SQLITE_ERROR: no such table: vw_active_languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: vw_active_languages","status":500,"timestamp":"2026-07-08 16:36:01"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:06:01 +0000] \"GET /api/v1/languages HTTP/1.1\" 500 78 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:36:01"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:36:34"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:36:34"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:36:34"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:36:34"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:36:34"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3001","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"🔗 Health check: http://localhost:3001/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3002","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"🔗 Health check: http://localhost:3002/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:07"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3001","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"🔗 Health check: http://localhost:3001/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3002","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"🔗 Health check: http://localhost:3002/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:08"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:17"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:17"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:37:17"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:17"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:17"}
+{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Error in LanguagesRepository.list: SQLITE_ERROR: no such table: languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: languages","timestamp":"2026-07-08 16:37:37"}
+{"level":"error","message":"SQLITE_ERROR: no such table: languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: languages","status":500,"timestamp":"2026-07-08 16:37:37"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:07:37 +0000] \"GET /api/v1/languages HTTP/1.1\" 500 68 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:37:37"}
+{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Error in LanguagesRepository.list: SQLITE_ERROR: no such table: languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: languages","timestamp":"2026-07-08 16:37:38"}
+{"level":"error","message":"SQLITE_ERROR: no such table: languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: languages","status":500,"timestamp":"2026-07-08 16:37:38"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:07:38 +0000] \"GET /api/v1/languages HTTP/1.1\" 500 68 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:37:38"}
+{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Error in LanguagesRepository.list: SQLITE_ERROR: no such table: languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: languages","timestamp":"2026-07-08 16:37:38"}
+{"level":"error","message":"SQLITE_ERROR: no such table: languages","service":"bookqubit-api","stack":"Error: SQLITE_ERROR: no such table: languages","status":500,"timestamp":"2026-07-08 16:37:38"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:07:38 +0000] \"GET /api/v1/languages HTTP/1.1\" 500 68 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:37:38"}
+{"level":"warn","message":"⚠️ Languages table does not exist. Creating it...","service":"bookqubit-api","timestamp":"2026-07-08 16:37:54"}
+{"level":"info","message":"✅ Languages table created with sample data","service":"bookqubit-api","timestamp":"2026-07-08 16:37:54"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:54"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:37:54"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:37:54"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:37:54"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:37:54"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:08:04 +0000] \"GET /api/v1/languages HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:38:04"}
+{"level":"info","message":"Creating database views...","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
+{"level":"info","message":"✅ Database views created successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}

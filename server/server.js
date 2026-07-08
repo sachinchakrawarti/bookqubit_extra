@@ -5,19 +5,42 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
-import { resolveAlias } from './bootstrap.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Import using resolveAlias function (returns file:// URLs)
-const apiV1Module = await import(resolveAlias('@api/centralv1api/centralv1api.js'));
-const dbModule = await import(resolveAlias('@database/connection.js'));
-const loggerModule = await import(resolveAlias('@utils/logger.js'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Helper function to resolve paths
+const resolvePath = (relativePath) => {
+  const resolved = path.join(__dirname, relativePath);
+  return `file:///${resolved.replace(/\\/g, '/')}`;
+};
+
+// Import modules using resolved paths
+const apiV1Module = await import(resolvePath('src/api/v1/centralv1api/centralv1api.js'));
+const dbModule = await import(resolvePath('database/connection.js'));
+const loggerModule = await import(resolvePath('src/utils/logger.js'));
 
 const apiV1 = apiV1Module.default || apiV1Module;
 const { connectDatabase } = dbModule;
 const logger = loggerModule.default || loggerModule;
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+// Try ports from 3000 to 3010
+const findAvailablePort = (startPort) => {
+  return new Promise((resolve) => {
+    const server = app.listen(startPort, () => {
+      server.close(() => {
+        resolve(startPort);
+      });
+    });
+    server.on('error', () => {
+      resolve(findAvailablePort(startPort + 1));
+    });
+  });
+};
 
 // Security middleware
 app.use(helmet());
@@ -25,7 +48,6 @@ app.use(cors({
   origin: process.env.CORS_ORIGIN || '*',
   credentials: true
 }));
-
 app.use(compression());
 
 app.use(morgan('combined', {
@@ -81,6 +103,9 @@ async function startServer() {
     await connectDatabase();
     logger.info('✅ Database connected successfully');
 
+    // Find available port
+    const PORT = await findAvailablePort(process.env.PORT || 3000);
+    
     app.listen(PORT, () => {
       logger.info(`🚀 BookQubit API listening on port ${PORT}`);
       logger.info(`📚 Environment: ${process.env.NODE_ENV || 'development'}`);
