@@ -1,0 +1,126 @@
+// ============================================================================
+// Language Schema ER Diagram
+// File: ER_DIAGRAM.dbml
+// Database: SQLite
+// ============================================================================
+
+Table scripts {
+  script_id integer [pk, increment]
+
+  script_code varchar(30) [not null, unique]
+  iso15924_code varchar(4) [not null, unique]
+
+  script_name varchar(255) [not null]
+  native_name varchar(255)
+
+  direction varchar(3) [not null]
+  unicode_range varchar(100)
+
+  sort_order integer [default: 0]
+
+  is_active boolean [default: true]
+
+  created_at datetime
+  updated_at datetime
+}
+
+Table languages {
+  language_id integer [pk, increment]
+
+  language_code varchar(10) [not null, unique]
+
+  language_name varchar(255) [not null]
+  english_name varchar(255) [not null]
+  native_name varchar(255) [not null]
+
+  iso_639_1 varchar(2) [unique]
+  iso_639_2 varchar(3) [unique]
+  iso_639_3 varchar(3) [unique]
+
+  locale_code varchar(15)
+
+  default_script_id integer
+
+  direction varchar(3)
+
+  sort_order integer [default: 0]
+
+  is_default boolean [default: false]
+  is_active boolean [default: true]
+
+  created_at datetime
+  updated_at datetime
+}
+
+Table language_names {
+  language_name_id integer [pk, increment]
+
+  language_id integer [not null]
+  display_language_id integer [not null]
+
+  language_name varchar(255) [not null]
+  native_name varchar(255) [not null]
+  short_name varchar(100)
+
+  is_preferred boolean [default: true]
+  is_official boolean [default: true]
+  is_active boolean [default: true]
+
+  created_at datetime
+  updated_at datetime
+}
+
+Table language_regions {
+  language_region_id integer [pk, increment]
+
+  language_id integer [not null]
+
+  country_id integer [not null]
+
+  is_official boolean [default: false]
+  is_primary boolean [default: false]
+
+  speaker_population integer
+
+  literacy_rate real
+
+  notes text
+
+  created_at datetime
+  updated_at datetime
+}
+
+Table language_aliases {
+  language_alias_id integer [pk, increment]
+
+  language_id integer [not null]
+
+  alias_name varchar(255) [not null]
+
+  alias_type varchar(30)
+
+  language_code varchar(20)
+
+  is_preferred boolean [default: false]
+  is_searchable boolean [default: true]
+
+  sort_order integer [default: 0]
+
+  notes text
+
+  created_at datetime
+  updated_at datetime
+}
+
+Ref: languages.default_script_id > scripts.script_id
+
+Ref: language_names.language_id > languages.language_id
+
+Ref: language_names.display_language_id > languages.language_id
+
+Ref: language_regions.language_id > languages.language_id
+
+Ref: language_aliases.language_id > languages.language_id
+
+// Future relationship
+// Ref: language_regions.country_id > countries.country_id
