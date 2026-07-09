@@ -1,0 +1,268 @@
+[
+  {
+    "entity_type": "continent",
+    "entity_id": 1,
+    "language_id": 2,
+    "name": "अफ्रीका",
+    "description": "अफ्रीका महाद्वीप"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 3,
+    "language_id": 2,
+    "name": "एशिया",
+    "description": "एशिया महाद्वीप"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 4,
+    "language_id": 2,
+    "name": "यूरोप",
+    "description": "यूरोप महाद्वीप"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 5,
+    "language_id": 2,
+    "name": "उत्तरी अमेरिका",
+    "description": "उत्तरी अमेरिका महाद्वीप"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 7,
+    "language_id": 2,
+    "name": "दक्षिण अमेरिका",
+    "description": "दक्षिण अमेरिका महाद्वीप"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 6,
+    "language_id": 2,
+    "name": "ओशिनिया",
+    "description": "ओशिनिया महाद्वीप"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 2,
+    "language_id": 2,
+    "name": "अंटार्कटिका",
+    "description": "अंटार्कटिका महाद्वीप"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 1,
+    "language_id": 2,
+    "name": "भारत",
+    "description": "भारत देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 2,
+    "language_id": 2,
+    "name": "जापान",
+    "description": "जापान देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 3,
+    "language_id": 2,
+    "name": "चीन",
+    "description": "चीन देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 4,
+    "language_id": 2,
+    "name": "दक्षिण कोरिया",
+    "description": "दक्षिण कोरिया देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 5,
+    "language_id": 2,
+    "name": "यूनाइटेड किंगडम",
+    "description": "यूनाइटेड किंगडम देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 6,
+    "language_id": 2,
+    "name": "जर्मनी",
+    "description": "जर्मनी देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 7,
+    "language_id": 2,
+    "name": "फ्रांस",
+    "description": "फ्रांस देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 8,
+    "language_id": 2,
+    "name": "इटली",
+    "description": "इटली देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 9,
+    "language_id": 2,
+    "name": "संयुक्त राज्य अमेरिका",
+    "description": "संयुक्त राज्य अमेरिका"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 10,
+    "language_id": 2,
+    "name": "कनाडा",
+    "description": "कनाडा देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 12,
+    "language_id": 2,
+    "name": "ब्राजील",
+    "description": "ब्राजील देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 14,
+    "language_id": 2,
+    "name": "ऑस्ट्रेलिया",
+    "description": "ऑस्ट्रेलिया देश"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 16,
+    "language_id": 2,
+    "name": "दक्षिण अफ्रीका",
+    "description": "दक्षिण अफ्रीका देश"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 1,
+    "language_id": 3,
+    "name": "África",
+    "description": "Continente africano"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 3,
+    "language_id": 3,
+    "name": "Asia",
+    "description": "Continente asiático"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 4,
+    "language_id": 3,
+    "name": "Europa",
+    "description": "Continente europeo"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 5,
+    "language_id": 3,
+    "name": "América del Norte",
+    "description": "Continente norteamericano"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 7,
+    "language_id": 3,
+    "name": "América del Sur",
+    "description": "Continente sudamericano"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 6,
+    "language_id": 3,
+    "name": "Oceanía",
+    "description": "Continente oceánico"
+  },
+  {
+    "entity_type": "continent",
+    "entity_id": 2,
+    "language_id": 3,
+    "name": "Antártida",
+    "description": "Continente antártico"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 1,
+    "language_id": 3,
+    "name": "India",
+    "description": "País de la India"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 2,
+    "language_id": 3,
+    "name": "Japón",
+    "description": "País de Japón"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 3,
+    "language_id": 3,
+    "name": "China",
+    "description": "País de China"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 5,
+    "language_id": 3,
+    "name": "Reino Unido",
+    "description": "Reino Unido de Gran Bretaña"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 6,
+    "language_id": 3,
+    "name": "Alemania",
+    "description": "República Federal de Alemania"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 7,
+    "language_id": 3,
+    "name": "Francia",
+    "description": "República Francesa"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 8,
+    "language_id": 3,
+    "name": "Italia",
+    "description": "República Italiana"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 9,
+    "language_id": 3,
+    "name": "Estados Unidos",
+    "description": "Estados Unidos de América"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 10,
+    "language_id": 3,
+    "name": "Canadá",
+    "description": "Canadá"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 12,
+    "language_id": 3,
+    "name": "Brasil",
+    "description": "República Federativa de Brasil"
+  },
+  {
+    "entity_type": "country",
+    "entity_id": 14,
+    "language_id": 3,
+    "name": "Australia",
+    "description": "Mancomunidad de Australia"
+  }
+]

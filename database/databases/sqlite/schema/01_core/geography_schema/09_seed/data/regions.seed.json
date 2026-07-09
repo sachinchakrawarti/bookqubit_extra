@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "code": "SA",
+    "name": "South Asia",
+    "name_native": "South Asia",
+    "continent_id": 3,
+    "description": "Countries in South Asia including India, Pakistan, Bangladesh",
+    "is_active": 1,
+    "sort_order": 1
+  },
+  {
+    "id": 2,
+    "code": "EA",
+    "name": "East Asia",
+    "name_native": "East Asia",
+    "continent_id": 3,
+    "description": "Countries in East Asia including China, Japan, South Korea",
+    "is_active": 1,
+    "sort_order": 2
+  },
+  {
+    "id": 3,
+    "code": "SEA",
+    "name": "Southeast Asia",
+    "name_native": "Southeast Asia",
+    "continent_id": 3,
+    "description": "Countries in Southeast Asia including Indonesia, Thailand, Vietnam",
+    "is_active": 1,
+    "sort_order": 3
+  },
+  {
+    "id": 4,
+    "code": "CA",
+    "name": "Central Asia",
+    "name_native": "Central Asia",
+    "continent_id": 3,
+    "description": "Countries in Central Asia including Kazakhstan, Uzbekistan",
+    "is_active": 1,
+    "sort_order": 4
+  },
+  {
+    "id": 5,
+    "code": "WA",
+    "name": "West Asia",
+    "name_native": "West Asia",
+    "continent_id": 3,
+    "description": "Countries in West Asia including Saudi Arabia, UAE, Israel",
+    "is_active": 1,
+    "sort_order": 5
+  },
+  {
+    "id": 6,
+    "code": "NA",
+    "name": "North America",
+    "name_native": "North America",
+    "continent_id": 5,
+    "description": "Countries in North America including USA, Canada, Mexico",
+    "is_active": 1,
+    "sort_order": 6
+  },
+  {
+    "id": 7,
+    "code": "CA",
+    "name": "Central America",
+    "name_native": "Central America",
+    "continent_id": 5,
+    "description": "Countries in Central America including Guatemala, Costa Rica",
+    "is_active": 1,
+    "sort_order": 7
+  },
+  {
+    "id": 8,
+    "code": "CB",
+    "name": "Caribbean",
+    "name_native": "Caribbean",
+    "continent_id": 5,
+    "description": "Caribbean islands including Cuba, Jamaica, Bahamas",
+    "is_active": 1,
+    "sort_order": 8
+  },
+  {
+    "id": 9,
+    "code": "SA",
+    "name": "South America",
+    "name_native": "South America",
+    "continent_id": 7,
+    "description": "Countries in South America",
+    "is_active": 1,
+    "sort_order": 9
+  },
+  {
+    "id": 10,
+    "code": "AN",
+    "name": "Andean States",
+    "name_native": "Andean States",
+    "continent_id": 7,
+    "description": "Andean countries including Peru, Colombia, Ecuador",
+    "is_active": 1,
+    "sort_order": 10
+  },
+  {
+    "id": 11,
+    "code": "WE",
+    "name": "Western Europe",
+    "name_native": "Western Europe",
+    "continent_id": 4,
+    "description": "Western European countries including UK, France, Germany",
+    "is_active": 1,
+    "sort_order": 11
+  },
+  {
+    "id": 12,
+    "code": "EE",
+    "name": "Eastern Europe",
+    "name_native": "Eastern Europe",
+    "continent_id": 4,
+    "description": "Eastern European countries including Poland, Russia, Ukraine",
+    "is_active": 1,
+    "sort_order": 12
+  },
+  {
+    "id": 13,
+    "code": "SE",
+    "name": "Southern Europe",
+    "name_native": "Southern Europe",
+    "continent_id": 4,
+    "description": "Southern European countries including Italy, Spain, Greece",
+    "is_active": 1,
+    "sort_order": 13
+  },
+  {
+    "id": 14,
+    "code": "NE",
+    "name": "Northern Europe",
+    "name_native": "Northern Europe",
+    "continent_id": 4,
+    "description": "Northern European countries including Sweden, Norway, Denmark",
+    "is_active": 1,
+    "sort_order": 14
+  },
+  {
+    "id": 15,
+    "code": "AN",
+    "name": "Australia and New Zealand",
+    "name_native": "Australia and New Zealand",
+    "continent_id": 6,
+    "description": "Australia, New Zealand and surrounding islands",
+    "is_active": 1,
+    "sort_order": 15
+  },
+  {
+    "id": 16,
+    "code": "PI",
+    "name": "Pacific Islands",
+    "name_native": "Pacific Islands",
+    "continent_id": 6,
+    "description": "Pacific Island nations including Fiji, Samoa, Tonga",
+    "is_active": 1,
+    "sort_order": 16
+  },
+  {
+    "id": 17,
+    "code": "SA",
+    "name": "Southern Africa",
+    "name_native": "Southern Africa",
+    "continent_id": 1,
+    "description": "Southern African countries including South Africa, Botswana",
+    "is_active": 1,
+    "sort_order": 17
+  },
+  {
+    "id": 18,
+    "code": "WA",
+    "name": "West Africa",
+    "name_native": "West Africa",
+    "continent_id": 1,
+    "description": "West African countries including Nigeria, Ghana, Senegal",
+    "is_active": 1,
+    "sort_order": 18
+  },
+  {
+    "id": 19,
+    "code": "EA",
+    "name": "East Africa",
+    "name_native": "East Africa",
+    "continent_id": 1,
+    "description": "East African countries including Kenya, Ethiopia, Tanzania",
+    "is_active": 1,
+    "sort_order": 19
+  },
+  {
+    "id": 20,
+    "code": "NA",
+    "name": "North Africa",
+    "name_native": "North Africa",
+    "continent_id": 1,
+    "description": "North African countries including Egypt, Morocco, Algeria",
+    "is_active": 1,
+    "sort_order": 20
+  }
+]

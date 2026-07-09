@@ -1,0 +1,110 @@
+schema/01_core/geography_schema/
+│
+├── 01_tables/
+│   ├── 01.continents.sql
+│   ├── 02.countries.sql
+│   ├── 03.states.sql
+│   ├── 04.regions.sql
+│   └── 05.geo_translations.sql
+│
+├── 02_views/
+│   ├── 01.vw_continents.sql
+│   ├── 02.vw_countries.sql
+│   ├── 03.vw_states.sql
+│   ├── 04.vw_regions.sql
+│   ├── 05.vw_geo_hierarchy.sql
+│   └── 06.vw_geo_search.sql
+│
+├── 03_indexes/
+│   ├── 01.geo.indexes.sql
+│   └── 02.geo_translations.indexes.sql
+│
+├── 04_constraints/
+│   ├── 01.geo.constraints.sql
+│   └── 02.geo_translations.constraints.sql
+│
+├── 05_foreign_keys/
+│   ├── 01.geo.foreign_keys.sql
+│   └── 02.geo_translations.foreign_keys.sql
+│
+├── 06_triggers/
+│   ├── 01.geo.triggers.sql
+│   └── 02.geo_audit.triggers.sql
+│
+├── 07_functions/
+│   ├── 01.geo.functions.sql
+│   └── 02.geo_search.functions.sql
+│
+├── 08_procedures/
+│   ├── 01.geo.procedures.sql
+│   └── 02.geo_cleanup.procedures.sql
+│
+├── 09_seed/
+│   ├── data/
+│   │   ├── continents.seed.json
+│   │   ├── countries.seed.json
+│   │   ├── states.seed.json
+│   │   ├── regions.seed.json
+│   │   └── geo_translations.seed.json
+│   ├── 01.continents.seed.sql
+│   ├── 02.countries.seed.sql
+│   ├── 03.states.seed.sql
+│   ├── 04.regions.seed.sql
+│   └── 05.geo_translations.seed.sql
+│
+├── 10_rollback/
+│   ├── 01.geo.rollback.sql
+│   └── 02.geo_translations.rollback.sql
+│
+├── 11_migrations/
+│   ├── 001_initial_geography.sql
+│   ├── 002_add_regions.sql
+│   └── 003_add_translations.sql
+│
+├── 12_queries/
+│   ├── admin/
+│   │   ├── create.country.sql
+│   │   ├── delete.country.sql
+│   │   ├── list.countries.sql
+│   │   └── update.country.sql
+│   ├── public/
+│   │   ├── get.country.sql
+│   │   ├── get.states.sql
+│   │   ├── get.regions.sql
+│   │   └── search.location.sql
+│   └── shared/
+│       ├── filters.sql
+│       ├── pagination.sql
+│       └── sorting.sql
+│
+├── 13_tests/
+│   ├── fixtures/
+│   │   └── geo.fixture.sql
+│   ├── integration/
+│   │   ├── test_geography.sql
+│   │   └── test_hierarchy.sql
+│   └── unit/
+│       ├── test_continents.sql
+│       ├── test_countries.sql
+│       └── test_states.sql
+│
+├── 14_docs/
+│   ├── API_GUIDE.md
+│   ├── Data_Fields.md
+│   ├── DATA_SOURCES.md
+│   ├── DataType.md
+│   ├── ER_DIAGRAM.md
+│   ├── geographyschema.dbml
+│   ├── MIGRATION_GUIDE.md
+│   ├── README.md
+│   ├── RELATIONSHIPS.md
+│   ├── ROMANIZATION_GUIDE.md
+│   ├── SEED_GUIDE.md
+│   ├── TABLES.md
+│   ├── Translation_GUIDE.md
+│   └── Transliteration_GUIDE.md
+│
+├── geography.drop.sql
+├── geography.init.sql
+├── geography.rollback.sql
+└── schema_order.sql

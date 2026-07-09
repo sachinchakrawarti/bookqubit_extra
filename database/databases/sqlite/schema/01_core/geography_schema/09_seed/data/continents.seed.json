@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "code": "AF",
+    "name": "Africa",
+    "name_native": "Africa",
+    "population": 1373000000,
+    "area_sq_km": 30370000,
+    "is_active": 1,
+    "sort_order": 1
+  },
+  {
+    "id": 2,
+    "code": "AN",
+    "name": "Antarctica",
+    "name_native": "Antarctica",
+    "population": 0,
+    "area_sq_km": 14000000,
+    "is_active": 1,
+    "sort_order": 2
+  },
+  {
+    "id": 3,
+    "code": "AS",
+    "name": "Asia",
+    "name_native": "Asia",
+    "population": 4641000000,
+    "area_sq_km": 44579000,
+    "is_active": 1,
+    "sort_order": 3
+  },
+  {
+    "id": 4,
+    "code": "EU",
+    "name": "Europe",
+    "name_native": "Europe",
+    "population": 746000000,
+    "area_sq_km": 10180000,
+    "is_active": 1,
+    "sort_order": 4
+  },
+  {
+    "id": 5,
+    "code": "NA",
+    "name": "North America",
+    "name_native": "North America",
+    "population": 592000000,
+    "area_sq_km": 24709000,
+    "is_active": 1,
+    "sort_order": 5
+  },
+  {
+    "id": 6,
+    "code": "OC",
+    "name": "Oceania",
+    "name_native": "Oceania",
+    "population": 43000000,
+    "area_sq_km": 8600000,
+    "is_active": 1,
+    "sort_order": 6
+  },
+  {
+    "id": 7,
+    "code": "SA",
+    "name": "South America",
+    "name_native": "South America",
+    "population": 430000000,
+    "area_sq_km": 17840000,
+    "is_active": 1,
+    "sort_order": 7
+  }
+]
