@@ -1,0 +1,107 @@
+schema/03_feature/academic_books_schema/
+│
+├── 01_tables/
+│   ├── 01.academic_books.sql
+│   ├── 02.academic_subjects.sql
+│   ├── 03.academic_book_subjects.sql
+│   ├── 04.academic_authors.sql
+│   ├── 05.academic_book_authors.sql
+│   ├── 06.academic_publishers.sql
+│   ├── 07.academic_editions.sql
+│   ├── 08.academic_translations.sql
+│   ├── 09.academic_citations.sql
+│   └── 10.academic_reviews.sql
+│
+├── 02_views/
+│   ├── 01.vw_academic_books.sql
+│   ├── 02.vw_academic_book_details.sql
+│   ├── 03.vw_academic_subjects.sql
+│   ├── 04.vw_academic_authors.sql
+│   ├── 05.vw_academic_publishers.sql
+│   └── 06.vw_academic_search.sql
+│
+├── 03_indexes/
+│   ├── 01.academic_books.indexes.sql
+│   ├── 02.academic_subjects.indexes.sql
+│   ├── 03.academic_authors.indexes.sql
+│   └── 04.academic_publishers.indexes.sql
+│
+├── 04_constraints/
+│   ├── 01.academic_books.constraints.sql
+│   ├── 02.academic_subjects.constraints.sql
+│   └── 03.academic_authors.constraints.sql
+│
+├── 05_foreign_keys/
+│   ├── 01.academic_books.foreign_keys.sql
+│   ├── 02.academic_subjects.foreign_keys.sql
+│   └── 03.academic_authors.foreign_keys.sql
+│
+├── 06_triggers/
+│   ├── 01.academic_books.triggers.sql
+│   └── 02.academic_audit.triggers.sql
+│
+├── 07_functions/
+│   ├── 01.academic_books.functions.sql
+│   └── 02.academic_search.functions.sql
+│
+├── 08_procedures/
+│   ├── 01.academic_books.procedures.sql
+│   └── 02.academic_cleanup.procedures.sql
+│
+├── 09_seed/
+│   ├── data/
+│   │   ├── academic_books.seed.json
+│   │   ├── academic_subjects.seed.json
+│   │   ├── academic_authors.seed.json
+│   │   ├── academic_publishers.seed.json
+│   │   └── academic_translations.seed.json
+│   ├── 01.academic_subjects.seed.sql
+│   ├── 02.academic_publishers.seed.sql
+│   ├── 03.academic_authors.seed.sql
+│   ├── 04.academic_books.seed.sql
+│   └── 05.academic_translations.seed.sql
+│
+├── 10_rollback/
+│   ├── 01.academic_books.rollback.sql
+│   ├── 02.academic_subjects.rollback.sql
+│   └── 03.academic_authors.rollback.sql
+│
+├── 11_migrations/
+│   ├── 001_initial_academic_books.sql
+│   ├── 002_add_subject_hierarchy.sql
+│   └── 003_add_citation_tracking.sql
+│
+├── 12_queries/
+│   ├── admin/
+│   │   ├── create.academic_book.sql
+│   │   ├── delete.academic_book.sql
+│   │   ├── list.academic_books.sql
+│   │   └── update.academic_book.sql
+│   ├── public/
+│   │   ├── get.academic_book.sql
+│   │   ├── search.academic_books.sql
+│   │   ├── get.by_subject.sql
+│   │   └── get.by_author.sql
+│   └── shared/
+│       ├── filters.sql
+│       ├── pagination.sql
+│       └── sorting.sql
+│
+├── 13_tests/
+│   ├── fixtures/
+│   │   └── academic_books.fixture.sql
+│   ├── integration/
+│   │   ├── test_academic_books.sql
+│   │   └── test_academic_subjects.sql
+│   └── unit/
+│       ├── test_academic_books.sql
+│       └── test_academic_authors.sql
+│
+├── 14_docs/
+│   ├── README.md
+│   ├── TABLES.md
+│   ├── RELATIONSHIPS.md
+│   ├── QUERY_EXAMPLES.md
+│   └── ACADEMIC_GUIDE.md
+│
+└── schema_order.sql
