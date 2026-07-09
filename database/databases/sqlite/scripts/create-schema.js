@@ -1,100 +1,158 @@
-const fs = require("fs");
 const path = require("path");
+
+const fsUtil = require("./utils/filesystem");
+const template = require("./utils/template");
+const generator = require("./utils/generator");
+const logger = require("./utils/logger");
 
 const args = process.argv.slice(2);
 
 if (args.length < 2) {
+
     console.log(`
-Usage:
+Usage
 
-node create-schema.js <schema_name> <type>
+node create-schema.js <schema_name> <type> [--force] [--dry-run]
 
-Types:
-
-core
-domain
-feature
-action
-analytics
-notification
-tranding
-shared
-
-Examples:
+Examples
 
 node create-schema.js users core
-node create-schema.js authors domain
 node create-schema.js books feature
-node create-schema.js ratings action
-node create-schema.js analytics analytics
+node create-schema.js authors domain
 `);
+
     process.exit(1);
+
 }
 
-const schemaName = args[0];
+const schemaName = args[0].toLowerCase();
+
 const schemaType = args[1].toLowerCase();
+
+const FORCE = args.includes("--force");
+
+const DRY_RUN = args.includes("--dry-run");
 
 const ROOT = path.join(__dirname, "..");
 
 const TEMPLATE_MAP = {
-    core: "core_schema_template",
-    domain: "domain_schema_template",
-    feature: "feature_schema_template",
-    action: "action_schema_template",
-    analytics: "analytics_schema_template",
-    notification: "notification_schema_template",
-    tranding: "tranding_schema_template",
-    shared: "shared_schema_template"
+
+    core: "schema_template",
+
+    domain: "schema_template",
+
+    feature: "schema_template",
+
+    action: "schema_template",
+
+    analytics: "schema_template",
+
+    notification: "schema_template",
+
+    shared: "schema_template"
+
 };
 
 const DESTINATION_MAP = {
+
     core: "schema/01_core",
+
     domain: "schema/02_domain",
+
     feature: "schema/03_feature",
-    action: "schema/04_actions",
-    analytics: "schema/analyticschema",
-    notification: "schema/notificationschema",
-    tranding: "schema/trandingschema",
-    shared: "schema/shared"
+
+    action: "schema/04_interaction",
+
+    analytics: "schema/05_analytics",
+
+    notification: "schema/06_notification",
+
+    shared: "schema/07_shared"
+
 };
 
 if (!TEMPLATE_MAP[schemaType]) {
-    console.log("Unknown schema type.");
+
+    logger.error("Unknown schema type.");
+
     process.exit(1);
+
 }
 
-const source = path.join(
+const templateFolder = path.join(
+
     ROOT,
+
     "templates",
+
     TEMPLATE_MAP[schemaType]
+
 );
 
 const destination = path.join(
+
     ROOT,
+
     DESTINATION_MAP[schemaType],
+
     `${schemaName}_schema`
+
 );
 
-if (!fs.existsSync(source)) {
-    console.log("Template not found:");
-    console.log(source);
+logger.title("CREATE SCHEMA");
+
+logger.value("Schema", schemaName);
+
+logger.value("Type", schemaType);
+
+logger.value("Template", templateFolder);
+
+logger.value("Destination", destination);
+
+logger.line();
+
+if (!fsUtil.exists(templateFolder)) {
+
+    logger.error("Template folder not found.");
+
     process.exit(1);
+
 }
 
-if (fs.existsSync(destination)) {
-    console.log("Schema already exists.");
-    process.exit(1);
+if (fsUtil.exists(destination)) {
+
+    if (!FORCE) {
+
+        logger.error("Schema already exists.");
+
+        logger.info("Use --force to recreate.");
+
+        process.exit(1);
+
+    }
+
+    logger.warning("Removing existing schema...");
+
+    fsUtil.deleteDirectory(destination);
+
 }
 
-fs.cpSync(source, destination, {
-    recursive: true
-});
+if (DRY_RUN) {
 
-console.log("");
-console.log("=======================================");
-console.log("Schema Created Successfully");
-console.log("=======================================");
-console.log("Name :", schemaName);
-console.log("Type :", schemaType);
-console.log("Path :", destination);
-console.log("=======================================");
+    logger.warning("Dry Run Enabled");
+
+    process.exit(0);
+
+}
+
+logger.info("Copying schema template...");
+
+fsUtil.copyDirectory(
+
+    templateFolder,
+
+    destination
+
+);
+
+logger.success("Template copied.");
