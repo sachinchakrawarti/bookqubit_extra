@@ -477,3 +477,18 @@
 {"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
 {"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
 {"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:39:53"}
+{"level":"info","message":"✅ Database views already exist","service":"bookqubit-api","timestamp":"2026-07-08 16:40:19"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:40:19"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:40:19"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:40:19"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:40:19"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:40:19"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:10:51 +0000] \"GET /api/v1/languages/active HTTP/1.1\" 500 72 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:40:51"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:11:06 +0000] \"GET /api/v1/languages/ltr HTTP/1.1\" 500 69 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:41:06"}
+{"level":"info","message":"::1 - - [08/Jul/2026:11:11:25 +0000] \"GET /api/v1/languages/id/1 HTTP/1.1\" 500 71 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"","service":"bookqubit-api","timestamp":"2026-07-08 16:41:25"}
+{"level":"info","message":"✅ Database views already exist","service":"bookqubit-api","timestamp":"2026-07-08 16:43:39"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:43:39"}
+{"level":"info","message":"✅ Database connected successfully","service":"bookqubit-api","timestamp":"2026-07-08 16:43:39"}
+{"level":"info","message":"🚀 BookQubit API listening on port 3000","service":"bookqubit-api","timestamp":"2026-07-08 16:43:39"}
+{"level":"info","message":"📚 Environment: development","service":"bookqubit-api","timestamp":"2026-07-08 16:43:39"}
+{"level":"info","message":"🔗 Health check: http://localhost:3000/health","service":"bookqubit-api","timestamp":"2026-07-08 16:43:39"}

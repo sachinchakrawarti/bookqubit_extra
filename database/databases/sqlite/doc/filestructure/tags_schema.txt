@@ -1,0 +1,92 @@
+tags_schema/
+│
+├── 01_tables/
+│   ├── 01.tags.sql
+│   ├── 02.tag_translations.sql
+│   ├── 03.book_tags.sql
+│   └── 04.tag_hierarchy.sql
+│
+├── 02_views/
+│   ├── 01.vw_tags.sql
+│   ├── 02.vw_tag_hierarchy.sql
+│   ├── 03.vw_tag_popularity.sql
+│   └── 04.vw_tag_usage.sql
+│
+├── 03_indexes/
+│   ├── 01.tags.indexes.sql
+│   ├── 02.tag_translations.indexes.sql
+│   ├── 03.book_tags.indexes.sql
+│   └── 04.tag_hierarchy.indexes.sql
+│
+├── 04_constraints/
+│   ├── 01.tags.constraints.sql
+│   ├── 02.tag_translations.constraints.sql
+│   └── 03.book_tags.constraints.sql
+│
+├── 05_foreign_keys/
+│   ├── 01.tags.foreign_keys.sql
+│   ├── 02.tag_translations.foreign_keys.sql
+│   └── 03.book_tags.foreign_keys.sql
+│
+├── 06_triggers/
+│   ├── 01.tags.triggers.sql
+│   └── 02.tag_hierarchy.triggers.sql
+│
+├── 07_functions/
+│   ├── 01.tag.functions.sql
+│   └── 02.tag_hierarchy.functions.sql
+│
+├── 08_procedures/
+│   ├── 01.tag.procedures.sql
+│   └── 02.tag_cleanup.procedures.sql
+│
+├── 09_seed/
+│   ├── data/
+│   │   ├── tags.seed.json
+│   │   └── tag_translations.seed.json
+│   ├── 01.tags.seed.sql
+│   └── 02.tag_translations.seed.sql
+│
+├── 10_rollback/
+│   ├── 01.tags.rollback.sql
+│   ├── 02.tag_translations.rollback.sql
+│   └── 03.book_tags.rollback.sql
+│
+├── 11_migrations/
+│   ├── 001_initial_tags.sql
+│   ├── 002_add_tag_hierarchy.sql
+│   └── 003_add_tag_metadata.sql
+│
+├── 12_queries/
+│   ├── admin/
+│   │   ├── create.tag.sql
+│   │   ├── delete.tag.sql
+│   │   ├── list.tags.sql
+│   │   ├── update.tag.sql
+│   │   └── merge.tags.sql
+│   ├── public/
+│   │   ├── get.tag.sql
+│   │   ├── search.tags.sql
+│   │   └── popular.tags.sql
+│   └── shared/
+│       ├── pagination.sql
+│       └── filters.sql
+│
+├── 13_tests/
+│   ├── fixtures/
+│   │   └── tags.fixture.sql
+│   ├── integration/
+│   │   ├── test_tags.sql
+│   │   └── test_tag_hierarchy.sql
+│   └── unit/
+│       ├── test_tags.sql
+│       └── test_book_tags.sql
+│
+├── 14_docs/
+│   ├── README.md
+│   ├── TABLES.md
+│   ├── RELATIONSHIPS.md
+│   └── QUERY_EXAMPLES.md
+│
+├── schema_order.sql
+└── README.md
