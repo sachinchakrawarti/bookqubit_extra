@@ -1,69 +1,39 @@
-// src/api/v1/modules/books/routes/books.routes.js
+/**
+ * Books Routes
+ * API routes for books operations
+ */
 
 import express from 'express';
-import BooksController from '../controller/books.controller.js';
-import { 
-  validateBookQuery, 
-  validateBookCreation, 
-  validateBookUpdate 
-} from '../validations/books.validation.js';
+import booksController from '../controllers/books.controller.js';
+import booksValidation from '../validations/books.validation.js';
+import authMiddleware from '../../middleware/auth.middleware.js';
 
 const router = express.Router();
+const controller = new booksController();
 
-// Create controller instance
-const booksController = new BooksController();
+// Public routes
+router.get('/', controller.findAll.bind(controller));
+router.get('/:id', controller.findById.bind(controller));
 
-// ============================================
-// PUBLIC ROUTES
-// ============================================
+// Protected routes
+router.post(
+  '/',
+  authMiddleware,
+  booksValidation.create,
+  controller.create.bind(controller)
+);
 
-// Get all books with filters and pagination
-router.get('/', validateBookQuery, booksController.getAllBooks.bind(booksController));
+router.put(
+  '/:id',
+  authMiddleware,
+  booksValidation.update,
+  controller.update.bind(controller)
+);
 
-// Search books
-router.get('/search', booksController.searchBooks.bind(booksController));
-
-// Get featured books
-router.get('/featured', booksController.getFeaturedBooks.bind(booksController));
-
-// Get book statistics
-router.get('/stats', booksController.getBookStats.bind(booksController));
-
-// Get books by language
-router.get('/language/:language', booksController.getBooksByLanguage.bind(booksController));
-
-// Get books by author
-router.get('/author/:author', booksController.getBooksByAuthor.bind(booksController));
-
-// Get books by category
-router.get('/category/:category', booksController.getBooksByCategory.bind(booksController));
-
-// Get books by genre
-router.get('/genre/:genre', booksController.getBooksByGenre.bind(booksController));
-
-// Get books by tag
-router.get('/tag/:tag', booksController.getBooksByTag.bind(booksController));
-
-// Get book by slug
-router.get('/slug/:slug', booksController.getBookBySlug.bind(booksController));
-
-// Get book by ID
-router.get('/:id', booksController.getBookById.bind(booksController));
-
-// Get related books
-router.get('/:id/related', booksController.getRelatedBooks.bind(booksController));
-
-// ============================================
-// PROTECTED ROUTES (Admin only)
-// ============================================
-
-// Create new book
-router.post('/', validateBookCreation, booksController.createBook.bind(booksController));
-
-// Update book
-router.put('/:id', validateBookUpdate, booksController.updateBook.bind(booksController));
-
-// Delete book
-router.delete('/:id', booksController.deleteBook.bind(booksController));
+router.delete(
+  '/:id',
+  authMiddleware,
+  controller.delete.bind(controller)
+);
 
 export default router;

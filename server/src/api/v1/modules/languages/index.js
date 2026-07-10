@@ -1,15 +1,23 @@
-// src/api/v1/modules/languages/index.js
+/**
+ * Languages Module
+ * @module modules/languages
+ */
 
-import routes from './routes/languages.routes.js';
-import controller from './controllers/languages.controller.js';
-import service from './services/languages.service.js';
-import repository from './repositories/languages.repository.js';
+import languagesController from './controllers/languages.controller.js';
+import languagesService from './services/languages.service.js';
+import languagesRepository from './repositories/languages.repository.js';
+import languagesRoutes from './routes/languages.routes.js';
 
 export {
-  routes,
-  controller,
-  service,
-  repository,
+  languagesController,
+  languagesService,
+  languagesRepository,
+  languagesRoutes,
 };
 
-export default routes;
+export default {
+  controller: languagesController,
+  service: languagesService,
+  repository: languagesRepository,
+  routes: languagesRoutes,
+};

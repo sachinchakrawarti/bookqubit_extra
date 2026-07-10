@@ -1,0 +1,39 @@
+/**
+ * {{pascalCase moduleName}} Routes
+ * API routes for {{moduleName}} operations
+ */
+
+import express from 'express';
+import {{camelCase moduleName}}Controller from '../controllers/{{kebabCase moduleName}}.controller.js';
+import {{camelCase moduleName}}Validation from '../validations/{{kebabCase moduleName}}.validation.js';
+import authMiddleware from '../../middleware/auth.middleware.js';
+
+const router = express.Router();
+const controller = new {{camelCase moduleName}}Controller();
+
+// Public routes
+router.get('/', controller.findAll.bind(controller));
+router.get('/:id', controller.findById.bind(controller));
+
+// Protected routes
+router.post(
+  '/',
+  authMiddleware,
+  {{camelCase moduleName}}Validation.create,
+  controller.create.bind(controller)
+);
+
+router.put(
+  '/:id',
+  authMiddleware,
+  {{camelCase moduleName}}Validation.update,
+  controller.update.bind(controller)
+);
+
+router.delete(
+  '/:id',
+  authMiddleware,
+  controller.delete.bind(controller)
+);
+
+export default router;

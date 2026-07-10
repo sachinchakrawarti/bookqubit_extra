@@ -1,0 +1,11 @@
+(
+echo -- Search {{moduleName}}s
+echo SELECT *
+echo FROM {{kebabCase moduleName}}
+echo WHERE deleted_at IS NULL
+echo   AND ^(
+echo     name LIKE ?
+echo     OR description LIKE ?
+echo   ^)
+echo ORDER BY created_at DESC;
+) > plop-templates\sql\search.sql.hbs

@@ -1,0 +1,23 @@
+/**
+ * {{pascalCase moduleName}} Module
+ * @module modules/{{kebabCase moduleName}}
+ */
+
+import {{camelCase moduleName}}Controller from './controllers/{{kebabCase moduleName}}.controller.js';
+import {{camelCase moduleName}}Service from './services/{{kebabCase moduleName}}.service.js';
+import {{camelCase moduleName}}Repository from './repositories/{{kebabCase moduleName}}.repository.js';
+import {{camelCase moduleName}}Routes from './routes/{{kebabCase moduleName}}.routes.js';
+
+export {
+  {{camelCase moduleName}}Controller,
+  {{camelCase moduleName}}Service,
+  {{camelCase moduleName}}Repository,
+  {{camelCase moduleName}}Routes,
+};
+
+export default {
+  controller: {{camelCase moduleName}}Controller,
+  service: {{camelCase moduleName}}Service,
+  repository: {{camelCase moduleName}}Repository,
+  routes: {{camelCase moduleName}}Routes,
+};

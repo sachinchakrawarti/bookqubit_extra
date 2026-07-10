@@ -1,0 +1,9 @@
+(
+echo -- Stats for {{moduleName}}s
+echo SELECT
+echo   COUNT(*) as total_count,
+echo   COUNT(CASE WHEN created_at ^>= DATE('now', '-30 days') THEN 1 END^) as last_30_days,
+echo   COUNT(CASE WHEN created_at ^>= DATE('now', '-7 days') THEN 1 END^) as last_7_days
+echo FROM {{kebabCase moduleName}}
+echo WHERE deleted_at IS NULL;
+) > plop-templates\sql\stats.sql.hbs

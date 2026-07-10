@@ -1,21 +1,23 @@
-// src/api/v1/modules/books/index.js
+/**
+ * Books Module
+ * @module modules/books
+ */
 
+import booksController from './controllers/books.controller.js';
+import booksService from './services/books.service.js';
+import booksRepository from './repositories/books.repository.js';
 import booksRoutes from './routes/books.routes.js';
-import BooksController from './controller/books.controller.js';
-import BooksService from './services/books.service.js';
-import bookRepository from './repository/books.repository.js';
 
-// Create instances
-const booksController = new BooksController();
-const booksService = new BooksService();
-
-// Export all components
 export {
-  booksRoutes,
   booksController,
   booksService,
-  bookRepository
+  booksRepository,
+  booksRoutes,
 };
 
-// Default export for convenience (most commonly used)
-export default booksRoutes;
+export default {
+  controller: booksController,
+  service: booksService,
+  repository: booksRepository,
+  routes: booksRoutes,
+};

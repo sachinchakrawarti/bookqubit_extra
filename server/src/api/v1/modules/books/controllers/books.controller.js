@@ -1,493 +1,110 @@
-// src/api/v1/modules/books/controller/books.controller.js
-
-import { BooksService } from '../services/books.service.js';
-import { log } from '../../../../../utils/logger.js';
+/**
+ * Books Controller
+ */
 
 class BooksController {
-  constructor() {
-    this.booksService = new BooksService();
+  constructor(booksService) {
+    this.service = booksService;
   }
 
   /**
-   * Get all books with optional language filter
+   * Create a new books
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
    */
-  getAllBooks = async (req, res, next) => {
+  async create(req, res, next) {
     try {
-      const { lang = 'english', page = 1, limit = 10, search, category } = req.query;
-      
-      const result = await this.booksService.getAllBooks({
-        lang,
-        page: parseInt(page),
-        limit: parseInt(limit),
-        search,
-        category
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: result.books || [],
-        pagination: {
-          page: result.page || 1,
-          limit: result.limit || 10,
-          total: result.total || 0,
-          totalPages: result.totalPages || 0
-        },
-        metadata: {
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getAllBooks: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get book by ID
-   */
-  getBookById = async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      const { lang = 'english' } = req.query;
-
-      const book = await this.booksService.getBookById(id, lang);
-
-      if (!book) {
-        return res.status(404).json({
-          status: 'error',
-          message: 'Book not found',
-          code: 'BOOK_NOT_FOUND'
-        });
-      }
-
-      res.status(200).json({
-        status: 'success',
-        data: book,
-        metadata: {
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBookById: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get book by slug
-   */
-  getBookBySlug = async (req, res, next) => {
-    try {
-      const { slug } = req.params;
-      const { lang = 'english' } = req.query;
-
-      const book = await this.booksService.getBookBySlug(slug, lang);
-
-      if (!book) {
-        return res.status(404).json({
-          status: 'error',
-          message: 'Book not found',
-          code: 'BOOK_NOT_FOUND'
-        });
-      }
-
-      res.status(200).json({
-        status: 'success',
-        data: book,
-        metadata: {
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBookBySlug: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get books by language
-   */
-  getBooksByLanguage = async (req, res, next) => {
-    try {
-      const { language } = req.params;
-      const { page = 1, limit = 10 } = req.query;
-
-      const result = await this.booksService.getBooksByLanguage(language, {
-        page: parseInt(page),
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: result.books || [],
-        pagination: {
-          page: result.page || 1,
-          limit: result.limit || 10,
-          total: result.total || 0,
-          totalPages: result.totalPages || 0
-        },
-        metadata: {
-          language: language,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBooksByLanguage: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get books by category
-   */
-  getBooksByCategory = async (req, res, next) => {
-    try {
-      const { category } = req.params;
-      const { lang = 'english', page = 1, limit = 10 } = req.query;
-
-      const result = await this.booksService.getBooksByCategory(category, {
-        lang,
-        page: parseInt(page),
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: result.books || [],
-        pagination: {
-          page: result.page || 1,
-          limit: result.limit || 10,
-          total: result.total || 0,
-          totalPages: result.totalPages || 0
-        },
-        metadata: {
-          category,
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBooksByCategory: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get books by author
-   */
-  getBooksByAuthor = async (req, res, next) => {
-    try {
-      const { author } = req.params;
-      const { lang = 'english', page = 1, limit = 10 } = req.query;
-
-      const result = await this.booksService.getBooksByAuthor(author, {
-        lang,
-        page: parseInt(page),
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: result.books || [],
-        pagination: {
-          page: result.page || 1,
-          limit: result.limit || 10,
-          total: result.total || 0,
-          totalPages: result.totalPages || 0
-        },
-        metadata: {
-          author,
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBooksByAuthor: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get books by genre
-   */
-  getBooksByGenre = async (req, res, next) => {
-    try {
-      const { genre } = req.params;
-      const { lang = 'english', page = 1, limit = 10 } = req.query;
-
-      const result = await this.booksService.getBooksByGenre(genre, {
-        lang,
-        page: parseInt(page),
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: result.books || [],
-        pagination: {
-          page: result.page || 1,
-          limit: result.limit || 10,
-          total: result.total || 0,
-          totalPages: result.totalPages || 0
-        },
-        metadata: {
-          genre,
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBooksByGenre: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get books by tag
-   */
-  getBooksByTag = async (req, res, next) => {
-    try {
-      const { tag } = req.params;
-      const { lang = 'english', page = 1, limit = 10 } = req.query;
-
-      const result = await this.booksService.getBooksByTag(tag, {
-        lang,
-        page: parseInt(page),
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: result.books || [],
-        pagination: {
-          page: result.page || 1,
-          limit: result.limit || 10,
-          total: result.total || 0,
-          totalPages: result.totalPages || 0
-        },
-        metadata: {
-          tag,
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBooksByTag: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get featured books
-   */
-  getFeaturedBooks = async (req, res, next) => {
-    try {
-      const { lang = 'english', limit = 5 } = req.query;
-
-      const books = await this.booksService.getFeaturedBooks({
-        lang,
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: books || [],
-        metadata: {
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getFeaturedBooks: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Search books
-   */
-  searchBooks = async (req, res, next) => {
-    try {
-      const { q, lang = 'english', page = 1, limit = 10 } = req.query;
-
-      if (!q) {
-        return res.status(400).json({
-          status: 'error',
-          message: 'Search query is required',
-          code: 'SEARCH_QUERY_REQUIRED'
-        });
-      }
-
-      const result = await this.booksService.searchBooks(q, {
-        lang,
-        page: parseInt(page),
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: result.books || [],
-        pagination: {
-          page: result.page || 1,
-          limit: result.limit || 10,
-          total: result.total || 0,
-          totalPages: result.totalPages || 0
-        },
-        metadata: {
-          searchQuery: q,
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in searchBooks: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get book statistics
-   */
-  getBookStats = async (req, res, next) => {
-    try {
-      const stats = await this.booksService.getBookStats();
-
-      res.status(200).json({
-        status: 'success',
-        data: stats,
-        metadata: {
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getBookStats: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Get related books
-   */
-  getRelatedBooks = async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      const { lang = 'english', limit = 5 } = req.query;
-
-      const books = await this.booksService.getRelatedBooks(id, {
-        lang,
-        limit: parseInt(limit)
-      });
-
-      res.status(200).json({
-        status: 'success',
-        data: books || [],
-        metadata: {
-          language: lang,
-          timestamp: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      log.error(`Error in getRelatedBooks: ${error.message}`);
-      next(error);
-    }
-  };
-
-  /**
-   * Create new book (Admin only)
-   */
-  createBook = async (req, res, next) => {
-    try {
-      const bookData = req.body;
-      
-      if (!bookData.title || !bookData.author || !bookData.isbn) {
-        return res.status(400).json({
-          status: 'error',
-          message: 'Missing required fields: title, author, isbn',
-          code: 'MISSING_REQUIRED_FIELDS'
-        });
-      }
-
-      const newBook = await this.booksService.createBook(bookData);
-
+      const data = req.body;
+      const result = await this.service.create(data);
       res.status(201).json({
-        status: 'success',
-        data: newBook,
-        message: 'Book created successfully',
-        metadata: {
-          timestamp: new Date().toISOString()
-        }
+        success: true,
+        message: 'Books created successfully',
+        data: result,
       });
     } catch (error) {
-      log.error(`Error in createBook: ${error.message}`);
       next(error);
     }
-  };
+  }
 
   /**
-   * Update book (Admin only)
+   * Get all bookss
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
    */
-  updateBook = async (req, res, next) => {
+  async findAll(req, res, next) {
     try {
-      const { id } = req.params;
-      const updateData = req.body;
-
-      const updatedBook = await this.booksService.updateBook(id, updateData);
-
-      if (!updatedBook) {
-        return res.status(404).json({
-          status: 'error',
-          message: 'Book not found',
-          code: 'BOOK_NOT_FOUND'
-        });
-      }
-
-      res.status(200).json({
-        status: 'success',
-        data: updatedBook,
-        message: 'Book updated successfully',
-        metadata: {
-          timestamp: new Date().toISOString()
-        }
+      const { page = 1, limit = 10, ...filters } = req.query;
+      const result = await this.service.findAll({ page, limit, filters });
+      res.json({
+        success: true,
+        data: result.data,
+        pagination: result.pagination,
       });
     } catch (error) {
-      log.error(`Error in updateBook: ${error.message}`);
       next(error);
     }
-  };
+  }
 
   /**
-   * Delete book (Admin only)
+   * Get a single books by ID
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
    */
-  deleteBook = async (req, res, next) => {
+  async findById(req, res, next) {
     try {
       const { id } = req.params;
-
-      const deleted = await this.booksService.deleteBook(id);
-
-      if (!deleted) {
-        return res.status(404).json({
-          status: 'error',
-          message: 'Book not found',
-          code: 'BOOK_NOT_FOUND'
-        });
-      }
-
-      res.status(200).json({
-        status: 'success',
-        message: 'Book deleted successfully',
-        metadata: {
-          timestamp: new Date().toISOString()
-        }
+      const result = await this.service.findById(id);
+      res.json({
+        success: true,
+        data: result,
       });
     } catch (error) {
-      log.error(`Error in deleteBook: ${error.message}`);
       next(error);
     }
-  };
+  }
+
+  /**
+   * Update a books
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
+   */
+  async update(req, res, next) {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      const result = await this.service.update(id, data);
+      res.json({
+        success: true,
+        message: 'Books updated successfully',
+        data: result,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * Delete a books
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
+   */
+  async delete(req, res, next) {
+    try {
+      const { id } = req.params;
+      await this.service.delete(id);
+      res.json({
+        success: true,
+        message: 'Books deleted successfully',
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
-export { BooksController };
 export default BooksController;

@@ -1,0 +1,7 @@
+(
+echo -- Soft delete a {{moduleName}}
+echo UPDATE {{kebabCase moduleName}}
+echo SET
+echo   deleted_at = CURRENT_TIMESTAMP
+echo WHERE id = ?;
+) > plop-templates\sql\delete.sql.hbs

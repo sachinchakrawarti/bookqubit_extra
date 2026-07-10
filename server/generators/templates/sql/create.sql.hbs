@@ -1,0 +1,14 @@
+(
+echo -- Create a new {{moduleName}}
+echo INSERT INTO {{kebabCase moduleName}} (
+echo   name,
+echo   description,
+echo   created_at,
+echo   updated_at
+echo ^) VALUES (
+echo   ?,
+echo   ?,
+echo   CURRENT_TIMESTAMP,
+echo   CURRENT_TIMESTAMP
+echo ^);
+) > plop-templates\sql\create.sql.hbs

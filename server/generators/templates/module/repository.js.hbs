@@ -1,0 +1,111 @@
+/**
+ * {{pascalCase moduleName}} Repository
+ * Database operations for {{moduleName}}
+ */
+
+import db from '../../../../database/connection.js';
+
+class {{pascalCase moduleName}}Repository {
+  /**
+   * Create a new {{moduleName}}
+   * @param {Object} data - {{moduleName}} data
+   * @returns {Promise<Object>} Created {{moduleName}}
+   */
+  async create(data) {
+    const [result] = await db.query('INSERT INTO {{kebabCase moduleName}} SET ?', data);
+    return result;
+  }
+
+  /**
+   * Get all {{moduleName}}s with pagination
+   * @param {Object} params - Query parameters
+   * @param {number} params.offset - Offset for pagination
+   * @param {number} params.limit - Items per page
+   * @param {Object} params.filters - Filter criteria
+   * @returns {Promise<Array>} List of {{moduleName}}s
+   */
+  async findAll({ offset, limit, filters }) {
+    let query = 'SELECT * FROM {{kebabCase moduleName}} WHERE 1=1';
+    const values = [];
+
+    // Add filters
+    if (filters && Object.keys(filters).length) {
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value !== undefined && value !== '') {
+          query += ` AND ${key} = ?`;
+          values.push(value);
+        }
+      });
+    }
+
+    query += ' LIMIT ? OFFSET ?';
+    values.push(limit, offset);
+
+    return db.query(query, values);
+  }
+
+  /**
+   * Get a single {{moduleName}} by ID
+   * @param {string} id - {{moduleName}} ID
+   * @returns {Promise<Object>} {{moduleName}} data
+   */
+  async findById(id) {
+    const [result] = await db.query('SELECT * FROM {{kebabCase moduleName}} WHERE id = ?', [id]);
+    return result;
+  }
+
+  /**
+   * Update a {{moduleName}}
+   * @param {string} id - {{moduleName}} ID
+   * @param {Object} data - Updated data
+   * @returns {Promise<Object>} Updated {{moduleName}}
+   */
+  async update(id, data) {
+    const [result] = await db.query('UPDATE {{kebabCase moduleName}} SET ? WHERE id = ?', [data, id]);
+    return result;
+  }
+
+  /**
+   * Delete a {{moduleName}}
+   * @param {string} id - {{moduleName}} ID
+   * @returns {Promise<void>}
+   */
+  async delete(id) {
+    await db.query('DELETE FROM {{kebabCase moduleName}} WHERE id = ?', [id]);
+  }
+
+  /**
+   * Check if a {{moduleName}} exists
+   * @param {string} id - {{moduleName}} ID
+   * @returns {Promise<boolean>} Existence status
+   */
+  async exists(id) {
+    const [result] = await db.query('SELECT 1 FROM {{kebabCase moduleName}} WHERE id = ?', [id]);
+    return !!result;
+  }
+
+  /**
+   * Count {{moduleName}}s
+   * @param {Object} params - Filter parameters
+   * @param {Object} params.filters - Filter criteria
+   * @returns {Promise<number>} Total count
+   */
+  async count({ filters }) {
+    let query = 'SELECT COUNT(*) as total FROM {{kebabCase moduleName}} WHERE 1=1';
+    const values = [];
+
+    if (filters && Object.keys(filters).length) {
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value !== undefined && value !== '') {
+          query += ` AND ${key} = ?`;
+          values.push(value);
+        }
+      });
+    }
+
+    const [result] = await db.query(query, values);
+    return result.total;
+  }
+}
+
+export default {{pascalCase moduleName}}Repository;

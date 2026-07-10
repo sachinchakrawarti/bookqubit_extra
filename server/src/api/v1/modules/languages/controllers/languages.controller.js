@@ -1,201 +1,110 @@
-// src/api/v1/modules/languages/controllers/languages.controller.js
-import languagesService from '../services/languages.service.js';
+/**
+ * Languages Controller
+ */
 
 class LanguagesController {
-  async getAll(req, res) {
+  constructor(languagesService) {
+    this.service = languagesService;
+  }
+
+  /**
+   * Create a new languages
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
+   */
+  async create(req, res, next) {
     try {
-      const { limit = 50, offset = 0, direction } = req.query;
-      const languages = await languagesService.list({ limit, offset, direction });
-      res.json({
+      const data = req.body;
+      const result = await this.service.create(data);
+      res.status(201).json({
         success: true,
-        data: languages,
-        pagination: {
-          limit: Number(limit),
-          offset: Number(offset)
-        }
+        message: 'Languages created successfully',
+        data: result,
       });
     } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
+      next(error);
     }
   }
 
-  async getActive(req, res) {
+  /**
+   * Get all languagess
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
+   */
+  async findAll(req, res, next) {
     try {
-      const { limit = 50, offset = 0 } = req.query;
-      const languages = await languagesService.getActive({ limit, offset });
+      const { page = 1, limit = 10, ...filters } = req.query;
+      const result = await this.service.findAll({ page, limit, filters });
       res.json({
         success: true,
-        data: languages
+        data: result.data,
+        pagination: result.pagination,
       });
     } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
+      next(error);
     }
   }
 
-  async getById(req, res) {
+  /**
+   * Get a single languages by ID
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
+   */
+  async findById(req, res, next) {
     try {
       const { id } = req.params;
-      const language = await languagesService.findById(id);
-      if (!language) {
-        return res.status(404).json({
-          success: false,
-          error: 'Language not found'
-        });
-      }
+      const result = await this.service.findById(id);
       res.json({
         success: true,
-        data: language
+        data: result,
       });
     } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
+      next(error);
     }
   }
 
-  async getByCode(req, res) {
+  /**
+   * Update a languages
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
+   */
+  async update(req, res, next) {
     try {
-      const { code } = req.params;
-      const language = await languagesService.findByCode(code);
-      if (!language) {
-        return res.status(404).json({
-          success: false,
-          error: 'Language not found'
-        });
-      }
+      const { id } = req.params;
+      const data = req.body;
+      const result = await this.service.update(id, data);
       res.json({
         success: true,
-        data: language
+        message: 'Languages updated successfully',
+        data: result,
       });
     } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
+      next(error);
     }
   }
 
-  async search(req, res) {
+  /**
+   * Delete a languages
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   * @param {Function} next - Express next middleware function
+   */
+  async delete(req, res, next) {
     try {
-      const { query } = req.params;
-      const { limit = 20 } = req.query;
-      const languages = await languagesService.search(query, { limit });
+      const { id } = req.params;
+      await this.service.delete(id);
       res.json({
         success: true,
-        data: languages,
-        count: languages.length
+        message: 'Languages deleted successfully',
       });
     } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
-    }
-  }
-
-  async getRTL(req, res) {
-    try {
-      const languages = await languagesService.getRTL();
-      res.json({
-        success: true,
-        data: languages
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
-    }
-  }
-
-  async getLTR(req, res) {
-    try {
-      const languages = await languagesService.getLTR();
-      res.json({
-        success: true,
-        data: languages
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
-    }
-  }
-
-  async getDefault(req, res) {
-    try {
-      const language = await languagesService.getDefault();
-      res.json({
-        success: true,
-        data: language
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
-    }
-  }
-
-  async getStatistics(req, res) {
-    try {
-      const stats = await languagesService.getStatistics();
-      res.json({
-        success: true,
-        data: stats
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
-    }
-  }
-
-  async getDropdown(req, res) {
-    try {
-      const languages = await languagesService.getDropdown();
-      res.json({
-        success: true,
-        data: languages
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
-    }
-  }
-
-  async getByISO(req, res) {
-    try {
-      const { iso } = req.params;
-      const language = await languagesService.findByISO(iso);
-      if (!language) {
-        return res.status(404).json({
-          success: false,
-          error: 'Language not found'
-        });
-      }
-      res.json({
-        success: true,
-        data: language
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message
-      });
+      next(error);
     }
   }
 }
 
-export default new LanguagesController();
+export default LanguagesController;

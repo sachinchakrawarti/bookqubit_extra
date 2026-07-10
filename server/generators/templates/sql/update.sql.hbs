@@ -1,0 +1,7 @@
+(
+echo -- Get a {{moduleName}} by ID
+echo SELECT *
+echo FROM {{kebabCase moduleName}}
+echo WHERE id = ?
+echo   AND deleted_at IS NULL;
+) > plop-templates\sql\read.sql.hbs
