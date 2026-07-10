@@ -1,0 +1,196 @@
+/**
+ * {{pascalCase moduleName}} Repository Unit Tests
+ */
+
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
+import { {{pascalCase moduleName}}Repository } from '../../../src/api/v1/modules/{{kebabCase moduleName}}/repositories/{{kebabCase moduleName}}.repository.js';
+import db from '../../../src/database/connection.js';
+
+// Mock the database connection
+jest.mock('../../../src/database/connection.js');
+
+describe('{{pascalCase moduleName}}Repository', () => {
+  let repository;
+
+  const mockData = {
+    id: 1,
+    name: 'Test {{pascalCase moduleName}}',
+    description: 'Test description',
+    created_at: new Date(),
+    updated_at: new Date(),
+  };
+
+  beforeEach(() => {
+    repository = new {{pascalCase moduleName}}Repository();
+    jest.clearAllMocks();
+  });
+
+  describe('create', () => {
+    it('should create a new {{moduleName}}', async () => {
+      // Arrange
+      const createData = { name: 'New {{moduleName}}', description: 'New description' };
+      db.query.mockResolvedValue([{ insertId: 1 }]);
+
+      // Act
+      const result = await repository.create(createData);
+
+      // Assert
+      expect(db.query).toHaveBeenCalledWith(
+        'INSERT INTO {{kebabCase moduleName}} SET ?',
+        createData
+      );
+      expect(result).toEqual({ insertId: 1 });
+    });
+  });
+
+  describe('findAll', () => {
+    it('should return all {{moduleName}}s with pagination', async () => {
+      // Arrange
+      const offset = 0;
+      const limit = 10;
+      const filters = {};
+      db.query.mockResolvedValue([mockData]);
+
+      // Act
+      const result = await repository.findAll({ offset, limit, filters });
+
+      // Assert
+      expect(db.query).toHaveBeenCalled();
+      expect(result).toEqual([mockData]);
+    });
+
+    it('should handle filters', async () => {
+      // Arrange
+      const filters = { name: 'Test' };
+      db.query.mockResolvedValue([mockData]);
+
+      // Act
+      await repository.findAll({ offset: 0, limit: 10, filters });
+
+      // Assert
+      expect(db.query).toHaveBeenCalledWith(
+        expect.stringContaining('WHERE 1=1 AND name = ?'),
+        expect.arrayContaining(['Test', 10, 0])
+      );
+    });
+  });
+
+  describe('findById', () => {
+    it('should return a {{moduleName}} by id', async () => {
+      // Arrange
+      db.query.mockResolvedValue([mockData]);
+
+      // Act
+      const result = await repository.findById(1);
+
+      // Assert
+      expect(db.query).toHaveBeenCalledWith(
+        'SELECT * FROM {{kebabCase moduleName}} WHERE id = ?',
+        [1]
+      );
+      expect(result).toEqual(mockData);
+    });
+
+    it('should return null when {{moduleName}} not found', async () => {
+      // Arrange
+      db.query.mockResolvedValue([]);
+
+      // Act
+      const result = await repository.findById(999);
+
+      // Assert
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('update', () => {
+    it('should update a {{moduleName}}', async () => {
+      // Arrange
+      const updateData = { name: 'Updated {{moduleName}}' };
+      db.query.mockResolvedValue([{ affectedRows: 1 }]);
+
+      // Act
+      const result = await repository.update(1, updateData);
+
+      // Assert
+      expect(db.query).toHaveBeenCalledWith(
+        'UPDATE {{kebabCase moduleName}} SET ? WHERE id = ?',
+        [updateData, 1]
+      );
+      expect(result).toEqual({ affectedRows: 1 });
+    });
+  });
+
+  describe('delete', () => {
+    it('should delete a {{moduleName}}', async () => {
+      // Arrange
+      db.query.mockResolvedValue([{ affectedRows: 1 }]);
+
+      // Act
+      await repository.delete(1);
+
+      // Assert
+      expect(db.query).toHaveBeenCalledWith(
+        'DELETE FROM {{kebabCase moduleName}} WHERE id = ?',
+        [1]
+      );
+    });
+  });
+
+  describe('exists', () => {
+    it('should return true when {{moduleName}} exists', async () => {
+      // Arrange
+      db.query.mockResolvedValue([{ 1: 1 }]);
+
+      // Act
+      const result = await repository.exists(1);
+
+      // Assert
+      expect(db.query).toHaveBeenCalledWith(
+        'SELECT 1 FROM {{kebabCase moduleName}} WHERE id = ?',
+        [1]
+      );
+      expect(result).toBe(true);
+    });
+
+    it('should return false when {{moduleName}} does not exist', async () => {
+      // Arrange
+      db.query.mockResolvedValue([]);
+
+      // Act
+      const result = await repository.exists(999);
+
+      // Assert
+      expect(result).toBe(false);
+    });
+  });
+
+  describe('count', () => {
+    it('should return total count', async () => {
+      // Arrange
+      db.query.mockResolvedValue([{ total: 5 }]);
+
+      // Act
+      const result = await repository.count({ filters: {} });
+
+      // Assert
+      expect(db.query).toHaveBeenCalled();
+      expect(result).toBe(5);
+    });
+
+    it('should handle filters in count', async () => {
+      // Arrange
+      const filters = { name: 'Test' };
+      db.query.mockResolvedValue([{ total: 1 }]);
+
+      // Act
+      await repository.count({ filters });
+
+      // Assert
+      expect(db.query).toHaveBeenCalledWith(
+        expect.stringContaining('WHERE 1=1 AND name = ?'),
+        ['Test']
+      );
+    });
+  });
+});

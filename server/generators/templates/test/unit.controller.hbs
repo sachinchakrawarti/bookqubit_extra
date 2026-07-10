@@ -1,0 +1,203 @@
+/**
+ * {{pascalCase moduleName}} Controller Unit Tests
+ */
+
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
+import { {{pascalCase moduleName}}Controller } from '../../../src/api/v1/modules/{{kebabCase moduleName}}/controllers/{{kebabCase moduleName}}.controller.js';
+import { {{pascalCase moduleName}}Service } from '../../../src/api/v1/modules/{{kebabCase moduleName}}/services/{{kebabCase moduleName}}.service.js';
+
+// Mock the service
+jest.mock('../../../src/api/v1/modules/{{kebabCase moduleName}}/services/{{kebabCase moduleName}}.service.js');
+
+describe('{{pascalCase moduleName}}Controller', () => {
+  let controller;
+  let service;
+  let mockReq;
+  let mockRes;
+  let mockNext;
+
+  const mockData = {
+    id: 1,
+    name: 'Test {{pascalCase moduleName}}',
+    description: 'Test description',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+
+  beforeEach(() => {
+    // Initialize service mock
+    service = new {{pascalCase moduleName}}Service();
+
+    // Initialize controller with mocked service
+    controller = new {{pascalCase moduleName}}Controller(service);
+
+    // Mock Express objects
+    mockReq = {
+      body: {},
+      params: {},
+      query: {},
+    };
+    mockRes = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn().mockReturnThis(),
+    };
+    mockNext = jest.fn();
+
+    // Clear all mocks before each test
+    jest.clearAllMocks();
+  });
+
+  describe('create', () => {
+    it('should create a {{moduleName}} successfully', async () => {
+      // Arrange
+      const createData = { name: 'New {{moduleName}}', description: 'New description' };
+      mockReq.body = createData;
+      service.create.mockResolvedValue({ id: 1, ...createData });
+
+      // Act
+      await controller.create(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(service.create).toHaveBeenCalledWith(createData);
+      expect(mockRes.status).toHaveBeenCalledWith(201);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        success: true,
+        message: '{{pascalCase moduleName}} created successfully',
+        data: { id: 1, ...createData },
+      });
+      expect(mockNext).not.toHaveBeenCalled();
+    });
+
+    it('should handle errors', async () => {
+      // Arrange
+      const error = new Error('Database error');
+      mockReq.body = { name: 'Test' };
+      service.create.mockRejectedValue(error);
+
+      // Act
+      await controller.create(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(mockNext).toHaveBeenCalledWith(error);
+      expect(mockRes.status).not.toHaveBeenCalled();
+      expect(mockRes.json).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('findAll', () => {
+    it('should return all {{moduleName}}s with pagination', async () => {
+      // Arrange
+      const mockResult = {
+        data: [mockData],
+        pagination: {
+          page: 1,
+          limit: 10,
+          total: 1,
+          totalPages: 1,
+        },
+      };
+      mockReq.query = { page: 1, limit: 10 };
+      service.findAll.mockResolvedValue(mockResult);
+
+      // Act
+      await controller.findAll(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(service.findAll).toHaveBeenCalledWith({
+        page: 1,
+        limit: 10,
+        filters: {},
+      });
+      expect(mockRes.json).toHaveBeenCalledWith({
+        success: true,
+        data: mockResult.data,
+        pagination: mockResult.pagination,
+      });
+    });
+
+    it('should handle errors in findAll', async () => {
+      // Arrange
+      const error = new Error('Database error');
+      service.findAll.mockRejectedValue(error);
+
+      // Act
+      await controller.findAll(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(mockNext).toHaveBeenCalledWith(error);
+    });
+  });
+
+  describe('findById', () => {
+    it('should return a {{moduleName}} by id', async () => {
+      // Arrange
+      mockReq.params = { id: 1 };
+      service.findById.mockResolvedValue(mockData);
+
+      // Act
+      await controller.findById(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(service.findById).toHaveBeenCalledWith(1);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        success: true,
+        data: mockData,
+      });
+    });
+
+    it('should handle not found', async () => {
+      // Arrange
+      mockReq.params = { id: 999 };
+      service.findById.mockResolvedValue(null);
+
+      // Act
+      await controller.findById(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(mockRes.status).toHaveBeenCalledWith(404);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        success: false,
+        message: '{{pascalCase moduleName}} not found',
+      });
+    });
+  });
+
+  describe('update', () => {
+    it('should update a {{moduleName}} successfully', async () => {
+      // Arrange
+      const updateData = { name: 'Updated {{moduleName}}' };
+      mockReq.params = { id: 1 };
+      mockReq.body = updateData;
+      service.update.mockResolvedValue({ id: 1, ...updateData });
+
+      // Act
+      await controller.update(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(service.update).toHaveBeenCalledWith(1, updateData);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        success: true,
+        message: '{{pascalCase moduleName}} updated successfully',
+        data: { id: 1, ...updateData },
+      });
+    });
+  });
+
+  describe('delete', () => {
+    it('should delete a {{moduleName}} successfully', async () => {
+      // Arrange
+      mockReq.params = { id: 1 };
+      service.delete.mockResolvedValue(true);
+
+      // Act
+      await controller.delete(mockReq, mockRes, mockNext);
+
+      // Assert
+      expect(service.delete).toHaveBeenCalledWith(1);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        success: true,
+        message: '{{pascalCase moduleName}} deleted successfully',
+      });
+    });
+  });
+});

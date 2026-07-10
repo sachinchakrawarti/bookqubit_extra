@@ -1,0 +1,174 @@
+/**
+ * {{pascalCase moduleName}} Service Unit Tests
+ */
+
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
+import { {{pascalCase moduleName}}Service } from '../../../src/api/v1/modules/{{kebabCase moduleName}}/services/{{kebabCase moduleName}}.service.js';
+import { {{pascalCase moduleName}}Repository } from '../../../src/api/v1/modules/{{kebabCase moduleName}}/repositories/{{kebabCase moduleName}}.repository.js';
+
+// Mock the repository
+jest.mock('../../../src/api/v1/modules/{{kebabCase moduleName}}/repositories/{{kebabCase moduleName}}.repository.js');
+
+describe('{{pascalCase moduleName}}Service', () => {
+  let service;
+  let repository;
+
+  const mockData = {
+    id: 1,
+    name: 'Test {{pascalCase moduleName}}',
+    description: 'Test description',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+
+  beforeEach(() => {
+    // Initialize repository mock
+    repository = new {{pascalCase moduleName}}Repository();
+
+    // Initialize service with mocked repository
+    service = new {{pascalCase moduleName}}Service(repository);
+
+    // Clear all mocks
+    jest.clearAllMocks();
+  });
+
+  describe('create', () => {
+    it('should create a new {{moduleName}}', async () => {
+      // Arrange
+      const createData = { name: 'New {{moduleName}}', description: 'New description' };
+      repository.create.mockResolvedValue({ id: 1, ...createData });
+
+      // Act
+      const result = await service.create(createData);
+
+      // Assert
+      expect(repository.create).toHaveBeenCalledWith(createData);
+      expect(result).toEqual({ id: 1, ...createData });
+    });
+
+    it('should handle duplicate {{moduleName}} name', async () => {
+      // Arrange
+      const createData = { name: 'Existing {{moduleName}}' };
+      repository.create.mockRejectedValue(new Error('Duplicate entry'));
+
+      // Act & Assert
+      await expect(service.create(createData)).rejects.toThrow('Duplicate entry');
+    });
+  });
+
+  describe('findAll', () => {
+    it('should return paginated {{moduleName}}s', async () => {
+      // Arrange
+      repository.findAll.mockResolvedValue([mockData]);
+      repository.count.mockResolvedValue(1);
+
+      // Act
+      const result = await service.findAll({ page: 1, limit: 10, filters: {} });
+
+      // Assert
+      expect(repository.findAll).toHaveBeenCalledWith({
+        offset: 0,
+        limit: 10,
+        filters: {},
+      });
+      expect(repository.count).toHaveBeenCalledWith({ filters: {} });
+      expect(result).toEqual({
+        data: [mockData],
+        pagination: {
+          page: 1,
+          limit: 10,
+          total: 1,
+          totalPages: 1,
+        },
+      });
+    });
+
+    it('should handle filters', async () => {
+      // Arrange
+      const filters = { name: 'Test' };
+      repository.findAll.mockResolvedValue([mockData]);
+      repository.count.mockResolvedValue(1);
+
+      // Act
+      await service.findAll({ page: 1, limit: 10, filters });
+
+      // Assert
+      expect(repository.findAll).toHaveBeenCalledWith({
+        offset: 0,
+        limit: 10,
+        filters,
+      });
+      expect(repository.count).toHaveBeenCalledWith({ filters });
+    });
+  });
+
+  describe('findById', () => {
+    it('should return a {{moduleName}} by id', async () => {
+      // Arrange
+      repository.findById.mockResolvedValue(mockData);
+
+      // Act
+      const result = await service.findById(1);
+
+      // Assert
+      expect(repository.findById).toHaveBeenCalledWith(1);
+      expect(result).toEqual(mockData);
+    });
+
+    it('should throw error when {{moduleName}} not found', async () => {
+      // Arrange
+      repository.findById.mockResolvedValue(null);
+
+      // Act & Assert
+      await expect(service.findById(999)).rejects.toThrow('{{pascalCase moduleName}} not found');
+    });
+  });
+
+  describe('update', () => {
+    it('should update a {{moduleName}}', async () => {
+      // Arrange
+      const updateData = { name: 'Updated {{moduleName}}' };
+      repository.exists.mockResolvedValue(true);
+      repository.update.mockResolvedValue({ id: 1, ...updateData });
+
+      // Act
+      const result = await service.update(1, updateData);
+
+      // Assert
+      expect(repository.exists).toHaveBeenCalledWith(1);
+      expect(repository.update).toHaveBeenCalledWith(1, updateData);
+      expect(result).toEqual({ id: 1, ...updateData });
+    });
+
+    it('should throw error when {{moduleName}} not found for update', async () => {
+      // Arrange
+      repository.exists.mockResolvedValue(false);
+
+      // Act & Assert
+      await expect(service.update(999, { name: 'Test' })).rejects.toThrow('{{pascalCase moduleName}} not found');
+    });
+  });
+
+  describe('delete', () => {
+    it('should delete a {{moduleName}}', async () => {
+      // Arrange
+      repository.exists.mockResolvedValue(true);
+      repository.delete.mockResolvedValue(true);
+
+      // Act
+      await service.delete(1);
+
+      // Assert
+      expect(repository.exists).toHaveBeenCalledWith(1);
+      expect(repository.delete).toHaveBeenCalledWith(1);
+    });
+
+    it('should throw error when {{moduleName}} not found for delete', async () => {
+      // Arrange
+      repository.exists.mockResolvedValue(false);
+
+      // Act & Assert
+      await expect(service.delete(999)).rejects.toThrow('{{pascalCase moduleName}} not found');
+    });
+  });
+});

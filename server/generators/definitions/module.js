@@ -15,11 +15,19 @@ export default {
       choices: ['simple', 'full-crud', 'admin', 'analytics'],
       default: 'full-crud',
     },
+    {
+      type: 'confirm',
+      name: 'generateTests',
+      message: 'Generate test files?',
+      default: true,
+    },
   ],
   actions: function (data) {
     const actions = [];
     const modulePath = `src/api/v1/modules/{{kebabCase moduleName}}`;
+    const testPath = `tests/unit/{{kebabCase moduleName}}`;
 
+    // Create main folders
     const folders = [
       'config', 'constants', 'controllers', 'dto', 'models',
       'queries', 'queries/admin', 'queries/shared',
@@ -31,6 +39,7 @@ export default {
       folders.push('middleware');
     }
 
+    // Add folder actions
     folders.forEach((folder) => {
       actions.push({
         type: 'add',
@@ -40,6 +49,20 @@ export default {
       });
     });
 
+    // Create test folders if generateTests is true
+    if (data.generateTests) {
+      const testFolders = ['controllers', 'services', 'repositories'];
+      testFolders.forEach((folder) => {
+        actions.push({
+          type: 'add',
+          path: `${testPath}/${folder}/.gitkeep`,
+          template: '',
+          skipIfExists: true,
+        });
+      });
+    }
+
+    // Add main files
     const files = [
       { path: 'index.js', template: 'module/index.js.hbs' },
       { path: `controllers/{{kebabCase moduleName}}.controller.js`, template: 'module/controller.js.hbs' },
@@ -70,6 +93,26 @@ export default {
       });
     });
 
+    // Add test files if generateTests is true
+    if (data.generateTests) {
+      const testFiles = [
+        { path: 'controllers/{{kebabCase moduleName}}.controller.test.js', template: 'test/unit.controller.hbs' },
+        { path: 'services/{{kebabCase moduleName}}.service.test.js', template: 'test/unit.service.hbs' },
+        { path: 'repositories/{{kebabCase moduleName}}.repository.test.js', template: 'test/unit.repository.hbs' },
+        { path: '{{kebabCase moduleName}}.api.test.js', template: 'test/integration.api.hbs' },
+      ];
+
+      testFiles.forEach((file) => {
+        actions.push({
+          type: 'add',
+          path: `${testPath}/${file.path}`,
+          templateFile: `generators/templates/${file.template}`,
+          skipIfExists: true,
+        });
+      });
+    }
+
+    // SQL Queries
     const sqlQueries = {
       create: `-- Create a new {{moduleName}}\nINSERT INTO {{kebabCase moduleName}} (name, description, created_at, updated_at) \nVALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`,
       read: `-- Get a {{moduleName}} by ID\nSELECT * FROM {{kebabCase moduleName}} WHERE id = ? AND deleted_at IS NULL;`,

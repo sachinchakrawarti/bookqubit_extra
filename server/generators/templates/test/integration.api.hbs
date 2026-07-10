@@ -1,0 +1,143 @@
+/**
+ * {{pascalCase moduleName}} API Integration Tests
+ */
+
+import { describe, it, expect, beforeAll, afterAll, jest } from '@jest/globals';
+import request from 'supertest';
+import express from 'express';
+import {{kebabCase moduleName}}Routes from '../../../src/api/v1/modules/{{kebabCase moduleName}}/routes/{{kebabCase moduleName}}.routes.js';
+
+// Mock the entire module
+jest.mock('../../../src/api/v1/modules/{{kebabCase moduleName}}/controllers/{{kebabCase moduleName}}.controller.js');
+jest.mock('../../../src/api/v1/modules/{{kebabCase moduleName}}/services/{{kebabCase moduleName}}.service.js');
+jest.mock('../../../src/api/v1/modules/{{kebabCase moduleName}}/repositories/{{kebabCase moduleName}}.repository.js');
+
+describe('{{pascalCase moduleName}} API Integration Tests', () => {
+  let app;
+
+  beforeAll(() => {
+    // Create Express app for testing
+    app = express();
+    app.use(express.json());
+    app.use('/api/v1/{{kebabCase moduleName}}', {{kebabCase moduleName}}Routes);
+  });
+
+  describe('POST /api/v1/{{kebabCase moduleName}}', () => {
+    it('should create a new {{moduleName}}', async () => {
+      // Arrange
+      const newData = {
+        name: 'Test {{pascalCase moduleName}}',
+        description: 'Test description',
+      };
+
+      // Act
+      const response = await request(app)
+        .post('/api/v1/{{kebabCase moduleName}}')
+        .send(newData);
+
+      // Assert
+      expect(response.status).toBe(201);
+      expect(response.body).toHaveProperty('success', true);
+      expect(response.body).toHaveProperty('data');
+      expect(response.body.data).toHaveProperty('id');
+      expect(response.body.data).toHaveProperty('name', newData.name);
+    });
+
+    it('should return 400 for invalid data', async () => {
+      // Arrange
+      const invalidData = {};
+
+      // Act
+      const response = await request(app)
+        .post('/api/v1/{{kebabCase moduleName}}')
+        .send(invalidData);
+
+      // Assert
+      expect(response.status).toBe(400);
+      expect(response.body).toHaveProperty('success', false);
+      expect(response.body).toHaveProperty('errors');
+    });
+  });
+
+  describe('GET /api/v1/{{kebabCase moduleName}}', () => {
+    it('should return all {{moduleName}}s', async () => {
+      // Act
+      const response = await request(app)
+        .get('/api/v1/{{kebabCase moduleName}}');
+
+      // Assert
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('success', true);
+      expect(response.body).toHaveProperty('data');
+      expect(Array.isArray(response.body.data)).toBe(true);
+      expect(response.body).toHaveProperty('pagination');
+    });
+
+    it('should handle pagination', async () => {
+      // Act
+      const response = await request(app)
+        .get('/api/v1/{{kebabCase moduleName}}?page=2&limit=5');
+
+      // Assert
+      expect(response.status).toBe(200);
+      expect(response.body.pagination).toHaveProperty('page', 2);
+      expect(response.body.pagination).toHaveProperty('limit', 5);
+    });
+  });
+
+  describe('GET /api/v1/{{kebabCase moduleName}}/:id', () => {
+    it('should return a {{moduleName}} by id', async () => {
+      // Act
+      const response = await request(app)
+        .get('/api/v1/{{kebabCase moduleName}}/1');
+
+      // Assert
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('success', true);
+      expect(response.body).toHaveProperty('data');
+    });
+
+    it('should return 404 for non-existent {{moduleName}}', async () => {
+      // Act
+      const response = await request(app)
+        .get('/api/v1/{{kebabCase moduleName}}/999');
+
+      // Assert
+      expect(response.status).toBe(404);
+      expect(response.body).toHaveProperty('success', false);
+      expect(response.body).toHaveProperty('message', '{{pascalCase moduleName}} not found');
+    });
+  });
+
+  describe('PUT /api/v1/{{kebabCase moduleName}}/:id', () => {
+    it('should update a {{moduleName}}', async () => {
+      // Arrange
+      const updateData = {
+        name: 'Updated {{pascalCase moduleName}}',
+      };
+
+      // Act
+      const response = await request(app)
+        .put('/api/v1/{{kebabCase moduleName}}/1')
+        .send(updateData);
+
+      // Assert
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('success', true);
+      expect(response.body.data).toHaveProperty('name', updateData.name);
+    });
+  });
+
+  describe('DELETE /api/v1/{{kebabCase moduleName}}/:id', () => {
+    it('should delete a {{moduleName}}', async () => {
+      // Act
+      const response = await request(app)
+        .delete('/api/v1/{{kebabCase moduleName}}/1');
+
+      // Assert
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('success', true);
+      expect(response.body).toHaveProperty('message', '{{pascalCase moduleName}} deleted successfully');
+    });
+  });
+});
