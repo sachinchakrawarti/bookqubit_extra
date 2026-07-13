@@ -1,0 +1,180 @@
+geography/
+├── config/
+│   └── geography.config.js
+├── constants/
+│   ├── admin.constants.js
+│   └── geography.constants.js
+├── controllers/
+│   ├── index.js                      # Main export
+│   ├── admin/
+│   │   ├── index.js
+│   │   ├── country.admin.controller.js
+│   │   ├── state.admin.controller.js
+│   │   └── city.admin.controller.js
+│   ├── public/
+│   │   ├── index.js
+│   │   ├── country.controller.js
+│   │   ├── state.controller.js
+│   │   └── city.controller.js
+│   ├── analytics/
+│   │   ├── index.js
+│   │   ├── country.analytics.controller.js
+│   │   └── dashboard.analytics.controller.js
+│   └── response.js
+├── core/
+│   ├── index.js
+│   ├── exceptions/
+│   │   ├── index.js
+│   │   ├── GeographyError.js
+│   │   ├── NotFoundError.js
+│   │   └── ValidationError.js
+│   └── base/
+│       ├── index.js
+│       ├── BaseController.js
+│       ├── BaseRepository.js
+│       └── BaseService.js
+├── db/
+│   └── sequelize.js
+├── dto/
+│   ├── index.js
+│   ├── create/
+│   │   ├── index.js
+│   │   ├── create-country.dto.js
+│   │   ├── create-state.dto.js
+│   │   └── create-city.dto.js
+│   ├── update/
+│   │   ├── index.js
+│   │   ├── update-country.dto.js
+│   │   ├── update-state.dto.js
+│   │   └── update-city.dto.js
+│   └── filters/
+│       ├── index.js
+│       ├── filter-country.dto.js
+│       ├── filter-state.dto.js
+│       └── filter-city.dto.js
+├── entities/
+│   ├── index.js
+│   ├── base.entity.js
+│   ├── city.entity.js
+│   ├── country.entity.js
+│   └── state.entity.js
+├── mappers/
+│   ├── index.js
+│   ├── base.mapper.js
+│   ├── city.mapper.js
+│   ├── country.mapper.js
+│   ├── geography.mapper.js
+│   └── state.mapper.js
+├── middleware/
+│   ├── index.js                      # Main export
+│   ├── auth.middleware.js
+│   ├── cache.middleware.js
+│   ├── correlation.middleware.js
+│   ├── error.middleware.js
+│   ├── logging.middleware.js
+│   ├── rate-limit.middleware.js
+│   ├── sanitize.middleware.js
+│   └── validation.middleware.js
+├── models/
+│   ├── index.js
+│   ├── sequelize/
+│   │   ├── index.js
+│   │   ├── city.model.js
+│   │   ├── continent.model.js
+│   │   ├── country.model.js
+│   │   └── state.model.js
+│   └── relationships.js
+├── queries/
+│   ├── index.js
+│   ├── builders/
+│   │   ├── index.js
+│   │   ├── pagination.builder.js
+│   │   ├── sort.builder.js
+│   │   └── where.builder.js
+│   ├── filters/
+│   │   ├── index.js
+│   │   ├── city.filters.js
+│   │   ├── country.filters.js
+│   │   └── state.filters.js
+│   ├── country.queries.js
+│   ├── state.queries.js
+│   ├── city.queries.js
+│   └── analytics.queries.js
+├── repositories/
+│   ├── index.js                      # Main export
+│   ├── admin/
+│   │   ├── index.js
+│   │   ├── country.admin.repository.js
+│   │   ├── state.admin.repository.js
+│   │   └── city.admin.repository.js
+│   ├── public/
+│   │   ├── index.js
+│   │   ├── country.repository.js
+│   │   ├── state.repository.js
+│   │   └── city.repository.js
+│   └── analytics/
+│       ├── index.js
+│       └── analytics.repository.js
+├── routes/
+│   ├── index.js                      # Main export
+│   ├── public/
+│   │   ├── index.js
+│   │   ├── country.routes.js
+│   │   ├── state.routes.js
+│   │   └── city.routes.js
+│   ├── admin/
+│   │   ├── index.js
+│   │   ├── country.admin.routes.js
+│   │   ├── state.admin.routes.js
+│   │   └── city.admin.routes.js
+│   └── analytics/
+│       ├── index.js
+│       └── analytics.routes.js
+├── services/
+│   ├── index.js
+│   ├── logger.js
+│   ├── admin/
+│   │   ├── index.js
+│   │   ├── country.admin.service.js
+│   │   ├── state.admin.service.js
+│   │   ├── city.admin.service.js
+│   │   └── stats.admin.service.js
+│   ├── public/
+│   │   ├── index.js
+│   │   ├── country.service.js
+│   │   ├── state.service.js
+│   │   └── city.service.js
+│   └── analytics/
+│       ├── index.js
+│       ├── country.analytics.service.js
+│       ├── state.analytics.service.js
+│       ├── city.analytics.service.js
+│       ├── dashboard.analytics.service.js
+│       └── report.analytics.service.js
+├── transformers/
+│   ├── index.js
+│   ├── base.transformer.js
+│   └── geography.transformer.js
+├── types/
+│   └── geography.types.js
+├── utils/
+│   ├── index.js
+│   ├── helpers.js
+│   └── validators.js
+├── validations/
+│   ├── index.js
+│   ├── helpers.js
+│   ├── rules.js
+│   ├── schemas/
+│   │   ├── index.js
+│   │   ├── bulk.schema.js
+│   │   ├── city.schema.js
+│   │   ├── continent.schema.js
+│   │   ├── country.schema.js
+│   │   ├── filter.schema.js
+│   │   └── state.schema.js
+│   ├── geography.admin.validation.js
+│   └── geography.analytics.validation.js
+├── API.md
+├── README.md
+└── index.js

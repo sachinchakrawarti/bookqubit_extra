@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+dist/
+build/
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Database files
+*.db
+*.sqlite
+
+# Package files
+package-lock.json
+yarn.lock
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Generated files
+public/
+assets/
+test-reports/
+
+# Migration files (allow snake_case)
+**/migrations/*.js
+**/seeds/*.js
+**/queries/*.sql

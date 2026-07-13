@@ -1,140 +1,129 @@
-// server.js
 import express from 'express';
+import dotenv from 'dotenv';
 import cors from 'cors';
-import morgan from 'morgan';
 import helmet from 'helmet';
 import compression from 'compression';
-import rateLimit from 'express-rate-limit';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import morgan from 'morgan';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Load environment variables
+dotenv.config();
 
-// Helper function to resolve paths
-const resolvePath = (relativePath) => {
-  const resolved = path.join(__dirname, relativePath);
-  return `file:///${resolved.replace(/\\/g, '/')}`;
-};
-
-// Import modules using resolved paths
-const apiV1Module = await import(resolvePath('src/api/v1/centralv1api/centralv1api.js'));
-const dbModule = await import(resolvePath('database/connection.js'));
-const loggerModule = await import(resolvePath('src/utils/logger.js'));
-
-const apiV1 = apiV1Module.default || apiV1Module;
-const { connectDatabase } = dbModule;
-const logger = loggerModule.default || loggerModule;
+// Import modules
+import geographyModule from './src/api/v1/modules/geography/index.js';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Try ports from 3000 to 3010
-const findAvailablePort = (startPort) => {
-  return new Promise((resolve) => {
-    const server = app.listen(startPort, () => {
-      server.close(() => {
-        resolve(startPort);
-      });
-    });
-    server.on('error', () => {
-      resolve(findAvailablePort(startPort + 1));
-    });
-  });
-};
+// ==========================================
+// Middleware
+// ==========================================
 
-// Security middleware
-app.use(helmet());
-app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
-  credentials: true
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
+app.use(cors());
 app.use(compression());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(morgan('combined', {
-  stream: { write: (message) => logger.info(message.trim()) }
-}));
+// Logging
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+}
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: 'Too many requests from this IP, please try again later.'
-});
-app.use('/api', limiter);
+// ==========================================
+// Health Check
+// ==========================================
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-app.get('/health', (_req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'BookQubit API is running.',
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Server is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development'
   });
 });
 
-app.use('/api/v1', apiV1);
+// ==========================================
+// Register Geography Routes
+// ==========================================
 
-app.use((req, res) => {
-  logger.warn(`Route not found: ${req.method} ${req.url}`);
-  res.status(404).json({
-    success: false,
-    message: 'Route not found.',
-    path: req.url
+// The routes are exported as a router, use it directly
+const router = geographyModule.routes || geographyModule.geographyRoutes;
+
+if (router && typeof router === 'function') {
+  // If it's a function, it might be the router itself or a factory
+  app.use('/api/v1/geography', router);
+  console.log('✅ Geography routes registered (router function)');
+} else if (router && typeof router === 'object' && router.stack) {
+  // If it's an object with stack, it's a router
+  app.use('/api/v1/geography', router);
+  console.log('✅ Geography routes registered (router object)');
+} else {
+  console.log('⚠️ No valid router found, using initModule...');
+  geographyModule.initModule(app, {
+    prefix: '/api/v1/geography',
+    adminPrefix: '/api/v1/admin/geography',
+    analyticsPrefix: '/api/v1/geography/analytics'
   });
-});
-
-app.use((err, _req, res, _next) => {
-  logger.error('Error:', {
-    message: err.message,
-    stack: err.stack,
-    status: err.status || 500
-  });
-
-  res.status(err.status || 500).json({
-    success: false,
-    message: err.message || 'Internal Server Error',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
-  });
-});
-
-async function startServer() {
-  try {
-    await connectDatabase();
-    logger.info('✅ Database connected successfully');
-
-    // Find available port
-    const PORT = await findAvailablePort(process.env.PORT || 3000);
-    
-    app.listen(PORT, () => {
-      logger.info(`🚀 BookQubit API listening on port ${PORT}`);
-      logger.info(`📚 Environment: ${process.env.NODE_ENV || 'development'}`);
-      logger.info(`🔗 Health check: http://localhost:${PORT}/health`);
-    });
-  } catch (error) {
-    logger.error('❌ Failed to start server:', error);
-    process.exit(1);
-  }
+  console.log('✅ Geography module initialized via initModule');
 }
 
-process.on('uncaughtException', (error) => {
-  logger.error('Uncaught Exception:', error);
-  process.exit(1);
+// ==========================================
+// Test Route
+// ==========================================
+
+app.get('/api/v1/geography/test', (req, res) => {
+  res.json({ 
+    success: true, 
+    message: 'Geography test route is working',
+    timestamp: new Date().toISOString()
+  });
 });
 
-process.on('unhandledRejection', (error) => {
-  logger.error('Unhandled Rejection:', error);
-  process.exit(1);
+// ==========================================
+// 404 Handler
+// ==========================================
+
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+    path: req.path,
+    method: req.method,
+    timestamp: new Date().toISOString()
+  });
 });
 
-process.on('SIGTERM', () => {
-  logger.info('SIGTERM received. Shutting down gracefully...');
-  process.exit(0);
+// ==========================================
+// Error Handler
+// ==========================================
+
+app.use((err, req, res, next) => {
+  console.error('Error:', err.message);
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || 'Internal server error',
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    timestamp: new Date().toISOString()
+  });
 });
 
-process.on('SIGINT', () => {
-  logger.info('SIGINT received. Shutting down gracefully...');
-  process.exit(0);
+// ==========================================
+// Start Server
+// ==========================================
+
+app.listen(PORT, () => {
+  console.log('========================================');
+  console.log('🚀 BookQbit Server Started');
+  console.log('========================================');
+  console.log(`🌍 Server: http://localhost:${PORT}`);
+  console.log(`📡 API v1: http://localhost:${PORT}/api/v1`);
+  console.log(`🗺️  Geography: http://localhost:${PORT}/api/v1/geography/countries`);
+  console.log(`🔐 Admin: http://localhost:${PORT}/api/v1/admin/geography`);
+  console.log(`🏥 Health: http://localhost:${PORT}/health`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log('========================================');
 });
 
-startServer();
+export default app;

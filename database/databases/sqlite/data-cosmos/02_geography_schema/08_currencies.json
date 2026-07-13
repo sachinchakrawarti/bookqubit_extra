@@ -1,0 +1,19 @@
+[
+  { "id": 1, "code": "USD", "name": "US Dollar", "symbol": "$", "symbol_native": "$" },
+  { "id": 2, "code": "EUR", "name": "Euro", "symbol": "€", "symbol_native": "€" },
+  { "id": 3, "code": "GBP", "name": "British Pound", "symbol": "£", "symbol_native": "£" },
+  { "id": 4, "code": "JPY", "name": "Japanese Yen", "symbol": "¥", "symbol_native": "￥" },
+  { "id": 5, "code": "CNY", "name": "Chinese Yuan", "symbol": "¥", "symbol_native": "￥" },
+  { "id": 6, "code": "INR", "name": "Indian Rupee", "symbol": "₹", "symbol_native": "₹" },
+  { "id": 7, "code": "BRL", "name": "Brazilian Real", "symbol": "R$", "symbol_native": "R$" },
+  { "id": 8, "code": "CAD", "name": "Canadian Dollar", "symbol": "C$", "symbol_native": "$" },
+  { "id": 9, "code": "AUD", "name": "Australian Dollar", "symbol": "A$", "symbol_native": "$" },
+  { "id": 10, "code": "RUB", "name": "Russian Ruble", "symbol": "₽", "symbol_native": "₽" },
+  { "id": 11, "code": "KRW", "name": "South Korean Won", "symbol": "₩", "symbol_native": "₩" },
+  { "id": 12, "code": "ARS", "name": "Argentine Peso", "symbol": "AR$", "symbol_native": "$" },
+  { "id": 13, "code": "NGN", "name": "Nigerian Naira", "symbol": "₦", "symbol_native": "₦" },
+  { "id": 14, "code": "ZAR", "name": "South African Rand", "symbol": "R", "symbol_native": "R" },
+  { "id": 15, "code": "EGP", "name": "Egyptian Pound", "symbol": "E£", "symbol_native": "£" },
+  { "id": 16, "code": "MXN", "name": "Mexican Peso", "symbol": "MX$", "symbol_native": "$" },
+  { "id": 17, "code": "COP", "name": "Colombian Peso", "symbol": "COL$", "symbol_native": "$" }
+]

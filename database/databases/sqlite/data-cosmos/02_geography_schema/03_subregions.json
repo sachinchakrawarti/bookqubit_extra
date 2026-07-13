@@ -1,0 +1,22 @@
+[
+  { "id": 1, "name": "East Africa", "region_id": 1 },
+  { "id": 2, "name": "Horn of Africa", "region_id": 1 },
+  { "id": 3, "name": "West Africa", "region_id": 5 },
+  { "id": 4, "name": "Central Africa", "region_id": 2 },
+  { "id": 5, "name": "North Africa", "region_id": 3 },
+  { "id": 6, "name": "Southern Africa", "region_id": 4 },
+  { "id": 7, "name": "Great Lakes", "region_id": 1 },
+  { "id": 8, "name": "Caribbean Islands", "region_id": 6 },
+  { "id": 9, "name": "Central American Isthmus", "region_id": 7 },
+  { "id": 10, "name": "Amazon Basin", "region_id": 9 },
+  { "id": 11, "name": "Andean Region", "region_id": 9 },
+  { "id": 12, "name": "Caucasus", "region_id": 14 },
+  { "id": 13, "name": "Siberia", "region_id": 10 },
+  { "id": 14, "name": "Far East", "region_id": 11 },
+  { "id": 15, "name": "Indian Subcontinent", "region_id": 12 },
+  { "id": 16, "name": "Indochina", "region_id": 13 },
+  { "id": 17, "name": "Balkans", "region_id": 17 },
+  { "id": 18, "name": "Scandinavia", "region_id": 16 },
+  { "id": 19, "name": "British Isles", "region_id": 16 },
+  { "id": 20, "name": "Iberian Peninsula", "region_id": 17 }
+]

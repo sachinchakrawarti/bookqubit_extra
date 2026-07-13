@@ -1,0 +1,67 @@
+{
+  "name": "@bookqubit/engine",
+  "version": "1.0.0",
+  "description": "BookQbit Database Engine",
+  "main": "cli.js",
+
+  "scripts": {
+    "start": "node cli.js",
+    "setup": "node setup.js",
+    "install": "npm install",
+    "install:dev": "npm install --save-dev",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "build": "node cli.js build --all",
+    "generate": "node cli.js generate --all",
+    "seed": "node cli.js seed --all",
+    "backup": "node cli.js backup",
+    "validate": "node cli.js validate --all",
+    "doctor": "node cli.js doctor",
+    "clean": "node cli.js clean",
+    "reset": "npm run clean && npm run setup",
+    "audit": "npm audit",
+    "audit:fix": "npm audit fix",
+    "outdated": "npm outdated"
+  }
+
+  ,
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.5.0",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "fs-extra": "^10.1.0",
+    "glob": "^8.1.0",
+    "handlebars": "^4.7.8",
+    "inquirer": "^8.2.6",
+    "knex": "^2.4.2",
+    "lodash": "^4.17.21",
+    "ora": "^5.4.1",
+    "sqlite3": "^5.1.7",
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "jest": "^29.5.0",
+    "npm-force-resolutions": "^0.0.10",
+    "prettier": "^2.8.7"
+  },
+  "overrides": {
+    "tar": "6.2.1",
+    "@tootallnate/once": "2.0.1",
+    "cacache": "18.0.4",
+    "minipass": "4.2.8",
+    "minizlib": "2.1.2",
+    "fs-minipass": "3.0.3"
+  },
+  "resolutions": {
+    "tar": "6.2.1",
+    "@tootallnate/once": "2.0.1",
+    "cacache": "18.0.4"
+  }
+}

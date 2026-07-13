@@ -1,0 +1,113 @@
+{
+  "name": "@bookqubit/geography",
+  "version": "1.0.0",
+  "description": "Geography module for BookQbit - Manages countries, states, cities, and continents",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./config": "./config/geography.config.js",
+    "./constants": "./constants/index.js",
+    "./controllers": "./controllers/index.js",
+    "./controllers/admin": "./controllers/admin/index.js",
+    "./controllers/public": "./controllers/public/index.js",
+    "./controllers/analytics": "./controllers/analytics/index.js",
+    "./core": "./core/index.js",
+    "./core/exceptions": "./core/exceptions/index.js",
+    "./core/base": "./core/base/index.js",
+    "./db": "./db/sequelize.js",
+    "./dto": "./dto/index.js",
+    "./dto/create": "./dto/create/index.js",
+    "./dto/update": "./dto/update/index.js",
+    "./dto/filters": "./dto/filters/index.js",
+    "./entities": "./entities/index.js",
+    "./mappers": "./mappers/index.js",
+    "./middleware": "./middleware/index.js",
+    "./models": "./models/index.js",
+    "./models/sequelize": "./models/sequelize/index.js",
+    "./queries": "./queries/index.js",
+    "./repositories": "./repositories/index.js",
+    "./repositories/admin": "./repositories/admin/index.js",
+    "./repositories/public": "./repositories/public/index.js",
+    "./repositories/analytics": "./repositories/analytics/index.js",
+    "./routes": "./routes/index.js",
+    "./routes/public": "./routes/public/index.js",
+    "./routes/admin": "./routes/admin/index.js",
+    "./routes/analytics": "./routes/analytics/index.js",
+    "./services": "./services/index.js",
+    "./services/admin": "./services/admin/index.js",
+    "./services/public": "./services/public/index.js",
+    "./services/analytics": "./services/analytics/index.js",
+    "./transformers": "./transformers/index.js",
+    "./types": "./types/geography.types.js",
+    "./utils": "./utils/index.js",
+    "./validations": "./validations/index.js",
+    "./validations/schemas": "./validations/schemas/index.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest --testMatch='**/tests/unit/**/*.test.js'",
+    "test:integration": "jest --testMatch='**/tests/integration/**/*.test.js'",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write src/**/*.js",
+    "format:check": "prettier --check src/**/*.js",
+    "build": "node scripts/build.js",
+    "clean": "rm -rf dist node_modules",
+    "prepublishOnly": "npm run test && npm run build",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "@bookqubit/core": "^1.0.0",
+    "axios": "^1.18.1",
+    "chalk": "^5.6.2",
+    "joi": "^18.2.3",
+    "lodash": "^4.17.21",
+    "sequelize": "^6.37.8",
+    "sqlite3": "^5.1.7",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.4.1",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.15.4",
+    "eslint-plugin-prettier": "^5.5.4",
+    "jest": "^30.4.2",
+    "jest-html-reporter": "^4.4.0",
+    "prettier": "^3.0.0",
+    "sinon": "^22.0.0",
+    "supertest": "^7.2.2"
+  },
+  "peerDependencies": {
+    "express": "^4.22.2"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "geography",
+    "countries",
+    "states",
+    "cities",
+    "continents",
+    "bookqubit"
+  ],
+  "author": "BookQbit Team",
+  "license": "ISC",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bookqubit/geography.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bookqubit/geography/issues"
+  },
+  "homepage": "https://github.com/bookqubit/geography#readme"
+}

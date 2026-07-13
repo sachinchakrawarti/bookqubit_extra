@@ -1,0 +1,22 @@
+[
+  { "country_id": 1, "standard": "ISO-3166-1", "code": "USA", "is_preferred": 1 },
+  { "country_id": 2, "standard": "ISO-3166-1", "code": "GBR", "is_preferred": 1 },
+  { "country_id": 3, "standard": "ISO-3166-1", "code": "CAN", "is_preferred": 1 },
+  { "country_id": 4, "standard": "ISO-3166-1", "code": "AUS", "is_preferred": 1 },
+  { "country_id": 5, "standard": "ISO-3166-1", "code": "DEU", "is_preferred": 1 },
+  { "country_id": 6, "standard": "ISO-3166-1", "code": "FRA", "is_preferred": 1 },
+  { "country_id": 7, "standard": "ISO-3166-1", "code": "JPN", "is_preferred": 1 },
+  { "country_id": 8, "standard": "ISO-3166-1", "code": "CHN", "is_preferred": 1 },
+  { "country_id": 9, "standard": "ISO-3166-1", "code": "IND", "is_preferred": 1 },
+  { "country_id": 10, "standard": "ISO-3166-1", "code": "BRA", "is_preferred": 1 },
+  { "country_id": 11, "standard": "ISO-3166-1", "code": "ZAF", "is_preferred": 1 },
+  { "country_id": 12, "standard": "ISO-3166-1", "code": "EGY", "is_preferred": 1 },
+  { "country_id": 13, "standard": "ISO-3166-1", "code": "NGA", "is_preferred": 1 },
+  { "country_id": 14, "standard": "ISO-3166-1", "code": "MEX", "is_preferred": 1 },
+  { "country_id": 15, "standard": "ISO-3166-1", "code": "ITA", "is_preferred": 1 },
+  { "country_id": 16, "standard": "ISO-3166-1", "code": "ESP", "is_preferred": 1 },
+  { "country_id": 17, "standard": "ISO-3166-1", "code": "RUS", "is_preferred": 1 },
+  { "country_id": 18, "standard": "ISO-3166-1", "code": "KOR", "is_preferred": 1 },
+  { "country_id": 19, "standard": "ISO-3166-1", "code": "ARG", "is_preferred": 1 },
+  { "country_id": 20, "standard": "ISO-3166-1", "code": "COL", "is_preferred": 1 }
+]

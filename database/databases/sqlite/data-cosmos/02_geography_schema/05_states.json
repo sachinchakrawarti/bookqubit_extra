@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "country_id": 1,
+    "code": "CA",
+    "name": "California",
+    "native_name": "California",
+    "capital": "Sacramento",
+    "population": 39538223,
+    "area_km2": 423970,
+    "is_active": 1
+  },
+  {
+    "id": 2,
+    "country_id": 1,
+    "code": "TX",
+    "name": "Texas",
+    "native_name": "Texas",
+    "capital": "Austin",
+    "population": 29145505,
+    "area_km2": 695662,
+    "is_active": 1
+  },
+  {
+    "id": 3,
+    "country_id": 1,
+    "code": "NY",
+    "name": "New York",
+    "native_name": "New York",
+    "capital": "Albany",
+    "population": 20201249,
+    "area_km2": 141297,
+    "is_active": 1
+  },
+  {
+    "id": 4,
+    "country_id": 1,
+    "code": "FL",
+    "name": "Florida",
+    "native_name": "Florida",
+    "capital": "Tallahassee",
+    "population": 21538187,
+    "area_km2": 170312,
+    "is_active": 1
+  },
+  {
+    "id": 5,
+    "country_id": 1,
+    "code": "IL",
+    "name": "Illinois",
+    "native_name": "Illinois",
+    "capital": "Springfield",
+    "population": 12812508,
+    "area_km2": 149997,
+    "is_active": 1
+  },
+  {
+    "id": 6,
+    "country_id": 2,
+    "code": "ENG",
+    "name": "England",
+    "native_name": "England",
+    "capital": "London",
+    "population": 55980000,
+    "area_km2": 130279,
+    "is_active": 1
+  },
+  {
+    "id": 7,
+    "country_id": 2,
+    "code": "SCT",
+    "name": "Scotland",
+    "native_name": "Scotland",
+    "capital": "Edinburgh",
+    "population": 5460000,
+    "area_km2": 77933,
+    "is_active": 1
+  },
+  {
+    "id": 8,
+    "country_id": 2,
+    "code": "WLS",
+    "name": "Wales",
+    "native_name": "Wales",
+    "capital": "Cardiff",
+    "population": 3139000,
+    "area_km2": 20779,
+    "is_active": 1
+  },
+  {
+    "id": 9,
+    "country_id": 2,
+    "code": "NIR",
+    "name": "Northern Ireland",
+    "native_name": "Northern Ireland",
+    "capital": "Belfast",
+    "population": 1895000,
+    "area_km2": 14130,
+    "is_active": 1
+  },
+  {
+    "id": 10,
+    "country_id": 3,
+    "code": "ON",
+    "name": "Ontario",
+    "native_name": "Ontario",
+    "capital": "Toronto",
+    "population": 14755000,
+    "area_km2": 1076395,
+    "is_active": 1
+  },
+  {
+    "id": 11,
+    "country_id": 3,
+    "code": "QC",
+    "name": "Quebec",
+    "native_name": "Québec",
+    "capital": "Quebec City",
+    "population": 8580000,
+    "area_km2": 1542056,
+    "is_active": 1
+  },
+  {
+    "id": 12,
+    "country_id": 5,
+    "code": "BY",
+    "name": "Bavaria",
+    "native_name": "Bayern",
+    "capital": "Munich",
+    "population": 13124737,
+    "area_km2": 70550,
+    "is_active": 1
+  },
+  {
+    "id": 13,
+    "country_id": 5,
+    "code": "NW",
+    "name": "North Rhine-Westphalia",
+    "native_name": "Nordrhein-Westfalen",
+    "capital": "Düsseldorf",
+    "population": 17926000,
+    "area_km2": 34085,
+    "is_active": 1
+  },
+  {
+    "id": 14,
+    "country_id": 6,
+    "code": "IDF",
+    "name": "Île-de-France",
+    "native_name": "Île-de-France",
+    "capital": "Paris",
+    "population": 12271000,
+    "area_km2": 12011,
+    "is_active": 1
+  },
+  {
+    "id": 15,
+    "country_id": 6,
+    "code": "ARA",
+    "name": "Auvergne-Rhône-Alpes",
+    "native_name": "Auvergne-Rhône-Alpes",
+    "capital": "Lyon",
+    "population": 8060000,
+    "area_km2": 69711,
+    "is_active": 1
+  }
+]

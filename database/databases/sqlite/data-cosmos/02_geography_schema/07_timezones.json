@@ -1,0 +1,17 @@
+[
+  { "id": 1, "name": "Pacific Time", "offset": "-08:00", "code": "PT" },
+  { "id": 2, "name": "Central Time", "offset": "-06:00", "code": "CT" },
+  { "id": 3, "name": "Eastern Time", "offset": "-05:00", "code": "ET" },
+  { "id": 4, "name": "Mountain Time", "offset": "-07:00", "code": "MT" },
+  { "id": 5, "name": "GMT/BST", "offset": "+00:00", "code": "GMT" },
+  { "id": 6, "name": "Eastern Time (Canada)", "offset": "-05:00", "code": "ET" },
+  { "id": 7, "name": "Central European Time", "offset": "+01:00", "code": "CET" },
+  { "id": 8, "name": "Eastern European Time", "offset": "+02:00", "code": "EET" },
+  { "id": 9, "name": "Japan Standard Time", "offset": "+09:00", "code": "JST" },
+  { "id": 10, "name": "China Standard Time", "offset": "+08:00", "code": "CST" },
+  { "id": 11, "name": "India Standard Time", "offset": "+05:30", "code": "IST" },
+  { "id": 12, "name": "Australian Eastern Time", "offset": "+10:00", "code": "AET" },
+  { "id": 13, "name": "Moscow Time", "offset": "+03:00", "code": "MSK" },
+  { "id": 14, "name": "Brazil Time", "offset": "-03:00", "code": "BRT" },
+  { "id": 15, "name": "Argentina Time", "offset": "-03:00", "code": "ART" }
+]
