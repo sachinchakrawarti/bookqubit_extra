@@ -7,6 +7,9 @@ yarn-error.log*
 server/logs/
 server/src/logs/
 
+node_modules/
+
+
 # Runtime data
 pids/
 *.pid
