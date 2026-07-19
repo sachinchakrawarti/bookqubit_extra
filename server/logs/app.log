@@ -1,0 +1,141 @@
+{"level":30,"time":"2026-07-19T10:36:29.722Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:36:29.722Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"🚀 BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:36:29.722Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:36:29.722Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"Environment : development"}
+{"level":30,"time":"2026-07-19T10:36:29.722Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"Host        : localhost"}
+{"level":30,"time":"2026-07-19T10:36:29.722Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"Port        : 5000"}
+{"level":30,"time":"2026-07-19T10:36:29.722Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"URL         : http://localhost:5000"}
+{"level":30,"time":"2026-07-19T10:36:29.723Z","pid":14292,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":50,"time":"2026-07-19T10:36:34.991Z","pid":9816,"hostname":"DESKTOP-IFRM7BU","err":{"type":"Error","message":"listen EADDRINUSE: address already in use :::5000","stack":"Error: listen EADDRINUSE: address already in use :::5000\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at file:///D:/Projects/done/bookqubit_extra/server/src/server.js:11:8\n    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":5000},"msg":"listen EADDRINUSE: address already in use :::5000"}
+{"level":30,"time":"2026-07-19T10:36:45.404Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:36:45.405Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"🚀 BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:36:45.405Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:36:45.405Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"Environment : development"}
+{"level":30,"time":"2026-07-19T10:36:45.405Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"Host        : localhost"}
+{"level":30,"time":"2026-07-19T10:36:45.405Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"Port        : 5000"}
+{"level":30,"time":"2026-07-19T10:36:45.405Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"URL         : http://localhost:5000"}
+{"level":30,"time":"2026-07-19T10:36:45.405Z","pid":14148,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":50,"time":"2026-07-19T10:36:45.405Z","pid":24844,"hostname":"DESKTOP-IFRM7BU","err":{"type":"Error","message":"listen EADDRINUSE: address already in use :::5000","stack":"Error: listen EADDRINUSE: address already in use :::5000\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at file:///D:/Projects/done/bookqubit_extra/server/src/server.js:11:8\n    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":5000},"msg":"listen EADDRINUSE: address already in use :::5000"}
+{"level":30,"time":"2026-07-19T10:36:56.164Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:36:56.165Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"🚀 BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:36:56.165Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:36:56.165Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"Environment : development"}
+{"level":30,"time":"2026-07-19T10:36:56.165Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"Host        : localhost"}
+{"level":30,"time":"2026-07-19T10:36:56.165Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"Port        : 5000"}
+{"level":30,"time":"2026-07-19T10:36:56.165Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"URL         : http://localhost:5000"}
+{"level":30,"time":"2026-07-19T10:36:56.166Z","pid":18120,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:17.058Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:17.060Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"🚀 BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:37:17.060Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:17.060Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"Environment : development"}
+{"level":30,"time":"2026-07-19T10:37:17.060Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"Host        : localhost"}
+{"level":30,"time":"2026-07-19T10:37:17.060Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"Port        : 5000"}
+{"level":30,"time":"2026-07-19T10:37:17.060Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"URL         : http://localhost:5000"}
+{"level":30,"time":"2026-07-19T10:37:17.060Z","pid":14524,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:18.470Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:18.472Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"🚀 BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:37:18.473Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:18.473Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"Environment : development"}
+{"level":30,"time":"2026-07-19T10:37:18.473Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"Host        : localhost"}
+{"level":30,"time":"2026-07-19T10:37:18.473Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"Port        : 5000"}
+{"level":30,"time":"2026-07-19T10:37:18.473Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"URL         : http://localhost:5000"}
+{"level":30,"time":"2026-07-19T10:37:18.473Z","pid":17560,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:29.321Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:29.322Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"🚀 BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:37:29.322Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:37:29.322Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"Environment : development"}
+{"level":30,"time":"2026-07-19T10:37:29.322Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"Host        : localhost"}
+{"level":30,"time":"2026-07-19T10:37:29.322Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"Port        : 5000"}
+{"level":30,"time":"2026-07-19T10:37:29.322Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"URL         : http://localhost:5000"}
+{"level":30,"time":"2026-07-19T10:37:29.322Z","pid":15080,"hostname":"DESKTOP-IFRM7BU","msg":"========================================"}
+{"level":30,"time":"2026-07-19T10:40:28.968Z","pid":18924,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:40:30.578Z","pid":18924,"hostname":"DESKTOP-IFRM7BU","req":{"method":"GET","url":"/"},"res":{"statusCode":304},"responseTime":8,"msg":"GET / 304"}
+{"level":30,"time":"2026-07-19T10:40:32.029Z","pid":18924,"hostname":"DESKTOP-IFRM7BU","req":{"method":"GET","url":"/"},"res":{"statusCode":304},"responseTime":4,"msg":"GET / 304"}
+{"level":30,"time":"2026-07-19T10:40:33.294Z","pid":18924,"hostname":"DESKTOP-IFRM7BU","req":{"method":"GET","url":"/"},"res":{"statusCode":304},"responseTime":2,"msg":"GET / 304"}
+{"level":30,"time":"2026-07-19T10:40:39.810Z","pid":18924,"hostname":"DESKTOP-IFRM7BU","req":{"method":"GET","url":"/"},"res":{"statusCode":304},"responseTime":2,"msg":"GET / 304"}
+{"level":30,"time":"2026-07-19T10:43:36.618Z","pid":10476,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:43:58.317Z","pid":17080,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:44:09.466Z","pid":18636,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:44:21.273Z","pid":17224,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:44:33.382Z","pid":14788,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:44:44.601Z","pid":17044,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:45:02.963Z","pid":20912,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:45:16.485Z","pid":12676,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:45:27.806Z","pid":6376,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:45:40.306Z","pid":3568,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:45:54.312Z","pid":16744,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:46:17.755Z","pid":18792,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:46:26.659Z","pid":16820,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:46:42.637Z","pid":2180,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:46:54.078Z","pid":7152,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:47:38.091Z","pid":7152,"hostname":"DESKTOP-IFRM7BU","req":{"method":"HEAD","url":"/"},"res":{"statusCode":200},"responseTime":6,"msg":"HEAD / 200"}
+{"level":30,"time":"2026-07-19T10:47:57.524Z","pid":7152,"hostname":"DESKTOP-IFRM7BU","req":{"method":"HEAD","url":"/"},"res":{"statusCode":200},"responseTime":2,"msg":"HEAD / 200"}
+{"level":30,"time":"2026-07-19T10:48:35.736Z","pid":7152,"hostname":"DESKTOP-IFRM7BU","req":{"method":"GET","url":"/"},"res":{"statusCode":200},"responseTime":6,"msg":"GET / 200"}
+{"level":30,"time":"2026-07-19T10:48:43.225Z","pid":7152,"hostname":"DESKTOP-IFRM7BU","req":{"method":"GET","url":"/"},"res":{"statusCode":200},"responseTime":2,"msg":"GET / 200"}
+{"level":30,"time":"2026-07-19T10:49:45.047Z","pid":7088,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:49:55.279Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:50:57.682Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"GET","url":"/","status":304,"responseTime":"23ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:08.818Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.204Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.240Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.276Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.312Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.345Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"1ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.380Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.415Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.450Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.485Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:21.521Z","pid":21644,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:51:51.252Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:52:02.030Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"22ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.320Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.367Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.411Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.455Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":200,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.504Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":429,"responseTime":"5ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.541Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":429,"responseTime":"1ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.580Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":429,"responseTime":"2ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.624Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":429,"responseTime":"1ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.665Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":429,"responseTime":"3ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:05.706Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"HEAD","url":"/","status":429,"responseTime":"1ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:52:28.166Z","pid":22136,"hostname":"DESKTOP-IFRM7BU","method":"GET","url":"/error","status":429,"responseTime":"4ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:54:24.617Z","pid":12552,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":50,"time":"2026-07-19T10:54:36.077Z","pid":12552,"hostname":"DESKTOP-IFRM7BU","err":{"type":"Error","message":"Testing Global Error Handler","stack":"Error: Testing Global Error Handler\n    at file:///D:/Projects/done/bookqubit_extra/server/src/routes.js:18:11\n    at Layer.handleRequest (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:582:12)\n    at next (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:291:5)\n    at Function.handle (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:186:3)"},"msg":"Testing Global Error Handler"}
+{"level":30,"time":"2026-07-19T10:54:36.084Z","pid":12552,"hostname":"DESKTOP-IFRM7BU","method":"GET","url":"/error","status":500,"responseTime":"21ms","ip":"::1","msg":"HTTP Request"}
+{"level":50,"time":"2026-07-19T10:54:37.040Z","pid":12552,"hostname":"DESKTOP-IFRM7BU","err":{"type":"Error","message":"Testing Global Error Handler","stack":"Error: Testing Global Error Handler\n    at file:///D:/Projects/done/bookqubit_extra/server/src/routes.js:18:11\n    at Layer.handleRequest (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:582:12)\n    at next (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:291:5)\n    at Function.handle (D:\\Projects\\done\\bookqubit_extra\\server\\node_modules\\router\\index.js:186:3)"},"msg":"Testing Global Error Handler"}
+{"level":30,"time":"2026-07-19T10:54:37.041Z","pid":12552,"hostname":"DESKTOP-IFRM7BU","method":"GET","url":"/error","status":500,"responseTime":"4ms","ip":"::1","msg":"HTTP Request"}
+{"level":30,"time":"2026-07-19T10:57:39.818Z","pid":9136,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:57:51.663Z","pid":4904,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:58:02.427Z","pid":20800,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:58:24.448Z","pid":25004,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:58:42.132Z","pid":15132,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:58:55.385Z","pid":21072,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:59:23.292Z","pid":25244,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T10:59:40.320Z","pid":1760,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:02:21.869Z","pid":2920,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:02:33.176Z","pid":12368,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:02:48.904Z","pid":17628,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:03:01.857Z","pid":9248,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:03:16.188Z","pid":23156,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:03:29.404Z","pid":23372,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:03:44.693Z","pid":22244,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:05:35.810Z","pid":21328,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T11:14:58.978Z","pid":21236,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:36:57.002Z","pid":17564,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:52:18.174Z","pid":18688,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:52:43.543Z","pid":5440,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:52:57.057Z","pid":15692,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:53:41.610Z","pid":2620,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:53:56.930Z","pid":17640,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:54:10.174Z","pid":18380,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:54:21.530Z","pid":18680,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:54:33.019Z","pid":13396,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:54:58.224Z","pid":23480,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:55:17.278Z","pid":24692,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:57:23.935Z","pid":20504,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:57:40.088Z","pid":19084,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:57:53.959Z","pid":7400,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:58:07.909Z","pid":13964,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T15:58:23.330Z","pid":3616,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T16:01:52.153Z","pid":20700,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}
+{"level":30,"time":"2026-07-19T16:02:05.656Z","pid":23520,"hostname":"DESKTOP-IFRM7BU","environment":"development","host":"localhost","port":"5000","url":"http://localhost:5000","msg":"BookQubit Server Started"}

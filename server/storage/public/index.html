@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookQubit Server V 1.0.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center overflow-hidden relative">
+    
+    <!-- Animated gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-950 via-black to-blue-950 animate-gradient"></div>
+    
+    <!-- Animated grid overlay -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxNjgsIDg1LCAyNDcsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-50"></div>
+
+    <!-- Floating particles (increased) -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="particle w-1 h-1 bg-purple-400 rounded-full top-10 left-10" style="animation-delay: 0s;"></div>
+        <div class="particle w-1.5 h-1.5 bg-blue-400 rounded-full top-20 right-20" style="animation-delay: 2s;"></div>
+        <div class="particle w-2 h-2 bg-pink-400 rounded-full bottom-10 left-1/3" style="animation-delay: 4s;"></div>
+        <div class="particle w-1 h-1 bg-cyan-400 rounded-full bottom-20 right-1/4" style="animation-delay: 1s;"></div>
+        <div class="particle w-1.5 h-1.5 bg-indigo-400 rounded-full top-1/2 left-5" style="animation-delay: 3s;"></div>
+        <div class="particle w-1 h-1 bg-violet-400 rounded-full top-1/3 right-10" style="animation-delay: 2.5s;"></div>
+        <div class="particle w-1 h-1 bg-red-400 rounded-full top-40 left-1/2" style="animation-delay: 1.5s;"></div>
+        <div class="particle w-1.5 h-1.5 bg-yellow-400 rounded-full bottom-40 left-20" style="animation-delay: 3.5s;"></div>
+        <div class="particle w-2 h-2 bg-green-400 rounded-full top-60 right-40" style="animation-delay: 0.5s;"></div>
+        <div class="particle w-1 h-1 bg-orange-400 rounded-full bottom-30 right-10" style="animation-delay: 4.5s;"></div>
+    </div>
+
+    <!-- Glowing orb behind content -->
+    <div class="absolute w-96 h-96 bg-purple-600 rounded-full blur-3xl opacity-20 animate-float"></div>
+    <div class="absolute w-96 h-96 bg-blue-600 rounded-full blur-3xl opacity-20 animate-float-delayed"></div>
+
+    <!-- Main content -->
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+        <!-- Logo/Icon -->
+        <div class="mb-8 animate-float-slow">
+            <div class="w-24 h-24 mx-auto bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/50 rotate-3 hover:rotate-12 transition-all duration-500">
+                <span class="text-4xl font-black text-white">BQ</span>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl md:text-7xl font-bold text-center text-white mb-4 animate-fade-in-down">
+            BookQubit 
+            <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-text">
+                Server
+            </span>
+        </h1>
+        
+        <!-- Version with animated badge -->
+        <div class="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 animate-fade-in-up opacity-0 [animation-delay:0.3s] [animation-fill-mode:forwards]">
+            <span class="text-sm font-mono text-gray-300">Version</span>
+            <span class="ml-2 text-sm font-mono text-purple-400 animate-pulse">1.0.0</span>
+        </div>
+
+        <!-- Description -->
+        <p class="text-xl md:text-2xl text-gray-300 text-center max-w-2xl mx-auto animate-fade-in-up opacity-0 [animation-delay:0.6s] [animation-fill-mode:forwards]">
+            Welcome to the BookQubit Server — your gateway to seamless book management.
+        </p>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 animate-fade-in-up opacity-0 [animation-delay:1s] [animation-fill-mode:forwards]">
+            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+                <div class="text-2xl font-bold text-purple-400 group-hover:scale-110 transition-transform">1.2k</div>
+                <div class="text-xs text-gray-400 mt-1">Books</div>
+            </div>
+            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+                <div class="text-2xl font-bold text-blue-400 group-hover:scale-110 transition-transform">842</div>
+                <div class="text-xs text-gray-400 mt-1">Authors</div>
+            </div>
+            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+                <div class="text-2xl font-bold text-pink-400 group-hover:scale-110 transition-transform">3.4k</div>
+                <div class="text-xs text-gray-400 mt-1">Users</div>
+            </div>
+            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+                <div class="text-2xl font-bold text-green-400 group-hover:scale-110 transition-transform">99.9%</div>
+                <div class="text-xs text-gray-400 mt-1">Uptime</div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="mt-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 animate-fade-in-up opacity-0 [animation-delay:1.3s] [animation-fill-mode:forwards]">
+            <div class="flex items-center gap-2">
+                <div class="relative">
+                    <div class="w-3 h-3 bg-green-400 rounded-full animate-ping absolute"></div>
+                    <div class="w-3 h-3 bg-green-400 rounded-full relative"></div>
+                </div>
+                <span class="text-sm text-gray-400 font-mono">● ONLINE</span>
+            </div>
+            <div class="hidden md:block w-px h-6 bg-white/10"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                <span class="text-sm text-gray-400 font-mono">● LOAD 42%</span>
+            </div>
+            <div class="hidden md:block w-px h-6 bg-white/10"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                <span class="text-sm text-gray-400 font-mono">● 1.2k REQUESTS</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-4 animate-fade-in-up opacity-0 [animation-delay:1.6s] [animation-fill-mode:forwards]">
+            <button class="px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full font-semibold text-white hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300">
+                🚀 Get Started
+            </button>
+            <button class="px-8 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-full font-semibold text-gray-300 hover:bg-white/10 hover:scale-105 transition-all duration-300">
+                📚 Documentation
+            </button>
+            <button class="px-8 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-full font-semibold text-gray-300 hover:bg-white/10 hover:scale-105 transition-all duration-300">
+                💬 Support
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-16 text-xs text-gray-600 font-mono animate-fade-in-up opacity-0 [animation-delay:2s] [animation-fill-mode:forwards]">
+            <span class="inline-block animate-pulse">⚡</span> 
+            BookQubit Server v1.0.0 • Built with ❤️
+        </div>
+    </div>
+
+    <style>
+        /* Keyframes */
+        @keyframes fade-in-down {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.2); }
+        }
+
+        @keyframes float-delayed {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, 50px) scale(1.1); }
+        }
+
+        @keyframes particle-float {
+            0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-200px) translateX(50px) scale(0); opacity: 0; }
+        }
+
+        @keyframes gradient-text {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Classes */
+        .animate-fade-in-down {
+            animation: fade-in-down 1s ease-out forwards;
+        }
+        
+        .animate-fade-in-up {
+            animation: fade-in-up 1s ease-out forwards;
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float-delayed 7s ease-in-out infinite;
+        }
+
+        .animate-float-slow {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-gradient-text {
+            background-size: 200% 200%;
+            animation: gradient-text 3s ease infinite;
+        }
+
+        .particle {
+            animation: particle-float 8s ease-in infinite;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</body>
+</html>
