@@ -15,6 +15,9 @@ async function main() {
             case '--scrape':
                 await scrapeComics();
                 break;
+            case '--scrape-wiki':
+                await scrapeWikipedia();
+                break;
             case '--scrape-all':
                 await scrapeAllSources();
                 break;
@@ -43,6 +46,12 @@ async function scrapeComics() {
     console.log(chalk.blue('Starting comic scraping...'));
     const comics = await scraperService.scrapeComicBookResources();
     console.log(chalk.green(`✓ Scraped ${comics.length} comics`));
+}
+
+async function scrapeWikipedia() {
+    console.log(chalk.blue('Starting Wikipedia scraping...'));
+    const comics = await scraperService.scrapeWikipedia();
+    console.log(chalk.green(`✓ Scraped ${comics.length} comics from Wikipedia`));
 }
 
 async function scrapeAllSources() {
@@ -111,12 +120,13 @@ async function showStats() {
 
 function showHelp() {
     console.log(chalk.yellow('Comic Scraper Commands:'));
-    console.log('  --scrape      Scrape comics from ComicBookResources');
-    console.log('  --scrape-all  Scrape from all sources');
-    console.log('  --view        View all comics in database');
-    console.log('  --search      Search comics by title');
-    console.log('  --init-db     Initialize database');
-    console.log('  --stats       Show database statistics');
+    console.log('  --scrape       Scrape comics from ComicBookResources');
+    console.log('  --scrape-wiki  Scrape comics from Wikipedia');
+    console.log('  --scrape-all   Scrape from all sources');
+    console.log('  --view         View all comics in database');
+    console.log('  --search       Search comics by title');
+    console.log('  --init-db      Initialize database');
+    console.log('  --stats        Show database statistics');
     console.log('\nExamples:');
     console.log('  npm run scrape');
     console.log('  npm run search -- "marvel"');

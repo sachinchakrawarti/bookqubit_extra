@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Database</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>📚 Comic Database</h1>
+            <div class="header-stats" id="headerStats">
+                <span>Loading...</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <button class="nav-btn active" onclick="location.reload()">📋 All Comics</button>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="🔍 Search comics..." />
+                <button onclick="performSearch()">Search</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div id="content">
+            <div class="loading">⏳ Loading comics...</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Comic Scraper v1.0 | Data from Wikipedia</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -3,16 +3,20 @@
   "version": "1.0.0",
   "description": "Comic info web scraper with SQLite storage",
   "main": "index.js",
+
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "jest",
     "scrape": "node index.js --scrape",
+    "scrape:wiki": "node index.js --scrape-wiki",
     "scrape:all": "node index.js --scrape-all",
     "view": "node index.js --view",
     "search": "node index.js --search",
-    "db:init": "node index.js --init-db"
-  },
+    "db:init": "node index.js --init-db",
+    "stats": "node index.js --stats"
+  }
+,
   "keywords": ["comic", "scraper", "sqlite", "webscraping"],
   "author": "Your Name",
   "license": "MIT",

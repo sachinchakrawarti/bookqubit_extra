@@ -50,3 +50,12 @@
 {"level":"error","message":"Failed to fetch https://www.cbr.com/news/comics/: Request failed with status code 404","service":"comic-scraper","timestamp":"2026-08-03 16:52:27"}
 {"level":"info","message":"Fetching: https://www.cbr.com/tag/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:27"}
 {"level":"info","message":"Found 0 comics","service":"comic-scraper","timestamp":"2026-08-03 16:52:27"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-04 09:20:50"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-04 09:20:50"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-04 09:26:17"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-04 09:26:17"}
+{"level":"error","message":"Error in scrapeAll: scrapeDetails() must be implemented by subclass","service":"comic-scraper","timestamp":"2026-08-04 09:26:40"}
+{"0":"s","1":"c","10":"i","11":"l","12":"s","13":"(","14":")","15":" ","16":"m","17":"u","18":"s","19":"t","2":"r","20":" ","21":"b","22":"e","23":" ","24":"i","25":"m","26":"p","27":"l","28":"e","29":"m","3":"a","30":"e","31":"n","32":"t","33":"e","34":"d","35":" ","36":"b","37":"y","38":" ","39":"s","4":"p","40":"u","41":"b","42":"c","43":"l","44":"a","45":"s","46":"s","5":"e","6":"D","7":"e","8":"t","9":"a","level":"error","message":"Error scraping Wikipedia:","service":"comic-scraper","timestamp":"2026-08-04 09:26:40"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-04 09:27:40"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-04 09:27:40"}
+{"level":"info","message":"Inserted 10 comics from Wikipedia","service":"comic-scraper","timestamp":"2026-08-04 09:28:03"}

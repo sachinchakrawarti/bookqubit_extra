@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Comic API Test</h1>
+    <button onclick="testAPI()">Test API</button>
+    <div id="result" style="margin-top:20px;padding:20px;background:#f0f0f0;border-radius:8px;"></div>
+
+    <script>
+        async function testAPI() {
+            const result = document.getElementById('result');
+            result.innerHTML = '⏳ Testing API connection...';
+            
+            try {
+                // Test health endpoint
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                result.innerHTML = `
+                    <h3>✅ API is working!</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                    <hr>
+                    <h4>Testing comics endpoint...</h4>
+                `;
+                
+                // Test comics endpoint
+                const comicsResponse = await fetch('/api/comics');
+                const comics = await comicsResponse.json();
+                result.innerHTML += `
+                    <p>📚 Found ${comics.length} comics</p>
+                    <pre>${JSON.stringify(comics.slice(0, 3), null, 2)}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <h3>❌ API Error</h3>
+                    <p>Error: ${error.message}</p>
+                    <p>Please make sure the server is running at http://localhost:3000</p>
+                `;
+                console.error('Error:', error);
+            }
+        }
+        
+        // Auto-test on load
+        testAPI();
+    </script>
+</body>
+</html>
