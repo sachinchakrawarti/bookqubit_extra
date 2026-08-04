@@ -1,0 +1,52 @@
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:47:57"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:47:57"}
+{"level":"info","message":"Database closed","service":"comic-scraper","timestamp":"2026-08-03 16:47:57"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:47:57"}
+{"level":"info","message":"Fetching: https://www.comicbookresources.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:48:04"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:48:04"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:48:04"}
+{"level":"warn","message":"Retry 1/3 for https://www.comicbookresources.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:48:05"}
+{"level":"info","message":"Fetching: https://www.comicbookresources.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:48:06"}
+{"level":"warn","message":"Retry 2/3 for https://www.comicbookresources.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:48:07"}
+{"level":"info","message":"Fetching: https://www.comicbookresources.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:48:09"}
+{"level":"warn","message":"Retry 3/3 for https://www.comicbookresources.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:48:09"}
+{"level":"info","message":"Fetching: https://www.comicbookresources.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:48:12"}
+{"level":"error","message":"Failed to fetch https://www.comicbookresources.com/category/comic-news: Request failed with status code 404","service":"comic-scraper","timestamp":"2026-08-03 16:48:12"}
+{"level":"error","message":"ComicBookResources scrapeList error: Request failed with status code 404","service":"comic-scraper","timestamp":"2026-08-03 16:48:12"}
+{"level":"info","message":"Inserted 0 comics from ComicBookResources","service":"comic-scraper","timestamp":"2026-08-03 16:48:12"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:48:25"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:48:25"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:48:35"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:48:35"}
+{"level":"info","message":"Fetching: https://www.cbr.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:49:33"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:49:33"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:49:33"}
+{"level":"warn","message":"Retry 1/3 for https://www.cbr.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:49:35"}
+{"level":"info","message":"Fetching: https://www.cbr.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:49:36"}
+{"level":"warn","message":"Retry 2/3 for https://www.cbr.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:49:38"}
+{"level":"info","message":"Fetching: https://www.cbr.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:49:40"}
+{"level":"warn","message":"Retry 3/3 for https://www.cbr.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:49:41"}
+{"level":"info","message":"Fetching: https://www.cbr.com/category/comic-news","service":"comic-scraper","timestamp":"2026-08-03 16:49:44"}
+{"level":"error","message":"Failed to fetch https://www.cbr.com/category/comic-news: Request failed with status code 404","service":"comic-scraper","timestamp":"2026-08-03 16:49:45"}
+{"level":"error","message":"ComicBookResources scrapeList error: Request failed with status code 404","service":"comic-scraper","timestamp":"2026-08-03 16:49:45"}
+{"level":"info","message":"Inserted 0 comics from ComicBookResources","service":"comic-scraper","timestamp":"2026-08-03 16:49:45"}
+{"level":"info","message":"Fetching: https://www.cbr.com/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:11"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:52:11"}
+{"level":"info","message":"Database table initialized","service":"comic-scraper","timestamp":"2026-08-03 16:52:11"}
+{"level":"warn","message":"Retry 1/3 for https://www.cbr.com/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:12"}
+{"level":"info","message":"Fetching: https://www.cbr.com/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:13"}
+{"level":"warn","message":"Retry 2/3 for https://www.cbr.com/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:13"}
+{"level":"info","message":"Fetching: https://www.cbr.com/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:15"}
+{"level":"warn","message":"Retry 3/3 for https://www.cbr.com/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:16"}
+{"level":"info","message":"Fetching: https://www.cbr.com/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:19"}
+{"level":"error","message":"Failed to fetch https://www.cbr.com/comic-news/: Request failed with status code 404","service":"comic-scraper","timestamp":"2026-08-03 16:52:19"}
+{"level":"info","message":"Fetching: https://www.cbr.com/news/comics/","service":"comic-scraper","timestamp":"2026-08-03 16:52:19"}
+{"level":"warn","message":"Retry 1/3 for https://www.cbr.com/news/comics/","service":"comic-scraper","timestamp":"2026-08-03 16:52:20"}
+{"level":"info","message":"Fetching: https://www.cbr.com/news/comics/","service":"comic-scraper","timestamp":"2026-08-03 16:52:21"}
+{"level":"warn","message":"Retry 2/3 for https://www.cbr.com/news/comics/","service":"comic-scraper","timestamp":"2026-08-03 16:52:21"}
+{"level":"info","message":"Fetching: https://www.cbr.com/news/comics/","service":"comic-scraper","timestamp":"2026-08-03 16:52:23"}
+{"level":"warn","message":"Retry 3/3 for https://www.cbr.com/news/comics/","service":"comic-scraper","timestamp":"2026-08-03 16:52:23"}
+{"level":"info","message":"Fetching: https://www.cbr.com/news/comics/","service":"comic-scraper","timestamp":"2026-08-03 16:52:26"}
+{"level":"error","message":"Failed to fetch https://www.cbr.com/news/comics/: Request failed with status code 404","service":"comic-scraper","timestamp":"2026-08-03 16:52:27"}
+{"level":"info","message":"Fetching: https://www.cbr.com/tag/comic-news/","service":"comic-scraper","timestamp":"2026-08-03 16:52:27"}
+{"level":"info","message":"Found 0 comics","service":"comic-scraper","timestamp":"2026-08-03 16:52:27"}
