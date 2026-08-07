@@ -6,6 +6,12 @@ SELECT *
 FROM languages
 LIMIT 10;
 
+
+
+
+
+
+
 -- View selected language columns
 SELECT
     id,
@@ -27,6 +33,7 @@ SELECT *
 FROM language_transliterations
 LIMIT 10;
 
+
 -- Show transliterations with language names
 SELECT
     lt.id,
@@ -40,6 +47,7 @@ JOIN languages l2
     ON lt.transliteration_language_id = l2.id
 ORDER BY l1.name, l2.name
 LIMIT 20;
+
 
 -- Show all transliterations for English
 SELECT
